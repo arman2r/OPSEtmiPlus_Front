@@ -12,13 +12,13 @@ type FormInstance = InstanceType<typeof ElForm>
 
 export default class AboutView extends Vue {
 
-	requestP = ETMIPLUS_API.Greetings_SayHi_Request;
+	/*requestP = ETMIPLUS_API.Greetings_SayHi_Request;
 	ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiplusClient(process.env.VUE_APP_APIURL, axios);
 
 	async mounted() {
 	
 		const result = await this.ETMIPLUS_API_Client.hi();
 		console.log(result);
-	}
+	}*/
 
 }
