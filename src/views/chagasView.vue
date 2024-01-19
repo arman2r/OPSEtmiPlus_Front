@@ -1048,8 +1048,9 @@
                     </el-form>
                 </el-tab-pane>
             </el-tabs>
-        </el-col>
+        </el-col> 
     </el-row>
+    
 </template>
 
 <script lang="ts">

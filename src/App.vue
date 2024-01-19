@@ -32,7 +32,7 @@
               <el-menu-item index="1-1"><router-link to="/vih">VIH</router-link></el-menu-item>
               <el-menu-item index="1-2"><router-link to="/hepatitisB">Hepatitis B</router-link></el-menu-item>
               <el-menu-item index="1-3"><router-link to="/chagas">Chagas</router-link></el-menu-item>
-              <el-menu-item index="1-4">Sifilis</el-menu-item>
+              <el-menu-item index="1-4"><router-link to="/sifilis">Sifilis</router-link></el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
         </el-menu>
