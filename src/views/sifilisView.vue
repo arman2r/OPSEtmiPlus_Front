@@ -315,75 +315,73 @@
                                 </el-form-item>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mt mb">
-                                <label class="title-field" style="min-width: 180px !important;width:180px">Aplicación de penicilina benzatinica:</label><br />
+                                <label class="title-field" style="min-width: 180px !important;width:180px">Aplicación de penicilina benzatínica:</label><br />
                                 <el-radio-group v-model="ruleFormTercerReporte.suprecionDeLactancia">
                                     <el-radio :label="1">Si</el-radio>
                                     <el-radio :label="0">No</el-radio>
                                 </el-radio-group>
                             </el-col>
-                            <el-col :xs="24" :sm="24" :md="4" :lg="4" :xl="4">
+                            <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                 <el-row>
-                                    <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                        <h5 class="align-center">Número de dosis</h5>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
                                     </el-col>
-                                    <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                        <el-form-item prop="tipoDocumento"
-                                            class="select-width">
-                                            <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                placeholder="Número de dosis">
-                                                <el-option label="Primera dosis" value="1" />
-                                                <el-option label="Sgunda dosis" value="2" />
-                                                <el-option label="Tercera dosis" value="3" />
-                                            </el-select>
-                                        </el-form-item>
-                                        <el-form-item prop="tipoDocumento"
-                                            class="select-width">
-                                            <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                placeholder="Número de dosis">
-                                                <el-option label="Primera dosis" value="1" />
-                                                <el-option label="Sgunda dosis" value="2" />
-                                                <el-option label="Tercera dosis" value="3" />
-                                            </el-select>
-                                        </el-form-item>
-                                        <el-form-item prop="tipoDocumento"
-                                            class="select-width">
-                                            <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                placeholder="Número de dosis">
-                                                <el-option label="Primera dosis" value="1" />
-                                                <el-option label="Sgunda dosis" value="2" />
-                                                <el-option label="Tercera dosis" value="3" />
-                                            </el-select>
-                                        </el-form-item>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                        </el-col>
                                     </el-col>
-                                </el-row>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="4" :lg="4" :xl="4">
-                                <el-row>
-                                    <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                        <h5 class="align-center">Fecha: Día/Mes/Año</h5>
-                                    </el-col>
-                                    <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                        <el-date-picker
-                                            v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
-                                            placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
-                                        <el-date-picker
-                                            v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
-                                            placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
-                                        <el-date-picker
-                                            v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
-                                            placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
-                                    </el-col>
-                                </el-row>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
-                                <el-row>
-                                    <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                        <h5 class="align-center" style="margin-top: 14px;margin-bottom: 15px;">Edad gestional a la aplicacion en semanas</h5>
-                                    </el-col>
-                                    <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                        <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
-                                        <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
-                                        <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                    <el-col :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Edad gestacional a la aplicación en semanas</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                        </el-col>
                                     </el-col>
                                 </el-row>
                             </el-col>
@@ -408,12 +406,386 @@
                                 <el-radio :label="2">Inadecuado</el-radio>
                                 </el-radio-group>
                             </el-col>
-                            
-                            
                         </el-row>
                     </section>
                 </el-form>
-
+            </el-tab-pane>
+            <el-tab-pane label="Serología y retratamiento materno" name="four" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>SEGUIMIENTO SEROLÓGICO A LA GESTANTE - PRUEBA NO TREPONÉMICA</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Pruebas no tréponemicas de seguimiento realizadas durante la:</label><br />
+                            </el-col>
+                            <br/>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-row>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Tipo de prueba <br> utilizada</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-col>
+                                    <el-col :xs="24" :sm="24" :md="4" :lg="4" :xl="4" class="me-2"> 
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                        </el-col>
+                                    </el-col>
+                                    <el-col :xs="24" :sm="24" :md="4" :lg="4" :xl="4" class="me-2"> 
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Resultado: <br> reporte en diluciones</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.direccionResidencia" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.direccionResidencia" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.direccionResidencia" />
+                                        </el-col>
+                                    </el-col>
+                                    <el-col :xs="24" :sm="24" :md="4" :lg="4" :xl="4" class="me-2"> 
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Edad gestacional en semanas a la realización</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                        </el-col>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                            <el-col :span="24">
+                                <h4>RETRATAMIENTO MATERNO PARA LA SÍFILIS GESTACIONAL</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                    style="min-width: 180px !important;width:inherit !important">Requirio retratamiento:</label><br />
+                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>   
+                            
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field" 
+                                    style="min-width: 180px !important;width:inherit !important">Aplicación de penicilina benzatínica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Causa del retratamiento:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">Tratamiento inadecuado</el-radio>
+                                    <el-radio :label="2">Reinfección</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-row>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-col>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                        </el-col>
+                                    </el-col>
+                                    <el-col :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Edad gestacional a la aplicación en semanas</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                            <el-date-picker
+                                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                                placeholder="Fecha de emisión" :format="dateFormat" :size="size" />
+                                        </el-col>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Seguimiento" name="five" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>SEGUIMIENTO A SUS CONTACTOS SEXUALES</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Se realizó notificacion a los contactos:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Se realizó tratamiento a contactos:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Se aplico penicilina benzatínica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-row>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Número de dosis">
+                                                    <el-option label="Primera dosis" value="1" />
+                                                    <el-option label="Sgunda dosis" value="2" />
+                                                    <el-option label="Tercera dosis" value="3" />
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-col>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                        </el-col>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-form-item label="Si no se utilizó penicilina benzatínica, escriba el nombre del medicamento utilizado">
+                                    <el-input />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Situación" name="six" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>SITUACIÓN DE LA GESTANTE CON EL EMBARAZO ACTUAL</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Tipo de situación" prop="areaOcurrencia" class="select-width">
+                                    <el-select
+                                        placeholder="Tipo de situación">
+                                        <el-option label="Aborto" value="1" />
+                                        <el-option label="IVE" value="2" />
+                                        <el-option label="Mortalidad Materna" value="3" />
+                                        <el-option label="Parto" value="3" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
+                                <label class="label-field" style="min-width:180px">Fecha del parto</label>
+                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                    placeholder="Fecha del parto" :format="dateFormat" :size="size" />
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Condición del recién nacido:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">Vivo</el-radio>
+                                    <el-radio :label="2">Mortinato</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Número de productos al nacimiento:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">Único</el-radio>
+                                    <el-radio :label="2">Múltiple</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <label>Edad gestacional al nacimiento en semanas:</label>
+                                <el-form-item label="semanas" prop="nombreAseguradora">
+                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <label>Peso en gramos:</label>
+                                <el-form-item label="Peso" prop="nombreAseguradora">
+                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                </el-form-item>
+                            </el-col>
+                            <br/>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Sexo" prop="sexo" class="select-width">
+                                    <el-select v-model="ruleFormTercerReporte.sexo" placeholder="Sexo">
+                                        <el-option label="Hombre" value="1" />
+                                        <el-option label="Mujer" value="2" />
+                                        <el-option label="Intersexual" value="3" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud" class="select-width">
+                                    <el-select v-model="ruleFormHbDatosGestante.tipoRegimenSalud"
+                                        placeholder="Tipo de regimen de salud">
+                                        <el-option label="Excepción" value="1" />
+                                        <el-option label="Contributivo" value="2" />
+                                        <el-option label="Subsidiado" value="3" />
+                                        <el-option label="Especial" value="4" />
+                                        <el-option label="No asegurado" value="5" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradora">
+                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
+                                    <el-input v-model="ruleFormDatosGestante.nombresApellidos" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
+                                    <el-select v-model="ruleFormDatosGestante.tipoDocumento"
+                                        placeholder="Tipo de Documento">
+                                        <el-option label="Registro civil" value="1" />
+                                        <el-option label="Tarjeta de identidad" value="3" />
+                                        <el-option label="Menor sin identificar" value="4" />
+                                        <el-option label="Adulto sin identificar" value="5" />
+                                        <el-option label="Cedula de ciudadanía" value="6" />
+                                        <el-option label="Pasaporte" value="7" />
+                                        <el-option label="Salvo conducto" value="8" />
+                                        <el-option label="Permiso especial de permanencia" value="9" />
+                                        <el-option label="Cedula de extranjería" value="10" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Número de identificación" prop="documentNumber">
+                                    <el-input v-model="ruleFormDatosGestante.documentNumber" type="number" />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </section>
+                </el-form>
             </el-tab-pane>
         </el-tabs>
     </el-col>
@@ -715,6 +1087,10 @@ export default class HepatitisBView extends Vue {
 h4,
 h5 {
     text-align: left;
+}
+
+.serologia-retratamiento {
+    text-align: center;
 }
 
 .no-margin {
