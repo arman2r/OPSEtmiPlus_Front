@@ -17,7 +17,9 @@
                 <el-table-column label="Nombres" prop="nombresApellidos" />
                 <el-table-column label="Numero de documento" prop="numeroDocumento" />
                 <el-table-column label="Teléfono" prop="telefono" />
-                <el-table-column label="Fecha posible parto" prop="fechaPosibleParto" />
+                <!--<el-table-column label="Fecha posible parto" prop="fechaPosibleParto" />-->
+                <el-table-column prop="fechaPosibleParto" label="Fecha posible parto"
+                    :formatter="formatDate"></el-table-column>
                 <el-table-column align="right">
                     <template #header>
                         <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -42,13 +44,6 @@
                                 </el-dropdown-menu>
                             </template>
                         </el-dropdown>
-                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)" effect="dark"
-                            content="Crear gestante control" placement="left-start" style="margin-left:5px">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 1024 1024">
-                                <path fill="currentColor"
-                                    d="M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64zm64 0h192v-64H416zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32m192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32" />
-                            </svg>
-                        </el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -57,7 +52,7 @@
 
     <!-- modal de registro gestante -->
     <el-dialog v-model="dialogFormRegistroGestante" title="Registro gestante">
-        <el-form :model="registroGestanteForm">
+        <el-form :model="registroGestanteForm" :rules="rulesDatosGestante" ref="formRegistroGestante">
             <el-row :gutter="20">
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
 
@@ -77,14 +72,14 @@
                     <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
                         <el-select v-model="registroGestanteForm.tipoDocumento" placeholder="Tipo de Documento">
                             <el-option label="Registro civil" value="1" />
-                            <el-option label="Tarjeta de identidad" value="3" />
-                            <el-option label="Menor sin identificar" value="4" />
-                            <el-option label="Adulto sin identificar" value="5" />
-                            <el-option label="Cedula de ciudadanía" value="6" />
-                            <el-option label="Pasaporte" value="7" />
-                            <el-option label="Salvo conducto" value="8" />
-                            <el-option label="Permiso especial de permanencia" value="9" />
-                            <el-option label="Cedula de extranjería" value="10" />
+                            <el-option label="Tarjeta de identidad" value="2" />
+                            <el-option label="Menor sin identificar" value="3" />
+                            <el-option label="Adulto sin identificar" value="4" />
+                            <el-option label="Cedula de ciudadanía" value="5" />
+                            <el-option label="Pasaporte" value="6" />
+                            <el-option label="Salvo conducto" value="7" />
+                            <el-option label="Permiso especial de permanencia" value="8" />
+                            <el-option label="Cedula de extranjería" value="9" />
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -216,7 +211,7 @@
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="dialogFormRegistroGestante = false">Cancel</el-button>
-                <el-button type="primary" @click="selfData">
+                <el-button type="primary" @click="selfData(formRegistroGestante)">
                     Confirm
                 </el-button>
             </span>
@@ -225,47 +220,87 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import { computed, reactive } from 'vue';
-import type { ElForm } from 'element-plus';
-import { ElMessageBox } from 'element-plus';
+import { Vue } from 'vue-class-component';
+import { computed, reactive, ref } from 'vue';
+import { ElMessageBox, ElForm, FormRules } from 'element-plus';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
 import 'element-plus/theme-chalk/display.css'
+import moment from 'moment';
 
 type FormInstance = InstanceType<typeof ElForm>
 
 interface Gestante {
-    idGestante: number,
-    nombresApellidos: string,
-    idNacionalidad: number,
-    nacionalidad: string | null,
-    idTipoDocumento: number,
-    tipoDocumento: string | null,
-    numeroDocumento: string,
-    edad: number,
-    idTipoRegimenSalud: number,
-    tipoRegimenSalud: string | null,
-    nombreAseguradora: string,
-    idPertenenciaEtnica: number,
-    pertenenciaEtnica: string | null,
-    idGrupoPoblacional: number,
-    grupoPoblacional: string | null,
-    idAreaOcurrencia: number,
-    areaOcurrencia: string | null,
-    idDptoResidencia: number,
-    idMunicipioResidencia: number,
-    dptoResidencia: string[];
-    municipioResidencia: string[];
-    direccionResidencia: string,
-    idDptoAtencion: number,
-    idMunicipioAtencion: number,
-    telefono: string,
-    dptoAtencion: [],
-    municipioAtencion: [],
-    fechaPosibleParto: string,
-    seRealizaControlPrenatal: number,
-    edadGestacionalSemanas: number
+    idGestante?: number,
+    nombresApellidos?: string,
+    idNacionalidad?: number,
+    nacionalidad?: nacionalidad[],
+    idTipoDocumento?: number,
+    tipoDocumento?: tipoDocumento[],
+    numeroDocumento?: string,
+    edad?: number,
+    idTipoRegimenSalud?: number,
+    tipoRegimenSalud?: tipoRegimenSalud[],
+    nombreAseguradora?: string,
+    idPertenenciaEtnica?: number,
+    pertenenciaEtnica?: pertenenciaEtnica[],
+    idGrupoPoblacional?: number,
+    grupoPoblacional?: grupoPoblacional[],
+    idAreaOcurrencia?: number,
+    areaOcurrencia?: areaOcurrencia[],
+    idDptoResidencia?: number,
+    idMunicipioResidencia?: number,
+    dptoResidencia?: dptoModel[];
+    municipioResidencia?: ciudadModel[];
+    direccionResidencia?: string,
+    idDptoAtencion?: number,
+    idMunicipioAtencion?: number,
+    telefono?: string,
+    dptoAtencion?: dptoModel[],
+    municipioAtencion?: ciudadModel[],
+    fechaPosibleParto?: Date,
+    seRealizaControlPrenatal?: number,
+    edadGestacionalSemanas?: number
+}
+
+interface dptoModel {
+    id: number,
+    dptoName: string
+}
+
+interface ciudadModel {
+    id: number,
+    ciudadName: string
+}
+
+interface areaOcurrencia {
+    id: number,
+    areaOcurrenciaName: string
+}
+
+interface grupoPoblacional {
+    id: number,
+    grupoPoblacionalName: string
+}
+
+interface pertenenciaEtnica {
+    id: number,
+    pertenenciaEtnicaName: string
+}
+
+interface tipoRegimenSalud {
+    id: number,
+    tipoRegimenSaludName: string
+}
+
+interface tipoDocumento {
+    id: number,
+    tipoDocumentoName: string
+}
+
+interface nacionalidad {
+    id: number,
+    nacionalidadName: string
 }
 
 export default class gestantesView extends Vue {
@@ -276,153 +311,192 @@ export default class gestantesView extends Vue {
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
 
+    formatDate(date: any) {
+        // Use Moment.js to format the date
+        return moment(date.fechaPosibleParto).format(this.dateFormat);
+    }
 
     search = ''
     filterTableData = computed(() =>
         this.tableData.filter(
             (data) =>
                 !this.search ||
-                data.nombresApellidos.toLowerCase().includes(this.search.toLowerCase())
+                data.nombresApellidos?.toLowerCase().includes(this.search.toLowerCase())
         )
     )
-    handleEdit = (index: number, row: Gestante) => {
-        console.log(index, row)
+    handleEdit = async (index: number, row: Gestante) => {
+        console.log('editar',index, row.idGestante);
+        this.dialogFormRegistroGestante = true;
+        const getDataGestantesEdit = await this.ETMIPLUS_API_Client.gestanteGET(Number(row.idGestante)) as any;
+        console.log('data que llega', getDataGestantesEdit)
+        
+        this.registroGestanteForm.nombresApellidos = getDataGestantesEdit.data.nombreCompleto;
+        this.registroGestanteForm.nacionalidad = getDataGestantesEdit.data.idNacionalidad;
+        this.registroGestanteForm.tipoDocumento = getDataGestantesEdit.data.idTipoDocumento;
+        this.registroGestanteForm.numeroDocumento = getDataGestantesEdit.data.numeroDocumento;
+        this.registroGestanteForm.edad = getDataGestantesEdit.data.edad;
+        this.registroGestanteForm.tipoRegimenSalud = getDataGestantesEdit.data.tipoRegimenSalud;
+        this.registroGestanteForm.nombreAseguradora = getDataGestantesEdit.data.nombreAseguradora;
+        this.registroGestanteForm.pertenenciaEtnica = getDataGestantesEdit.data.pertenenciaEtnica;
+        this.registroGestanteForm.grupoPoblacional = getDataGestantesEdit.data.grupoPoblacional;
+        this.registroGestanteForm.areaOcurrencia = getDataGestantesEdit.data.areaOcurrencia;
+        this.registroGestanteForm.dptoResidencia = getDataGestantesEdit.data.dptoResidencia;
+        this.registroGestanteForm.municipioResidencia = getDataGestantesEdit.data.municipioResidencia;
+        this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion;
+        this.registroGestanteForm.direccionResidencia = getDataGestantesEdit.data.direccionResidencia;
+        this.registroGestanteForm.dptoAtencion = getDataGestantesEdit.data.dptoAtencion
+        this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion
+        this.registroGestanteForm.telefono = getDataGestantesEdit.data.telefono
+        this.registroGestanteForm.fechaPosibleParto = getDataGestantesEdit.data.fechaDelParto
+        this.registroGestanteForm.seRealizaControlPrenatal = getDataGestantesEdit.data.controlPrenatal;
+        this.registroGestanteForm.edadGestacionalSemanas = getDataGestantesEdit.data.semanas
     }
     handleDelete = (index: number, row: Gestante) => {
         console.log(index, row)
     }
 
-    tableData: Gestante[] = [
-        {
-            idGestante: 3,
-            nombresApellidos: "Angie Suarez",
-            idNacionalidad: 1,
-            nacionalidad: null,
-            idTipoDocumento: 6,
-            tipoDocumento: null,
-            numeroDocumento: "1026278808",
-            edad: 32,
-            idTipoRegimenSalud: 13,
-            tipoRegimenSalud: null,
-            nombreAseguradora: "Allianz",
-            idPertenenciaEtnica: 20,
-            pertenenciaEtnica: null,
-            idGrupoPoblacional: 25,
-            grupoPoblacional: null,
-            idAreaOcurrencia: 30,
-            areaOcurrencia: null,
-            idDptoResidencia: 33,
-            idMunicipioResidencia: 10,
-            direccionResidencia: "Cra 27 #41b-21 Sur",
-            idDptoAtencion: 15,
-            idMunicipioAtencion: 20,
-            dptoResidencia: ['tolima', 'cundinamarca'],
-            municipioResidencia: ['ibague', 'chia'],
-            dptoAtencion: [],
-            municipioAtencion: [],
-            telefono: "3102489336",
-            fechaPosibleParto: "2024-01-06T03:50:14.093",
-            seRealizaControlPrenatal: 1,
-            edadGestacionalSemanas: 15
-        },
-        {
-            idGestante: 1,
-            nombresApellidos: "Karen Julieth Perez",
-            idNacionalidad: 1,
-            nacionalidad: null,
-            idTipoDocumento: 6,
-            tipoDocumento: null,
-            numeroDocumento: "1026278808",
-            edad: 32,
-            idTipoRegimenSalud: 13,
-            tipoRegimenSalud: null,
-            nombreAseguradora: "Allianz",
-            idPertenenciaEtnica: 20,
-            pertenenciaEtnica: null,
-            idGrupoPoblacional: 25,
-            grupoPoblacional: null,
-            idAreaOcurrencia: 30,
-            areaOcurrencia: null,
-            idDptoResidencia: 33,
-            idMunicipioResidencia: 10,
-            dptoResidencia: ['tolima', 'cundinamarca'],
-            municipioResidencia: ['ibague', 'chia'],
-            direccionResidencia: "Cra 27 #41b-21 Sur",
-            idDptoAtencion: 15,
-            idMunicipioAtencion: 20,
-            dptoAtencion: [],
-            municipioAtencion: [],
-            telefono: "3102489336",
-            fechaPosibleParto: "2024-01-06T03:50:14.093",
-            seRealizaControlPrenatal: 1,
-            edadGestacionalSemanas: 15
-        },
-        {
-            idGestante: 2,
-            nombresApellidos: "Natalia Perez",
-            idNacionalidad: 1,
-            nacionalidad: null,
-            idTipoDocumento: 6,
-            tipoDocumento: null,
-            numeroDocumento: "1026278808",
-            edad: 32,
-            idTipoRegimenSalud: 13,
-            tipoRegimenSalud: null,
-            nombreAseguradora: "Allianz",
-            idPertenenciaEtnica: 20,
-            pertenenciaEtnica: null,
-            idGrupoPoblacional: 25,
-            grupoPoblacional: null,
-            idAreaOcurrencia: 30,
-            areaOcurrencia: null,
-            idDptoResidencia: 33,
-            idMunicipioResidencia: 10,
-            dptoResidencia: ['tolima', 'cundinamarca'],
-            municipioResidencia: ['ibague', 'chia'],
-            direccionResidencia: "Cra 27 #41b-21 Sur",
-            idDptoAtencion: 15,
-            idMunicipioAtencion: 20,
-            dptoAtencion: [],
-            municipioAtencion: [],
-            telefono: "3102489336",
-            fechaPosibleParto: "2024-01-06T03:50:14.093",
-            seRealizaControlPrenatal: 1,
-            edadGestacionalSemanas: 15
-        }
-    ]
+    tableData: Gestante[] = []
 
     registroGestanteForm = reactive<Gestante>({
         idGestante: 0,
-        nombresApellidos: "",
-        idNacionalidad: 0,
-        nacionalidad: null,
+        nombresApellidos: "samanta garzon",
+        idNacionalidad: 1,
+        nacionalidad: [{ 'id': 1, 'nacionalidadName': 'colombia' }],
         idTipoDocumento: 0,
-        tipoDocumento: null,
-        numeroDocumento: "",
-        edad: 0,
-        idTipoRegimenSalud: 0,
-        tipoRegimenSalud: null,
-        nombreAseguradora: "",
-        idPertenenciaEtnica: 0,
-        pertenenciaEtnica: null,
-        idGrupoPoblacional: 0,
-        grupoPoblacional: null,
-        idAreaOcurrencia: 0,
-        areaOcurrencia: null,
-        idDptoResidencia: 0,
-        idMunicipioResidencia: 0,
-        dptoResidencia: [],
-        municipioResidencia: [],
-        direccionResidencia: "",
-        idDptoAtencion: 0,
-        idMunicipioAtencion: 0,
-        dptoAtencion: [],
-        municipioAtencion: [],
-        telefono: "",
-        fechaPosibleParto: "",
-        seRealizaControlPrenatal: 0,
-        edadGestacionalSemanas: 0
+        tipoDocumento: [{ 'id': 1, 'tipoDocumentoName': 'colombia' }],
+        numeroDocumento: "1110555888",
+        edad: 23,
+        idTipoRegimenSalud: 1,
+        tipoRegimenSalud: [{ 'id': 1, 'tipoRegimenSaludName': 'colombia' }],
+        nombreAseguradora: "SURA",
+        idPertenenciaEtnica: 1,
+        pertenenciaEtnica: [{ 'id': 1, 'pertenenciaEtnicaName': 'colombia' }],
+        idGrupoPoblacional: 1,
+        grupoPoblacional: [{ 'id': 1, 'grupoPoblacionalName': 'colombia' }],
+        idAreaOcurrencia: 1,
+        areaOcurrencia: [{ 'id': 1, 'areaOcurrenciaName': 'colombia' }],
+        idDptoResidencia: 1,
+        idMunicipioResidencia: 1,
+        dptoResidencia: [{ 'id': 1, 'dptoName': 'colombia' }],
+        municipioResidencia: [{ 'id': 1, 'ciudadName': 'colombia' }],
+        direccionResidencia: "calle 22b # 33c - 28",
+        idDptoAtencion: 1,
+        idMunicipioAtencion: 1,
+        dptoAtencion: [{ 'id': 1, 'dptoName': 'colombia' }],
+        municipioAtencion: [{ 'id': 1, 'ciudadName': 'colombia' }],
+        telefono: "322566998",
+        fechaPosibleParto: new Date(),
+        seRealizaControlPrenatal: 1,
+        edadGestacionalSemanas: 6
     })
+
+    rulesDatosGestante = reactive<FormRules<Gestante>>({
+        nombresApellidos: [
+            { required: true, message: 'Por favor digite los nombre(s) y apellido(s) completos', trigger: 'blur' },
+            { min: 3, max: 50, message: 'debe tener una longitud entre 2 a 50 caracteres', trigger: 'blur' },
+        ],
+        nacionalidad: [
+            {
+                required: true,
+                message: 'Por favor seleccione la nacionalidad',
+                trigger: 'change',
+            },
+        ],
+        tipoDocumento: [
+            {
+                required: true,
+                message: 'Por favor seleccione el tipo de identificación',
+                trigger: 'change',
+            },
+        ],
+        numeroDocumento: [
+            { required: true, message: 'Por favor digite el número de documento', trigger: 'blur' },
+            { min: 2, max: 12, message: 'debe tener una longitud entre 2 a 12 caracteres', trigger: 'blur' },
+        ],
+        edad: [
+            { required: true, message: 'Por favor digite la edad', trigger: 'blur' },
+            { min: 1, max: 3, message: 'debe tener una longitud entre 1 a 3 caracteres', trigger: 'blur' },
+        ],
+        tipoRegimenSalud: [
+            {
+                required: true,
+                message: 'Por favor seleccione un regimen de salud',
+                trigger: 'change',
+            },
+        ],
+        nombreAseguradora: [
+            { required: true, message: 'Por favor digite el nombre de la aseguradora', trigger: 'blur' },
+            { min: 1, max: 30, message: 'debe tener una longitud entre 1 a 30 caracteres', trigger: 'blur' },
+        ],
+        pertenenciaEtnica: [
+            {
+                required: true,
+                message: 'Por favor seleccione la pertenencia etnica',
+                trigger: 'change',
+            },
+        ],
+        grupoPoblacional: [
+            {
+                required: true,
+                message: 'Por favor seleccione un grupo poblacional',
+                trigger: 'change',
+            },
+        ],
+        areaOcurrencia: [
+            {
+                required: true,
+                message: 'Por favor seleccione el area de ocurrencia',
+                trigger: 'change',
+            },
+        ],
+        dptoResidencia: [
+            {
+                required: true,
+                message: 'Por favor seleccione el departamento de residencia',
+                trigger: 'change',
+            },
+        ],
+        municipioResidencia: [
+            {
+                required: true,
+                message: 'Por favor seleccione el municipio de residencia',
+                trigger: 'change',
+            },
+        ],
+        direccionResidencia: [
+            { required: true, message: 'Por favor digite la dirección de residencia', trigger: 'blur' },
+            { min: 1, max: 50, message: 'debe tener una longitud entre 1 a 50 caracteres', trigger: 'blur' },
+        ],
+        telefono: [
+            { required: true, message: 'Por favor digite el teléfono', trigger: 'blur' },
+            { min: 1, max: 30, message: 'debe tener una longitud entre 1 a 30 caracteres', trigger: 'blur' },
+        ],
+        dptoAtencion: [
+            {
+                required: true,
+                message: 'Por favor seleccione el departamento de atención',
+                trigger: 'change',
+            },
+        ],
+        municipioAtencion: [
+            {
+                required: true,
+                message: 'Por favor seleccione el municipio de atención',
+                trigger: 'change',
+            },
+        ],
+        fechaPosibleParto: [
+            { required: true, message: 'Por favor ingrese la fecha probable de parto', trigger: 'change' }
+        ],
+        seRealizaControlPrenatal: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        edadGestacionalSemanas: [
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
+        ]
+    })
+
+    formRegistroGestante = ref<FormInstance>()
 
     selfData = async (formEl: FormInstance | undefined) => {
         if (!formEl) return
@@ -433,7 +507,7 @@ export default class gestantesView extends Vue {
                 this.registroGestante()
 
                 //this.registroGestanteForm
-                //this.dialogFormRegistroGestante = false
+                this.dialogFormRegistroGestante = false
             } else {
                 ElMessageBox.alert(`Por favor complete los campos marcados con *.`, { type: "warning" });
                 console.log('error al enviar!', fields)
@@ -443,30 +517,44 @@ export default class gestantesView extends Vue {
 
     async registroGestante() {
         console.log(this.registroGestanteForm.nombresApellidos)
-        /*const request = {
+        const request: Gestante = {
             idGestante: 0,
             nombresApellidos: this.registroGestanteForm.nombresApellidos,
-            idNacionalidad: this.registroGestanteForm.nacionalidad, 
-            idTipoDocumento: this.registroGestanteForm.tipoDocumento,
+            idNacionalidad: Number(this.registroGestanteForm.nacionalidad),
+            idTipoDocumento: Number(this.registroGestanteForm.tipoDocumento),
             numeroDocumento: this.registroGestanteForm.numeroDocumento,
             edad: this.registroGestanteForm.edad,
-            idTipoRegimenSalud: this.registroGestanteForm.tipoRegimenSalud,
+            idTipoRegimenSalud: Number(this.registroGestanteForm.tipoRegimenSalud),
             nombreAseguradora: this.registroGestanteForm.nombreAseguradora,
-            idPertenenciaEtnica: this.registroGestanteForm.idPertenenciaEtnica,
-            idGrupoPoblacional: this.registroGestanteForm.idGrupoPoblacional,
-            idAreaOcurrencia: this.registroGestanteForm.idAreaOcurrencia,
-            idDptoResidencia: this.registroGestanteForm.idDptoResidencia,
-            idMunicipioResidencia: this.registroGestanteForm.idMunicipioResidencia,
+            idPertenenciaEtnica: Number(this.registroGestanteForm.pertenenciaEtnica),
+            idGrupoPoblacional: Number(this.registroGestanteForm.grupoPoblacional),
+            idAreaOcurrencia: Number(this.registroGestanteForm.areaOcurrencia),
+            idDptoResidencia: Number(this.registroGestanteForm.dptoResidencia),
+            idMunicipioResidencia: Number(this.registroGestanteForm.municipioResidencia),
             direccionResidencia: this.registroGestanteForm.direccionResidencia,
-            idDptoAtencion: this.registroGestanteForm.idDptoAtencion,
-            idMunicipioAtencion: this.registroGestanteForm.idMunicipioAtencion,
+            idDptoAtencion: Number(this.registroGestanteForm.dptoAtencion),
+            idMunicipioAtencion: Number(this.registroGestanteForm.municipioAtencion),
             telefono: this.registroGestanteForm.telefono,
-            fechaPosibleParto: this.registroGestanteForm.fechaPosibleParto,
+            fechaPosibleParto: new Date(moment(this.registroGestanteForm.fechaPosibleParto).format('YYYY-MM-DD HH:mm:ss.sss')),
             seRealizaControlPrenatal: this.registroGestanteForm.seRealizaControlPrenatal,
             edadGestacionalSemanas: this.registroGestanteForm.edadGestacionalSemanas
         }
-        const requestRG = await this.ETMIPLUS_API_Client.gestantePOST(request);*/
+
+        const requestRG = await this.ETMIPLUS_API_Client.gestantePOST(request) as any;
+
+        console.log('request', request)
+        console.log('respuesta', requestRG)
+        const newRow = requestRG.data;
+        this.tableData.push(newRow);
     }
+ 
+ 
+    async mounted() {
+        const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
+        console.log('data que llega', getDataGestantes)
+        this.tableData = getDataGestantes.data
+    }
+ 
 
 }
 </script>

@@ -20,7 +20,7 @@ export class EtmiPlusClient {
 
         this.instance = instance ? instance : axios.create();
 
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+        this.baseUrl = 'baseUrl' !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
 
     }
 
@@ -833,11 +833,12 @@ export class EtmiPlusClient {
             }
         }
         if (status === 200) {
-            const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            console.log('respuesta get', response.data)
+            const _responseText = response.data.data;
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            const _responseText = response.data.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Promise.resolve<void>(null as any);
@@ -847,7 +848,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    gestantePOST(body: Gestante | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    gestantePOST(body: IGestante | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/Gestante";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -870,11 +871,13 @@ export class EtmiPlusClient {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
+            console.log('respuesta servicio', _response)
             return this.processGestantePOST(_response);
         });
     }
 
     protected processGestantePOST(response: AxiosResponse): Promise<void> {
+        console.log(response)
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -886,7 +889,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;

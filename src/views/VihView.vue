@@ -2012,119 +2012,119 @@ export default class VihView extends Vue {
 <style>
 h4,
 h5 {
-    text-align: left
+  text-align: left
 }
 
 .steps-container {
-    width: 100%;
+  width: 100%;
 }
 
 .select-width .el-form-item__content,
 .select-width .el-select,
 .select-width .select-trigger {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 .demo-ruleForm .el-form-item--default .el-form-item__label {
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    text-align: end;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: end;
 }
 
 .btn-save {
-    margin: 20px 0 0
+  margin: 20px 0 0
 }
 
 .no-margin {
-    margin: 0 0 0 0
+  margin: 0 0 0 0
 }
 
 .text-lg-end {
-    text-align: right
+  text-align: right
 }
 
 .mt {
-    margin-top: 2rem
+  margin-top: 2rem
 }
 
 .mb {
-    margin-bottom: 2rem
+  margin-bottom: 2rem
 }
 
 .dark-fill {
-    background-color: #E5EAF3
+  background-color: #E5EAF3
 }
 
 .me-2 {
-    margin-right: 2rem
+  margin-right: 2rem
 }
 
 
 .label-field {
-    line-height: 16px;
-    display: inline !important;
-    align-items: center;
-    text-align: end;
-    width: 180px;
-    font-size: .9rem;
-    padding-right: 3px;
-    margin-bottom: 18px
+  line-height: 16px;
+  display: inline !important;
+  align-items: center;
+  text-align: end;
+  width: 180px;
+  font-size: .9rem;
+  padding-right: 3px;
+  margin-bottom: 18px
 }
 
 .column-custom {
-    display: flex !important;
-    align-items: center
+  display: flex !important;
+  align-items: center
 }
 
 .column-custom label.title-field {
-    margin-right: 8px;
-    text-align: right;
-    width: 180px;
+  margin-right: 8px;
+  text-align: right;
+  width: 180px;
 }
 
 @media(max-width:991px) {
-    .column-custom {
-        flex-flow: column;
-        align-items: start
-    }
+  .column-custom {
+    flex-flow: column;
+    align-items: start
+  }
 
-    .label-field {
-        text-align: left;
-        width: 100%
-    }
+  .label-field {
+    text-align: left;
+    width: 100%
+  }
 
-    .el-form-item__label {
-        text-align: left !important;
-        width:100% !important;
-        align-items: start !important;
-        display: inline !important;
-    }
+  .el-form-item__label {
+    text-align: left !important;
+    width: 100% !important;
+    align-items: start !important;
+    display: inline !important;
+  }
 
-    .el-col {
-        margin-bottom: 8px
-    }
+  .el-col {
+    margin-bottom: 8px
+  }
 
-    .column-custom label.title-field {
-        margin-right: 0px;
-        text-align: left;
-        width: 100% !important;
-    }
-    
-    .el-form-item{
-        flex-flow: column;  
-        width: 100%;
-    }
+  .column-custom label.title-field {
+    margin-right: 0px;
+    text-align: left;
+    width: 100% !important;
+  }
 
-    .el-form-item label{
-        width: 100% !important;
-        text-align: left !important;
-    }
+  .el-form-item {
+    flex-flow: column;
+    width: 100%;
+  }
+
+  .el-form-item label {
+    width: 100% !important;
+    text-align: left !important;
+  }
 }
 
 .el-date-editor {
-    width: 100% !important;
-    margin-bottom: 18px
+  width: 100% !important;
+  margin-bottom: 18px
 }
 </style>
