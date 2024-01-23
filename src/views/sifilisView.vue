@@ -410,7 +410,7 @@
                     </section>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane label="Serología y retratamiento materno" name="four" ref="elTab4">
+            <el-tab-pane label="Serología" name="four" ref="elTab4">
                 <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
                     ref="secondForm" :label-position="labelPosition">
                     <section style="width: 100%;">
@@ -781,6 +781,180 @@
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                 <el-form-item label="Número de identificación" prop="documentNumber">
                                     <el-input v-model="ruleFormDatosGestante.documentNumber" type="number" />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Diagnotico recien nacido" name="seven" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>DIAGNÓSTICO DEL RECIEN NACIDO EXPUESTO A LA SÍFILIS</h4>
+                            </el-col>
+                            <el-col :span="24">
+                                <h5>REALIZACIÓN DE PRUEBA NO TREPONÉMICA DE LA MADRE AL MOMENTO DEL PARTO:</h5>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Se realizó prueba no treonémica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Tipo de prueba no treponémica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">VDRL</el-radio>
+                                    <el-radio :label="2">RPR</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Resultado de la prueba:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">Reactiva</el-radio>
+                                    <el-radio :label="2">No reactiva</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
+                                <label class="label-field" style="min-width:180px">Fecha del resultado</label>
+                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                    placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva" prop="nacionalidad"
+                                    class="select-width">
+                                    <el-select v-model="ruleFormHbDatosGestante.nacionalidad">
+                                        <el-option label="" value="1" />
+                                        <el-option label="1" value="2" />
+                                        <el-option label="2" value="3" />
+                                        <el-option label="4" value="4" />
+                                        <el-option label="8" value="5" />
+                                        <el-option label="16" value="6" />
+                                        <el-option label="32" value="7" />
+                                        <el-option label="64" value="8" />
+                                        <el-option label="128" value="9" />
+                                        <el-option label="256" value="10" />
+                                        <el-option label="512" value="11" />
+                                        <el-option label="1024" value="12" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <h5>REALIZACIÓN DE PRUEBA NO TREPONÉMICA A LA NIÑA O NIÑO EXPUESTO - AL NACIMIENTO:</h5>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Se realizó prueba no treonémica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Tipo de prueba no treponémica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">VDRL</el-radio>
+                                    <el-radio :label="2">RPR</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Resultado de la prueba:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">Reactiva</el-radio>
+                                    <el-radio :label="2">No reactiva</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
+                                <label class="label-field" style="min-width:180px">Fecha del resultado</label>
+                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                    placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva" prop="nacionalidad"
+                                    class="select-width">
+                                    <el-select v-model="ruleFormHbDatosGestante.nacionalidad">
+                                        <el-option label="" value="1" />
+                                        <el-option label="1" value="2" />
+                                        <el-option label="2" value="3" />
+                                        <el-option label="4" value="4" />
+                                        <el-option label="8" value="5" />
+                                        <el-option label="16" value="6" />
+                                        <el-option label="32" value="7" />
+                                        <el-option label="64" value="8" />
+                                        <el-option label="128" value="9" />
+                                        <el-option label="256" value="10" />
+                                        <el-option label="512" value="11" />
+                                        <el-option label="1024" value="12" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <h4>DIAGNÓSTICO E INTERVENCIONES DE LA NIÑA O NIÑO FRENTE A LA SÍFILIS</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Niña o niño con diagnóstico descartado de sífilis - Sano:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Niña o niño Sano, se aplico dosis profilactica con penicilina benzatinica:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Niña o niño con diagnóstico confirmado de sífilis:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Niña o niño con diagnóstico de sífilis, se aplico tratamiento para sífilis:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Niña o niño recibió tratamiento con penicilina cristalina:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <label class="title-field">Niña o niño recibió tratamiento por 10 días:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :span="24">
+                                <h5>CRITERIO UTILIZADO PARA EL DIAGNÓSTICO DE SÍFILIS CONGÉNITA EN LA NIÑA O NIÑO</h5>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Criterio utilizado" prop="nacionalidad"
+                                    class="select-width">
+                                    <el-select v-model="ruleFormHbDatosGestante.nacionalidad">
+                                        <el-option label="Nexo epidemiológico" value="1" />
+                                        <el-option label="Criterio serológico" value="2" />
+                                        <el-option label="Criterio clinico" value="3" />
+                                        <el-option label="Diagnostico directo" value="4" />
+                                        <el-option label="Diagnostico paraclínico" value="5" />
+                                    </el-select>
                                 </el-form-item>
                             </el-col>
                         </el-row>
