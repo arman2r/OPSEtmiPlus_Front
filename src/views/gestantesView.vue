@@ -62,24 +62,17 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Nacionalidad" prop="nacionalidad" class="select-width">
-                        <el-select v-model="registroGestanteForm.nacionalidad" placeholder="Nacionalidad">
-                            <el-option label="Colombiana" value="1" />
-                            <el-option label="Extranjera" value="2" />
+                        <el-select v-model="registroGestanteForm.nacionalidad" filterable placeholder="Nacionalidad">
+                            <el-option v-for="nacionalidad in nacionalidadList" :key="nacionalidad.id"
+                                :label="nacionalidad.name" :value="nacionalidad.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
-                        <el-select v-model="registroGestanteForm.tipoDocumento" placeholder="Tipo de Documento">
-                            <el-option label="Registro civil" value="1" />
-                            <el-option label="Tarjeta de identidad" value="2" />
-                            <el-option label="Menor sin identificar" value="3" />
-                            <el-option label="Adulto sin identificar" value="4" />
-                            <el-option label="Cedula de ciudadanía" value="5" />
-                            <el-option label="Pasaporte" value="6" />
-                            <el-option label="Salvo conducto" value="7" />
-                            <el-option label="Permiso especial de permanencia" value="8" />
-                            <el-option label="Cedula de extranjería" value="9" />
+                        <el-select v-model="registroGestanteForm.tipoDocumento" filterable placeholder="Tipo de Documento">
+                            <el-option v-for="tipoDocumento in tipoDocumentoList" :key="tipoDocumento.id"
+                                :label="tipoDocumento.name" :value="tipoDocumento.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -95,12 +88,10 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud" class="select-width">
-                        <el-select v-model="registroGestanteForm.tipoRegimenSalud" placeholder="Tipo de regimen de salud">
-                            <el-option label="Excepción" value="1" />
-                            <el-option label="Contributivo" value="2" />
-                            <el-option label="Subsidiado" value="3" />
-                            <el-option label="Especial" value="4" />
-                            <el-option label="No asegurado" value="5" />
+                        <el-select v-model="registroGestanteForm.tipoRegimenSalud" filterable
+                            placeholder="Tipo de regimen de salud">
+                            <el-option v-for="tipoRegimenSalud in tipoRegimenSaludList" :key="tipoRegimenSalud.id"
+                                :label="tipoRegimenSalud.name" :value="tipoRegimenSalud.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -111,51 +102,77 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Pertenencia etnica" prop="pertenenciaEtnica" class="select-width">
-                        <el-select v-model="registroGestanteForm.pertenenciaEtnica" placeholder="Pertenencia etnica">
-                            <el-option label="Palenquera" value="1" />
-                            <el-option label="Afrocolombiana" value="2" />
-                            <el-option label="Indigena" value="3" />
-                            <el-option label="Raizal" value="4" />
-                            <el-option label="Otro" value="5" />
-                            <el-option label="Rom" value="6" />
+                        <el-select v-model="registroGestanteForm.pertenenciaEtnica" filterable
+                            placeholder="Pertenencia etnica">
+                            <el-option v-for="pertenenciaEtnica in pertenenciaEtnicaList" :key="pertenenciaEtnica.id"
+                                :label="pertenenciaEtnica.name" :value="pertenenciaEtnica.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Grupo poblacional" prop="grupoPoblacional" class="select-width">
-                        <el-select v-model="registroGestanteForm.grupoPoblacional" placeholder="Grupo poblacional">
-                            <el-option label="Desplazada" value="1" />
-                            <el-option label="Migrante" value="2" />
-                            <el-option label="Victima de violencia armada" value="3" />
-                            <el-option label="Discapacitada" value="4" />
-                            <el-option label="Carceleria" value="5" />
-                            <el-option label="Habitante de calle" value="6" />
-                            <el-option label="Centro psiquiatrico" value="7" />
+                        <el-select v-model="registroGestanteForm.grupoPoblacional" filterable
+                            placeholder="Grupo poblacional">
+                            <el-option v-for="grupoPoblacional in grupoPoblacionalList" :key="grupoPoblacional.id"
+                                :label="grupoPoblacional.name" :value="grupoPoblacional.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Area de ocurrencia" prop="areaOcurrencia" class="select-width">
-                        <el-select v-model="registroGestanteForm.areaOcurrencia" placeholder="Area de ocurrencia">
-                            <el-option label="Cabecera municipal" value="1" />
-                            <el-option label="Centro poblado" value="2" />
-                            <el-option label="Rural disperso" value="3" />
+                        <el-select v-model="registroGestanteForm.areaOcurrencia" filterable
+                            placeholder="Area de ocurrencia">
+                            <el-option v-for="areaOcurrencia in areaOcurrenciaList" :key="areaOcurrencia.id"
+                                :label="areaOcurrencia.name" :value="areaOcurrencia.id" />
+                            <template #loading>
+                                <svg class="circular" viewBox="0 0 50 50">
+                                    <circle class="path" cx="25" cy="25" r="20" fill="none" />
+                                </svg>
+                            </template>
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Departamento de residencia" prop="dptoResidencia" class="select-width">
-                        <el-select v-model="registroGestanteForm.dptoResidencia" placeholder="Departamento de residencia">
-                            <el-option label="Tolima" value="1" />
-                            <el-option label="Cundinamarca" value="2" />
+                        <el-select v-model="registroGestanteForm.dptoResidencia" filterable
+                            placeholder="Departamento de residencia" @change="remoteMethod" :loading="loading">
+                            <el-option v-for="dptoResidencia in dptoResidenciaList" :key="dptoResidencia.id"
+                                :label="dptoResidencia.name" :value="dptoResidencia.id" />
+                            <template #loading>
+                                <el-icon class="is-loading">
+                                    <svg class="circular" viewBox="0 0 20 20">
+                                        <g class="path2 loading-path" stroke-width="0"
+                                            style="animation: none; stroke: none">
+                                            <circle r="3.375" class="dot1" rx="0" ry="0" />
+                                            <circle r="3.375" class="dot2" rx="0" ry="0" />
+                                            <circle r="3.375" class="dot4" rx="0" ry="0" />
+                                            <circle r="3.375" class="dot3" rx="0" ry="0" />
+                                        </g>
+                                    </svg>
+                                </el-icon>
+                            </template>
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Municipio de residencia" prop="municipioResidencia" class="select-width">
-                        <el-select v-model="registroGestanteForm.municipioResidencia" placeholder="Municipio de residencia">
-                            <el-option label="Ibague" value="1" />
-                            <el-option label="Chía" value="2" />
+                        <el-select v-model="registroGestanteForm.municipioResidencia" filterable
+                            placeholder="Municipio de residencia" :loading="loading">
+                            <el-option v-for="citiesResidencia in citiesResidenciaList" :key="citiesResidencia.id"
+                                :label="citiesResidencia.name" :value="citiesResidencia.id" />
+                            <template #loading>
+                                <el-icon class="is-loading">
+                                    <svg class="circular" viewBox="0 0 20 20">
+                                        <g class="path2 loading-path" stroke-width="0"
+                                            style="animation: none; stroke: none">
+                                            <circle r="3.375" class="dot1" rx="0" ry="0" />
+                                            <circle r="3.375" class="dot2" rx="0" ry="0" />
+                                            <circle r="3.375" class="dot4" rx="0" ry="0" />
+                                            <circle r="3.375" class="dot3" rx="0" ry="0" />
+                                        </g>
+                                    </svg>
+                                </el-icon>
+                            </template>
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -166,17 +183,17 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Departamento de atención" prop="dptoAtencion" class="select-width">
-                        <el-select v-model="registroGestanteForm.dptoAtencion" placeholder="Departamento de residencia">
-                            <el-option label="Tolima" value="1" />
-                            <el-option label="Cundinamarca" value="2" />
+                        <el-select v-model="registroGestanteForm.dptoAtencion" filterable @change="remoteMethodTwo" placeholder="Departamento de residencia">
+                            <el-option v-for="dptoAtencion in dptoAtencionList" :key="dptoAtencion.id"
+                                :label="dptoAtencion.name" :value="dptoAtencion.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Municipio de atención" prop="municipioAtencion" class="select-width">
-                        <el-select v-model="registroGestanteForm.municipioAtencion" placeholder="Municipio de residencia">
-                            <el-option label="Ibague" value="1" />
-                            <el-option label="Chía" value="2" />
+                        <el-select v-model="registroGestanteForm.municipioAtencion" filterable placeholder="Municipio de residencia">
+                            <el-option v-for="citiesAtencion in citiesAtencionList" :key="citiesAtencion.id"
+                                :label="citiesAtencion.name" :value="citiesAtencion.id" />
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -224,6 +241,7 @@ import { Vue } from 'vue-class-component';
 import { computed, reactive, ref } from 'vue';
 import { ElMessageBox, ElForm, FormRules } from 'element-plus';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
+import * as ETMIPLUS_DPTOS_API from "@/api/ETMIPLUS_DPTOS_API";
 import axios from 'axios';
 import 'element-plus/theme-chalk/display.css'
 import moment from 'moment';
@@ -303,13 +321,77 @@ interface nacionalidad {
     nacionalidadName: string
 }
 
+interface ICity {
+    id: number,
+    name: string,
+    description?: string,
+    surface?: number,
+    population?: number,
+    postalCode?: string,
+    departmentId?: number,
+    department?: string,
+    touristAttractions?: number,
+    presidents?: string,
+    indigenousReservations?: number,
+    airports?: number
+}
+
 export default class gestantesView extends Vue {
 
     dateFormat = 'DD/MM/YYYY'
     dialogFormRegistroGestante = false
     formLabelWidth = '140px'
+    loading = false;
+
+    nacionalidadList = [{ id: 1, name: 'colombiana' }, { id: 2, name: 'extranjera' }]
+    tipoDocumentoList = [
+        { id: 1, name: 'Tarjeta de identidad' },
+        { id: 2, name: 'Menor sin identificar' },
+        { id: 3, name: 'Adulto sin identificar' },
+        { id: 4, name: 'Cedula de ciudadanía' },
+        { id: 5, name: 'Pasaporte' },
+        { id: 6, name: 'Salvo conducto' },
+        { id: 7, name: 'Permiso especial de permanencia' },
+        { id: 8, name: 'Cedula de extranjería' },
+    ]
+    tipoRegimenSaludList = [
+        { id: 1, name: 'Excepción' },
+        { id: 2, name: 'Contributivo' },
+        { id: 3, name: 'Subsidiado' },
+        { id: 4, name: 'Especial' },
+        { id: 5, name: 'No asegurado' },
+    ]
+    pertenenciaEtnicaList = [
+        { id: 1, name: "Palenquera" },
+        { id: 2, name: "Afrocolombiana" },
+        { id: 3, name: "Indigena" },
+        { id: 4, name: "Raizal" },
+        { id: 5, name: "Otro" },
+        { id: 6, name: "Rom" },
+    ]
+    grupoPoblacionalList = [
+        { id: 1, name: "Desplazada" },
+        { id: 2, name: "Migrante" },
+        { id: 3, name: "Victima de violencia armada" },
+        { id: 4, name: "Discapacitada" },
+        { id: 5, name: "Carceleria" },
+        { id: 6, name: "Habitante de calle" },
+        { id: 7, name: "Centro psiquiatrico" },
+    ]
+    areaOcurrenciaList = [
+        { id: 1, name: "Cabecera municipal" },
+        { id: 1, name: "Centro poblado" },
+        { id: 1, name: "Rural disperso" },
+    ]
+    dptoResidenciaList = [] as any
+    citiesResidenciaList = [] as ICity[];
+    dptoAtencionList = [] as any;
+    citiesAtencionList = [] as ICity[];
+
+
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
+    ETMIPLUS_DPTOS_API_Client = new ETMIPLUS_DPTOS_API.EtmiPlusLocation('', axios);
 
     formatDate(date: any) {
         // Use Moment.js to format the date
@@ -325,31 +407,56 @@ export default class gestantesView extends Vue {
         )
     )
     handleEdit = async (index: number, row: Gestante) => {
-        console.log('editar',index, row.idGestante);
+        console.log('editar', index, row.idGestante);
         this.dialogFormRegistroGestante = true;
+        console.log('id gestante', Number(row.idGestante))
         const getDataGestantesEdit = await this.ETMIPLUS_API_Client.gestanteGET(Number(row.idGestante)) as any;
-        console.log('data que llega', getDataGestantesEdit)
-        
-        this.registroGestanteForm.nombresApellidos = getDataGestantesEdit.data.nombreCompleto;
-        this.registroGestanteForm.nacionalidad = getDataGestantesEdit.data.idNacionalidad;
-        this.registroGestanteForm.tipoDocumento = getDataGestantesEdit.data.idTipoDocumento;
-        this.registroGestanteForm.numeroDocumento = getDataGestantesEdit.data.numeroDocumento;
-        this.registroGestanteForm.edad = getDataGestantesEdit.data.edad;
-        this.registroGestanteForm.tipoRegimenSalud = getDataGestantesEdit.data.tipoRegimenSalud;
-        this.registroGestanteForm.nombreAseguradora = getDataGestantesEdit.data.nombreAseguradora;
-        this.registroGestanteForm.pertenenciaEtnica = getDataGestantesEdit.data.pertenenciaEtnica;
-        this.registroGestanteForm.grupoPoblacional = getDataGestantesEdit.data.grupoPoblacional;
-        this.registroGestanteForm.areaOcurrencia = getDataGestantesEdit.data.areaOcurrencia;
-        this.registroGestanteForm.dptoResidencia = getDataGestantesEdit.data.dptoResidencia;
-        this.registroGestanteForm.municipioResidencia = getDataGestantesEdit.data.municipioResidencia;
-        this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion;
-        this.registroGestanteForm.direccionResidencia = getDataGestantesEdit.data.direccionResidencia;
-        this.registroGestanteForm.dptoAtencion = getDataGestantesEdit.data.dptoAtencion
-        this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion
-        this.registroGestanteForm.telefono = getDataGestantesEdit.data.telefono
-        this.registroGestanteForm.fechaPosibleParto = getDataGestantesEdit.data.fechaDelParto
-        this.registroGestanteForm.seRealizaControlPrenatal = getDataGestantesEdit.data.controlPrenatal;
-        this.registroGestanteForm.edadGestacionalSemanas = getDataGestantesEdit.data.semanas
+        console.log('data que llega 2 ', getDataGestantesEdit)
+        if (getDataGestantesEdit !== null) {
+            console.log('data que llega 2 - 1', getDataGestantesEdit)
+            this.registroGestanteForm.nombresApellidos = getDataGestantesEdit.data.nombresApellidos;
+            this.registroGestanteForm.nacionalidad = getDataGestantesEdit.data.idNacionalidad;
+            this.registroGestanteForm.tipoDocumento = getDataGestantesEdit.data.idTipoDocumento;
+            this.registroGestanteForm.numeroDocumento = getDataGestantesEdit.data.numeroDocumento;
+            this.registroGestanteForm.edad = getDataGestantesEdit.data.edad;
+            this.registroGestanteForm.tipoRegimenSalud = getDataGestantesEdit.data.tipoRegimenSalud;
+            this.registroGestanteForm.nombreAseguradora = getDataGestantesEdit.data.nombreAseguradora;
+            this.registroGestanteForm.pertenenciaEtnica = getDataGestantesEdit.data.pertenenciaEtnica;
+            this.registroGestanteForm.grupoPoblacional = getDataGestantesEdit.data.grupoPoblacional;
+            this.registroGestanteForm.areaOcurrencia = getDataGestantesEdit.data.areaOcurrencia;
+            this.registroGestanteForm.dptoResidencia = getDataGestantesEdit.data.dptoResidencia;
+            this.registroGestanteForm.municipioResidencia = getDataGestantesEdit.data.municipioResidencia;
+            this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion;
+            this.registroGestanteForm.direccionResidencia = getDataGestantesEdit.data.direccionResidencia;
+            this.registroGestanteForm.dptoAtencion = getDataGestantesEdit.data.dptoAtencion
+            this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion
+            this.registroGestanteForm.telefono = getDataGestantesEdit.data.telefono
+            this.registroGestanteForm.fechaPosibleParto = getDataGestantesEdit.data.fechaDelParto
+            this.registroGestanteForm.seRealizaControlPrenatal = getDataGestantesEdit.data.controlPrenatal;
+            this.registroGestanteForm.edadGestacionalSemanas = getDataGestantesEdit.data.semanas
+        } else {
+            this.registroGestanteForm.nombresApellidos = undefined
+            this.registroGestanteForm.nacionalidad = undefined
+            this.registroGestanteForm.tipoDocumento = undefined
+            this.registroGestanteForm.numeroDocumento = undefined
+            this.registroGestanteForm.edad = undefined
+            this.registroGestanteForm.tipoRegimenSalud = undefined
+            this.registroGestanteForm.nombreAseguradora = undefined
+            this.registroGestanteForm.pertenenciaEtnica = undefined
+            this.registroGestanteForm.grupoPoblacional = undefined
+            this.registroGestanteForm.areaOcurrencia = undefined
+            this.registroGestanteForm.dptoResidencia = undefined
+            this.registroGestanteForm.municipioResidencia = undefined
+            this.registroGestanteForm.municipioAtencion = undefined
+            this.registroGestanteForm.direccionResidencia = undefined
+            this.registroGestanteForm.dptoAtencion = undefined
+            this.registroGestanteForm.municipioAtencion = undefined
+            this.registroGestanteForm.telefono = undefined
+            this.registroGestanteForm.fechaPosibleParto = undefined
+            this.registroGestanteForm.seRealizaControlPrenatal = undefined
+            this.registroGestanteForm.edadGestacionalSemanas = undefined
+        }
+
     }
     handleDelete = (index: number, row: Gestante) => {
         console.log(index, row)
@@ -359,35 +466,35 @@ export default class gestantesView extends Vue {
 
     registroGestanteForm = reactive<Gestante>({
         idGestante: 0,
-        nombresApellidos: "samanta garzon",
+        nombresApellidos: "",
         idNacionalidad: 1,
-        nacionalidad: [{ 'id': 1, 'nacionalidadName': 'colombia' }],
+        nacionalidad: [],
         idTipoDocumento: 0,
-        tipoDocumento: [{ 'id': 1, 'tipoDocumentoName': 'colombia' }],
-        numeroDocumento: "1110555888",
-        edad: 23,
+        tipoDocumento: [],
+        numeroDocumento: "",
+        edad: 0,
         idTipoRegimenSalud: 1,
-        tipoRegimenSalud: [{ 'id': 1, 'tipoRegimenSaludName': 'colombia' }],
-        nombreAseguradora: "SURA",
-        idPertenenciaEtnica: 1,
-        pertenenciaEtnica: [{ 'id': 1, 'pertenenciaEtnicaName': 'colombia' }],
-        idGrupoPoblacional: 1,
-        grupoPoblacional: [{ 'id': 1, 'grupoPoblacionalName': 'colombia' }],
+        tipoRegimenSalud: [],
+        nombreAseguradora: "",
+        idPertenenciaEtnica: 0,
+        pertenenciaEtnica: [],
+        idGrupoPoblacional: 0,
+        grupoPoblacional: [],
         idAreaOcurrencia: 1,
-        areaOcurrencia: [{ 'id': 1, 'areaOcurrenciaName': 'colombia' }],
-        idDptoResidencia: 1,
-        idMunicipioResidencia: 1,
-        dptoResidencia: [{ 'id': 1, 'dptoName': 'colombia' }],
-        municipioResidencia: [{ 'id': 1, 'ciudadName': 'colombia' }],
-        direccionResidencia: "calle 22b # 33c - 28",
-        idDptoAtencion: 1,
-        idMunicipioAtencion: 1,
-        dptoAtencion: [{ 'id': 1, 'dptoName': 'colombia' }],
-        municipioAtencion: [{ 'id': 1, 'ciudadName': 'colombia' }],
-        telefono: "322566998",
+        areaOcurrencia: [],
+        idDptoResidencia: 0,
+        idMunicipioResidencia: 0,
+        dptoResidencia: [],
+        municipioResidencia: [],
+        direccionResidencia: "",
+        idDptoAtencion: 0,
+        idMunicipioAtencion: 0,
+        dptoAtencion: [],
+        municipioAtencion: [],
+        telefono: "",
         fechaPosibleParto: new Date(),
-        seRealizaControlPrenatal: 1,
-        edadGestacionalSemanas: 6
+        seRealizaControlPrenatal: 0,
+        edadGestacionalSemanas: 0
     })
 
     rulesDatosGestante = reactive<FormRules<Gestante>>({
@@ -547,14 +654,59 @@ export default class gestantesView extends Vue {
         const newRow = requestRG.data;
         this.tableData.push(newRow);
     }
- 
- 
+
     async mounted() {
         const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
         console.log('data que llega', getDataGestantes)
         this.tableData = getDataGestantes.data
+
+        //API de Consulta para dptos y ciudades
+        const getAllDptos = await this.ETMIPLUS_DPTOS_API_Client.getDptos() as any; 
+        this.dptoResidenciaList = getAllDptos; 
+
+        const getAllDptosAtencion = await this.ETMIPLUS_DPTOS_API_Client.getDptos() as any; 
+        this.dptoAtencionList = getAllDptosAtencion; 
     }
- 
+
+    async remoteMethod() {
+        console.log('id', this.registroGestanteForm.dptoResidencia)
+        if (this.registroGestanteForm.dptoResidencia) {
+            this.loading = true
+            setTimeout(async () => {
+                this.loading = false;
+
+                const getAllCities = await this.ETMIPLUS_DPTOS_API_Client.getCityByDpto(Number(this.registroGestanteForm.dptoResidencia)) as any;
+                console.log('cities', getAllCities)
+                this.citiesResidenciaList = getAllCities
+                /*this.citiesResidenciaList = list.value.filter((item) => {
+                    return item.label.toLowerCase().includes(query.toLowerCase())
+                })*/
+            }, 3000)
+        } else {
+            this.citiesResidenciaList = []
+        }
+    }
+
+    async remoteMethodTwo() {
+        console.log('id', this.registroGestanteForm.dptoAtencion)
+        if (this.registroGestanteForm.dptoAtencion) {
+            this.loading = true
+            setTimeout(async () => {
+                this.loading = false;
+
+                const getAllCities = await this.ETMIPLUS_DPTOS_API_Client.getCityByDpto(Number(this.registroGestanteForm.dptoAtencion)) as any;
+                console.log('cities', getAllCities)
+                this.citiesAtencionList = getAllCities
+                /*this.citiesAtencionList = list.value.filter((item) => {
+                    return item.label.toLowerCase().includes(query.toLowerCase())
+                })*/
+            }, 3000)
+        } else {
+            this.citiesAtencionList = []
+        }
+    }
+
+
 
 }
 </script>
@@ -681,5 +833,89 @@ h5 {
 .el-date-editor {
     width: 100% !important;
     margin-bottom: 18px
+}
+
+.el-select-dropdown__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 20px;
+}
+
+.circular {
+    display: inline;
+    height: 30px;
+    width: 30px;
+    animation: loading-rotate 2s linear infinite;
+}
+
+.path {
+    animation: loading-dash 1.5s ease-in-out infinite;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    stroke-width: 2;
+    stroke: var(--el-color-primary);
+    stroke-linecap: round;
+}
+
+.loading-path .dot1 {
+    transform: translate(3.75px, 3.75px);
+    fill: var(--el-color-primary);
+    animation: custom-spin-move 1s infinite linear alternate;
+    opacity: 0.3;
+}
+
+.loading-path .dot2 {
+    transform: translate(calc(100% - 3.75px), 3.75px);
+    fill: var(--el-color-primary);
+    animation: custom-spin-move 1s infinite linear alternate;
+    opacity: 0.3;
+    animation-delay: 0.4s;
+}
+
+.loading-path .dot3 {
+    transform: translate(3.75px, calc(100% - 3.75px));
+    fill: var(--el-color-primary);
+    animation: custom-spin-move 1s infinite linear alternate;
+    opacity: 0.3;
+    animation-delay: 1.2s;
+}
+
+.loading-path .dot4 {
+    transform: translate(calc(100% - 3.75px), calc(100% - 3.75px));
+    fill: var(--el-color-primary);
+    animation: custom-spin-move 1s infinite linear alternate;
+    opacity: 0.3;
+    animation-delay: 0.8s;
+}
+
+@keyframes loading-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loading-dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -40px;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -120px;
+    }
+}
+
+@keyframes custom-spin-move {
+    to {
+        opacity: 1;
+    }
 }
 </style>
