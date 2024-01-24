@@ -3,7 +3,7 @@
     <h4>SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO:ETMI-PLUS</h4>
     <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb">
         <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-            <el-tab-pane label="Datos gestante" name="first" ref="elTab1">
+            <el-tab-pane label="Datos" name="first" ref="elTab1">
                 <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
                     ref="firstForm" :label-position="labelPosition">
                     <section style="width: 100%;">
@@ -298,7 +298,7 @@
                     </section>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane label="Tratamiento materno" name="third" ref="elTab3">
+            <el-tab-pane label="Tratamiento" name="third" ref="elTab3">
                 <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
                     ref="secondForm" :label-position="labelPosition">
                     <section style="width: 100%;">
@@ -787,7 +787,7 @@
                     </section>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane label="Diagnotico recien nacido" name="seven" ref="elTab4">
+            <el-tab-pane label="Diagnostico" name="seven" ref="elTab4">
                 <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
                     ref="secondForm" :label-position="labelPosition">
                     <section style="width: 100%;">
@@ -897,6 +897,15 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Intervenciones" name="eight" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
                             <el-col :span="24">
                                 <h4>DIAGNÓSTICO E INTERVENCIONES DE LA NIÑA O NIÑO FRENTE A LA SÍFILIS</h4>
                             </el-col>
@@ -957,6 +966,225 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
+                            
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Seguimiento niña o niño" name="nine" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>SEGUIMIENTO DE LA NIÑA O NIÑO CON SÍFILIS CONGENITA DURANTE EL PRIMER AÑO DE VIDA</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Se realizó deguimiento al niño con sífilis a los: 3, 6 ,9 y 12 meses de edad:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">Si la respues es SI registre la siguiente informacion:</label>
+                            </el-col>
+                            <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-row>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Prueba <br> utilizada</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Tipo de prueba">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Tipo de prueba">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Tipo de prueba">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item prop="tipoDocumento"
+                                                class="select-width">
+                                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    placeholder="Tipo de prueba">
+                                                    <el-option label="VDRL" value="1" />
+                                                    <el-option label="RPR" value="2" />
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-col>
+                                    <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                            <el-input style="margin-bottom: 18px;" v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                        </el-col>
+                                    </el-col>
+                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <h5 class="serologia-retratamiento">Reporte en diluciones: <br> elija la opcion que corresponda</h5>
+                                        </el-col>
+                                        <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-col  :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                                <el-form-item prop="tipoDocumento"
+                                                    class="select-width">
+                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                        placeholder="Diluciones">
+                                                        <el-option label="1" value="1" />
+                                                        <el-option label="2" value="2" />
+                                                        <el-option label="4" value="3" />
+                                                        <el-option label="8" value="4" />
+                                                        <el-option label="16" value="5" />
+                                                        <el-option label="32" value="6" />
+                                                        <el-option label="64" value="7" />
+                                                        <el-option label="128" value="8" />
+                                                        <el-option label="256" value="9" />
+                                                        <el-option label="512" value="10" />
+                                                        <el-option label="1024" value="11" />
+                                                    </el-select>
+                                                </el-form-item>
+                                                <el-form-item prop="tipoDocumento"
+                                                    class="select-width">
+                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                        placeholder="Diluciones">
+                                                        <el-option label="1" value="1" />
+                                                        <el-option label="2" value="2" />
+                                                        <el-option label="4" value="3" />
+                                                        <el-option label="8" value="4" />
+                                                        <el-option label="16" value="5" />
+                                                        <el-option label="32" value="6" />
+                                                        <el-option label="64" value="7" />
+                                                        <el-option label="128" value="8" />
+                                                        <el-option label="256" value="9" />
+                                                        <el-option label="512" value="10" />
+                                                        <el-option label="1024" value="11" />
+                                                    </el-select>
+                                                </el-form-item>
+                                                <el-form-item prop="tipoDocumento"
+                                                    class="select-width">
+                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                        placeholder="Diluciones">
+                                                        <el-option label="1" value="1" />
+                                                        <el-option label="2" value="2" />
+                                                        <el-option label="4" value="3" />
+                                                        <el-option label="8" value="4" />
+                                                        <el-option label="16" value="5" />
+                                                        <el-option label="32" value="6" />
+                                                        <el-option label="64" value="7" />
+                                                        <el-option label="128" value="8" />
+                                                        <el-option label="256" value="9" />
+                                                        <el-option label="512" value="10" />
+                                                        <el-option label="1024" value="11" />
+                                                    </el-select>
+                                                </el-form-item>
+                                                <el-form-item prop="tipoDocumento"
+                                                    class="select-width">
+                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                        placeholder="Diluciones">
+                                                        <el-option label="1" value="1" />
+                                                        <el-option label="2" value="2" />
+                                                        <el-option label="4" value="3" />
+                                                        <el-option label="8" value="4" />
+                                                        <el-option label="16" value="5" />
+                                                        <el-option label="32" value="6" />
+                                                        <el-option label="64" value="7" />
+                                                        <el-option label="128" value="8" />
+                                                        <el-option label="256" value="9" />
+                                                        <el-option label="512" value="10" />
+                                                        <el-option label="1024" value="11" />
+                                                    </el-select>
+                                                </el-form-item>
+                                            </el-col>
+                                        </el-col>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <label class="title-field"
+                                style="min-width: 180px !important;width:inherit !important">La niña o niño cumple criterios de curación para sífilis:</label><br />
+                                <el-radio-group class="ml-4">
+                                    <el-radio :label="1">SI</el-radio>
+                                    <el-radio :label="2">NO</el-radio>
+                                </el-radio-group>
+                            </el-col>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Reporte" name="ten" ref="elTab4">
+                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
+                    ref="secondForm" :label-position="labelPosition">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>REPORTE DE DATOS DEL SEGUIMIENTO AL BINOMIO MADRE-HIJO</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Nombre de instituto que hace seguimiento:" prop="nombreIntitucionSeguimiento">
+                                    <el-input v-model="ruleFormReporteSifilis.nombreIntitucionSeguimiento" placeholder="Instituto" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Nombre de quien registra la información:" prop="nombreQuienRegistraInformacion">
+                                    <el-input v-model="ruleFormReporteSifilis.nombreQuienRegistraInformacion" placeholder="Quien registra la información" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Cargo de quien hace el seguimiento:" prop="cargoQuienHaceSeguimiento">
+                                    <el-input v-model="ruleFormReporteSifilis.cargoQuienHaceSeguimiento" placeholder="Cargo" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Teléfono celular:" prop="telefonoCelular">
+                                    <el-input v-model="ruleFormReporteSifilis.telefonoCelular" placeholder="Teléfono celular" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Teléfono fijo - indicativo" prop="telefonoFijo">
+                                    <el-input v-model="ruleFormReporteSifilis.telefonoFijo" placeholder="Teléfono fijo" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Correo electrónico" prop="correoelectronico">
+                                    <el-input v-model="ruleFormReporteSifilis.correoelectronico" placeholder="Correo electrónico" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Correo electrónico" prop="correoelectronico">
+                                    <el-input v-model="ruleFormReporteSifilis.correoelectronico" placeholder="Correo electrónico" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="24">
+                                <h4>OBSERVACIONES RELEVANTES DEL CASO - NO REGISTRE NUEVAMENTE DATOS YA REGISTRADOS EN EL FORMATO</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-form-item label="Observaciones" prop="observacionesCaso">
+                                    <el-input v-model="ruleFormReporteSifilis.observacionesCaso" type="textarea" placeholder="Observaciones" />
+                                </el-form-item>
+                            </el-col>
                         </el-row>
                     </section>
                 </el-form>
@@ -977,6 +1205,7 @@ import { ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
+import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
 type FormInstance = InstanceType<typeof ElForm>
 
@@ -995,6 +1224,9 @@ export default class HepatitisBView extends Vue {
     disabledFive = true
     disabledSix = true
     disabledSeven = true
+    disabledEight = true
+    disabledNine = true
+    disabledTen = true
     isVisible = false
     dateFormat = 'DD/MM/YYYY'
     position = 'right'
@@ -1007,6 +1239,9 @@ export default class HepatitisBView extends Vue {
     fiveForm = ref<FormInstance>()
     sixForm = ref<FormInstance>()
     sevenForm = ref<FormInstance>()
+    eightForm = ref<FormInstance>()
+    nineForm = ref<FormInstance>()
+    teneForm = ref<FormInstance>()
 
     formSize = 'default'
 
@@ -1060,9 +1295,14 @@ export default class HepatitisBView extends Vue {
         } else if (tabName === 'six') {
             this.disabledSix = false
         } else if (tabName === 'seven') {
-            this.disabledSeven = false
+            this.disabledEight = false
+        }else if (tabName === 'eight') {
+            this.disabledEight = false
+        }else if (tabName === 'nine') {
+            this.disabledNine = false
+        }else if (tabName === 'ten') {
+            this.disabledTen = false
         }
-
         //console.log(elTabComponent)
     }
 
@@ -1134,6 +1374,16 @@ export default class HepatitisBView extends Vue {
         suprecionDeLactancia: false,
         medicamentoSuministrado: false,
         otroMedicamento: '',
+    })
+
+    ruleFormReporteSifilis = reactive<RuleFormReporteSifilis>({
+        nombreIntitucionSeguimiento: '',
+        nombreQuienRegistraInformacion: '',
+        cargoQuienHaceSeguimiento: '',
+        telefonoCelular: '',
+        telefonoFijo: '',
+        correoelectronico: '',
+        observacionesCaso: ''
     })
 
     rulesDatosGestante = reactive<FormRules<RuleFormDatosGestante>>({
