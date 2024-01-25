@@ -3,7 +3,7 @@ import { Options, Vue } from 'vue-class-component';
 import { ref } from 'vue'
 import { ElForm, ElMessageBox } from 'element-plus'
 import axios from 'axios';
-import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
+import * as ETMIPLUS_API from "@/api/ETMIPLUS_API_backup";
 
 
 type FormInstance = InstanceType<typeof ElForm>

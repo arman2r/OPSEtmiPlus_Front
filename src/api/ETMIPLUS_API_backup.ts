@@ -730,7 +730,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    gestantePUT(id: number, body?: IGestante | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    gestantePUT(id: number, body?: Gestante | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/Gestante/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -936,7 +936,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(_responseText as any);
+            return Promise.resolve<void>(null as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -3456,7 +3456,7 @@ export class Gestante implements IGestante {
     grupoPoblacional?: Parametrica;
     idAreaOcurrencia?: number;
     areaOcurrencia?: Parametrica;
-    idDptoResidencia?: number; 
+    idDptoResidencia?: number;
     idMunicipioResidencia?: number;
     direccionResidencia?: string | undefined;
     idDptoAtencion?: number;
@@ -3549,29 +3549,25 @@ export interface IGestante {
     idGestante?: number;
     nombresApellidos?: string | undefined;
     idNacionalidad?: number;
-    nacionalidad?: IParametrica;
+    nacionalidad?: Parametrica;
     idTipoDocumento?: number;
-    tipoDocumento?: IParametrica;
+    tipoDocumento?: Parametrica;
     numeroDocumento?: string | undefined;
     edad?: number;
     idTipoRegimenSalud?: number;
-    tipoRegimenSalud?: IParametrica;
+    tipoRegimenSalud?: Parametrica;
     nombreAseguradora?: string | undefined;
     idPertenenciaEtnica?: number;
-    pertenenciaEtnica?: IParametrica;
+    pertenenciaEtnica?: Parametrica;
     idGrupoPoblacional?: number;
-    grupoPoblacional?: IParametrica;
+    grupoPoblacional?: Parametrica;
     idAreaOcurrencia?: number;
-    areaOcurrencia?: IParametrica;
+    areaOcurrencia?: Parametrica;
     idDptoResidencia?: number;
-    dptoResidencia?: IParametrica;
     idMunicipioResidencia?: number;
-    municipioResidencia?: IParametrica;
     direccionResidencia?: string | undefined;
     idDptoAtencion?: number;
-    dptoAtencion?: IParametrica;
     idMunicipioAtencion?: number;
-    municipioAtencion?: IParametrica;
     telefono?: string | undefined;
     fechaPosibleParto?: Date;
     seRealizaControlPrenatal?: number;
@@ -3744,9 +3740,9 @@ export interface IParaclinicoNino {
 
 export class Parametrica implements IParametrica {
     id?: number;
-    name?: string | undefined;
+    nombre?: string | undefined;
     valor?: string | undefined;
-    description?: string | undefined;
+    descripcion?: string | undefined;
 
     constructor(data?: IParametrica) {
         if (data) {
@@ -3760,9 +3756,9 @@ export class Parametrica implements IParametrica {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.name = _data["name"];
+            this.nombre = _data["nombre"];
             this.valor = _data["valor"];
-            this.description = _data["description"];
+            this.descripcion = _data["descripcion"];
         }
     }
 
@@ -3776,18 +3772,18 @@ export class Parametrica implements IParametrica {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["name"] = this.name;
+        data["nombre"] = this.nombre;
         data["valor"] = this.valor;
-        data["description"] = this.description;
+        data["descripcion"] = this.descripcion;
         return data;
     }
 }
 
 export interface IParametrica {
     id?: number;
-    name?: string | undefined;
+    nombre?: string | undefined;
     valor?: string | undefined;
-    description?: string | undefined;
+    descripcion?: string | undefined;
 }
 
 export class Reporte1 implements IReporte1 {

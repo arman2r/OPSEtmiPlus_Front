@@ -2,11 +2,22 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import VihView from '../views/VihView.vue'
 import HepatitisB from '../views/HepatitisBView.vue'
+import gestantesView from '@/views/gestantesView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: '',
+    component: gestantesView
+  },
+  {
+    path: '/vihList',
+    name: 'vihList',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/VihListView.vue')
+  },
+  {
+    path: '/vih',
+    name: 'vih',
     component: VihView
   },
   {
@@ -18,8 +29,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/gestantesView.vue')
   },
   {
-    path: '/hepatitisB',
-    name: 'hepatitisB',
+    path: '/hepatitisb',
+    name: 'hepatitisb',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

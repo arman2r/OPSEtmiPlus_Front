@@ -6,14 +6,14 @@
                     <h4>Gestantes</h4>
                 </div>
                 <div class="center-v">
-                    <el-button size="small" style="margin-right:5px" @click="dialogFormRegistroGestante = true">Crear
+                    <el-button size="small" style="margin-right:5px" @click="modalCrearGestante">Crear
                         gestante</el-button>
                 </div>
             </el-row>
 
         </el-col>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <el-table :data="filterTableData" style="width: 100%">
+            <el-table :data="tableData" style="width: 100%">
                 <el-table-column label="Nombres" prop="nombresApellidos" />
                 <el-table-column label="Numero de documento" prop="numeroDocumento" />
                 <el-table-column label="Teléfono" prop="telefono" />
@@ -27,8 +27,8 @@
                     <template #default="scope">
                         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
                             style="margin-right:5px">Edit</el-button>
-                        <el-dropdown>
-                            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)"
+                        <el-dropdown trigger="click">
+                            <el-button size="small" type="danger" @click="consultarFichas(scope.$index, scope.row)"
                                 effect="dark" content="Crear gestante control" placement="left-start"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 1024 1024">
                                     <path fill="currentColor"
@@ -37,10 +37,11 @@
                             </el-button>
                             <template #dropdown>
                                 <el-dropdown-menu>
-                                    <el-dropdown-item>Crear ficha Vih</el-dropdown-item>
-                                    <el-dropdown-item>Crear ficha Hepatitis B</el-dropdown-item>
-                                    <el-dropdown-item>Crear ficha Chagas</el-dropdown-item>
-                                    <el-dropdown-item>Crear ficha Sifilis</el-dropdown-item>
+                                    <el-dropdown-item v-for="(ficha, index) in fichas" :key="index">
+                                        <router-link :to="(ficha.name).replace(/\s+/g, '').toLowerCase()">
+                                            {{ 'Crear ficha ' + ficha.name }}
+                                        </router-link>
+                                    </el-dropdown-item>
                                 </el-dropdown-menu>
                             </template>
                         </el-dropdown>
@@ -51,12 +52,13 @@
     </el-row>
 
     <!-- modal de registro gestante -->
-    <el-dialog v-model="dialogFormRegistroGestante" title="Registro gestante">
-        <el-form :model="registroGestanteForm" :rules="rulesDatosGestante" ref="formRegistroGestante">
+    <el-dialog v-model="dialogFormRegistroGestante" :title="!showEditBtn ? 'Registro gestante':'Editar gestante'">
+
+        <el-form :model="registroGestanteForm" :rules="rulesDatosGestante" ref="formRegistroGestante" id="modalCrearEditar">
             <el-row :gutter="20">
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
 
-                    <el-form-item label="Nombres y apellidos" :label-width="formLabelWidth">
+                    <el-form-item label="Nombres y apellidos" prop="nombresApellidos" :label-width="formLabelWidth">
                         <el-input v-model="registroGestanteForm.nombresApellidos" autocomplete="off" />
                     </el-form-item>
                 </el-col>
@@ -112,7 +114,7 @@
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Grupo poblacional" prop="grupoPoblacional" class="select-width">
                         <el-select v-model="registroGestanteForm.grupoPoblacional" filterable
-                            placeholder="Grupo poblacional">
+                            placeholder="Grupo poblacional" autocomplete="off">
                             <el-option v-for="grupoPoblacional in grupoPoblacionalList" :key="grupoPoblacional.id"
                                 :label="grupoPoblacional.name" :value="grupoPoblacional.id" />
                         </el-select>
@@ -120,7 +122,7 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Area de ocurrencia" prop="areaOcurrencia" class="select-width">
-                        <el-select v-model="registroGestanteForm.areaOcurrencia" filterable
+                        <el-select v-model="registroGestanteForm.areaOcurrencia" autocomplete="off" filterable
                             placeholder="Area de ocurrencia">
                             <el-option v-for="areaOcurrencia in areaOcurrenciaList" :key="areaOcurrencia.id"
                                 :label="areaOcurrencia.name" :value="areaOcurrencia.id" />
@@ -183,7 +185,8 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Departamento de atención" prop="dptoAtencion" class="select-width">
-                        <el-select v-model="registroGestanteForm.dptoAtencion" filterable @change="remoteMethodTwo" placeholder="Departamento de residencia">
+                        <el-select v-model="registroGestanteForm.dptoAtencion" filterable @change="remoteMethodTwo"
+                            placeholder="Departamento de residencia">
                             <el-option v-for="dptoAtencion in dptoAtencionList" :key="dptoAtencion.id"
                                 :label="dptoAtencion.name" :value="dptoAtencion.id" />
                         </el-select>
@@ -191,7 +194,8 @@
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Municipio de atención" prop="municipioAtencion" class="select-width">
-                        <el-select v-model="registroGestanteForm.municipioAtencion" filterable placeholder="Municipio de residencia">
+                        <el-select v-model="registroGestanteForm.municipioAtencion" filterable
+                            placeholder="Municipio de residencia">
                             <el-option v-for="citiesAtencion in citiesAtencionList" :key="citiesAtencion.id"
                                 :label="citiesAtencion.name" :value="citiesAtencion.id" />
                         </el-select>
@@ -219,7 +223,7 @@
                     </el-radio-group>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                    <el-form-item label="Edad gestacional, en semanas" prop="edad">
+                    <el-form-item label="Edad gestacional, en semanas" prop="edadGestacionalSemanas">
                         <el-input v-model="registroGestanteForm.edadGestacionalSemanas" type="number" />
                     </el-form-item>
                 </el-col>
@@ -227,10 +231,15 @@
         </el-form>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="dialogFormRegistroGestante = false">Cancel</el-button>
-                <el-button type="primary" @click="selfData(formRegistroGestante)">
-                    Confirm
+                <el-button @click="dialogFormRegistroGestante = false">Cancelar</el-button>
+                <el-button v-if="!showEditBtn" type="primary" @click="selfData(formRegistroGestante)">
+                    Guardar gestante
                 </el-button>
+                <el-button v-if="showEditBtn" :disabled="disabledBtn" type="primary"
+                    @click="editarGestante(formRegistroGestante)">
+                    Editar gestante
+                </el-button>
+
             </span>
         </template>
     </el-dialog>
@@ -239,12 +248,13 @@
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 import { computed, reactive, ref } from 'vue';
-import { ElMessageBox, ElForm, FormRules } from 'element-plus';
+import { ElMessageBox, ElForm, FormRules, ElLoading } from 'element-plus';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import * as ETMIPLUS_DPTOS_API from "@/api/ETMIPLUS_DPTOS_API";
 import axios from 'axios';
 import 'element-plus/theme-chalk/display.css'
 import moment from 'moment';
+import { IParametrica, IGestante } from '@/api/ETMIPLUS_API'; 
 
 type FormInstance = InstanceType<typeof ElForm>
 
@@ -252,30 +262,30 @@ interface Gestante {
     idGestante?: number,
     nombresApellidos?: string,
     idNacionalidad?: number,
-    nacionalidad?: nacionalidad[],
+    nacionalidad?: Array<nacionalidad>,
     idTipoDocumento?: number,
-    tipoDocumento?: tipoDocumento[],
+    tipoDocumento?: Array<IParametrica>,
     numeroDocumento?: string,
     edad?: number,
     idTipoRegimenSalud?: number,
-    tipoRegimenSalud?: tipoRegimenSalud[],
+    tipoRegimenSalud?: Array<IParametrica>,
     nombreAseguradora?: string,
     idPertenenciaEtnica?: number,
-    pertenenciaEtnica?: pertenenciaEtnica[],
+    pertenenciaEtnica?: Array<IParametrica>,
     idGrupoPoblacional?: number,
-    grupoPoblacional?: grupoPoblacional[],
+    grupoPoblacional?: Array<IParametrica>,
     idAreaOcurrencia?: number,
-    areaOcurrencia?: areaOcurrencia[],
+    areaOcurrencia?: Array<IParametrica>,
     idDptoResidencia?: number,
     idMunicipioResidencia?: number,
-    dptoResidencia?: dptoModel[];
-    municipioResidencia?: ciudadModel[];
+    dptoResidencia?: Array<IParametrica>;
+    municipioResidencia?: Array<IParametrica>;
     direccionResidencia?: string,
     idDptoAtencion?: number,
     idMunicipioAtencion?: number,
     telefono?: string,
-    dptoAtencion?: dptoModel[],
-    municipioAtencion?: ciudadModel[],
+    dptoAtencion?: Array<IParametrica>,
+    municipioAtencion?: Array<IParametrica>,
     fechaPosibleParto?: Date,
     seRealizaControlPrenatal?: number,
     edadGestacionalSemanas?: number
@@ -336,6 +346,11 @@ interface ICity {
     airports?: number
 }
 
+interface fichas {
+    name: string;
+    tieneFicha: boolean,
+}
+
 export default class gestantesView extends Vue {
 
     dateFormat = 'DD/MM/YYYY'
@@ -380,13 +395,14 @@ export default class gestantesView extends Vue {
     ]
     areaOcurrenciaList = [
         { id: 1, name: "Cabecera municipal" },
-        { id: 1, name: "Centro poblado" },
-        { id: 1, name: "Rural disperso" },
+        { id: 2, name: "Centro poblado" },
+        { id: 3, name: "Rural disperso" },
     ]
     dptoResidenciaList = [] as any
     citiesResidenciaList = [] as ICity[];
     dptoAtencionList = [] as any;
     citiesAtencionList = [] as ICity[];
+    fichas: fichas[] = []
 
 
 
@@ -406,81 +422,150 @@ export default class gestantesView extends Vue {
                 data.nombresApellidos?.toLowerCase().includes(this.search.toLowerCase())
         )
     )
+
+    /*getFilteredTableData() {
+        return this.tableData.filter(
+            (data) =>
+                !this.search ||
+                (data.nombresApellidos && typeof data.nombresApellidos === "string" &&
+                    data.nombresApellidos.toLowerCase().includes(this.search.toLowerCase()))
+        );
+    }*/
+    showEditBtn = false
+    disabledBtn = false
+    loadingInstance = ElLoading.service(
+        {
+            fullscreen: true,
+            text: 'Aguade...', // The text of the loading spinner
+            background: 'rgba(0, 0, 0, 0.8)', // The background color of the loading spinner
+            lock: true,
+
+        }
+    )
+    
+    idGestante?: number;
     handleEdit = async (index: number, row: Gestante) => {
+        this.showEditBtn = true
         console.log('editar', index, row.idGestante);
         this.dialogFormRegistroGestante = true;
         console.log('id gestante', Number(row.idGestante))
+        this.idGestante = row.idGestante
         const getDataGestantesEdit = await this.ETMIPLUS_API_Client.gestanteGET(Number(row.idGestante)) as any;
         console.log('data que llega 2 ', getDataGestantesEdit)
+        this.loadingInstance = ElLoading.service(
+            {
+                target: document.querySelector('#modalCrearEditar') as HTMLElement,
+                fullscreen: false,
+                customClass: 'full-loading',
+                text: 'Aguade...', // The text of the loading spinner
+                background: 'rgba(0, 0, 0, 0.8)', // The background color of the loading spinner
+                lock: true,
+            }
+        )
         if (getDataGestantesEdit !== null) {
+            this.disabledBtn = true
+
+
             console.log('data que llega 2 - 1', getDataGestantesEdit)
+
+            const getDptoResidencia = this.dptoResidenciaList.filter((x: any) => x.id === getDataGestantesEdit.data.idDptoResidencia)
+            const getDptoAtencion = this.dptoAtencionList.filter((x: any) => x.id === getDataGestantesEdit.data.idDptoAtencion)
+
+            console.log('dpto de residencia que llega', getDptoResidencia)
+            console.log('dpto de atencion que llega', getDptoAtencion)
+
+
+            this.remoteMethod(getDptoResidencia[0].id, true, getDataGestantesEdit.data.idMunicipioResidencia)
+            this.remoteMethodTwo(getDptoAtencion[0].id, true, getDataGestantesEdit.data.idMunicipioAtencion)
+
             this.registroGestanteForm.nombresApellidos = getDataGestantesEdit.data.nombresApellidos;
-            this.registroGestanteForm.nacionalidad = getDataGestantesEdit.data.idNacionalidad;
+            this.registroGestanteForm.nacionalidad = getDataGestantesEdit.data.nacionalidad.id;
             this.registroGestanteForm.tipoDocumento = getDataGestantesEdit.data.idTipoDocumento;
             this.registroGestanteForm.numeroDocumento = getDataGestantesEdit.data.numeroDocumento;
             this.registroGestanteForm.edad = getDataGestantesEdit.data.edad;
-            this.registroGestanteForm.tipoRegimenSalud = getDataGestantesEdit.data.tipoRegimenSalud;
+            this.registroGestanteForm.tipoRegimenSalud = getDataGestantesEdit.data.idTipoRegimenSalud;
             this.registroGestanteForm.nombreAseguradora = getDataGestantesEdit.data.nombreAseguradora;
-            this.registroGestanteForm.pertenenciaEtnica = getDataGestantesEdit.data.pertenenciaEtnica;
-            this.registroGestanteForm.grupoPoblacional = getDataGestantesEdit.data.grupoPoblacional;
-            this.registroGestanteForm.areaOcurrencia = getDataGestantesEdit.data.areaOcurrencia;
-            this.registroGestanteForm.dptoResidencia = getDataGestantesEdit.data.dptoResidencia;
-            this.registroGestanteForm.municipioResidencia = getDataGestantesEdit.data.municipioResidencia;
-            this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion;
+            this.registroGestanteForm.pertenenciaEtnica = getDataGestantesEdit.data.pertenenciaEtnica?.id;
+            this.registroGestanteForm.grupoPoblacional = getDataGestantesEdit.data.grupoPoblacional.id;
+            this.registroGestanteForm.areaOcurrencia = getDataGestantesEdit.data.idAreaOcurrencia;
+            this.registroGestanteForm.dptoResidencia = getDptoResidencia[0].id; 
             this.registroGestanteForm.direccionResidencia = getDataGestantesEdit.data.direccionResidencia;
-            this.registroGestanteForm.dptoAtencion = getDataGestantesEdit.data.dptoAtencion
-            this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion
+            this.registroGestanteForm.dptoAtencion = getDptoAtencion[0].id
+            //this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion
             this.registroGestanteForm.telefono = getDataGestantesEdit.data.telefono
-            this.registroGestanteForm.fechaPosibleParto = getDataGestantesEdit.data.fechaDelParto
-            this.registroGestanteForm.seRealizaControlPrenatal = getDataGestantesEdit.data.controlPrenatal;
-            this.registroGestanteForm.edadGestacionalSemanas = getDataGestantesEdit.data.semanas
-        } else {
-            this.registroGestanteForm.nombresApellidos = undefined
-            this.registroGestanteForm.nacionalidad = undefined
-            this.registroGestanteForm.tipoDocumento = undefined
-            this.registroGestanteForm.numeroDocumento = undefined
-            this.registroGestanteForm.edad = undefined
-            this.registroGestanteForm.tipoRegimenSalud = undefined
-            this.registroGestanteForm.nombreAseguradora = undefined
-            this.registroGestanteForm.pertenenciaEtnica = undefined
-            this.registroGestanteForm.grupoPoblacional = undefined
-            this.registroGestanteForm.areaOcurrencia = undefined
-            this.registroGestanteForm.dptoResidencia = undefined
-            this.registroGestanteForm.municipioResidencia = undefined
-            this.registroGestanteForm.municipioAtencion = undefined
-            this.registroGestanteForm.direccionResidencia = undefined
-            this.registroGestanteForm.dptoAtencion = undefined
-            this.registroGestanteForm.municipioAtencion = undefined
-            this.registroGestanteForm.telefono = undefined
-            this.registroGestanteForm.fechaPosibleParto = undefined
-            this.registroGestanteForm.seRealizaControlPrenatal = undefined
-            this.registroGestanteForm.edadGestacionalSemanas = undefined
+            this.registroGestanteForm.fechaPosibleParto = getDataGestantesEdit.data.fechaPosibleParto
+            this.registroGestanteForm.seRealizaControlPrenatal = getDataGestantesEdit.data.seRealizaControlPrenatal;
+            this.registroGestanteForm.edadGestacionalSemanas = getDataGestantesEdit.data.edadGestacionalSemanas;
+
+        }  
+
+    }
+
+    modalCrearGestante() {
+        this.showEditBtn = false
+        this.dialogFormRegistroGestante = true
+        this.registroGestanteForm.nombresApellidos = ''
+        this.registroGestanteForm.nacionalidad = []
+        this.registroGestanteForm.tipoDocumento = []
+        this.registroGestanteForm.numeroDocumento = ''
+        this.registroGestanteForm.edad = 0
+        this.registroGestanteForm.tipoRegimenSalud = []
+        this.registroGestanteForm.nombreAseguradora = ''
+        this.registroGestanteForm.pertenenciaEtnica = []
+        this.registroGestanteForm.grupoPoblacional = []
+        this.registroGestanteForm.areaOcurrencia = []
+        this.registroGestanteForm.dptoResidencia = []
+        this.registroGestanteForm.municipioResidencia = []
+        this.registroGestanteForm.municipioAtencion = []
+        this.registroGestanteForm.direccionResidencia = ''
+        this.registroGestanteForm.dptoAtencion = []
+        this.registroGestanteForm.municipioAtencion = []
+        this.registroGestanteForm.telefono = ''
+        this.registroGestanteForm.fechaPosibleParto = new Date()
+        this.registroGestanteForm.seRealizaControlPrenatal = 0
+        this.registroGestanteForm.edadGestacionalSemanas = 0
+    }
+
+    consultarFichas = async (index: number, row: Gestante) => {
+        console.log(index, row.idGestante)
+        const getFichasInscritas = await this.ETMIPLUS_API_Client.estadoFichas(Number(row.idGestante)) as any;
+        console.log('fichas', getFichasInscritas)
+        this.fichas = []
+        if (getFichasInscritas.data.tieneFichaVIH === false) {
+            this.fichas.push({ name: 'vih', tieneFicha: false })
+        }
+        if (getFichasInscritas.data.tieneFichaHepatitisB === false) {
+            this.fichas.push({ name: 'hepatitis B', tieneFicha: false })
+        }
+        if (getFichasInscritas.data.tieneFichaChagas === false) {
+            this.fichas.push({ name: 'chagas', tieneFicha: false })
+        }
+        if (getFichasInscritas.data.tieneFichaSifilis === false) {
+            this.fichas.push({ name: 'sifilis', tieneFicha: false })
         }
 
-    }
-    handleDelete = (index: number, row: Gestante) => {
-        console.log(index, row)
+        console.log('todas las fichas', this.fichas)
     }
 
-    tableData: Gestante[] = []
+    tableData: IGestante[] = []
 
     registroGestanteForm = reactive<Gestante>({
         idGestante: 0,
         nombresApellidos: "",
-        idNacionalidad: 1,
+        idNacionalidad: 0,
         nacionalidad: [],
         idTipoDocumento: 0,
         tipoDocumento: [],
         numeroDocumento: "",
         edad: 0,
-        idTipoRegimenSalud: 1,
+        idTipoRegimenSalud: 0,
         tipoRegimenSalud: [],
         nombreAseguradora: "",
         idPertenenciaEtnica: 0,
         pertenenciaEtnica: [],
         idGrupoPoblacional: 0,
         grupoPoblacional: [],
-        idAreaOcurrencia: 1,
+        idAreaOcurrencia: 0,
         areaOcurrencia: [],
         idDptoResidencia: 0,
         idMunicipioResidencia: 0,
@@ -521,8 +606,7 @@ export default class gestantesView extends Vue {
             { min: 2, max: 12, message: 'debe tener una longitud entre 2 a 12 caracteres', trigger: 'blur' },
         ],
         edad: [
-            { required: true, message: 'Por favor digite la edad', trigger: 'blur' },
-            { min: 1, max: 3, message: 'debe tener una longitud entre 1 a 3 caracteres', trigger: 'blur' },
+            { required: true, message: 'Por favor digite la edad', trigger: 'blur' }
         ],
         tipoRegimenSalud: [
             {
@@ -622,9 +706,26 @@ export default class gestantesView extends Vue {
         })
     }
 
+    editarGestante = async (formEl: FormInstance | undefined) => {
+        if (!formEl) return
+        await formEl.validate((valid, fields) => {
+            if (valid) {
+                console.log('enviando!')
+                //cierra la modal
+                this.editarRegistroGestante(Number(this.idGestante))
+
+                //this.registroGestanteForm
+                this.dialogFormRegistroGestante = false
+            } else {
+                ElMessageBox.alert(`Por favor complete los campos marcados con *.`, { type: "warning" });
+                console.log('error al enviar!', fields)
+            }
+        })
+    }
+
     async registroGestante() {
         console.log(this.registroGestanteForm.nombresApellidos)
-        const request: Gestante = {
+        const request: IGestante = {
             idGestante: 0,
             nombresApellidos: this.registroGestanteForm.nombresApellidos,
             idNacionalidad: Number(this.registroGestanteForm.nacionalidad),
@@ -655,22 +756,80 @@ export default class gestantesView extends Vue {
         this.tableData.push(newRow);
     }
 
-    async mounted() {
-        const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
-        console.log('data que llega', getDataGestantes)
-        this.tableData = getDataGestantes.data
+    async editarRegistroGestante(idGestante: number) {
+        console.log('la data', this.registroGestanteForm)
+        const editData = this.registroGestanteForm as IGestante;
+        console.log('area ocurrencia',editData.areaOcurrencia)
+        console.log('dpto atencion', editData.dptoAtencion?.id)
+        const request: IGestante = {
+            idGestante: idGestante,
+            nombresApellidos: this.registroGestanteForm.nombresApellidos,
+            idNacionalidad: Number(this.registroGestanteForm.nacionalidad),
+            idTipoDocumento: Number(this.registroGestanteForm.tipoDocumento),
+            numeroDocumento: this.registroGestanteForm.numeroDocumento,
+            edad: this.registroGestanteForm.edad,
+            idTipoRegimenSalud: Number(this.registroGestanteForm.idTipoRegimenSalud),
+            nombreAseguradora: this.registroGestanteForm.nombreAseguradora,
+            idPertenenciaEtnica: Number(editData.pertenenciaEtnica),
+            idGrupoPoblacional: Number(editData.grupoPoblacional),
+            idAreaOcurrencia: Number(this.registroGestanteForm.areaOcurrencia),
+            idDptoResidencia: Number(this.registroGestanteForm.dptoResidencia),
+            idMunicipioResidencia: Number(this.registroGestanteForm.municipioResidencia),
+            direccionResidencia: this.registroGestanteForm.direccionResidencia,
+            idDptoAtencion: Number(this.registroGestanteForm.dptoAtencion),
+            idMunicipioAtencion: Number(this.registroGestanteForm.municipioAtencion),
+            telefono: this.registroGestanteForm.telefono,
+            fechaPosibleParto: new Date(moment(editData.fechaPosibleParto).format('YYYY-MM-DD HH:mm:ss.sss')),
+            seRealizaControlPrenatal: this.registroGestanteForm.seRealizaControlPrenatal,
+            edadGestacionalSemanas: this.registroGestanteForm.edadGestacionalSemanas
+        }
+        console.log('request edit', request)
+        const requestRG = await this.ETMIPLUS_API_Client.gestantePUT(idGestante, request) as any;
 
-        //API de Consulta para dptos y ciudades
-        const getAllDptos = await this.ETMIPLUS_DPTOS_API_Client.getDptos() as any; 
-        this.dptoResidenciaList = getAllDptos; 
-
-        const getAllDptosAtencion = await this.ETMIPLUS_DPTOS_API_Client.getDptos() as any; 
-        this.dptoAtencionList = getAllDptosAtencion; 
+       
+        console.log('respuesta edit', requestRG)
+        this.disabledBtn = false
+        //const newRow = requestRG.data;
+        //this.tableData.push(newRow);
+        this.mounted()
     }
 
-    async remoteMethod() {
-        console.log('id', this.registroGestanteForm.dptoResidencia)
-        if (this.registroGestanteForm.dptoResidencia) {
+    async mounted() {
+        
+        const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
+        console.log('data que llega', getDataGestantes)
+        this.tableData = getDataGestantes.data.data
+
+        //API de Consulta para dptos y ciudades
+        const dataDptos = localStorage.getItem('allDptos');
+        if (dataDptos) {
+            console.log('los dptos están guardados')
+            const allDptos = JSON.parse(dataDptos);
+            this.dptoResidenciaList = allDptos;
+            this.loadingInstance.close()
+        } else {
+            console.log('los dptos NO están guardados')
+            const getAllDptos = await this.ETMIPLUS_DPTOS_API_Client.getDptos() as any;
+            localStorage.setItem('allDptos', JSON.stringify(getAllDptos));
+            this.dptoResidenciaList = getAllDptos;
+            this.loadingInstance.close()
+        }
+
+
+
+        const getAllDptosAtencion = await this.ETMIPLUS_DPTOS_API_Client.getDptos() as any;
+        this.dptoAtencionList = getAllDptosAtencion;
+    }
+
+    async remoteMethod(IdDpto?: number, hastData?: boolean, idMunicipioResidencia?: number) {
+        this.disabledBtn = true
+        console.log('que llega en id', IdDpto)
+        console.log('id municipio', idMunicipioResidencia)
+
+        const getIdDpto = IdDpto !== undefined ? IdDpto : this.registroGestanteForm.dptoResidencia
+
+        console.log('idDpto', getIdDpto)
+        if (getIdDpto) {
             this.loading = true
             setTimeout(async () => {
                 this.loading = false;
@@ -681,15 +840,29 @@ export default class gestantesView extends Vue {
                 /*this.citiesResidenciaList = list.value.filter((item) => {
                     return item.label.toLowerCase().includes(query.toLowerCase())
                 })*/
+                this.disabledBtn = false
+                if (hastData) {
+                    const filterCiudadResidencia = getAllCities.filter((x: any) => x.id === idMunicipioResidencia)
+                    console.log('ciudad filtrada para residencia', filterCiudadResidencia)
+                    this.registroGestanteForm.municipioResidencia = filterCiudadResidencia[0].id;
+                    this.disabledBtn = false
+                    this.loadingInstance.close()
+                    //this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion;
+                }
+
+
             }, 3000)
         } else {
             this.citiesResidenciaList = []
         }
     }
 
-    async remoteMethodTwo() {
-        console.log('id', this.registroGestanteForm.dptoAtencion)
-        if (this.registroGestanteForm.dptoAtencion) {
+    async remoteMethodTwo(IdDpto?: number, hastData?: boolean, idMunicipioAtencion?: number) {
+        this.disabledBtn = true
+        const getIdDpto = IdDpto !== undefined ? IdDpto : this.registroGestanteForm.dptoResidencia
+
+        console.log('idDpto', getIdDpto)
+        if (getIdDpto) {
             this.loading = true
             setTimeout(async () => {
                 this.loading = false;
@@ -700,6 +873,15 @@ export default class gestantesView extends Vue {
                 /*this.citiesAtencionList = list.value.filter((item) => {
                     return item.label.toLowerCase().includes(query.toLowerCase())
                 })*/
+                this.disabledBtn = false
+                if (hastData) {
+                    const filterCiudadAtencion = getAllCities.filter((x: any) => x.id === idMunicipioAtencion)
+                    console.log('ciudad filtrada para atención', filterCiudadAtencion)
+                    this.registroGestanteForm.municipioAtencion = filterCiudadAtencion[0].id;
+                    this.disabledBtn = false
+                    //this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion;
+                }
+
             }, 3000)
         } else {
             this.citiesAtencionList = []
@@ -917,5 +1099,9 @@ h5 {
     to {
         opacity: 1;
     }
+}
+
+.el-form-item label {
+    font-size: .8rem;
 }
 </style>
