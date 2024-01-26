@@ -1,7 +1,79 @@
 <template>
     <el-table :data="dataTableControles" style="width: 100%">
         <el-table-column label="Fecha control" prop="fechaControl" :formatter="formatDate" />
-        <el-table-column label="Consultar fichas" prop="name" />
+        <el-table-column>
+            <template #header>
+                Reporte VIH
+            </template>
+            <template #default="scope">
+                <el-icon v-if="scope.row.tieneFichaVIH === true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                    </svg>
+                </el-icon>
+                <el-icon v-if="scope.row.tieneFichaVIH === false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
+                    </svg>
+                </el-icon>
+            </template>
+        </el-table-column>
+        <el-table-column>
+            <template #header>
+                Reporte Hepatitis B
+            </template>
+            <template #default="scope">
+                <el-icon v-if="scope.row.tieneFichaHepatitisB === true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                    </svg>
+                </el-icon>
+                <el-icon v-if="scope.row.tieneFichaHepatitisB === false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
+                    </svg>
+                </el-icon>
+            </template>
+        </el-table-column>
+        <el-table-column>
+            <template #header>
+                Reporte Chagas
+            </template>
+            <template #default="scope">
+                <el-icon v-if="scope.row.tieneFichaChagas === true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                    </svg>
+                </el-icon>
+                <el-icon v-if="scope.row.tieneFichaChagas === false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
+                    </svg>
+                </el-icon>
+            </template>
+        </el-table-column>
+        <el-table-column>
+            <template #header>
+                Reporte sifilis
+            </template>
+            <template #default="scope">
+                <el-icon v-if="scope.row.tieneFichaSifilis === true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                    </svg>
+                </el-icon>
+                <el-icon v-if="scope.row.tieneFichaSifilis === false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
+                    </svg>
+                </el-icon>
+            </template>
+        </el-table-column>
+
         <el-table-column align="right">
             <template #header>
                 <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -74,6 +146,16 @@ interface Gestante {
     edadGestacionalSemanas?: number
 }
 
+interface IGestanteControlTable {
+    idGestanteControl?: number;
+    idGestante?: number;
+    fechaControl?: Date;
+    tieneFichaVIH?: boolean;
+    tieneFichaHepatitisB?: boolean;
+    tieneFichaChagas?: boolean;
+    tieneFichaSifilis?: boolean;
+}
+
 export default class gestanteCtrlView extends Vue {
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
@@ -93,13 +175,13 @@ export default class gestanteCtrlView extends Vue {
         return moment(date.fechaPosibleParto).format(this.dateFormat);
     }
 
-    dataTableControles: IGestanteControl[] = []
+    dataTableControles: IGestanteControlTable[] = []
 
-    handleEdit = (index: number, row: IGestanteControl) => {
+    handleEdit = (index: number, row: IGestanteControlTable) => {
         console.log(index, row)
     }
 
-    handleDelete = (index: number, row: IGestanteControl) => {
+    handleDelete = (index: number, row: IGestanteControlTable) => {
         console.log(index, row)
     }
 
@@ -147,10 +229,46 @@ export default class gestanteCtrlView extends Vue {
     }
 
     async getGestanteControl(idGestante: number) {
-        const controles = await this.ETMIPLUS_API_Client.gestanteControlGET(idGestante) as any;
-        console.log('controles', controles)
-        controles.data.map((item: any) => { return item.fechaControl })
-        this.dataTableControles = controles.data
+
+        console.log('controles', this.fetchDataCtrls(idGestante))
+        //controles.data.map((item: any) => { return item.fechaControl })
+        this.fetchDataCtrls(idGestante).then((res: any) => {
+            console.log('respuesta', res)
+            this.dataTableControles = res
+        })
+
+        //this.dataTableControles = getControles?.data
+        //console.log('se lleno la tabla', this.dataTableControles)
+    }
+
+    async fetchDataCtrls(idGestante: number) {
+        try {
+            const response = await Promise.all([
+                await this.ETMIPLUS_API_Client.gestanteControlGET(idGestante) as any,
+                await this.ETMIPLUS_API_Client.estadoFichas(idGestante) as any,
+            ])
+
+            const [res1, res2] = await Promise.all(response.map(res => res));
+            //console.log(res1)
+
+
+            //const mergedResponse = {data1: res1.data.push(res2.data), data2: res2};
+            //const mergedResponse = {data1: (res1.data.push((res2.data)))}
+            const mergedResponse = res1.data.map((x: any) =>
+            ({
+                ...x, tieneFichaVIH: res2.data.tieneFichaVIH,
+                tieneFichaHepatitisB: res2.data.tieneFichaHepatitisB,
+                tieneFichaChagas: res2.data.tieneFichaChagas,
+                tieneFichaSifilis: res2.data.tieneFichaSifilis
+            })
+            )
+
+            console.log('merge', mergedResponse)
+
+            return mergedResponse;
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 </script>
