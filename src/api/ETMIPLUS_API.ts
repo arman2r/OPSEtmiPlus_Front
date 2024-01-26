@@ -986,7 +986,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -999,7 +999,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    gestanteControlPOST(idGestante: number, body?: GestanteControl | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    gestanteControlPOST(idGestante: number, body?: IGestanteControl | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/Gestante/{idGestante}/GestanteControl";
         if (idGestante === undefined || idGestante === null)
             throw new Error("The parameter 'idGestante' must be defined.");
@@ -1041,7 +1041,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;

@@ -27,24 +27,9 @@
                     <template #default="scope">
                         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
                             style="margin-right:5px">Edit</el-button>
-                        <el-dropdown trigger="click">
-                            <el-button size="small" type="danger" @click="consultarFichas(scope.$index, scope.row)"
-                                effect="dark" content="Crear gestante control" placement="left-start"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 1024 1024">
-                                    <path fill="currentColor"
-                                        d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z" />
-                                </svg>
-                            </el-button>
-                            <template #dropdown>
-                                <el-dropdown-menu>
-                                    <el-dropdown-item v-for="(ficha, index) in fichas" :key="index">
-                                        <router-link :to="(ficha.name).replace(/\s+/g, '').toLowerCase()">
-                                            {{ 'Crear ficha ' + ficha.name }}
-                                        </router-link>
-                                    </el-dropdown-item>
-                                </el-dropdown-menu>
-                            </template>
-                        </el-dropdown>
+                        <el-tooltip content="Crear control" raw-content>
+                            <el-button type="primary" :icon="iconPlus" @click="crearCtrl(scope.$index, scope.row)" />
+                        </el-tooltip>
                     </template>
                 </el-table-column>
             </el-table>
@@ -52,7 +37,7 @@
     </el-row>
 
     <!-- modal de registro gestante -->
-    <el-dialog v-model="dialogFormRegistroGestante" :title="!showEditBtn ? 'Registro gestante':'Editar gestante'">
+    <el-dialog v-model="dialogFormRegistroGestante" :title="!showEditBtn ? 'Registro gestante' : 'Editar gestante'">
 
         <el-form :model="registroGestanteForm" :rules="rulesDatosGestante" ref="formRegistroGestante" id="modalCrearEditar">
             <el-row :gutter="20">
@@ -243,113 +228,39 @@
             </span>
         </template>
     </el-dialog>
+
+
+    <el-dialog v-model="dialogConfirm.open" title="Aguarde" width="30%">
+        <span>El gestante ya cuenta con un control activo, ¿desea agregar otro control?',</span>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="redirectToCtrls(dialogConfirm.idGestante)">No, ver controles</el-button>
+                <el-button type="primary" @click="crearCtrlModalIsOpen(dialogConfirm.idGestante)">
+                    Sí, crear control
+                </el-button>
+            </span>
+        </template>
+    </el-dialog>
 </template>
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 import { computed, reactive, ref } from 'vue';
-import { ElMessageBox, ElForm, FormRules, ElLoading } from 'element-plus';
+import { ElMessage, ElMessageBox, Action, ElForm, FormRules, ElLoading } from 'element-plus';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import * as ETMIPLUS_DPTOS_API from "@/api/ETMIPLUS_DPTOS_API";
 import axios from 'axios';
 import 'element-plus/theme-chalk/display.css'
 import moment from 'moment';
-import { IParametrica, IGestante } from '@/api/ETMIPLUS_API'; 
+import { IParametrica, IGestante } from '@/api/ETMIPLUS_API';
+import { IGestanteControl } from '@/api/ETMIPLUS_API_backup';
+import { Plus } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router';
+import { Gestante, ICity, fichas } from '@/interfaces/modeloGestante';
 
 type FormInstance = InstanceType<typeof ElForm>
 
-interface Gestante {
-    idGestante?: number,
-    nombresApellidos?: string,
-    idNacionalidad?: number,
-    nacionalidad?: Array<nacionalidad>,
-    idTipoDocumento?: number,
-    tipoDocumento?: Array<IParametrica>,
-    numeroDocumento?: string,
-    edad?: number,
-    idTipoRegimenSalud?: number,
-    tipoRegimenSalud?: Array<IParametrica>,
-    nombreAseguradora?: string,
-    idPertenenciaEtnica?: number,
-    pertenenciaEtnica?: Array<IParametrica>,
-    idGrupoPoblacional?: number,
-    grupoPoblacional?: Array<IParametrica>,
-    idAreaOcurrencia?: number,
-    areaOcurrencia?: Array<IParametrica>,
-    idDptoResidencia?: number,
-    idMunicipioResidencia?: number,
-    dptoResidencia?: Array<IParametrica>;
-    municipioResidencia?: Array<IParametrica>;
-    direccionResidencia?: string,
-    idDptoAtencion?: number,
-    idMunicipioAtencion?: number,
-    telefono?: string,
-    dptoAtencion?: Array<IParametrica>,
-    municipioAtencion?: Array<IParametrica>,
-    fechaPosibleParto?: Date,
-    seRealizaControlPrenatal?: number,
-    edadGestacionalSemanas?: number
-}
 
-interface dptoModel {
-    id: number,
-    dptoName: string
-}
-
-interface ciudadModel {
-    id: number,
-    ciudadName: string
-}
-
-interface areaOcurrencia {
-    id: number,
-    areaOcurrenciaName: string
-}
-
-interface grupoPoblacional {
-    id: number,
-    grupoPoblacionalName: string
-}
-
-interface pertenenciaEtnica {
-    id: number,
-    pertenenciaEtnicaName: string
-}
-
-interface tipoRegimenSalud {
-    id: number,
-    tipoRegimenSaludName: string
-}
-
-interface tipoDocumento {
-    id: number,
-    tipoDocumentoName: string
-}
-
-interface nacionalidad {
-    id: number,
-    nacionalidadName: string
-}
-
-interface ICity {
-    id: number,
-    name: string,
-    description?: string,
-    surface?: number,
-    population?: number,
-    postalCode?: string,
-    departmentId?: number,
-    department?: string,
-    touristAttractions?: number,
-    presidents?: string,
-    indigenousReservations?: number,
-    airports?: number
-}
-
-interface fichas {
-    name: string;
-    tieneFicha: boolean,
-}
 
 export default class gestantesView extends Vue {
 
@@ -357,6 +268,9 @@ export default class gestantesView extends Vue {
     dialogFormRegistroGestante = false
     formLabelWidth = '140px'
     loading = false;
+    iconPlus = Plus;
+    router = useRouter();
+    dialogConfirm = {open: false, idGestante: 0}
 
     nacionalidadList = [{ id: 1, name: 'colombiana' }, { id: 2, name: 'extranjera' }]
     tipoDocumentoList = [
@@ -442,7 +356,7 @@ export default class gestantesView extends Vue {
 
         }
     )
-    
+
     idGestante?: number;
     handleEdit = async (index: number, row: Gestante) => {
         this.showEditBtn = true
@@ -488,7 +402,7 @@ export default class gestantesView extends Vue {
             this.registroGestanteForm.pertenenciaEtnica = getDataGestantesEdit.data.pertenenciaEtnica?.id;
             this.registroGestanteForm.grupoPoblacional = getDataGestantesEdit.data.grupoPoblacional.id;
             this.registroGestanteForm.areaOcurrencia = getDataGestantesEdit.data.idAreaOcurrencia;
-            this.registroGestanteForm.dptoResidencia = getDptoResidencia[0].id; 
+            this.registroGestanteForm.dptoResidencia = getDptoResidencia[0].id;
             this.registroGestanteForm.direccionResidencia = getDataGestantesEdit.data.direccionResidencia;
             this.registroGestanteForm.dptoAtencion = getDptoAtencion[0].id
             //this.registroGestanteForm.municipioAtencion = getDataGestantesEdit.data.municipioAtencion
@@ -497,7 +411,7 @@ export default class gestantesView extends Vue {
             this.registroGestanteForm.seRealizaControlPrenatal = getDataGestantesEdit.data.seRealizaControlPrenatal;
             this.registroGestanteForm.edadGestacionalSemanas = getDataGestantesEdit.data.edadGestacionalSemanas;
 
-        }  
+        }
 
     }
 
@@ -545,6 +459,20 @@ export default class gestantesView extends Vue {
         }
 
         console.log('todas las fichas', this.fichas)
+    }
+
+    crearFicha = async (index: number, row: Gestante) => {
+        console.log(index, row.idGestante);
+        /// Pendiente preguntar como se identifica el tipo de ficha, si es vih, hb, chagas o sifilis
+        const request: IGestanteControl = {
+            idGestanteControl: 0,
+            idGestante: Number(row.idGestante),
+            fechaControl: new Date(moment(new Date()).format('YYYY-MM-DD HH:mm:ss.sss'))
+        }
+
+        console.log('ficha a crear', request);
+        const getFichasInscritas = await this.ETMIPLUS_API_Client.gestanteControlPOST(Number(row.idGestante)) as any;
+
     }
 
     tableData: IGestante[] = []
@@ -759,7 +687,7 @@ export default class gestantesView extends Vue {
     async editarRegistroGestante(idGestante: number) {
         console.log('la data', this.registroGestanteForm)
         const editData = this.registroGestanteForm as IGestante;
-        console.log('area ocurrencia',editData.areaOcurrencia)
+        console.log('area ocurrencia', editData.areaOcurrencia)
         console.log('dpto atencion', editData.dptoAtencion?.id)
         const request: IGestante = {
             idGestante: idGestante,
@@ -786,7 +714,7 @@ export default class gestantesView extends Vue {
         console.log('request edit', request)
         const requestRG = await this.ETMIPLUS_API_Client.gestantePUT(idGestante, request) as any;
 
-       
+
         console.log('respuesta edit', requestRG)
         this.disabledBtn = false
         //const newRow = requestRG.data;
@@ -795,7 +723,7 @@ export default class gestantesView extends Vue {
     }
 
     async mounted() {
-        
+
         const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
         console.log('data que llega', getDataGestantes)
         this.tableData = getDataGestantes.data.data
@@ -888,6 +816,92 @@ export default class gestantesView extends Vue {
         }
     }
 
+    crearCtrl = async (index: number, row: Gestante) => {
+        console.log(index, row.idGestante);
+        /// Pendiente preguntar como se identifica el tipo de ficha, si es vih, hb, chagas o sifilis
+        this.idGestante = row.idGestante
+        const request: IGestanteControl = {
+            idGestanteControl: 0,
+            idGestante: Number(row.idGestante),
+            fechaControl: new Date(moment(new Date()).format('YYYY-MM-DD HH:mm:ss.sss'))
+        }
+
+        const getCtrlsInscritos = await this.ETMIPLUS_API_Client.gestanteControlGET(Number(row.idGestante)) as any;
+        console.log('longitud', getCtrlsInscritos.data.length === 0)
+        if (getCtrlsInscritos.data.length === 0) {
+            console.log('No tiene controles, ficha a crear', request);
+            const setCtrl = await this.ETMIPLUS_API_Client.gestanteControlPOST(Number(row.idGestante), request) as any;
+
+            console.log(setCtrl)
+            //this.router.push('/page');
+            const message = 'Se creó un nuevo control'
+            this.showMessage(message).then(() => {
+                ElMessage.info(message);
+                this.router.push({
+                    name: 'gestanteCtrl', // The name of the route you want to redirect to
+                    params: {
+                        userId: row.idGestante
+                    }
+                })
+            });
+        } else {
+            this.dialogConfirm.open = true
+            this.dialogConfirm.idGestante = Number(row.idGestante)
+             
+        }
+
+
+        /*ElMessage({
+            type: 'success',
+            message: 'Se creó un nuevo control',
+        })*/
+    }
+
+    showMessage(message: string) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(message);
+            }, 1000);
+        });
+    }
+
+
+
+    crearCtrlModalIsOpen = async (idGestante: number) => {
+        
+        const request: IGestanteControl = {
+            idGestanteControl: 0,
+            idGestante: Number(idGestante),
+            fechaControl: new Date(moment(new Date()).format('YYYY-MM-DD HH:mm:ss.sss'))
+        }
+
+        console.log('ficha a crear', request);
+        const setCtrl = await this.ETMIPLUS_API_Client.gestanteControlPOST(Number(idGestante), request) as any;
+
+        console.log(setCtrl)
+        //this.router.push('/page');
+
+        ElMessage({
+            type: 'success',
+            message: 'Se creó un nuevo control',
+        })
+
+        this.router.push({
+            name: 'gestanteCtrl', // The name of the route you want to redirect to
+            params: {
+                userId: idGestante
+            }
+        }) 
+    }
+
+    redirectToCtrls = async (idGestante: number) => {
+        this.router.push({
+            name: 'gestanteCtrl', // The name of the route you want to redirect to
+            params: {
+                userId: idGestante
+            }
+        })
+    }
 
 
 }

@@ -29,6 +29,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/gestantesView.vue')
   },
   {
+    path: '/gestanteCtrl/:userId',
+    name: 'gestanteCtrl',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '@/views/gestanteCtrlView.vue'),
+    props: (route) => ({ userId: route.params.userId }),
+    meta: { hideParams: true }
+  },
+  {
     path: '/hepatitisb',
     name: 'hepatitisb',
     // route level code-splitting

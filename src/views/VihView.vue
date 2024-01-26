@@ -153,7 +153,7 @@
       </el-form>
 
     </el-tab-pane>
-    <el-tab-pane label="Primer reporte" name="second" ref="elTab2">
+    <el-tab-pane label="Primer reporte" name="second" :disabled="disabledTwo" ref="elTab2">
 
       <el-form :model="ruleFormPrimerReporte" ref="secondForm" :rules="rulesFormPrimerReporte" label-width="180px"
         status-icon size="default" class="demo-ruleForm">
@@ -401,7 +401,7 @@
 
 
     </el-tab-pane>
-    <el-tab-pane label="Segundo reporte" name="third">
+    <el-tab-pane label="Segundo reporte" name="third" :disabled="disabledThree">
 
       <el-form :model="ruleFormSegundoReporte" :rules="rulesFormSegundoReporte" ref="thirdForm" label-width="180px"
         class="demo-ruleForm" :size="formSize" status-icon>
@@ -442,7 +442,7 @@
       </el-form>
 
     </el-tab-pane>
-    <el-tab-pane label="tercer reporte" name="four">
+    <el-tab-pane label="tercer reporte" name="four" :disabled="disabledFour">
 
       <el-form :model="ruleFormTercerReporte" :rules="rulesFormTercerReporte" label-width="180px" class="demo-ruleForm"
         :size="formSize" status-icon ref="fourForm">
@@ -557,7 +557,7 @@
 
     </el-tab-pane>
 
-    <el-tab-pane label="Cuarto reporte" name="five">
+    <el-tab-pane label="Cuarto reporte" name="five" :disabled="disabledFive">
 
       <el-form :model="ruleFormCuartoReporte" :rules="rulesFormCuartoReporte" label-width="180px" class="demo-ruleForm"
         :size="formSize" status-icon ref="fiveForm">
@@ -646,7 +646,7 @@
         </section>
       </el-form>
     </el-tab-pane>
-    <el-tab-pane label="Quinto reporte" name="six">
+    <el-tab-pane label="Quinto reporte" name="six" :disabled="disabledSix">
       <el-form :model="ruleFormquintoReporte" :rules="rulesFormQuintoReporte" label-width="180px" class="demo-ruleForm"
         :size="formSize" status-icon ref="sixForm">
         <section style="width: 100%;">
@@ -927,7 +927,7 @@
         </section>
       </el-form>
     </el-tab-pane>
-    <el-tab-pane label="Seguimiento" name="seven">
+    <el-tab-pane label="Seguimiento" name="seven" :disabled="disabledSeven">
       <el-form :model="ruleFormSeguimiento" :rules="rulesFormSeguimiento" label-width="180px" class="demo-ruleForm"
         :size="formSize" status-icon ref="sevenForm">
         <section style="width: 100%;">
