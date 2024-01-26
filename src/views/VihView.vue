@@ -1,6 +1,6 @@
 <template class="steps-container">
   <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-    <el-tab-pane label="Datos gestante" name="first" ref="elTab1">
+    <!--<el-tab-pane label="Datos gestante" name="first" ref="elTab1">
 
       <el-form :model="ruleFormDatosGestante" :rules="rulesDatosGestante" style="width: 100%;" label-width="180px"
         class="demo-ruleForm" :size="formSize" status-icon ref="firstForm" :label-position="labelPositionVihForm">
@@ -153,6 +153,7 @@
       </el-form>
 
     </el-tab-pane>
+    -->
     <el-tab-pane label="Primer reporte" name="second" :disabled="disabledTwo" ref="elTab2">
 
       <el-form :model="ruleFormPrimerReporte" ref="secondForm" :rules="rulesFormPrimerReporte" label-width="180px"
@@ -1006,8 +1007,8 @@ type FormInstance = InstanceType<typeof ElForm>
 
 export default class VihView extends Vue {
 
-  activeName = 'first'
-  disabledTwo = true
+  activeName = 'second'
+  disabledTwo = false
   disabledThree = true
   disabledFour = true
   disabledFive = true

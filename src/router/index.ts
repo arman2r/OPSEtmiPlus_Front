@@ -46,28 +46,34 @@ const routes: Array<RouteRecordRaw> = [
     meta: { hideParams: true }
   },
   {
-    path: '/hepatitisb',
+    path: '/hepatitisb/:idGCtrl',
     name: 'hepatitisb',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/HepatitisBView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/HepatitisBView.vue'),
+    props: (route) => ({ idGCtrl: route.params.idGCtrl }),
+    meta: { hideParams: true }
   },
   {
-    path: '/chagas',
+    path: '/chagas/:idGCtrl',
     name: 'chagas',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/chagasView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/chagasView.vue'),
+    props: (route) => ({ idGCtrl: route.params.idGCtrl }),
+    meta: { hideParams: true }
   },
   {
-    path: '/sifilis',
+    path: '/sifilis/:idGCtrl',
     name: 'sifilis',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/sifilisView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/sifilisView.vue'),
+    props: (route) => ({ idGCtrl: route.params.idGCtrl }),
+    meta: { hideParams: true }
   }
 ]
 
