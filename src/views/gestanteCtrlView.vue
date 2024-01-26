@@ -90,9 +90,8 @@
                     </el-button>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item v-for="(ficha, index) in fichas" :key="index"
-                                @click="crearReporte(scope.$index, scope.row)">
-                                <router-link :to="(ficha.name).replace(/\s+/g, '').toLowerCase()">
+                            <el-dropdown-item v-for="(ficha, index) in fichas" :key="index">
+                                <router-link :to="'/'+(ficha.name).replace(/\s+/g, '').toLowerCase() + '/' + scope.row.idGestanteControl">
                                     {{ 'Crear reporte de ' + ficha.name }}
                                 </router-link>
                             </el-dropdown-item>
@@ -112,6 +111,8 @@ import { computed } from 'vue';
 import { IGestanteControl, IParametrica } from '@/api/ETMIPLUS_API';
 import moment from 'moment';
 import { fichas, nacionalidad } from '@/interfaces/modeloGestante';
+import { useRouter } from 'vue-router';
+import { ElMessage, ElMessageBox } from 'element-plus';
 
 interface Gestante {
     idGestante?: number,
@@ -162,6 +163,7 @@ export default class gestanteCtrlView extends Vue {
     dateFormat = 'DD/MM/YYYY'
     search = ''
     fichas: fichas[] = []
+    router = useRouter();
     /*filterTableData = computed(() =>
     this.dataTableControles.filter(
             (data) =>
@@ -177,8 +179,51 @@ export default class gestanteCtrlView extends Vue {
 
     dataTableControles: IGestanteControlTable[] = []
 
+    showMessage(message: string) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(message);
+            }, 1000);
+        });
+    }
+
     handleEdit = (index: number, row: IGestanteControlTable) => {
         console.log(index, row)
+
+        if (row.tieneFichaVIH === true) {
+            this.router.push({
+                name: 'vih', // The name of the route you want to redirect to
+                params: {
+                    userId: row.idGestanteControl
+                }
+            })
+        } else if (row.tieneFichaHepatitisB === true) {
+            this.router.push({
+                name: 'vih', // The name of the route you want to redirect to
+                params: {
+                    userId: row.idGestanteControl
+                }
+            })
+        } else if (row.tieneFichaChagas === true) {
+            this.router.push({
+                name: 'vih', // The name of the route you want to redirect to
+                params: {
+                    userId: row.idGestanteControl
+                }
+            })
+        } else if (row.tieneFichaSifilis === true) {
+            this.router.push({
+                name: 'vih', // The name of the route you want to redirect to
+                params: {
+                    userId: row.idGestanteControl
+                }
+            })
+        } else {
+            const message = 'Este control no presenta ningun reporte de ficha para editar'
+            this.showMessage(message).then(() => {
+                ElMessage.info(message);
+            });
+        }
     }
 
     handleDelete = (index: number, row: IGestanteControlTable) => {

@@ -16,9 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/VihListView.vue')
   },
   {
-    path: '/vih',
+    path: '/vih/:idGCtrl',
     name: 'vih',
-    component: VihView
+    component: VihView,
+    props: (route) => ({ idGCtrl: route.params.idGCtrl }),
+    meta: { hideParams: true }
+  },
+  {
+    path: '/vihList',
+    name: 'vihList',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/VihListView.vue')
   },
   {
     path: '/gestantes',
