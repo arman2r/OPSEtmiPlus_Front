@@ -1146,7 +1146,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1316,7 +1316,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporte1(idGestanteControl: number, body?: Reporte1 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte1(idGestanteControl: number, body?: IReporte1 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte1";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1358,7 +1358,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1371,7 +1371,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporte2(idGestanteControl: number, body?: Reporte2 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte2(idGestanteControl: number, body?: IReporte2 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte2";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1413,7 +1413,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -3907,7 +3907,7 @@ export interface IReporte1 {
     seRealizoControlPrenatalDuranteEmbarazo?: number;
     edadGestacionalPrimerControlPrenatalSemanas?: number;
     fechaProbableParto?: Date;
-    listParaclinicos?: ParaclinicoMadre[] | undefined;
+    listParaclinicos?: IParaclinicoMadre[] | undefined;
 }
 
 export class Reporte2 implements IReporte2 {
