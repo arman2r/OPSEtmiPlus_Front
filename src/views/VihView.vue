@@ -223,7 +223,7 @@
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
               <h5 class="align-start">CARGA VIRAL REALIZADA 2 - 4 SEMANAS ANTES DEL PARTO</h5>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8"> 
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Carga Viral" prop="tieneCargaViral">
                 <el-radio-group v-model="ruleFormSegundoReporte.tieneCargaViral">
                   <el-radio :label="1">Si</el-radio>
@@ -256,7 +256,7 @@
       </el-form>
 
     </el-tab-pane>
-    <el-tab-pane label="tercer reporte" name="four">
+    <el-tab-pane label="Tercer reporte" name="four">
 
       <el-form :model="ruleFormTercerReporte" :rules="rulesFormTercerReporte" label-position="top" :size="formSize"
         status-icon ref="fourForm">
@@ -276,7 +276,7 @@
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <!--<el-form-item label="Fecha del parto" prop="fechaDelParto">
                 <el-input v-model="ruleFormTercerReporte.fechaDelParto" />
               </el-form-item>-->
@@ -318,30 +318,26 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb column-custom">
-              <!--<el-form-item label="Fecha del parto" prop="edadGestacionalAlNacimientoEnSemana">
-                <el-input v-model="ruleFormTercerReporte.edadGestacionalAlNacimientoEnSemana" />
-              </el-form-item>-->
-              <el-form-item label="Fecha del parto" prop="edadGestacionalAlNacimientoEnSemana">
-                <el-date-picker v-model="ruleFormTercerReporte.edadGestacionalAlNacimientoEnSemana" type="date"
-                  placeholder="Fecha del parto" :format="dateFormat" :size="size" />
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+              <el-form-item label="Edad gestacional al nacimiento, en semanas" prop="edadGestacionalAlNacimientoEnSemana">
+                <el-input v-model="ruleFormTercerReporte.edadGestacionalAlNacimientoEnSemana" type="number" />
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Peso" prop="pesoEnGramos">
                 <el-input v-model="ruleFormTercerReporte.pesoEnGramos" type="number" />
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Sexo" prop="sexo">
-                <el-radio-group v-model="ruleFormTercerReporte.sexo">
-                  <el-radio :label="1">Hombre</el-radio>
-                  <el-radio :label="2">Mujer</el-radio>
-                  <el-radio :label="3">Intersexual</el-radio>
-                </el-radio-group>
+                <el-select v-model="ruleFormTercerReporte.sexo" class="w-100" placeholder="Situación gestante">
+                  <el-option label="Hombre" value="1" />
+                  <el-option label="Mujer" value="2" />
+                  <el-option label="Intersexual" value="3" />
+                </el-select>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
               <el-form-item label="Tipo de parto" prop="tipoParto">
                 <el-radio-group v-model="ruleFormTercerReporte.tipoParto">
                   <el-radio :label="1">Cesarea</el-radio>
@@ -349,7 +345,7 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
               <el-form-item label="Supreción de la lactancia" prop="suprecionDeLactancia">
                 <el-radio-group v-model="ruleFormTercerReporte.suprecionDeLactancia">
                   <el-radio :label="1">Si</el-radio>
@@ -357,11 +353,11 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
               <el-form-item label="Medicamentos suministrados" prop="medicamentoSuministrado">
                 <el-radio-group v-model="ruleFormTercerReporte.medicamentoSuministrado">
-                  <el-radio :label="1" @click="isVisible = false">Cabergolina</el-radio>
-                  <el-radio :label="2" @click="isVisible = true">Otro</el-radio>
+                  <el-radio label="Cabergolina" @click="isVisible = false">Cabergolina</el-radio>
+                  <el-radio label="Otro" @click="isVisible = true">Otro</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>
@@ -384,16 +380,17 @@
 
     <el-tab-pane label="Cuarto reporte" name="five">
 
-      <el-form :model="ruleFormCuartoReporte" :rules="rulesFormCuartoReporte" label-width="180px" class="demo-ruleForm"
-        :size="formSize" status-icon ref="fiveForm">
+      <el-form :model="ruleFormCuartoReporte" :rules="rulesFormCuartoReporte" label-position="top" :size="formSize"
+        status-icon ref="fiveForm">
         <section style="width: 100%;">
           <el-row :gutter="10">
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
               <h5 class="align-start">SEGUIMIENTO DEL NIÑO O NIÑA EXPUESTO - RIESGO DE TMI DEL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Tipo regimen de salud" prop="tipoRegimenSalud" class="select-width">
-                <el-select v-model="ruleFormCuartoReporte.tipoRegimenSalud" placeholder="Tipo regimen de salud">
+              <el-form-item label="Tipo regimen de salud" prop="tipoRegimenSalud">
+                <el-select v-model="ruleFormCuartoReporte.tipoRegimenSalud" class="w-100"
+                  placeholder="Tipo regimen de salud">
                   <el-option label="Excepción" value="1" />
                   <el-option label="Contributivo" value="2" />
                   <el-option label="Subsidiado" value="3" />
@@ -413,8 +410,8 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Tipo de documento" prop="tipoDocumento" class="select-width">
-                <el-select v-model="ruleFormCuartoReporte.tipoDocumento" placeholder="Tipo de documento">
+              <el-form-item label="Tipo de documento" prop="tipoDocumento">
+                <el-select v-model="ruleFormCuartoReporte.tipoDocumento" class="w-100" placeholder="Tipo de documento">
                   <el-option label="Registro civil" value="1" />
                   <el-option label="Tarjeta de identidad" value="3" />
                   <el-option label="Menor sin identificar" value="4" />
@@ -433,31 +430,88 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Clasificación del riesgo" prop="clasificacionDelRiesgo" class="select-width">
-                <el-select v-model="ruleFormCuartoReporte.clasificacionDelRiesgo" placeholder="Clasificación del riesgo">
+              <el-form-item label="Clasificación del riesgo" prop="clasificacionTMINinoExpuesto">
+                <el-select v-model="ruleFormCuartoReporte.clasificacionTMINinoExpuesto" class="w-100"
+                  placeholder="Clasificación del riesgo">
                   <el-option label="Bajo riesgo" value="1" />
                   <el-option label="Alto riesgo" value="2" />
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <label class="me-2">Profilaxis anti retroviral</label>
-              <el-radio-group v-model="ruleFormCuartoReporte.profilaxisAntriretroviral">
-                <el-radio :label="1">Si</el-radio>
-                <el-radio :label="0">No</el-radio>
-              </el-radio-group>
+              <el-form-item label="Profilaxis anti retroviral" prop="recibioNinoProfilaxisAntiretroviral">
+                <el-radio-group v-model="ruleFormCuartoReporte.recibioNinoProfilaxisAntiretroviral">
+                  <el-radio :label="1">Si</el-radio>
+                  <el-radio :label="0">No</el-radio>
+                </el-radio-group>
+              </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Medicamentos anti retrovirales" prop="medicamentosAntiretrovirales"
-                class="select-width">
-                <el-select v-model="ruleFormCuartoReporte.medicamentosAntiretrovirales" multiple clearable collapse-tags
-                  placeholder="Select" popper-class="custom-header" :max-collapse-tags="1">
+              <el-form-item label="Medicamentos anti retrovirales" prop="medicamentosAntirretroviralNinoExpuesto">
+                <el-select v-model="ruleFormCuartoReporte.medicamentosAntirretroviralNinoExpuesto" class="w-100" multiple
+                  filterable clearable placeholder="Select" popper-class="custom-header">
                   <!--<template #header>
                   <el-checkbox v-model="checkAll" :indeterminate="indeterminate" @change="handleCheckAll">
                     All
                   </el-checkbox>
                 </template>-->
                   <el-option v-for="item in medicamentos" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+              <el-form-item label="¿Se le realizó ADN proviral (GPC)?" prop="seRealizoADNProviral">
+                <el-radio-group v-model="ruleFormCuartoReporte.seRealizoADNProviral" @change="toggleEnableAdnProviral">
+                  <el-radio :label="1">Si</el-radio>
+                  <el-radio :label="0">No</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+              <el-form-item label="Fecha del resultado ADN proviral" prop="fechaResultadoADNProviral">
+                <el-date-picker :disabled="toggleEnableAdnProviralStatus"
+                  v-model="ruleFormCuartoReporte.fechaResultadoADNProviral" type="date"
+                  placeholder="Fecha del resultado ADN proviral" :size="size" />
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+              <el-form-item label="Resultado ADN proviral" prop="resultadoADNProviral">
+                <el-input :disabled="toggleEnableAdnProviralStatus"
+                  v-model="ruleFormCuartoReporte.resultadoADNProviral" />
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+              <el-form-item label="Se le realizaron cargas virales (GPC)" prop="seRealizaronCargasVirales">
+                <el-radio-group v-model="ruleFormCuartoReporte.seRealizaronCargasVirales"
+                  @change="toggleEnableCargaviral">
+                  <el-radio :label="1">Si</el-radio>
+                  <el-radio :label="0">No</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+              <el-form-item label="Fecha del resultado de las cargas virales realizadas"
+                prop="fechaResultadoCargasVirales">
+                <el-date-picker :disabled="toggleEnableCargaviralStatus"
+                  v-model="ruleFormCuartoReporte.fechaResultadoCargasVirales" type="date"
+                  placeholder="Fecha del resultado de las cargas virales realizadas" :size="size" />
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+              <el-form-item label="Resultados de las cargas virales realizadas" prop="resultadoCargasVirales">
+                <el-input :disabled="toggleEnableCargaviralStatus" v-model="ruleFormCuartoReporte.resultadoCargasVirales"
+                  type="number" />
+              </el-form-item>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+              <el-form-item label="Si a la niña o niño expuesto se le realizaron otras pruebas, registre la información"
+                prop="otrasPruebasNinoExpuesto">
+                <el-select v-model="ruleFormCuartoReporte.otrasPruebasNinoExpuesto" class="w-100" multiple filterable
+                  clearable>
+                  <el-option label="Prueba rápida" value="Prueba rápida" />
+                  <el-option label="ELISA" value="ELISA" />
+                  <el-option label="Quimioluminiscencia" value="Quimioluminiscencia" />
+                  <el-option label="Western Blot" value="Western Blot" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -814,7 +868,7 @@
  
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+//import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import 'element-plus/theme-chalk/display.css'
 //import { ref } from 'vue' 
 import { reactive, ref } from 'vue'
@@ -822,8 +876,8 @@ import type { FormRules, FormProps } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
-import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
-import { IParaclinicoMadre, IParametrica, IReporte1, IReporte2 } from "@/api/ETMIPLUS_API";
+import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
+import { IParaclinicoMadre, IParametrica, IReporte1, IReporte2, IReporte3, IReporte4 } from "@/api/ETMIPLUS_API";
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
@@ -959,28 +1013,36 @@ export default class VihView extends Vue {
   ruleFormTercerReporte = reactive<RuleFormTercerReporte>({
     situacionGestante: [],
     fechaDelParto: new Date,
-    tarEnInterparto: false,
+    tarEnInterparto: 0,
     esquemaArvEnInterparto: [],
-    condicionRecienNacido: false,
-    numeroDeProductosAlNacimiento: false,
+    condicionRecienNacido: 0,
+    numeroDeProductosAlNacimiento: 0,
     edadGestacionalAlNacimientoEnSemana: new Date,
     pesoEnGramos: 0,
     sexo: [],
     tipoParto: [],
-    suprecionDeLactancia: false,
-    medicamentoSuministrado: false,
+    suprecionDeLactancia: 0,
+    medicamentoSuministrado: '',
     otroMedicamento: '',
   })
 
-  ruleFormCuartoReporte = reactive<RuleFormCuartoReporte>({
+  ruleFormCuartoReporte = reactive<IReporte4>({
     tipoRegimenSalud: [],
     nombreAseguradora: '',
     nombresApellidos: '',
     tipoDocumento: [],
     numeroIdentificacion: '',
-    clasificacionDelRiesgo: [],
-    profilaxisAntriretroviral: false,
-    medicamentosAntiretrovirales: []
+    clasificacionTMINinoExpuesto: [],
+    recibioNinoProfilaxisAntiretroviral: 0,
+    medicamentosAntirretroviralNinoExpuesto: '',
+    seRealizoADNProviral: 0,
+    fechaResultadoADNProviral: new Date(),
+    resultadoADNProviral: '',
+    seRealizaronCargasVirales: 0,
+    fechaResultadoCargasVirales: new Date(),
+    resultadoCargasVirales: 0,
+    otrasPruebasNinoExpuesto: '',
+
   })
 
   ruleFormquintoReporte = reactive<RuleFormquintoReporte>({
@@ -1341,7 +1403,7 @@ export default class VihView extends Vue {
     ],
   })
 
-  rulesFormCuartoReporte = reactive<FormRules<RuleFormCuartoReporte>>({
+  rulesFormCuartoReporte = reactive<FormRules<IReporte4>>({
     tipoRegimenSalud: [
       {
         required: true,
@@ -1377,21 +1439,35 @@ export default class VihView extends Vue {
         trigger: 'blur',
       }
     ],
-    clasificacionDelRiesgo: [
+    clasificacionTMINinoExpuesto: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    profilaxisAntriretroviral: [
+    recibioNinoProfilaxisAntiretroviral: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    medicamentosAntiretrovirales: [
+    medicamentosAntirretroviralNinoExpuesto: [
+      {
+        required: true,
+        message: 'Este campo es requerido',
+        trigger: 'change',
+      }
+    ],
+    seRealizoADNProviral: [
+      {
+        required: true,
+        message: 'Este campo es requerido',
+        trigger: 'change',
+      }
+    ],
+    seRealizaronCargasVirales: [
       {
         required: true,
         message: 'Este campo es requerido',
@@ -1754,7 +1830,7 @@ export default class VihView extends Vue {
     }
   }
 
-  async registroReporte(reporteForm: any, tabName: any) {
+  async registroReporte(reporteForm: any, tabName: string) {
     console.log(reporteForm)
 
     if (tabName === 'third') {
@@ -1768,11 +1844,11 @@ export default class VihView extends Vue {
           ElMessage.info(message);
           this.activeName = tabName;
         });
+        this.disabledThree = false
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
         this.showMessage(message).then(() => {
           ElMessage.info(message);
-          this.activeName = tabName;
         });
       }
 
@@ -1787,16 +1863,54 @@ export default class VihView extends Vue {
           ElMessage.info(message);
           this.activeName = tabName;
         });
+        this.disabledFour = false
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
         this.showMessage(message).then(() => {
           ElMessage.info(message);
-          this.activeName = tabName;
         });
       }
+    } else if (tabName === 'five') {
+      console.log('request', reporteForm)
+      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte3(reporteForm.idGestanteControl, reporteForm) as any;
+      console.log('response', requestPrimerReporte)
+
+
+      if (requestPrimerReporte.length !== 0) {
+        const message = 'Reporte guardado con éxito.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+          this.activeName = tabName;
+        });
+        this.disabledFive = false
+      } else {
+        const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+        });
+      }
+    } else if (tabName === 'six') {
+      console.log('request', reporteForm)
+      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte4(reporteForm.idGestanteControl, reporteForm) as any;
+      console.log('response', requestPrimerReporte)
+
+
+      if (requestPrimerReporte.length !== 0) {
+        const message = 'Reporte guardado con éxito.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+          this.activeName = tabName;
+        });
+        this.disabledSix = false
+      } else {
+        const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+        });
+      }
+
+
     }
-
-
   }
 
   changeTab(tabName: string) {
@@ -1863,7 +1977,6 @@ export default class VihView extends Vue {
 
       //this.disabledThree = false
     } else if (tabName === 'four') {
-      this.disabledFour = false
       //this.activeName = tabName
 
       const request: IReporte2 = {
@@ -1876,11 +1989,49 @@ export default class VihView extends Vue {
       this.registroReporte(request, tabName)
 
     } else if (tabName === 'five') {
-      this.disabledFive = false
-      this.activeName = tabName
+      //this.disabledFive = false
+      //this.activeName = tabName
+      const getMedicamentoSuministrado = this.ruleFormTercerReporte.medicamentoSuministrado === 'Cabergolina' ? this.ruleFormTercerReporte.medicamentoSuministrado : this.ruleFormTercerReporte.otroMedicamento
+      const request: IReporte3 = {
+        idReporte: 0,
+        idGestanteControl: Number(this.idGestanteCtrl),
+        idSituacionGestante: Number(this.ruleFormTercerReporte.situacionGestante),
+        fechaDelParto: new Date(moment(this.ruleFormTercerReporte.fechaDelParto).format('YYYY-MM-DD HH:mm:ss.sss')),
+        idEsquemaAntirretroviralIntraparto: Number(this.ruleFormTercerReporte.tarEnInterparto),
+        idEsquemaArvIntraparto: Number(this.ruleFormTercerReporte.esquemaArvEnInterparto),
+        idCondicionRecienNacido: Number(this.ruleFormTercerReporte.condicionRecienNacido),
+        idNumeroDeProductosNacimiento: Number(this.ruleFormTercerReporte.numeroDeProductosAlNacimiento),
+        edadGestacionalNacimientoSemanas: Number(this.ruleFormTercerReporte.edadGestacionalAlNacimientoEnSemana),
+        pesoRecienNacidoGramos: this.ruleFormTercerReporte.pesoEnGramos,
+        idSexo: Number(this.ruleFormTercerReporte.sexo),
+        idTipoParto: Number(this.ruleFormTercerReporte.tipoParto),
+        seRealizoSuprecionLactancia: this.ruleFormTercerReporte.suprecionDeLactancia,
+        medicamentoSuministrado: getMedicamentoSuministrado,
+      }
+      this.registroReporte(request, tabName)
     } else if (tabName === 'six') {
-      this.disabledSix = false
-      this.activeName = tabName
+      //this.disabledSix = false
+      //this.activeName = tabName
+
+      const request: IReporte4 = {
+        idGestanteControl: Number(this.idGestanteCtrl),
+        idTipoRegimenSalud: Number(this.ruleFormCuartoReporte.tipoRegimenSalud),
+        nombreAseguradora: this.ruleFormCuartoReporte.nombreAseguradora,
+        nombresApellidos: this.ruleFormCuartoReporte.nombresApellidos,
+        idTipoDocumento: Number(this.ruleFormCuartoReporte.tipoDocumento),
+        numeroIdentificacion: this.ruleFormCuartoReporte.numeroIdentificacion,
+        idClasificacionTMINinoExpuesto: Number(this.ruleFormCuartoReporte.clasificacionTMINinoExpuesto),
+        recibioNinoProfilaxisAntiretroviral: this.ruleFormCuartoReporte.recibioNinoProfilaxisAntiretroviral,
+        medicamentosAntirretroviralNinoExpuesto: JSON.stringify(this.ruleFormCuartoReporte.medicamentosAntirretroviralNinoExpuesto),
+        seRealizoADNProviral: this.ruleFormCuartoReporte.seRealizoADNProviral,
+        fechaResultadoADNProviral: new Date(moment(this.ruleFormCuartoReporte.fechaResultadoADNProviral).format('YYYY-MM-DD HH:mm:ss.sss')),
+        resultadoADNProviral: this.ruleFormCuartoReporte.resultadoADNProviral,
+        seRealizaronCargasVirales: this.ruleFormCuartoReporte.seRealizaronCargasVirales,
+        fechaResultadoCargasVirales: new Date(moment(this.ruleFormCuartoReporte.fechaResultadoCargasVirales).format('YYYY-MM-DD HH:mm:ss.sss')),
+        resultadoCargasVirales: this.ruleFormCuartoReporte.resultadoCargasVirales,
+        otrasPruebasNinoExpuesto: JSON.stringify(this.ruleFormCuartoReporte.otrasPruebasNinoExpuesto),
+      }
+      this.registroReporte(request, tabName)
     } else if (tabName === 'seven') {
       this.disabledSeven = false
       this.activeName = tabName
@@ -1973,6 +2124,26 @@ export default class VihView extends Vue {
     } else {
       this.enableRecibioTarDurantEmbarazo = true
       this.edadGestancionalDiagnostico = true
+    }
+  }
+
+
+  toggleEnableAdnProviralStatus = true
+  toggleEnableCargaviralStatus = true
+
+  toggleEnableAdnProviral() {
+    if (Number(this.ruleFormCuartoReporte.seRealizoADNProviral) === 1) {
+      this.toggleEnableAdnProviralStatus = false
+    } else {
+      this.toggleEnableAdnProviralStatus = true
+    }
+  }
+
+  toggleEnableCargaviral() {
+    if (Number(this.ruleFormCuartoReporte.seRealizaronCargasVirales) === 1) {
+      this.toggleEnableCargaviralStatus = false
+    } else {
+      this.toggleEnableCargaviralStatus = true
     }
   }
 

@@ -60,16 +60,16 @@ export interface RuleFormDatosGestante {
   export interface RuleFormTercerReporte {
     situacionGestante: string[];
     fechaDelParto: Date;
-    tarEnInterparto: boolean;
+    tarEnInterparto: number;
     esquemaArvEnInterparto: string[];
-    condicionRecienNacido: boolean;
-    numeroDeProductosAlNacimiento: boolean;
+    condicionRecienNacido: number;
+    numeroDeProductosAlNacimiento: number;
     edadGestacionalAlNacimientoEnSemana: Date;
     pesoEnGramos: number;
     sexo: string[];
     tipoParto: string[];
-    suprecionDeLactancia: boolean;
-    medicamentoSuministrado: boolean;
+    suprecionDeLactancia: number;
+    medicamentoSuministrado: string;
     otroMedicamento?: string;
   }
   

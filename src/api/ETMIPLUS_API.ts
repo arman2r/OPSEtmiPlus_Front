@@ -1426,7 +1426,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporte3(idGestanteControl: number, body?: Reporte3 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte3(idGestanteControl: number, body?: IReporte3 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte3";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1468,7 +1468,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1481,7 +1481,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporte4(idGestanteControl: number, body?: Reporte4 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte4(idGestanteControl: number, body?: IReporte4 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte4";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1523,7 +1523,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -4171,14 +4171,14 @@ export interface IReporte4 {
     idReporte?: number;
     idGestanteControl?: number;
     idTipoRegimenSalud?: number;
-    tipoRegimenSalud?: Parametrica;
+    tipoRegimenSalud?: Parametrica | Parametrica[];
     nombreAseguradora?: string | undefined;
     nombresApellidos?: string | undefined;
     idTipoDocumento?: number;
-    tipoDocumento?: Parametrica;
+    tipoDocumento?: Parametrica | Parametrica[];
     numeroIdentificacion?: string | undefined;
     idClasificacionTMINinoExpuesto?: number;
-    clasificacionTMINinoExpuesto?: Parametrica;
+    clasificacionTMINinoExpuesto?: Parametrica | Parametrica[];
     recibioNinoProfilaxisAntiretroviral?: number;
     medicamentosAntirretroviralNinoExpuesto?: string | undefined;
     seRealizoADNProviral?: number;
