@@ -6,12 +6,12 @@
                 Reporte VIH
             </template>
             <template #default="scope">
-                <el-icon v-if="scope.row.tieneFichaVIH === true">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaVIH === true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
                     </svg>
                 </el-icon>
-                <el-icon v-if="scope.row.tieneFichaVIH === false">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaVIH === false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
@@ -24,12 +24,12 @@
                 Reporte Hepatitis B
             </template>
             <template #default="scope">
-                <el-icon v-if="scope.row.tieneFichaHepatitisB === true">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaHepatitisB === true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
                     </svg>
                 </el-icon>
-                <el-icon v-if="scope.row.tieneFichaHepatitisB === false">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaHepatitisB === false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
@@ -42,12 +42,12 @@
                 Reporte Chagas
             </template>
             <template #default="scope">
-                <el-icon v-if="scope.row.tieneFichaChagas === true">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaChagas === true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
                     </svg>
                 </el-icon>
-                <el-icon v-if="scope.row.tieneFichaChagas === false">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaChagas === false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
@@ -60,12 +60,12 @@
                 Reporte sifilis
             </template>
             <template #default="scope">
-                <el-icon v-if="scope.row.tieneFichaSifilis === true">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaSifilis === true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
                     </svg>
                 </el-icon>
-                <el-icon v-if="scope.row.tieneFichaSifilis === false">
+                <el-icon v-if="scope.row.controlEstadoFichas.tieneFichaSifilis === false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
@@ -91,7 +91,8 @@
                     <template #dropdown>
                         <el-dropdown-menu>
                             <el-dropdown-item v-for="(ficha, index) in fichas" :key="index">
-                                <router-link :to="'/'+(ficha.name).replace(/\s+/g, '').toLowerCase() + '/' + scope.row.idGestanteControl">
+                                <router-link
+                                    :to="'/' + (ficha.name).replace(/\s+/g, '').toLowerCase() + '/' + scope.row.idGestanteControl">
                                     {{ 'Crear reporte de ' + ficha.name }}
                                 </router-link>
                             </el-dropdown-item>
@@ -148,13 +149,17 @@ interface Gestante {
 }
 
 interface IGestanteControlTable {
-    idGestanteControl?: number;
-    idGestante?: number;
-    fechaControl?: Date;
-    tieneFichaVIH?: boolean;
-    tieneFichaHepatitisB?: boolean;
-    tieneFichaChagas?: boolean;
-    tieneFichaSifilis?: boolean;
+    idGestanteControl?: number,
+    idGestante?: number,
+    fechaControl?: Date,
+    controlEstadoFichas?: IFichas,
+}
+
+interface IFichas {
+    tieneFichaVIH: boolean,
+    tieneFichaSifilis: boolean,
+    tieneFichaHepatitisB: boolean,
+    tieneFichaChagas: boolean
 }
 
 export default class gestanteCtrlView extends Vue {
@@ -190,32 +195,32 @@ export default class gestanteCtrlView extends Vue {
     handleEdit = (index: number, row: IGestanteControlTable) => {
         console.log(index, row)
 
-        if (row.tieneFichaVIH === true) {
+        if (row.controlEstadoFichas?.tieneFichaVIH === true) {
             this.router.push({
                 name: 'vih', // The name of the route you want to redirect to
                 params: {
-                    userId: row.idGestanteControl
+                    idGCtrl: row.idGestanteControl
                 }
             })
-        } else if (row.tieneFichaHepatitisB === true) {
+        } else if (row.controlEstadoFichas?.tieneFichaHepatitisB === true) {
             this.router.push({
-                name: 'vih', // The name of the route you want to redirect to
+                name: 'hepatitisb', // The name of the route you want to redirect to
                 params: {
-                    userId: row.idGestanteControl
+                    idGCtrl: row.idGestanteControl
                 }
             })
-        } else if (row.tieneFichaChagas === true) {
+        } else if (row.controlEstadoFichas?.tieneFichaChagas === true) {
             this.router.push({
-                name: 'vih', // The name of the route you want to redirect to
+                name: 'chagas', // The name of the route you want to redirect to
                 params: {
-                    userId: row.idGestanteControl
+                    idGCtrl: row.idGestanteControl
                 }
             })
-        } else if (row.tieneFichaSifilis === true) {
+        } else if (row.controlEstadoFichas?.tieneFichaSifilis === true) {
             this.router.push({
-                name: 'vih', // The name of the route you want to redirect to
+                name: 'sifilis', // The name of the route you want to redirect to
                 params: {
-                    userId: row.idGestanteControl
+                    idGCtrl: row.idGestanteControl
                 }
             })
         } else {
@@ -224,6 +229,7 @@ export default class gestanteCtrlView extends Vue {
                 ElMessage.info(message);
             });
         }
+        
     }
 
     handleDelete = (index: number, row: IGestanteControlTable) => {
@@ -279,7 +285,7 @@ export default class gestanteCtrlView extends Vue {
         //controles.data.map((item: any) => { return item.fechaControl })
         this.fetchDataCtrls(idGestante).then((res: any) => {
             console.log('respuesta', res)
-            this.dataTableControles = res
+            this.dataTableControles = res.data
         })
 
         //this.dataTableControles = getControles?.data
@@ -288,25 +294,25 @@ export default class gestanteCtrlView extends Vue {
 
     async fetchDataCtrls(idGestante: number) {
         try {
-            const response = await Promise.all([
-                await this.ETMIPLUS_API_Client.gestanteControlGET(idGestante) as any,
-                await this.ETMIPLUS_API_Client.estadoFichas(idGestante) as any,
-            ])
+            const response = await this.ETMIPLUS_API_Client.gestanteControlGET(idGestante)
 
-            const [res1, res2] = await Promise.all(response.map(res => res));
+            //const [res1, res2] = await Promise.all(response.map(res => res));
             //console.log(res1)
 
 
             //const mergedResponse = {data1: res1.data.push(res2.data), data2: res2};
             //const mergedResponse = {data1: (res1.data.push((res2.data)))}
-            const mergedResponse = res1.data.map((x: any) =>
+            const mergedResponse = response
+            /*res1.data.map((x: any) =>
             ({
-                ...x, tieneFichaVIH: res2.data.tieneFichaVIH,
-                tieneFichaHepatitisB: res2.data.tieneFichaHepatitisB,
-                tieneFichaChagas: res2.data.tieneFichaChagas,
-                tieneFichaSifilis: res2.data.tieneFichaSifilis
+                ...x, 'controlEstadoFichas' = {
+                    tieneFichaVIH: res2.data.tieneFichaVIH,
+                    tieneFichaHepatitisB: res2.data.tieneFichaHepatitisB,
+                    tieneFichaChagas: res2.data.tieneFichaChagas,
+                    tieneFichaSifilis: res2.data.tieneFichaSifilis
+                }
             })
-            )
+            )*/
 
             console.log('merge', mergedResponse)
 

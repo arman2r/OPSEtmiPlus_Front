@@ -58,7 +58,7 @@
             <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
               <el-form-item label="copias/mls" prop="resultados">
                 <el-input id="copiasMlDiagn" v-model="ruleFormPrimerReporte.resultados"
-                  :disabled="showCopiasMlMomentoDiagn" type="number" step="0.1" />
+                  :disabled="showCopiasMlMomentoDiagn" type="number" />
               </el-form-item>
             </el-col>
             <el-divider />
@@ -88,8 +88,7 @@
               </el-col>
               <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
                 <el-form-item label="Resultado: copias/mls" prop="resultadoParaclinico">
-                  <el-input v-model="paraclinico.resultadoParaclinico" type="number" step="0.1"
-                    @input="validateField(index)" />
+                  <el-input v-model="paraclinico.resultadoParaclinico" type="number" @input="validateField(index)" />
                 </el-form-item>
               </el-col>
             </div>
@@ -242,7 +241,7 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Resultados" prop="resultadoCargaViral">
-                <el-input v-model="ruleFormSegundoReporte.resultadoCargaViral" type="number" step="0.1" />
+                <el-input v-model="ruleFormSegundoReporte.resultadoCargaViral" type="number" />
               </el-form-item>
             </el-col>
           </el-row>
@@ -526,260 +525,86 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="Quinto reporte" name="six">
-      <el-form :model="ruleFormquintoReporte" :rules="rulesFormQuintoReporte" label-width="180px" class="demo-ruleForm"
-        :size="formSize" status-icon ref="sixForm">
+      <el-form :model="ruleFormquintoReporte" :rules="rulesFormQuintoReporte" label-position="top" :size="formSize"
+        status-icon ref="sixForm">
         <section style="width: 100%;">
           <el-row :gutter="10">
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
               <h5 class="align-start">PARACLINICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizada" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizada" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
+              <el-form-item label="Fecha de resultado" prop="fechaResultadoCargasVirales">
+                <el-date-picker v-model="ruleFormquintoReporte.fechaPruebaRealizadaADNProviral" type="date"
+                  placeholder="Fecha de resultado" :size="size" />
+              </el-form-item>
+            </el-col>
+
+            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+              <el-form-item label="Prueba realizada" prop="tipoPrueba">
+                <el-select v-model="ruleFormquintoReporte.tipoPrueba" placeholder="Prueba realizada" class="w-100">
+                  <el-option label="Reactivo" value="1" />
+                  <el-option label="No reactivo" value="2" />
+                  <el-option label="Positivo" value="3" />
+                  <el-option label="Negativo" value="4" />
+                  <el-option label="Indeterminado" value="5" />
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fecha">
-                <el-input v-model="ruleFormquintoReporte.fecha" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fecha" type="date" placeholder="Fecha" :format="dateFormat"
-                :size="size" />
-            </el-col>
+
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMl">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMl" type="number" step="0.1" />
+              <el-form-item label="Resultados" prop="resultadoPrueba">
+                <el-input v-model="ruleFormquintoReporte.resultadoPrueba" type="number" />
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizadaTwo" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizadaTwo" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaTwo">
-                <el-input v-model="ruleFormquintoReporte.fechaTwo" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaTwo" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMlTwo">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMlTwo" type="number" step="0.1" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizadaThree" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizadaThree" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaThree">
-                <el-input v-model="ruleFormquintoReporte.fechaThree" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaThree" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMlThree">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMlThree" type="number" step="0.1" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizadaFour" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizadaFour" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaFour">
-                <el-input v-model="ruleFormquintoReporte.fechaFour" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaFour" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMlFour">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMlFour" type="number" step="0.1" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizadaFive" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizadaFive" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaFive">
-                <el-input v-model="ruleFormquintoReporte.fechaFive" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaFive" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMlFive">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMlFive" type="number" step="0.1" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizadaSix" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizadaSix" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaSix">
-                <el-input v-model="ruleFormquintoReporte.fechaSix" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaSix" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMlSix">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMlSix" type="number" step="0.1" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="pruebaRealizadaSeven" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.pruebaRealizadaSeven" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaSeven">
-                <el-input v-model="ruleFormquintoReporte.fechaSeven" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaSeven" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadoEnMlSeven">
-                <el-input v-model="ruleFormquintoReporte.resultadoEnMlSeven" type="number" step="0.1" />
-              </el-form-item>
-            </el-col>
+
+            <el-divider />
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5>SI A LA NIÑA o NIÑO EXPUESTOS SE LE REALIZARON OTRAS PRUEBAS, REGISTRE LA INFORMACION</h5>
+              <h5 class="align-start">PARACLINICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH:</h5>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="otrasPruebasRealizadasUno" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.otrasPruebasRealizadasUno" placeholder="Prueba realizada">
-                  <el-option label="Prueba rapida" value="1" />
-                  <el-option label="Elisa" value="2" />
-                  <el-option label="Quimioluminiscencia" value="3" />
-                  <el-option label="Western Blot" value="3" />
-                </el-select>
-              </el-form-item>
+            <div v-for="(paraclinicoMenor, index) in paraClinicosMenorFields" :key="index" class="w-100 no-margin el-row">
+
+              <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+
+                <el-form-item label="Examen" :prop="examenParaClinico" class="select-width">
+                  <el-select v-model="paraclinicoMenor.examenParaClinico" placeholder="Exámenes paraclínicos"
+                    @change="validateMenorField(index)">
+                    <el-option label="Carga viral" value="1" />
+                    <el-option label="Conteo de linfocitos T CD4" value="2" />
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="column-custom">
+                <el-form-item label="Fecha" prop="fechaExamenParaClinico" class="w-100">
+                  <el-date-picker v-model="paraclinicoMenor.fechaExamenParaClinico" @change="validateMenorField(index)"
+                    type="date" placeholder="Fecha" :format="dateFormat" :size="size" />
+                </el-form-item>
+              </el-col>
+              <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+                <el-form-item label="Resultado: copias/mls" prop="resultadoParaclinico">
+                  <el-input v-model="paraclinicoMenor.resultadoParaclinico" type="number"
+                    @input="validateMenorField(index)" />
+                </el-form-item>
+              </el-col>
+            </div>
+            <el-col :span="24">
+              <el-button type="primary" size="default" @click="addFieldsMenor">
+                Agregar exámen
+              </el-button>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaProbablePartoUno">
-                <el-input v-model="ruleFormquintoReporte.fechaProbablePartoUno" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaProbablePartoUno" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadosUno">
-                <el-input v-model="ruleFormquintoReporte.resultadosUno" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="otrasPruebasRealizadasDos" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.otrasPruebasRealizadasDos" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaProbablePartoDos">
-                <el-input v-model="ruleFormquintoReporte.fechaProbablePartoDos" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaProbablePartoDos" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadosDos">
-                <el-input v-model="ruleFormquintoReporte.resultadosDos" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="otrasPruebasRealizadasTres" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.otrasPruebasRealizadasTres" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaProbablePartoTres">
-                <el-input v-model="ruleFormquintoReporte.fechaProbablePartoTres" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaProbablePartoTres" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadosTres">
-                <el-input v-model="ruleFormquintoReporte.resultadosTres" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Prueba realizada" prop="otrasPruebasRealizadasCuatro" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.otrasPruebasRealizadasCuatro" placeholder="Prueba realizada">
-                  <el-option label="ADN Proviral" value="1" />
-                  <el-option label="Carga Viral" value="2" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="column-custom">
-              <!--<el-form-item label="Fecha" prop="fechaProbablePartoCuatro">
-                <el-input v-model="ruleFormquintoReporte.fechaProbablePartoCuatro" />
-              </el-form-item>-->
-              <label class="label-field" style="min-width:180px">Fecha</label>
-              <el-date-picker v-model="ruleFormquintoReporte.fechaProbablePartoCuatro" type="date" placeholder="Fecha"
-                :format="dateFormat" :size="size" />
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Resultados" prop="resultadosCuatro">
-                <el-input v-model="ruleFormquintoReporte.resultadosCuatro" />
-              </el-form-item>
-            </el-col>
+            <el-divider />
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
               <h5>ALIMENTACIÓN DE LA NIÑA O NIÑO EXPUESTO AL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <el-form-item label="Prueba realizada" prop="otrasPruebasRealizadasCuatro" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.otrasPruebasRealizadasCuatro" placeholder="Prueba realizada">
-                  <el-option label="Formula lactea desde el nacimiento - GPC" value="1" />
+              <el-form-item label="Alimentación de la niña o niño expuesto" prop="tipoAlimentacionNinoExpuesto"
+                class="select-width">
+                <el-select v-model="ruleFormquintoReporte.tipoAlimentacionNinoExpuesto"
+                  placeholder="Alimentación de la niña o niño expuesto">
+                  <el-option label="Fórmula láctea desde el nacimiento" value="1" />
                   <el-option label="Lactancia materna exclusiva" value="2" />
-                  <el-option label="Alimentación mixta: lactancia materna + formula láctea" value="3" />
+                  <el-option label="Alimentación mixta: lactancia materna+ fórmula láctea" value="3" />
                   <el-option label="Alimentación parenteral" value="4" />
-                  <el-option label="Alimentación parenteral + formula láctea" value="5" />
+                  <el-option label="Alimentación parenteral+ fórmula láctea" value="5" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -787,12 +612,12 @@
               <h5>SITUACIÓN DEL NIÑO O NIÑA EXPUESTO CON REFERENCIA AL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <el-form-item label="Prueba realizada" prop="otrasPruebasRealizadasCuatro" class="select-width">
-                <el-select v-model="ruleFormquintoReporte.otrasPruebasRealizadasCuatro" placeholder="Prueba realizada">
-                  <el-option label="Niña o niño con infección confirmada por VIH" value="1" />
-                  <el-option label="Niña o niño con infección por VIH descartada, (Sano)" value="2" />
-                  <el-option label="Niña o niño fallecio sin clasificación para VIH" value="3" />
-                  <el-option label="Niña o niño sin clasificación frente al VIH" value="4" />
+              <el-form-item label="Situación de la niña o" prop="situacionNinoExpuesto" class="select-width">
+                <el-select v-model="ruleFormquintoReporte.situacionNinoExpuesto" placeholder="niño expuesto">
+                  <el-option label="Infección por VIH confirmada" value="1" />
+                  <el-option label="Infección por VIH descartada" value="2" />
+                  <el-option label="Falleció sin clasificación" value="3" />
+                  <el-option label="Sin clasificación" value="4" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -806,8 +631,8 @@
         </section>
       </el-form>
     </el-tab-pane>
-    <el-tab-pane label="Seguimiento" name="seven">
-      <el-form :model="ruleFormSeguimiento" :rules="rulesFormSeguimiento" label-width="180px" class="demo-ruleForm"
+    <el-tab-pane label="Reporte binomio" name="seven">
+      <el-form :model="ruleFormSeguimiento" :rules="rulesFormSeguimiento" label-position="top"
         :size="formSize" status-icon ref="sevenForm">
         <section style="width: 100%;">
           <el-row :gutter="10">
@@ -816,38 +641,33 @@
               </h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Ips atención en VIH" prop="ipsAtencionVih">
-                <el-input v-model="ruleFormSeguimiento.ipsAtencionVih" />
+              <el-form-item label="Ips atención en VIH" prop="nombreIPSAtencionVIH">
+                <el-input v-model="ruleFormSeguimiento.nombreIPSAtencionVIH" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Nombre de quien remite la información" prop="nombreQuienRemiteInformacion">
-                <el-input v-model="ruleFormSeguimiento.nombreQuienRemiteInformacion" />
+              <el-form-item label="Nombre de quien remite la información" prop="nombreRemitenteInformacion">
+                <el-input v-model="ruleFormSeguimiento.nombreRemitenteInformacion" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Cargo de quien remite la información" prop="cargoQuienRemiteInformacion">
-                <el-input v-model="ruleFormSeguimiento.cargoQuienRemiteInformacion" />
+              <el-form-item label="Cargo de quien remite la información" prop="cargoRemitenteInformacion">
+                <el-input v-model="ruleFormSeguimiento.cargoRemitenteInformacion" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Celular" prop="celular">
-                <el-input v-model="ruleFormSeguimiento.celular" />
+              <el-form-item label="Celular" prop="telefonoRemitenteInformacion">
+                <el-input v-model="ruleFormSeguimiento.telefonoRemitenteInformacion" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Teléfono fijo" prop="telFijo">
-                <el-input v-model="ruleFormSeguimiento.telFijo" />
+              <el-form-item label="Correo" prop="correoRemitenteInformacion1">
+                <el-input v-model="ruleFormSeguimiento.correoRemitenteInformacion1" type="email" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Correo" prop="correo">
-                <el-input v-model="ruleFormSeguimiento.correo" type="email" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Confirmar correo" prop="confirmCorreo">
-                <el-input v-model="ruleFormSeguimiento.confirmCorreo" type="email" />
+              <el-form-item label="Confirmar correo" prop="correoRemitenteInformacion2">
+                <el-input v-model="ruleFormSeguimiento.correoRemitenteInformacion2" type="email" />
               </el-form-item>
             </el-col>
           </el-row>
@@ -877,7 +697,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
-import { IParaclinicoMadre, IParametrica, IReporte1, IReporte2, IReporte3, IReporte4 } from "@/api/ETMIPLUS_API";
+import { IParaclinicoMadre, IParaclinicoNino, IParametrica, IReporte1, IReporte2, IReporte3, IReporte4, IReporte5, IReporteBinomio } from "@/api/ETMIPLUS_API";
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
@@ -948,12 +768,19 @@ export default class VihView extends Vue {
   }
 
   paraClinicosFields = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
+  paraClinicosMenorFields = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
+
 
   addFields() {
     this.paraClinicosFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true });
   }
 
+  addFieldsMenor() {
+    this.paraClinicosMenorFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true });
+  }
+
   validarParaClinicos = false;
+  validarParaClinicosDelMenor = false;
 
   validateField = (index: number) => {
     const field = this.paraClinicosFields[index];
@@ -961,6 +788,14 @@ export default class VihView extends Vue {
     field.valid = field.examenParaClinico && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
     console.log(field.valid)
     this.validarParaClinicos = field.valid
+  };
+
+  validateMenorField = (index: number) => {
+    const field = this.paraClinicosMenorFields[index];
+    console.log('validador', field)
+    field.valid = field.examenParaClinico && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
+    console.log(field.valid)
+    this.validarParaClinicosDelMenor = field.valid
   };
 
   medicamentos = [
@@ -1045,52 +880,24 @@ export default class VihView extends Vue {
 
   })
 
-  ruleFormquintoReporte = reactive<RuleFormquintoReporte>({
-    pruebaRealizada: [],
-    fecha: new Date,
-    resultadoEnMl: 0,
-    pruebaRealizadaTwo: [],
-    fechaTwo: new Date,
-    resultadoEnMlTwo: 0,
-    pruebaRealizadaThree: [],
-    fechaThree: new Date,
-    resultadoEnMlThree: 0,
-    pruebaRealizadaFour: [],
-    fechaFour: new Date,
-    resultadoEnMlFour: 0,
-    pruebaRealizadaFive: [],
-    fechaFive: new Date,
-    resultadoEnMlFive: 0,
-    pruebaRealizadaSix: [],
-    fechaSix: new Date,
-    resultadoEnMlSix: 0,
-    pruebaRealizadaSeven: [],
-    fechaSeven: new Date,
-    resultadoEnMlSeven: 0,
-    otrasPruebasRealizadasUno: [],
-    otrasPruebasRealizadasDos: [],
-    otrasPruebasRealizadasTres: [],
-    otrasPruebasRealizadasCuatro: [],
-    fechaProbablePartoUno: new Date,
-    fechaProbablePartoDos: new Date,
-    fechaProbablePartoTres: new Date,
-    fechaProbablePartoCuatro: new Date,
-    resultadosUno: 0,
-    resultadosDos: 0,
-    resultadosTres: 0,
-    resultadosCuatro: 0,
-    alimentacionMenorExpuesto: [],
-    situacionDelMenorExpuesto: [],
+  ruleFormquintoReporte = reactive<IReporte5>({
+    fechaPruebaRealizadaADNProviral: new Date(),
+    tipoPrueba: [],
+    fechaPrueba: new Date(),
+    resultadoPrueba: '',
+    tipoAlimentacionNinoExpuesto: [],
+    situacionNinoExpuesto: [],
+    listParaclinicos: []
   })
 
-  ruleFormSeguimiento = reactive<RuleFormSeguimiento>({
-    ipsAtencionVih: '',
-    nombreQuienRemiteInformacion: '',
-    cargoQuienRemiteInformacion: '',
-    celular: '',
-    telFijo: '',
-    correo: '',
-    confirmCorreo: '',
+  ruleFormSeguimiento = reactive<IReporteBinomio>({
+    nombreIPSAtencionVIH: '',
+    nombreRemitenteInformacion: '',
+    cargoRemitenteInformacion: '',
+    telefonoRemitenteInformacion: '',
+    correoRemitenteInformacion1: '',
+    correoRemitenteInformacion2: ''
+
   })
 
   rulesDatosGestante = reactive<FormRules<RuleFormDatosGestante>>({
@@ -1476,261 +1283,65 @@ export default class VihView extends Vue {
     ]
   })
 
-  rulesFormQuintoReporte = reactive<FormRules<RuleFormquintoReporte>>({
-    pruebaRealizada: [
+  rulesFormQuintoReporte = reactive<FormRules<IReporte5>>({
+    fechaPruebaRealizadaADNProviral: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    fecha: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadoEnMl: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    pruebaRealizadaTwo: [
+    tipoPrueba: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    fechaTwo: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadoEnMlTwo: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    pruebaRealizadaThree: [
+    fechaPrueba: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    fechaThree: [
+    resultadoPrueba: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'blur',
       }
     ],
-    resultadoEnMlThree: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    pruebaRealizadaFour: [
+    tipoAlimentacionNinoExpuesto: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    fechaFour: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadoEnMlFour: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    pruebaRealizadaFive: [
+    situacionNinoExpuesto: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
     ],
-    fechaFive: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadoEnMlFive: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    pruebaRealizadaSix: [
+    listParaclinicos: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'change',
       }
-    ],
-    fechaSix: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadoEnMlSix: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    pruebaRealizadaSeven: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
-    fechaSeven: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadoEnMlSeven: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    otrasPruebasRealizadasUno: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
-    otrasPruebasRealizadasDos: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
-    otrasPruebasRealizadasTres: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
-    otrasPruebasRealizadasCuatro: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
-    fechaProbablePartoUno: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    fechaProbablePartoDos: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    fechaProbablePartoTres: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    fechaProbablePartoCuatro: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadosUno: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadosDos: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadosTres: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    resultadosCuatro: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    alimentacionMenorExpuesto: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
-    situacionDelMenorExpuesto: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'change',
-      }
-    ],
+    ]
   })
 
   validateEmail = (rule: any, value: any, callback: any) => {
     if (value === '') {
       callback(new Error('Please input the password'))
     } else {
-      if (this.ruleFormSeguimiento.correo !== '') {
+      if (this.ruleFormSeguimiento.correoRemitenteInformacion1 !== '') {
         if (!this.firstForm.value) return
-        this.firstForm.value.validateField('confirmCorreo', () => null)
+        this.firstForm.value.validateField('correoRemitenteInformacion2', () => null)
       }
       callback()
     }
@@ -1740,50 +1351,43 @@ export default class VihView extends Vue {
     console.log('valor', value)
     if (value === '') {
       callback(new Error('Confirme el correo ingresado'))
-    } else if (value !== this.ruleFormSeguimiento.correo) {
+    } else if (value !== this.ruleFormSeguimiento.correoRemitenteInformacion1) {
       callback(new Error("Los correos ingresados no coinciden"))
     } else {
       callback()
     }
   }
 
-  rulesFormSeguimiento = reactive<FormRules<RuleFormSeguimiento>>({
-    ipsAtencionVih: [
+  rulesFormSeguimiento = reactive<FormRules<IReporteBinomio>>({
+    nombreIPSAtencionVIH: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'blur',
       }
     ],
-    nombreQuienRemiteInformacion: [
+    nombreRemitenteInformacion: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'blur',
       }
     ],
-    cargoQuienRemiteInformacion: [
+    cargoRemitenteInformacion: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'blur',
       }
     ],
-    celular: [
+    telefonoRemitenteInformacion: [
       {
         required: true,
         message: 'Este campo es requerido',
         trigger: 'blur',
       }
     ],
-    telFijo: [
-      {
-        required: true,
-        message: 'Este campo es requerido',
-        trigger: 'blur',
-      }
-    ],
-    correo: [
+    correoRemitenteInformacion1: [
       {
         required: true,
         message: 'Este campo es requerido',
@@ -1795,7 +1399,7 @@ export default class VihView extends Vue {
         trigger: ['blur', 'change'],
       }
     ],
-    confirmCorreo: [
+    correoRemitenteInformacion2: [
       {
         type: 'email',
         required: true,
@@ -1843,8 +1447,9 @@ export default class VihView extends Vue {
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
+          this.disabledThree = false
         });
-        this.disabledThree = false
+
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
         this.showMessage(message).then(() => {
@@ -1853,17 +1458,18 @@ export default class VihView extends Vue {
       }
 
     } else if (tabName === 'four') {
-      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte2(reporteForm.idGestanteControl, reporteForm) as any;
-      console.log('response', requestPrimerReporte)
+      const requestSegundoReporte = await this.ETMIPLUS_API_Client.reporte2(reporteForm.idGestanteControl, reporteForm) as any;
+      console.log('response', requestSegundoReporte)
 
 
-      if (requestPrimerReporte.length !== 0) {
+      if (requestSegundoReporte.length !== 0) {
         const message = 'Reporte guardado con éxito.'
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
+          this.disabledFour = false
         });
-        this.disabledFour = false
+
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
         this.showMessage(message).then(() => {
@@ -1872,17 +1478,18 @@ export default class VihView extends Vue {
       }
     } else if (tabName === 'five') {
       console.log('request', reporteForm)
-      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte3(reporteForm.idGestanteControl, reporteForm) as any;
-      console.log('response', requestPrimerReporte)
+      const requestTercerReporte = await this.ETMIPLUS_API_Client.reporte3(reporteForm.idGestanteControl, reporteForm) as any;
+      console.log('response', requestTercerReporte)
 
 
-      if (requestPrimerReporte.length !== 0) {
+      if (requestTercerReporte.length !== 0) {
         const message = 'Reporte guardado con éxito.'
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
+          this.disabledFive = false
         });
-        this.disabledFive = false
+
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
         this.showMessage(message).then(() => {
@@ -1891,17 +1498,58 @@ export default class VihView extends Vue {
       }
     } else if (tabName === 'six') {
       console.log('request', reporteForm)
-      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte4(reporteForm.idGestanteControl, reporteForm) as any;
-      console.log('response', requestPrimerReporte)
+      const requestCuartoReporte = await this.ETMIPLUS_API_Client.reporte4(reporteForm.idGestanteControl, reporteForm) as any;
+      console.log('response', requestCuartoReporte)
 
 
-      if (requestPrimerReporte.length !== 0) {
+      if (requestCuartoReporte.length !== 0) {
         const message = 'Reporte guardado con éxito.'
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
+          this.disabledSix = false
         });
-        this.disabledSix = false
+
+      } else {
+        const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+        });
+      }
+    } else if (tabName === 'seven') {
+      console.log('request', reporteForm)
+      const requestQuintoReporte = await this.ETMIPLUS_API_Client.reporte5(reporteForm.idGestanteControl, reporteForm) as any;
+      console.log('response', requestQuintoReporte)
+
+      this.activeName = tabName
+
+      if (requestQuintoReporte.length !== 0) {
+        const message = 'Reporte guardado con éxito.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+        });
+        reporteForm.listParaclinicos.map((paraClinico: any) => {
+          paraClinico.idReporte = Number(requestQuintoReporte.data.idReporte)
+        })
+
+        console.log('paraclinicos del menor', reporteForm.listParaclinicos)
+
+        const requestParaCliniciMenor = await this.ETMIPLUS_API_Client.paraclinicoNino(requestQuintoReporte.data.idReporte, reporteForm.listParaclinicos) as any;
+
+        if (requestParaCliniciMenor.length !== 0) {
+          const message = 'Paraclínicos guardados con éxito.'
+          this.showMessage(message).then(() => {
+            ElMessage.info(message);
+            this.activeName = tabName;
+            this.disabledSeven = false
+          });
+        } else {
+          const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+          this.showMessage(message).then(() => {
+            ElMessage.info(message);
+          });
+        }
+
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
         this.showMessage(message).then(() => {
@@ -1909,6 +1557,25 @@ export default class VihView extends Vue {
         });
       }
 
+    } else if (tabName === 'end') {
+      console.log('request', reporteForm)
+      const reporteBinomio = await this.ETMIPLUS_API_Client.reporteBinomioPOST(reporteForm.idGestante, reporteForm) as any;
+      console.log('response', reporteBinomio)
+
+      this.activeName = tabName
+
+      if (reporteBinomio.length !== 0) {
+        const message = 'Reporte guardado con éxito.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message); 
+        });
+
+      } else {
+        const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+        this.showMessage(message).then(() => {
+          ElMessage.info(message);
+        });
+      }
 
     }
   }
@@ -1929,11 +1596,8 @@ export default class VihView extends Vue {
         console.log('enviando!')
 
         //console.log(fields)
-        console.log('paraclinicos', this.paraClinicosFields)
+
         const valueParaclinicos = this.paraClinicosFields
-
-        console.log('value paraclinicos', valueParaclinicos)
-
         const makeListaParaClinicos: IParaclinicoMadre[] = []
 
         valueParaclinicos.map((fieldValue: any) => {
@@ -1941,9 +1605,9 @@ export default class VihView extends Vue {
 
           makeListaParaClinicos.push(
             {
-              idParaclinico: Number(fieldValue.examenParaClinico),
+              idParaclinicoRealizado: Number(fieldValue.examenParaClinico),
               fechaParaclinico: new Date(moment(fieldValue.fechaExamenParaClinico).format('YYYY-MM-DD HH:mm:ss.sss')),
-              resultadoParaclinico: fieldValue.resultadoParaclinico
+              resultadoParaclinico: Number(fieldValue.resultadoParaclinico)
             }
           )
 
@@ -2033,8 +1697,40 @@ export default class VihView extends Vue {
       }
       this.registroReporte(request, tabName)
     } else if (tabName === 'seven') {
-      this.disabledSeven = false
-      this.activeName = tabName
+      //this.disabledSeven = false
+      //this.activeName = tabName
+
+      const valueParaclinicosMenor = this.paraClinicosMenorFields
+      const makeListaParaClinicosMenor: IParaclinicoNino[] = []
+
+      valueParaclinicosMenor.map((fieldValue: any) => {
+
+
+        makeListaParaClinicosMenor.push(
+          {
+            idReporte: 0,
+            idParaclinicoRealizado: Number(fieldValue.examenParaClinico),
+            fechaParaclinico: new Date(moment(fieldValue.fechaExamenParaClinico).format('YYYY-MM-DD HH:mm:ss.sss')),
+            resultadoParaclinico: Number(fieldValue.resultadoParaclinico)
+          }
+        )
+
+      });
+      console.log('makeListaParaClinicosMenor', makeListaParaClinicosMenor)
+
+      const request: IReporte5 = {
+
+        idGestanteControl: Number(this.idGestanteCtrl),
+        fechaPruebaRealizadaADNProviral: new Date(moment(this.ruleFormquintoReporte.fechaPruebaRealizadaADNProviral).format('YYYY-MM-DD HH:mm:ss.sss')),
+        idTipoPrueba: Number(this.ruleFormquintoReporte.tipoPrueba),
+        fechaPrueba: new Date(moment(this.ruleFormquintoReporte.fechaPrueba).format('YYYY-MM-DD HH:mm:ss.sss')),
+        resultadoPrueba: this.ruleFormquintoReporte.resultadoPrueba,
+        idTipoAlimentacionNinoExpuesto: Number(this.ruleFormquintoReporte.tipoAlimentacionNinoExpuesto),
+        idSituacionNinoExpuesto: Number(this.ruleFormquintoReporte.situacionNinoExpuesto),
+        listParaclinicos: makeListaParaClinicosMenor
+      }
+      this.registroReporte(request, tabName)
+
     }
 
     //console.log(elTabComponent)
@@ -2061,7 +1757,19 @@ export default class VihView extends Vue {
           //console.log(fields)
           this.changeTab(tab)
         } else {
-          //console.log('valor a guardar', this.ruleFormDatosGestante)
+          console.log('valor a guardar', Number(this.idGestanteCtrl))
+
+          const request: IReporteBinomio = {
+            idGestante: Number(this.idGestanteCtrl),
+            nombreIPSAtencionVIH: this.ruleFormSeguimiento.nombreIPSAtencionVIH,
+            nombreRemitenteInformacion: this.ruleFormSeguimiento.nombreRemitenteInformacion,
+            cargoRemitenteInformacion: this.ruleFormSeguimiento.cargoRemitenteInformacion,
+            telefonoRemitenteInformacion: this.ruleFormSeguimiento.telefonoRemitenteInformacion,
+            correoRemitenteInformacion1: this.ruleFormSeguimiento.correoRemitenteInformacion1,
+            correoRemitenteInformacion2: this.ruleFormSeguimiento.correoRemitenteInformacion2
+          }
+          this.registroReporte(request, 'end')
+
         }
       }
       else {

@@ -1104,7 +1104,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    paraclinicoMadre(idReporte: number, body?: ParaclinicoMadre | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    paraclinicoMadre(idReporte: number, body?: IParaclinicoMadre | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Reporte1/{idReporte}/VIH/ParaclinicoMadre";
         if (idReporte === undefined || idReporte === null)
             throw new Error("The parameter 'idReporte' must be defined.");
@@ -1159,7 +1159,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    paraclinicoNino(idReporte: number, body?: ParaclinicoNino | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    paraclinicoNino(idReporte: number, body?: IParaclinicoNino | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Reporte5/{idReporte}/VIH/ParaclinicoNino";
         if (idReporte === undefined || idReporte === null)
             throw new Error("The parameter 'idReporte' must be defined.");
@@ -1201,7 +1201,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1536,7 +1536,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporte5(idGestanteControl: number, body?: Reporte5 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte5(idGestanteControl: number, body?: IReporte5 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte5";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1578,7 +1578,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1641,7 +1641,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporteBinomioPOST(idGestanteControl: number, body?: ReporteBinomio | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporteBinomioPOST(idGestanteControl: number, body?: IReporteBinomio | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/ReporteBinomio";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1683,7 +1683,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -4268,14 +4268,14 @@ export interface IReporte5 {
     idGestanteControl?: number;
     fechaPruebaRealizadaADNProviral?: Date;
     idTipoPrueba?: number;
-    tipoPrueba?: Parametrica;
+    tipoPrueba?: IParametrica | IParametrica[];
     fechaPrueba?: Date;
     resultadoPrueba?: string | undefined;
     idTipoAlimentacionNinoExpuesto?: number;
-    tipoAlimentacionNinoExpuesto?: Parametrica;
+    tipoAlimentacionNinoExpuesto?: IParametrica | IParametrica[];
     idSituacionNinoExpuesto?: number;
-    situacionNinoExpuesto?: Parametrica;
-    listParaclinicos?: ParaclinicoNino[] | undefined;
+    situacionNinoExpuesto?: IParametrica | IParametrica[];
+    listParaclinicos?: IParaclinicoNino[] | undefined;
 }
 
 export class ReporteBinomio implements IReporteBinomio {
