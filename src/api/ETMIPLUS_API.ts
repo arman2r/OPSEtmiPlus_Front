@@ -1156,10 +1156,73 @@ export class EtmiPlusClient {
     }
 
     /**
+     * @param idParaclinico (optional) 
      * @param body (optional) 
      * @return Success
      */
-    paraclinicoNino(idReporte: number, body?: IParaclinicoNino | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    paraclinicoMadrePUT(idParaclinico: number | undefined, idReporte: string, id: string, body: IParaclinicoMadre | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/Reporte1/{idReporte}/VIH/ParaclinicoMadre/{id}?";
+        if (idReporte === undefined || idReporte === null)
+            throw new Error("The parameter 'idReporte' must be defined.");
+        url_ = url_.replace("{idReporte}", encodeURIComponent("" + idReporte));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idParaclinico === null)
+            throw new Error("The parameter 'idParaclinico' cannot be null.");
+        else if (idParaclinico !== undefined)
+            url_ += "idParaclinico=" + encodeURIComponent("" + idParaclinico) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processParaclinicoMadrePUT(_response);
+        });
+    }
+
+    protected processParaclinicoMadrePUT(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(_responseText as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    paraclinicoNinoPOST(idReporte: number, body: IParaclinicoNino[] | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Reporte5/{idReporte}/VIH/ParaclinicoNino";
         if (idReporte === undefined || idReporte === null)
             throw new Error("The parameter 'idReporte' must be defined.");
@@ -1190,6 +1253,69 @@ export class EtmiPlusClient {
     }
 
     protected processParaclinicoNino(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(_responseText as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param idParaclinico (optional) 
+     * @param body (optional) 
+     * @return Success
+     */
+    paraclinicoNinoPUT(idParaclinico: number | undefined, idReporte: string, id: string, body: IParaclinicoNino | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/Reporte5/{idReporte}/VIH/ParaclinicoNino/{id}?";
+        if (idReporte === undefined || idReporte === null)
+            throw new Error("The parameter 'idReporte' must be defined.");
+        url_ = url_.replace("{idReporte}", encodeURIComponent("" + idReporte));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idParaclinico === null)
+            throw new Error("The parameter 'idParaclinico' cannot be null.");
+        else if (idParaclinico !== undefined)
+            url_ += "idParaclinico=" + encodeURIComponent("" + idParaclinico) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processParaclinicoNinoPUT(_response);
+        });
+    }
+
+    protected processParaclinicoNinoPUT(response: AxiosResponse): Promise<void> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -1368,10 +1494,73 @@ export class EtmiPlusClient {
     }
 
     /**
+     * @param idReporte (optional) 
      * @param body (optional) 
      * @return Success
      */
-    reporte2(idGestanteControl: number, body?: IReporte2 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte1PUT(idReporte: number | undefined, idGestanteControl: string, id: string, body: IReporte1 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte1/{id}?";
+        if (idGestanteControl === undefined || idGestanteControl === null)
+            throw new Error("The parameter 'idGestanteControl' must be defined.");
+        url_ = url_.replace("{idGestanteControl}", encodeURIComponent("" + idGestanteControl));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idReporte === null)
+            throw new Error("The parameter 'idReporte' cannot be null.");
+        else if (idReporte !== undefined)
+            url_ += "idReporte=" + encodeURIComponent("" + idReporte) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processReporte1PUT(_response);
+        });
+    }
+
+    protected processReporte1PUT(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(_responseText as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    reporte2POST(idGestanteControl: number, body: IReporte2 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte2";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1423,10 +1612,73 @@ export class EtmiPlusClient {
     }
 
     /**
+     * @param idReporte (optional) 
      * @param body (optional) 
      * @return Success
      */
-    reporte3(idGestanteControl: number, body?: IReporte3 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte2PUT(idReporte: number | undefined, idGestanteControl: string, id: string, body: IReporte2 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte2/{id}?";
+        if (idGestanteControl === undefined || idGestanteControl === null)
+            throw new Error("The parameter 'idGestanteControl' must be defined.");
+        url_ = url_.replace("{idGestanteControl}", encodeURIComponent("" + idGestanteControl));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idReporte === null)
+            throw new Error("The parameter 'idReporte' cannot be null.");
+        else if (idReporte !== undefined)
+            url_ += "idReporte=" + encodeURIComponent("" + idReporte) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processReporte2PUT(_response);
+        });
+    }
+
+    protected processReporte2PUT(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(_responseText as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    reporte3POST(idGestanteControl: number, body: IReporte3 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte3";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1478,10 +1730,73 @@ export class EtmiPlusClient {
     }
 
     /**
+     * @param idReporte (optional) 
      * @param body (optional) 
      * @return Success
      */
-    reporte4(idGestanteControl: number, body?: IReporte4 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte3PUT(idReporte: number | undefined, idGestanteControl: string, id: string, body: IReporte3 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte3/{id}?";
+        if (idGestanteControl === undefined || idGestanteControl === null)
+            throw new Error("The parameter 'idGestanteControl' must be defined.");
+        url_ = url_.replace("{idGestanteControl}", encodeURIComponent("" + idGestanteControl));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idReporte === null)
+            throw new Error("The parameter 'idReporte' cannot be null.");
+        else if (idReporte !== undefined)
+            url_ += "idReporte=" + encodeURIComponent("" + idReporte) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processReporte3PUT(_response);
+        });
+    }
+
+    protected processReporte3PUT(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    reporte4POST(idGestanteControl: number, body: IReporte4 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte4";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1533,10 +1848,73 @@ export class EtmiPlusClient {
     }
 
     /**
+     * @param idReporte (optional) 
      * @param body (optional) 
      * @return Success
      */
-    reporte5(idGestanteControl: number, body?: IReporte5 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporte4PUT(idReporte: number | undefined, idGestanteControl: string, id: string, body: IReporte4 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte4/{id}?";
+        if (idGestanteControl === undefined || idGestanteControl === null)
+            throw new Error("The parameter 'idGestanteControl' must be defined.");
+        url_ = url_.replace("{idGestanteControl}", encodeURIComponent("" + idGestanteControl));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idReporte === null)
+            throw new Error("The parameter 'idReporte' cannot be null.");
+        else if (idReporte !== undefined)
+            url_ += "idReporte=" + encodeURIComponent("" + idReporte) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processReporte4PUT(_response);
+        });
+    }
+
+    protected processReporte4PUT(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(_responseText as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    reporte5POST(idGestanteControl: number, body: IReporte5 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte5";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1579,6 +1957,69 @@ export class EtmiPlusClient {
         if (status === 200) {
             const _responseText = response.data;
             return Promise.resolve<void>(_responseText as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * @param idReporte (optional) 
+     * @param body (optional) 
+     * @return Success
+     */
+    reporte5PUT(idReporte: number | undefined, idGestanteControl: string, id: string, body: Reporte5 | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/VIH/Reporte5/{id}?";
+        if (idGestanteControl === undefined || idGestanteControl === null)
+            throw new Error("The parameter 'idGestanteControl' must be defined.");
+        url_ = url_.replace("{idGestanteControl}", encodeURIComponent("" + idGestanteControl));
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (idReporte === null)
+            throw new Error("The parameter 'idReporte' cannot be null.");
+        else if (idReporte !== undefined)
+            url_ += "idReporte=" + encodeURIComponent("" + idReporte) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processReporte5PUT(_response);
+        });
+    }
+
+    protected processReporte5PUT(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2906,6 +3347,54 @@ export interface IClasificacionNinoExpuestoHB {
     clasificacionFinal?: Parametrica;
 }
 
+export class ControlEstadoFichas implements IControlEstadoFichas {
+    tieneFichaVIH?: boolean;
+    tieneFichaSifilis?: boolean;
+    tieneFichaHepatitisB?: boolean;
+    tieneFichaChagas?: boolean;
+
+    constructor(data?: IControlEstadoFichas) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.tieneFichaVIH = _data["tieneFichaVIH"];
+            this.tieneFichaSifilis = _data["tieneFichaSifilis"];
+            this.tieneFichaHepatitisB = _data["tieneFichaHepatitisB"];
+            this.tieneFichaChagas = _data["tieneFichaChagas"];
+        }
+    }
+
+    static fromJS(data: any): ControlEstadoFichas {
+        data = typeof data === 'object' ? data : {};
+        let result = new ControlEstadoFichas();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tieneFichaVIH"] = this.tieneFichaVIH;
+        data["tieneFichaSifilis"] = this.tieneFichaSifilis;
+        data["tieneFichaHepatitisB"] = this.tieneFichaHepatitisB;
+        data["tieneFichaChagas"] = this.tieneFichaChagas;
+        return data;
+    }
+}
+
+export interface IControlEstadoFichas {
+    tieneFichaVIH?: boolean;
+    tieneFichaSifilis?: boolean;
+    tieneFichaHepatitisB?: boolean;
+    tieneFichaChagas?: boolean;
+}
+
 export class DiagnosticoEIntervencionNino implements IDiagnosticoEIntervencionNino {
     idDiagnosticoEIntervencionNino?: number;
     idGestanteControl?: number;
@@ -3582,6 +4071,7 @@ export class GestanteControl implements IGestanteControl {
     idGestanteControl?: number;
     idGestante?: number;
     fechaControl?: Date;
+    controlEstadoFichas?: ControlEstadoFichas;
 
     constructor(data?: IGestanteControl) {
         if (data) {
@@ -3597,6 +4087,7 @@ export class GestanteControl implements IGestanteControl {
             this.idGestanteControl = _data["idGestanteControl"];
             this.idGestante = _data["idGestante"];
             this.fechaControl = _data["fechaControl"] ? new Date(_data["fechaControl"].toString()) : <any>undefined;
+            this.controlEstadoFichas = _data["controlEstadoFichas"] ? ControlEstadoFichas.fromJS(_data["controlEstadoFichas"]) : <any>undefined;
         }
     }
 
@@ -3612,6 +4103,7 @@ export class GestanteControl implements IGestanteControl {
         data["idGestanteControl"] = this.idGestanteControl;
         data["idGestante"] = this.idGestante;
         data["fechaControl"] = this.fechaControl ? this.fechaControl.toISOString() : <any>undefined;
+        data["controlEstadoFichas"] = this.controlEstadoFichas ? this.controlEstadoFichas.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -3620,6 +4112,7 @@ export interface IGestanteControl {
     idGestanteControl?: number;
     idGestante?: number;
     fechaControl?: Date;
+    controlEstadoFichas?: ControlEstadoFichas;
 }
 
 export class ParaclinicoMadre implements IParaclinicoMadre {

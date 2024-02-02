@@ -632,8 +632,8 @@
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="Reporte binomio" name="seven">
-      <el-form :model="ruleFormSeguimiento" :rules="rulesFormSeguimiento" label-position="top"
-        :size="formSize" status-icon ref="sevenForm">
+      <el-form :model="ruleFormSeguimiento" :rules="rulesFormSeguimiento" label-position="top" :size="formSize"
+        status-icon ref="sevenForm">
         <section style="width: 100%;">
           <el-row :gutter="10">
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -1446,9 +1446,28 @@ export default class VihView extends Vue {
         const message = 'Reporte guardado con éxito.'
         this.showMessage(message).then(() => {
           ElMessage.info(message);
-          this.activeName = tabName;
-          this.disabledThree = false
         });
+        reporteForm.listParaclinicos.map((paraClinico: any) => {
+          paraClinico.idReporte = Number(requestPrimerReporte.data.idReporte)
+        })
+
+        console.log('paraclinicos de la madre', reporteForm.listParaclinicos)
+
+        const requestParaCliniciMadre = await this.ETMIPLUS_API_Client.paraclinicoMadre(requestPrimerReporte.data.idReporte, reporteForm.listParaclinicos) as any;
+
+        if (requestParaCliniciMadre.length !== 0) {
+          const message = 'Paraclínicos guardados con éxito.'
+          this.showMessage(message).then(() => {
+            ElMessage.info(message);
+            this.activeName = tabName;
+            this.disabledThree = false
+          });
+        } else {
+          const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+          this.showMessage(message).then(() => {
+            ElMessage.info(message);
+          });
+        }
 
       } else {
         const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
@@ -1458,7 +1477,7 @@ export default class VihView extends Vue {
       }
 
     } else if (tabName === 'four') {
-      const requestSegundoReporte = await this.ETMIPLUS_API_Client.reporte2(reporteForm.idGestanteControl, reporteForm) as any;
+      const requestSegundoReporte = await this.ETMIPLUS_API_Client.reporte2POST(reporteForm.idGestanteControl, reporteForm) as any;
       console.log('response', requestSegundoReporte)
 
 
@@ -1478,7 +1497,7 @@ export default class VihView extends Vue {
       }
     } else if (tabName === 'five') {
       console.log('request', reporteForm)
-      const requestTercerReporte = await this.ETMIPLUS_API_Client.reporte3(reporteForm.idGestanteControl, reporteForm) as any;
+      const requestTercerReporte = await this.ETMIPLUS_API_Client.reporte3POST(reporteForm.idGestanteControl, reporteForm) as any;
       console.log('response', requestTercerReporte)
 
 
@@ -1498,7 +1517,7 @@ export default class VihView extends Vue {
       }
     } else if (tabName === 'six') {
       console.log('request', reporteForm)
-      const requestCuartoReporte = await this.ETMIPLUS_API_Client.reporte4(reporteForm.idGestanteControl, reporteForm) as any;
+      const requestCuartoReporte = await this.ETMIPLUS_API_Client.reporte4POST(reporteForm.idGestanteControl, reporteForm) as any;
       console.log('response', requestCuartoReporte)
 
 
@@ -1518,7 +1537,7 @@ export default class VihView extends Vue {
       }
     } else if (tabName === 'seven') {
       console.log('request', reporteForm)
-      const requestQuintoReporte = await this.ETMIPLUS_API_Client.reporte5(reporteForm.idGestanteControl, reporteForm) as any;
+      const requestQuintoReporte = await this.ETMIPLUS_API_Client.reporte5POST(reporteForm.idGestanteControl, reporteForm) as any;
       console.log('response', requestQuintoReporte)
 
       this.activeName = tabName
@@ -1534,7 +1553,7 @@ export default class VihView extends Vue {
 
         console.log('paraclinicos del menor', reporteForm.listParaclinicos)
 
-        const requestParaCliniciMenor = await this.ETMIPLUS_API_Client.paraclinicoNino(requestQuintoReporte.data.idReporte, reporteForm.listParaclinicos) as any;
+        const requestParaCliniciMenor = await this.ETMIPLUS_API_Client.paraclinicoNinoPOST(requestQuintoReporte.data.idReporte, reporteForm.listParaclinicos) as any;
 
         if (requestParaCliniciMenor.length !== 0) {
           const message = 'Paraclínicos guardados con éxito.'
@@ -1567,7 +1586,7 @@ export default class VihView extends Vue {
       if (reporteBinomio.length !== 0) {
         const message = 'Reporte guardado con éxito.'
         this.showMessage(message).then(() => {
-          ElMessage.info(message); 
+          ElMessage.info(message);
         });
 
       } else {

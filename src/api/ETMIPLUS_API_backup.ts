@@ -1641,7 +1641,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    reporteBinomioPOST(idGestanteControl: number, body?: ReporteBinomio | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    reporteBinomioPOST(idGestanteControl: number, body?: IReporteBinomio | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/ReporteBinomio";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -1683,7 +1683,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;

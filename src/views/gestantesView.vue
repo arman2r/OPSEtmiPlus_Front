@@ -39,15 +39,16 @@
     <!-- modal de registro gestante -->
     <el-dialog v-model="dialogFormRegistroGestante" :title="!showEditBtn ? 'Registro gestante' : 'Editar gestante'">
 
-        <el-form :model="registroGestanteForm" :rules="rulesDatosGestante" ref="formRegistroGestante" id="modalCrearEditar">
+        <el-form :model="registroGestanteForm" label-position="top" :rules="rulesDatosGestante" ref="formRegistroGestante"
+            id="modalCrearEditar">
             <el-row :gutter="20">
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
 
                     <el-form-item label="Nombres y apellidos" prop="nombresApellidos" :label-width="formLabelWidth">
                         <el-input v-model="registroGestanteForm.nombresApellidos" autocomplete="off" />
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Nacionalidad" prop="nacionalidad" class="select-width">
                         <el-select v-model="registroGestanteForm.nacionalidad" filterable placeholder="Nacionalidad">
                             <el-option v-for="nacionalidad in nacionalidadList" :key="nacionalidad.id"
@@ -55,7 +56,7 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
                         <el-select v-model="registroGestanteForm.tipoDocumento" filterable placeholder="Tipo de Documento">
                             <el-option v-for="tipoDocumento in tipoDocumentoList" :key="tipoDocumento.id"
@@ -63,17 +64,17 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Número de identificación" prop="numeroDocumento">
                         <el-input v-model="registroGestanteForm.numeroDocumento" type="number" />
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Edad" prop="edad">
                         <el-input v-model="registroGestanteForm.edad" type="number" />
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud" class="select-width">
                         <el-select v-model="registroGestanteForm.tipoRegimenSalud" filterable
                             placeholder="Tipo de regimen de salud">
@@ -82,12 +83,12 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradora">
                         <el-input v-model="registroGestanteForm.nombreAseguradora" />
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Pertenencia etnica" prop="pertenenciaEtnica" class="select-width">
                         <el-select v-model="registroGestanteForm.pertenenciaEtnica" filterable
                             placeholder="Pertenencia etnica">
@@ -96,7 +97,7 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Grupo poblacional" prop="grupoPoblacional" class="select-width">
                         <el-select v-model="registroGestanteForm.grupoPoblacional" filterable
                             placeholder="Grupo poblacional" autocomplete="off">
@@ -105,7 +106,7 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Area de ocurrencia" prop="areaOcurrencia" class="select-width">
                         <el-select v-model="registroGestanteForm.areaOcurrencia" autocomplete="off" filterable
                             placeholder="Area de ocurrencia">
@@ -119,7 +120,7 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Departamento de residencia" prop="dptoResidencia" class="select-width">
                         <el-select v-model="registroGestanteForm.dptoResidencia" filterable
                             placeholder="Departamento de residencia" @change="remoteMethod" :loading="loading">
@@ -141,7 +142,7 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Municipio de residencia" prop="municipioResidencia" class="select-width">
                         <el-select v-model="registroGestanteForm.municipioResidencia" filterable
                             placeholder="Municipio de residencia" :loading="loading">
@@ -163,12 +164,12 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Direccion de residencia" prop="direccionResidencia">
                         <el-input v-model="registroGestanteForm.direccionResidencia" />
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Departamento de atención" prop="dptoAtencion" class="select-width">
                         <el-select v-model="registroGestanteForm.dptoAtencion" filterable @change="remoteMethodTwo"
                             placeholder="Departamento de residencia">
@@ -177,7 +178,7 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Municipio de atención" prop="municipioAtencion" class="select-width">
                         <el-select v-model="registroGestanteForm.municipioAtencion" filterable
                             placeholder="Municipio de residencia">
@@ -186,28 +187,32 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Teléfono" prop="telefono">
                         <el-input v-model="registroGestanteForm.telefono" />
                     </el-form-item>
                 </el-col>
 
-                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="column-custom">
                     <!--<el-form-item label="Fecha" prop="fecha">
                                 <el-input v-model="ruleFormSegundoReporte.fecha" />
                             </el-form-item>-->
-                    <label class="label-field" style="min-width:180px">Fecha probable del parto</label>
-                    <el-date-picker v-model="registroGestanteForm.fechaPosibleParto" type="date"
-                        placeholder="Fecha probable del parto" :format="dateFormat" />
+                    <!--<label class="label-field" style="min-width:180px">Fecha probable del parto</label>-->
+                    <el-form-item label="Fecha probable del parto" prop="fechaPosibleParto" class="w-100">
+                        <el-date-picker class="w-100" v-model="registroGestanteForm.fechaPosibleParto" type="date"
+                            placeholder="Fecha probable del parto" :format="dateFormat" />
+                    </el-form-item>
                 </el-col>
-                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                    <label>¿A la gestante se le realizo control prenatal durante el embarazo?</label><br />
-                    <el-radio-group v-model="registroGestanteForm.seRealizaControlPrenatal">
-                        <el-radio :label="1">Si</el-radio>
-                        <el-radio :label="0">No</el-radio>
-                    </el-radio-group>
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                    <!--<label>¿A la gestante se le realizo control prenatal durante el embarazo?</label><br />-->
+                    <el-form-item label="¿A la gestante se le realizo control prenatal durante el embarazo?" prop="seRealizaControlPrenatal">
+                        <el-radio-group v-model="registroGestanteForm.seRealizaControlPrenatal">
+                            <el-radio :label="1">Si</el-radio>
+                            <el-radio :label="0">No</el-radio>
+                        </el-radio-group>
+                    </el-form-item>
                 </el-col>
-                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Edad gestacional, en semanas" prop="edadGestacionalSemanas">
                         <el-input v-model="registroGestanteForm.edadGestacionalSemanas" type="number" />
                     </el-form-item>
@@ -270,7 +275,7 @@ export default class gestantesView extends Vue {
     loading = false;
     iconPlus = Plus;
     router = useRouter();
-    dialogConfirm = {open: false, idGestante: 0}
+    dialogConfirm = { open: false, idGestante: 0 }
 
     nacionalidadList = [{ id: 1, name: 'colombiana' }, { id: 2, name: 'extranjera' }]
     tipoDocumentoList = [
@@ -847,7 +852,7 @@ export default class gestantesView extends Vue {
         } else {
             this.dialogConfirm.open = true
             this.dialogConfirm.idGestante = Number(row.idGestante)
-             
+
         }
 
 
@@ -868,7 +873,7 @@ export default class gestantesView extends Vue {
 
 
     crearCtrlModalIsOpen = async (idGestante: number) => {
-        
+
         const request: IGestanteControl = {
             idGestanteControl: 0,
             idGestante: Number(idGestante),
@@ -891,7 +896,7 @@ export default class gestantesView extends Vue {
             params: {
                 userId: idGestante
             }
-        }) 
+        })
     }
 
     redirectToCtrls = async (idGestante: number) => {
@@ -920,6 +925,10 @@ h5 {
 
 .steps-container {
     width: 100%;
+}
+
+.w-100{
+    width: 100%
 }
 
 .select-width .el-form-item__content,
