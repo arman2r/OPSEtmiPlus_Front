@@ -1210,16 +1210,16 @@ export default class HepatitisBView extends Vue {
     ruleFormTercerReporte = reactive<RuleFormTercerReporte>({
         situacionGestante: [],
         fechaDelParto: new Date,
-        tarEnInterparto: false,
+        tarEnInterparto: 0,
         esquemaArvEnInterparto: [],
-        condicionRecienNacido: false,
-        numeroDeProductosAlNacimiento: false,
+        condicionRecienNacido: 0,
+        numeroDeProductosAlNacimiento: 0,
         edadGestacionalAlNacimientoEnSemana: new Date,
         pesoEnGramos: 0,
         sexo: [],
         tipoParto: [],
-        suprecionDeLactancia: false,
-        medicamentoSuministrado: false,
+        suprecionDeLactancia: 0,
+        medicamentoSuministrado: '',
         otroMedicamento: '',
     })
 

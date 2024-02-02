@@ -1,3 +1,5 @@
+import { IParaclinicoMadre, IParametrica } from "@/api/ETMIPLUS_API";
+
 export interface RuleFormDatosGestante {
     nombresApellidos: string;
     nacionalidad: Irefs[];
@@ -27,37 +29,26 @@ export interface RuleFormDatosGestante {
   }
   
   export interface RuleFormPrimerReporte {
-    momentoDiagnostico: string[];
-    pruebaConfVih: string[];
-    fechaProbableParto: Date;
-    resultados: number;
-    examenParaclinicoMl1: string;
-    fechaExamenMl1: Date;
-    resultadosExamenMl1: number;
-    examenParaclinicoMl2: string;
-    fechaExamenMl2: Date;
-    resultadosExamenMl2: number;
-    examenParaclinicoMl3: string;
-    fechaExamenMl3: Date;
-    resultadosExamenMl3: number;
-    examenParaclinicoMl4: string;
-    fechaExamenMl4: Date;
-    resultadosExamenMl4: number;
-    examenParaclinicoMl5: string;
-    fechaExamenMl5: Date;
-    resultadosExamenMl5: number;
-    examenParaclinicoMm1: string;
-    fechaExamenMm1: Date;
-    resultadosExamenMm1: number;
-    examenParaclinicoMm2: string;
-    fechaExamenMm2: Date;
-    resultadosExamenMm2: number;
-    examenParaclinicoMm3: string;
-    fechaExamenMm3: Date;
-    resultadosExamenMm3: number;
-    medicamentoSuministradosGestacionActual: string[];
-    controlPrenatal: boolean;
-    semanaGestacional: number;
+    idReporte?: number;
+    idGestanteControl?: number;
+    idMomentoDiagnostico?: number;
+    momentoDiagnostico?: IParametrica[];
+    idPruebaConfirmarVih?: number;
+    pruebaConfirmarVih?: IParametrica[];
+    fechaDiagnostico?: Date;
+    idResultados?: number;
+    numeroCopias?: number;
+    estabaRecibiendoTARAntesEmbarazo?: number;
+    recibioTARDuranteEmbarazo?: number;
+    edadGestacionalInicioTARSemanas?: number;
+    estabaRecibiendoTARDuranteEmbarazoActual?: number;
+    edadGestacionalCuandoRecibioTAR?: number;
+    edadGestacionalAlDianosticoVIHSemanas?: number;
+    medicamentosARVSuministrados?: string | undefined;
+    seRealizoControlPrenatalDuranteEmbarazo?: number;
+    edadGestacionalPrimerControlPrenatalSemanas?: number;
+    fechaProbableParto?: Date;
+    listParaclinicos?: IParaclinicoMadre[] | undefined;
   }
   
   export interface RuleFormSegundoReporte {
@@ -69,16 +60,16 @@ export interface RuleFormDatosGestante {
   export interface RuleFormTercerReporte {
     situacionGestante: string[];
     fechaDelParto: Date;
-    tarEnInterparto: boolean;
+    tarEnInterparto: number;
     esquemaArvEnInterparto: string[];
-    condicionRecienNacido: boolean;
-    numeroDeProductosAlNacimiento: boolean;
+    condicionRecienNacido: number;
+    numeroDeProductosAlNacimiento: number;
     edadGestacionalAlNacimientoEnSemana: Date;
     pesoEnGramos: number;
     sexo: string[];
     tipoParto: string[];
-    suprecionDeLactancia: boolean;
-    medicamentoSuministrado: boolean;
+    suprecionDeLactancia: number;
+    medicamentoSuministrado: string;
     otroMedicamento?: string;
   }
   
