@@ -17,24 +17,18 @@
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="Momento del diagnostico de VIH" prop="momentoDiagnostico" class="select-width">
                 <el-select v-model="ruleFormPrimerReporte.momentoDiagnostico" placeholder="Momento del diagnostico">
-                  <el-option label="Antes del embarazo actual" value="1" />
-                  <el-option label="Durante el embarazo actual" value="2" />
-                  <el-option label="Posterior al parto" value="3" />
+                  <el-option v-for="(mmd, index) in momentoDiagnosticoList" :key="index" :label="mmd.valor"
+                    :value="mmd.id" />
                 </el-select>
               </el-form-item>
             </el-col>
-
 
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="Prueba confirmación de VIH" prop="pruebaConfirmarVih" class="select-width">
                 <el-select v-model="ruleFormPrimerReporte.pruebaConfirmarVih" @change="toggleDiv"
                   placeholder="Prueba confirmación de VIH">
-                  <el-option label="Carga viral" value="1" />
-                  <el-option label="Western blot" value="2" />
-                  <el-option label="ADN Proviral" value="3" />
-                  <el-option label="Prueba rapida" value="4" />
-                  <el-option label="ELISA" value="5" />
-                  <el-option label="Quimioluminiscensia" value="6" />
+                  <el-option v-for="(pcvih, index) in pruebConfirmVihList" :key="index" :label="pcvih.valor"
+                    :value="pcvih.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -72,8 +66,8 @@
                 <el-form-item label="Examen" :prop="examenParaClinico" class="select-width">
                   <el-select v-model="paraclinico.examenParaClinico" placeholder="Exámenes paraclínicos"
                     @change="validateField(index)">
-                    <el-option label="Carga viral" value="1" />
-                    <el-option label="Conteo de linfocitos T CD4" value="2" />
+                    <el-option v-for="(pcm, index) in examenParaClinicoList" :key="index" :label="pcm.valor"
+                      :value="pcm.id" />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -159,17 +153,8 @@
                 class="select-width">
                 <el-select v-model="ruleFormPrimerReporte.medicamentosARVSuministrados"
                   placeholder="Medicamentos antirretrovirales" multiple filterable allow-create>
-                  <el-option label="Lamivudina" value="Lamivudina" />
-                  <el-option label="Abacavir" value="Abacavir" />
-                  <el-option label="Emtricitabina" value="Emtricitabina" />
-                  <el-option label="Tenofovir disoproxil fumarato" value="Tenofovir disoproxil fumarato" />
-                  <el-option label="Efavirez" value="Efavirez" />
-                  <el-option label="Atazanavir" value="Atazanavir" />
-                  <el-option label="Darunavir" value="Darunavir" />
-                  <el-option label="Lopinavir" value="Lopinavir" />
-                  <el-option label="Ritonavir" value="Ritonavir" />
-                  <el-option label="Raltegravir" value="Raltegravir" />
-                  <el-option label="Dolutegravir" value="Dolutegravir" />
+                  <el-option v-for="(msga, index) in medicamentosSuministradosList" :key="index" :label="msga.valor"
+                    :value="msga.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -213,7 +198,7 @@
 
 
     </el-tab-pane>
-    <el-tab-pane label="Segundo reporte" name="third">
+    <el-tab-pane label="Segundo reporte" name="third" :disabled="disabledTwo">
 
       <el-form :model="ruleFormSegundoReporte" ref="thirdForm" label-position="top" :rules="rulesFormSegundoReporte"
         status-icon>
@@ -255,7 +240,7 @@
       </el-form>
 
     </el-tab-pane>
-    <el-tab-pane label="Tercer reporte" name="four">
+    <el-tab-pane label="Tercer reporte" name="four" :disabled="disabledThree">
 
       <el-form :model="ruleFormTercerReporte" :rules="rulesFormTercerReporte" label-position="top" :size="formSize"
         status-icon ref="fourForm">
@@ -268,10 +253,7 @@
               <el-form-item label="Situación gestante" prop="situacionGestante">
                 <el-select v-model="ruleFormTercerReporte.situacionGestante" class="w-100"
                   placeholder="Situación gestante">
-                  <el-option label="Aborto" value="1" />
-                  <el-option label="IVE" value="2" />
-                  <el-option label="Mortalidad Materna" value="3" />
-                  <el-option label="Parto" value="4" />
+                  <el-option v-for="(sg, index) in situacionGestanteList" :key="index" :label="sg.valor" :value="sg.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -295,10 +277,11 @@
 
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
               <el-form-item label="Esquema Arv en interparto" prop="esquemaArvEnInterparto">
-                <el-radio-group v-model="ruleFormTercerReporte.esquemaArvEnInterparto">
-                  <el-radio :label="1">Simeduvina</el-radio>
-                  <el-radio :label="2">Nevirapina</el-radio>
-                </el-radio-group>
+                <el-select v-model="ruleFormTercerReporte.esquemaArvEnInterparto" class="w-100"
+                  placeholder="Esquema Arv en interparto">
+                  <el-option v-for="(earvip, index) in esquemaArvInterpartoList" :key="index" :label="earvip.valor"
+                    :value="earvip.id" />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
@@ -311,10 +294,11 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
               <el-form-item label="Numero de productos al nacimiento" prop="numeroDeProductosAlNacimiento">
-                <el-radio-group v-model="ruleFormTercerReporte.numeroDeProductosAlNacimiento">
-                  <el-radio :label="1">único</el-radio>
-                  <el-radio :label="2">Multiple</el-radio>
-                </el-radio-group>
+                <el-select v-model="ruleFormTercerReporte.numeroDeProductosAlNacimiento" class="w-100"
+                  placeholder="Numero de productos al nacimiento">
+                  <el-option v-for="(nroProNac, index) in NroPrtsNacimiento" :key="index" :label="nroProNac.valor"
+                    :value="nroProNac.id" />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
@@ -329,19 +313,17 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Sexo" prop="sexo">
-                <el-select v-model="ruleFormTercerReporte.sexo" class="w-100" placeholder="Situación gestante">
-                  <el-option label="Hombre" value="1" />
-                  <el-option label="Mujer" value="2" />
-                  <el-option label="Intersexual" value="3" />
+                <el-select v-model="ruleFormTercerReporte.sexo" class="w-100" placeholder="Sexo">
+                  <el-option v-for="(sexo, index) in sexoList" :key="index" :label="sexo.valor" :value="sexo.id" />
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
               <el-form-item label="Tipo de parto" prop="tipoParto">
-                <el-radio-group v-model="ruleFormTercerReporte.tipoParto">
-                  <el-radio :label="1">Cesarea</el-radio>
-                  <el-radio :label="2">Vaginal</el-radio>
-                </el-radio-group>
+                <el-select v-model="ruleFormTercerReporte.tipoParto" class="w-100" placeholder="Sexo">
+                  <el-option v-for="(tipoParto, index) in tipoPartoList" :key="index" :label="tipoParto.valor"
+                    :value="tipoParto.id" />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
@@ -377,7 +359,7 @@
 
     </el-tab-pane>
 
-    <el-tab-pane label="Cuarto reporte" name="five">
+    <el-tab-pane label="Cuarto reporte" name="five" :disabled="disabledFour">
 
       <el-form :model="ruleFormCuartoReporte" :rules="rulesFormCuartoReporte" label-position="top" :size="formSize"
         status-icon ref="fiveForm">
@@ -387,14 +369,11 @@
               <h5 class="align-start">SEGUIMIENTO DEL NIÑO O NIÑA EXPUESTO - RIESGO DE TMI DEL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <el-form-item label="Tipo regimen de salud" prop="tipoRegimenSalud">
+              <el-form-item label="Tipo régimen de salud" prop="tipoRegimenSalud">
                 <el-select v-model="ruleFormCuartoReporte.tipoRegimenSalud" class="w-100"
-                  placeholder="Tipo regimen de salud">
-                  <el-option label="Excepción" value="1" />
-                  <el-option label="Contributivo" value="2" />
-                  <el-option label="Subsidiado" value="3" />
-                  <el-option label="Especial" value="4" />
-                  <el-option label="No asegurado" value="5" />
+                  placeholder="Tipo régimen de salud">
+                  <el-option v-for="(tipoRegimen, index) in tipoRegimenSaludList" :key="index" :label="tipoRegimen.valor"
+                    :value="tipoRegimen.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -411,15 +390,8 @@
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <el-form-item label="Tipo de documento" prop="tipoDocumento">
                 <el-select v-model="ruleFormCuartoReporte.tipoDocumento" class="w-100" placeholder="Tipo de documento">
-                  <el-option label="Registro civil" value="1" />
-                  <el-option label="Tarjeta de identidad" value="3" />
-                  <el-option label="Menor sin identificar" value="4" />
-                  <el-option label="Adulto sin identificar" value="5" />
-                  <el-option label="Cedula de ciudadanía" value="6" />
-                  <el-option label="Pasaporte" value="7" />
-                  <el-option label="Salvo conducto" value="8" />
-                  <el-option label="Permiso especial de permanencia" value="9" />
-                  <el-option label="Cedula de extranjería" value="10" />
+                  <el-option v-for="(tipoDoc, index) in tipoDocumentoList" :key="index" :label="tipoDoc.valor"
+                    :value="tipoDoc.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -431,9 +403,9 @@
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <el-form-item label="Clasificación del riesgo" prop="clasificacionTMINinoExpuesto">
                 <el-select v-model="ruleFormCuartoReporte.clasificacionTMINinoExpuesto" class="w-100"
-                  placeholder="Clasificación del riesgo">
-                  <el-option label="Bajo riesgo" value="1" />
-                  <el-option label="Alto riesgo" value="2" />
+                  placeholder="Clasificación del riesgo"> 
+                  <el-option v-for="(cR, index) in clasificacionRiesgoList" :key="index" :label="cR.valor"
+                    :value="cR.id" /> 
                 </el-select>
               </el-form-item>
             </el-col>
@@ -454,7 +426,7 @@
                     All
                   </el-checkbox>
                 </template>-->
-                  <el-option v-for="item in medicamentos" :key="item.value" :label="item.label" :value="item.value" />
+                  <el-option v-for="item in medicamentoAntRetroViralesList" :key="item.id" :label="item.valor" :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -476,7 +448,7 @@
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="Resultado ADN proviral" prop="resultadoADNProviral">
                 <el-input :disabled="toggleEnableAdnProviralStatus"
-                  v-model="ruleFormCuartoReporte.resultadoADNProviral" />
+                  v-model="ruleFormCuartoReporte.resultadoADNProviral" type="number" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -507,10 +479,7 @@
                 prop="otrasPruebasNinoExpuesto">
                 <el-select v-model="ruleFormCuartoReporte.otrasPruebasNinoExpuesto" class="w-100" multiple filterable
                   clearable>
-                  <el-option label="Prueba rápida" value="Prueba rápida" />
-                  <el-option label="ELISA" value="ELISA" />
-                  <el-option label="Quimioluminiscencia" value="Quimioluminiscencia" />
-                  <el-option label="Western Blot" value="Western Blot" />
+                  <el-option v-for="item in otrasPruebasNinoExpuestoList" :key="item.id" :label="item.valor" :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -524,7 +493,7 @@
         </section>
       </el-form>
     </el-tab-pane>
-    <el-tab-pane label="Quinto reporte" name="six">
+    <el-tab-pane label="Quinto reporte" name="six" :disabled="disabledFive">
       <el-form :model="ruleFormquintoReporte" :rules="rulesFormQuintoReporte" label-position="top" :size="formSize"
         status-icon ref="sixForm">
         <section style="width: 100%;">
@@ -631,7 +600,7 @@
         </section>
       </el-form>
     </el-tab-pane>
-    <el-tab-pane label="Reporte binomio" name="seven">
+    <el-tab-pane label="Reporte binomio" name="seven" :disabled="disabledSix">
       <el-form :model="ruleFormSeguimiento" :rules="rulesFormSeguimiento" label-position="top" :size="formSize"
         status-icon ref="sevenForm">
         <section style="width: 100%;">
@@ -713,7 +682,7 @@ export default class VihView extends Vue {
   collapseReportes = ['1']
   activeName = 'second'
   paraClinicoActivo = 'first'
-  disabledTwo = false
+  disabledTwo = true
   disabledThree = true
   disabledFour = true
   disabledFive = true
@@ -765,6 +734,104 @@ export default class VihView extends Vue {
     console.log('id gestante', gestanteCtrl);
 
     this.toggleEnableBoolean1()
+    this.getAllFicha(this.idGestanteCtrl)
+
+    this.getParamsDbFirsTap('firstStep')
+
+  }
+
+  momentoDiagnosticoList = [];
+  pruebConfirmVihList = [];
+  examenParaClinicoList = [];
+  medicamentosSuministradosList = [];
+  situacionGestanteList = [];
+  esquemaArvInterpartoList = [];
+  sexoList = [];
+  condicionNacidoList = [];
+  NroPrtsNacimiento = [];
+  tipoPartoList = [];
+  tipoRegimenSaludList = [];
+  tipoDocumentoList = []
+  clasificacionRiesgoList = []
+  medicamentoAntRetroViralesList = []
+  otrasPruebasNinoExpuestoList = []
+  
+
+  async getParamsDbFirsTap(step: string) {
+    if (step === 'firstStep') {
+      const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any
+      this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
+
+      const getParamsPruebaConfirm = await this.ETMIPLUS_API_Client.parametrica2('PRUEBA_DIAGNOSTICO_VIH') as any
+      this.pruebConfirmVihList = getParamsPruebaConfirm.data
+
+      const getParaclinicos = await this.ETMIPLUS_API_Client.parametrica2('PARACLINICO_REALIZADO') as any
+      this.examenParaClinicoList = getParaclinicos.data
+
+      const getMedicamentoSuministrado = await this.ETMIPLUS_API_Client.parametrica2('MEDICAMENTOS_ARV_SUMINISTRADOR') as any
+      this.medicamentosSuministradosList = getMedicamentoSuministrado.data
+    } else if (step === 'four') {
+      const getSituacionGestante = await this.ETMIPLUS_API_Client.parametrica2('SITUACION_GESTANTE') as any
+      this.situacionGestanteList = getSituacionGestante.data
+
+      const esquemaArvInterparto = await this.ETMIPLUS_API_Client.parametrica2('ESQUEMA_ARV_INTRAPARTO') as any
+      this.esquemaArvInterpartoList = esquemaArvInterparto.data
+
+      const getSexoList = await this.ETMIPLUS_API_Client.parametrica2('SEXO') as any
+      this.sexoList = getSexoList.data
+
+      const condRecNacido = await this.ETMIPLUS_API_Client.parametrica2('NUMERO_PRODUCTOS_NACIMIENTO') as any
+      this.NroPrtsNacimiento = condRecNacido.data
+
+      const getTipoParto = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PARTO') as any
+      this.tipoPartoList = getTipoParto.data
+
+    } else if (step === 'five') {
+
+      const getTipoRegimenSalud = await this.ETMIPLUS_API_Client.parametrica2('TIPO_REGIMEN_SALUD') as any
+      this.tipoRegimenSaludList = getTipoRegimenSalud.data
+
+      const getTipoDocumento = await this.ETMIPLUS_API_Client.parametrica2('TIPO_DOCUMENTO_NINO') as any
+      this.tipoDocumentoList = getTipoDocumento.data
+
+      
+      const getClasificacionRiesgo = await this.ETMIPLUS_API_Client.parametrica2('CLASIFICACION_RIESGO_TMI_NINO_EXPUESTO') as any
+      this.clasificacionRiesgoList = getClasificacionRiesgo.data 
+      
+
+      const getMedicamentos = await this.ETMIPLUS_API_Client.parametrica2('PROFILAXIS_ANTIRRETROVIRAL_NINO_EXPUESTO') as any
+      this.medicamentoAntRetroViralesList = getMedicamentos.data
+
+      const getOtrasPruebas = await this.ETMIPLUS_API_Client.parametrica2('OTRAS_PRUEBAS_NINO_EXPUESTO') as any
+      this.otrasPruebasNinoExpuestoList = getOtrasPruebas.data
+      
+
+    }
+  }
+
+  ficha = 0;
+
+  async getAllFicha(idGestante: number) {
+    const fichaVihGet = await this.ETMIPLUS_API_Client.vIH(idGestante) as any;
+
+
+    if (fichaVihGet.data.reporte1.length !== 0) {
+
+      this.disabledTwo = false
+      this.ruleFormPrimerReporte.momentoDiagnostico = fichaVihGet.data.reporte1[0].idMomentoDiagnostico
+    }
+    if (fichaVihGet.data.reporte2.length !== 0) {
+      this.disabledThree = false
+    }
+    if (fichaVihGet.data.reporte3.length !== 0) {
+      this.disabledFour = false
+    }
+    if (fichaVihGet.data.reporte4.length !== 0) {
+      this.disabledFive = false
+    }
+    if (fichaVihGet.data.reporte5.length !== 0) {
+      this.disabledSix = false
+    }
   }
 
   paraClinicosFields = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
@@ -851,7 +918,7 @@ export default class VihView extends Vue {
     tarEnInterparto: 0,
     esquemaArvEnInterparto: [],
     condicionRecienNacido: 0,
-    numeroDeProductosAlNacimiento: 0,
+    numeroDeProductosAlNacimiento: [],
     edadGestacionalAlNacimientoEnSemana: new Date,
     pesoEnGramos: 0,
     sexo: [],
@@ -930,7 +997,7 @@ export default class VihView extends Vue {
     tipoRegimenSalud: [
       {
         required: true,
-        message: 'Por favor seleccione un regimen de salud',
+        message: 'Por favor seleccione un régimen de salud',
         trigger: 'change',
       },
     ],
@@ -1410,7 +1477,12 @@ export default class VihView extends Vue {
   })
 
   handleClick(tab: TabsPaneContext, event: Event) {
-    console.log(tab, event)
+    console.log('evento tab', tab.props.name, event)
+    const tabName = tab.props.name as string;
+    if (tabName !== undefined) {
+      this.getParamsDbFirsTap(tabName)
+    }
+
   }
 
   handleCheckAll(val: CheckboxValueType) {
@@ -1723,7 +1795,6 @@ export default class VihView extends Vue {
       const makeListaParaClinicosMenor: IParaclinicoNino[] = []
 
       valueParaclinicosMenor.map((fieldValue: any) => {
-
 
         makeListaParaClinicosMenor.push(
           {

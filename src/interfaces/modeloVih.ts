@@ -63,7 +63,7 @@ export interface RuleFormDatosGestante {
     tarEnInterparto: number;
     esquemaArvEnInterparto: string[];
     condicionRecienNacido: number;
-    numeroDeProductosAlNacimiento: number;
+    numeroDeProductosAlNacimiento: [];
     edadGestacionalAlNacimientoEnSemana: Date;
     pesoEnGramos: number;
     sexo: string[];

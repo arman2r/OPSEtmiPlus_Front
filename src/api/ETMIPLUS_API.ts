@@ -1429,7 +1429,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2989,7 +2989,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;

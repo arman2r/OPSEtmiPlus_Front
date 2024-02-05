@@ -1213,7 +1213,7 @@ export default class HepatitisBView extends Vue {
         tarEnInterparto: 0,
         esquemaArvEnInterparto: [],
         condicionRecienNacido: 0,
-        numeroDeProductosAlNacimiento: 0,
+        numeroDeProductosAlNacimiento: [],
         edadGestacionalAlNacimientoEnSemana: new Date,
         pesoEnGramos: 0,
         sexo: [],
