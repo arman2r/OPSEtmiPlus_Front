@@ -37,7 +37,7 @@
                 <el-input v-model="ruleFormPrimerReporte.fechaProbableParto" />
               </el-form-item>-->
               <el-form-item label="Fecha del diagnóstico del VIH" prop="fechaDiagnostico" class="w-100">
-                <el-date-picker v-model="ruleFormTercerReporte.fechaDiagnostico" type="date"
+                <el-date-picker v-model="ruleFormPrimerReporte.fechaDiagnostico" type="date"
                   placeholder="Fecha del diagnóstico del VIH" :format="dateFormat" :size="size" />
               </el-form-item>
             </el-col>
@@ -115,7 +115,7 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
               <el-form-item label="Semana gestacional en que lo recibió:" prop="edadGestacionalInicioTARSemanas">
-                <el-input id="copiasMlDiagn" v-model="ruleFormPrimerReporte.edadGestacionalInicioTARSemanas"
+                <el-input v-model="ruleFormPrimerReporte.edadGestacionalInicioTARSemanas"
                   :disabled="enableSemanaRecibioTar" type="number" />
               </el-form-item>
             </el-col>
@@ -134,14 +134,14 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="Semana gestacional en que lo recibió:" prop="edadGestacionalCuandoRecibioTAR">
-                <el-input id="copiasMlDiagn" v-model="ruleFormPrimerReporte.edadGestacionalCuandoRecibioTAR"
+                <el-input v-model="ruleFormPrimerReporte.edadGestacionalCuandoRecibioTAR"
                   :disabled="enableRecibioTarDurantEmbarazo" type="number" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
               <el-form-item label="Edad gestacional al diagnóstico de VIH, en semanas (Durante):"
                 prop="edadGestacionalAlDianosticoVIHSemanas">
-                <el-input id="copiasMlDiagn" v-model="ruleFormPrimerReporte.edadGestacionalAlDianosticoVIHSemanas"
+                <el-input v-model="ruleFormPrimerReporte.edadGestacionalAlDianosticoVIHSemanas"
                   :disabled="edadGestancionalDiagnostico" type="number" />
               </el-form-item>
             </el-col>
@@ -403,9 +403,9 @@
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <el-form-item label="Clasificación del riesgo" prop="clasificacionTMINinoExpuesto">
                 <el-select v-model="ruleFormCuartoReporte.clasificacionTMINinoExpuesto" class="w-100"
-                  placeholder="Clasificación del riesgo"> 
+                  placeholder="Clasificación del riesgo">
                   <el-option v-for="(cR, index) in clasificacionRiesgoList" :key="index" :label="cR.valor"
-                    :value="cR.id" /> 
+                    :value="cR.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -426,7 +426,8 @@
                     All
                   </el-checkbox>
                 </template>-->
-                  <el-option v-for="item in medicamentoAntRetroViralesList" :key="item.id" :label="item.valor" :value="item.id" />
+                  <el-option v-for="item in medicamentoAntRetroViralesList" :key="item.id" :label="item.valor"
+                    :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -447,8 +448,8 @@
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="Resultado ADN proviral" prop="resultadoADNProviral">
-                <el-input :disabled="toggleEnableAdnProviralStatus"
-                  v-model="ruleFormCuartoReporte.resultadoADNProviral" type="number" />
+                <el-input :disabled="toggleEnableAdnProviralStatus" v-model="ruleFormCuartoReporte.resultadoADNProviral"
+                  type="number" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -479,7 +480,8 @@
                 prop="otrasPruebasNinoExpuesto">
                 <el-select v-model="ruleFormCuartoReporte.otrasPruebasNinoExpuesto" class="w-100" multiple filterable
                   clearable>
-                  <el-option v-for="item in otrasPruebasNinoExpuestoList" :key="item.id" :label="item.valor" :value="item.id" />
+                  <el-option v-for="item in otrasPruebasNinoExpuestoList" :key="item.id" :label="item.valor"
+                    :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -511,11 +513,7 @@
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Prueba realizada" prop="tipoPrueba">
                 <el-select v-model="ruleFormquintoReporte.tipoPrueba" placeholder="Prueba realizada" class="w-100">
-                  <el-option label="Reactivo" value="1" />
-                  <el-option label="No reactivo" value="2" />
-                  <el-option label="Positivo" value="3" />
-                  <el-option label="Negativo" value="4" />
-                  <el-option label="Indeterminado" value="5" />
+                  <el-option v-for="item in tipoPruebaList" :key="item.id" :label="item.valor" :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -528,7 +526,8 @@
 
             <el-divider />
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">PARACLINICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH:</h5>
+              <h5 class="align-start">SI A LA NIÑA O NIÑO EXPUESTO SE LE REALIZARON OTRA PRUEBAS, REGISTRE LA INFORMACIÓN:
+              </h5>
             </el-col>
             <div v-for="(paraclinicoMenor, index) in paraClinicosMenorFields" :key="index" class="w-100 no-margin el-row">
 
@@ -537,8 +536,8 @@
                 <el-form-item label="Examen" :prop="examenParaClinico" class="select-width">
                   <el-select v-model="paraclinicoMenor.examenParaClinico" placeholder="Exámenes paraclínicos"
                     @change="validateMenorField(index)">
-                    <el-option label="Carga viral" value="1" />
-                    <el-option label="Conteo de linfocitos T CD4" value="2" />
+                    <el-option v-for="item in examenParaClinicoList" :key="item.id" :label="item.valor"
+                      :value="item.id" />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -569,11 +568,8 @@
                 class="select-width">
                 <el-select v-model="ruleFormquintoReporte.tipoAlimentacionNinoExpuesto"
                   placeholder="Alimentación de la niña o niño expuesto">
-                  <el-option label="Fórmula láctea desde el nacimiento" value="1" />
-                  <el-option label="Lactancia materna exclusiva" value="2" />
-                  <el-option label="Alimentación mixta: lactancia materna+ fórmula láctea" value="3" />
-                  <el-option label="Alimentación parenteral" value="4" />
-                  <el-option label="Alimentación parenteral+ fórmula láctea" value="5" />
+                  <el-option v-for="item in alimentacionMenorExpList" :key="item.id" :label="item.valor"
+                    :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -581,12 +577,10 @@
               <h5>SITUACIÓN DEL NIÑO O NIÑA EXPUESTO CON REFERENCIA AL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <el-form-item label="Situación de la niña o" prop="situacionNinoExpuesto" class="select-width">
+              <el-form-item label="Situación de la niña o niño expuesto frente al VIH" prop="situacionNinoExpuesto"
+                class="select-width">
                 <el-select v-model="ruleFormquintoReporte.situacionNinoExpuesto" placeholder="niño expuesto">
-                  <el-option label="Infección por VIH confirmada" value="1" />
-                  <el-option label="Infección por VIH descartada" value="2" />
-                  <el-option label="Falleció sin clasificación" value="3" />
-                  <el-option label="Sin clasificación" value="4" />
+                  <el-option v-for="item in situacionMenorExpList" :key="item.id" :label="item.valor" :value="item.id" />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -673,6 +667,20 @@ import axios from 'axios';
 
 type FormInstance = InstanceType<typeof ElForm>
 
+interface IParaclinicos {
+  idParaclinico?: number;
+  idReporte?: number;
+  idMomentoDiagnostico?: number;
+  momentoDiagnostico?: IParametrica;
+  idParaclinicoRealizado?: number;
+  paraclinicoRealizado?: IParametrica;
+  fechaParaclinico?: Date;
+  examenParaClinico?: [];
+  fechaExamenParaClinico?: Date;
+  resultadoParaclinico?: string;
+  valid?: boolean;
+}
+
 @Options({
   components: {},
 })
@@ -734,9 +742,8 @@ export default class VihView extends Vue {
     console.log('id gestante', gestanteCtrl);
 
     this.toggleEnableBoolean1()
-    this.getAllFicha(this.idGestanteCtrl)
-
     this.getParamsDbFirsTap('firstStep')
+    this.getAllFicha(this.idGestanteCtrl)
 
   }
 
@@ -755,11 +762,15 @@ export default class VihView extends Vue {
   clasificacionRiesgoList = []
   medicamentoAntRetroViralesList = []
   otrasPruebasNinoExpuestoList = []
-  
+  tipoPruebaList = []
+  alimentacionMenorExpList = []
+  situacionMenorExpList = []
+
 
   async getParamsDbFirsTap(step: string) {
     if (step === 'firstStep') {
-      const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any
+      const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any;
+      console.log('que llego', getParamsDiagnosticMoment)
       this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
 
       const getParamsPruebaConfirm = await this.ETMIPLUS_API_Client.parametrica2('PRUEBA_DIAGNOSTICO_VIH') as any
@@ -770,6 +781,15 @@ export default class VihView extends Vue {
 
       const getMedicamentoSuministrado = await this.ETMIPLUS_API_Client.parametrica2('MEDICAMENTOS_ARV_SUMINISTRADOR') as any
       this.medicamentosSuministradosList = getMedicamentoSuministrado.data
+      console.log('listado de medicamentos', this.ficha)
+      if (this.ficha.length !== 0) {
+        const setMedicamentos = []
+        const getMedicamentos = JSON.parse(this.ficha[0].medicamentosARVSuministrados)
+        this.ruleFormPrimerReporte.medicamentosARVSuministrados = getMedicamentos
+
+        //this.ruleFormPrimerReporte.medicamentosARVSuministrados
+      }
+
     } else if (step === 'four') {
       const getSituacionGestante = await this.ETMIPLUS_API_Client.parametrica2('SITUACION_GESTANTE') as any
       this.situacionGestanteList = getSituacionGestante.data
@@ -794,37 +814,98 @@ export default class VihView extends Vue {
       const getTipoDocumento = await this.ETMIPLUS_API_Client.parametrica2('TIPO_DOCUMENTO_NINO') as any
       this.tipoDocumentoList = getTipoDocumento.data
 
-      
+
       const getClasificacionRiesgo = await this.ETMIPLUS_API_Client.parametrica2('CLASIFICACION_RIESGO_TMI_NINO_EXPUESTO') as any
-      this.clasificacionRiesgoList = getClasificacionRiesgo.data 
-      
+      this.clasificacionRiesgoList = getClasificacionRiesgo.data
+
 
       const getMedicamentos = await this.ETMIPLUS_API_Client.parametrica2('PROFILAXIS_ANTIRRETROVIRAL_NINO_EXPUESTO') as any
       this.medicamentoAntRetroViralesList = getMedicamentos.data
 
       const getOtrasPruebas = await this.ETMIPLUS_API_Client.parametrica2('OTRAS_PRUEBAS_NINO_EXPUESTO') as any
       this.otrasPruebasNinoExpuestoList = getOtrasPruebas.data
-      
+    } else if (step === 'six') {
+
+      const getTipoPruebas = await this.ETMIPLUS_API_Client.parametrica2('RESULTADO_NINO_EXPUESTO_VIH') as any
+      this.tipoPruebaList = getTipoPruebas.data
+
+      const alimentacionMenor = await this.ETMIPLUS_API_Client.parametrica2('ALIMENTACION_NINO_EXPUESTO_VIH') as any
+      this.alimentacionMenorExpList = alimentacionMenor.data
+
+      const situacionMenorExp = await this.ETMIPLUS_API_Client.parametrica2('SITUACION_NINO_EXPUESTO_REFERENCIA_VIH') as any
+      this.situacionMenorExpList = situacionMenorExp.data
+
+
+
+      //this.tipoPruebaList
 
     }
   }
 
-  ficha = 0;
+  ficha: any = [];
 
   async getAllFicha(idGestante: number) {
     const fichaVihGet = await this.ETMIPLUS_API_Client.vIH(idGestante) as any;
-
+    console.log('llego ficha', fichaVihGet)
 
     if (fichaVihGet.data.reporte1.length !== 0) {
-
+      this.ficha = fichaVihGet.data.reporte1
+      const fechaDiagnost = moment(fichaVihGet.data.reporte1[0].fechaDiagnostico).format('DD/MM/YYYY')
+      const fechaProbablePar = moment(fichaVihGet.data.reporte1[0].fechaProbableParto).format('DD/MM/YYYY');
+      console.log('fecha parto', fechaProbablePar)
       this.disabledTwo = false
       this.ruleFormPrimerReporte.momentoDiagnostico = fichaVihGet.data.reporte1[0].idMomentoDiagnostico
+      this.ruleFormPrimerReporte.pruebaConfirmarVih = fichaVihGet.data.reporte1[0].idPruebaConfirmarVih
+      this.toggleDiv()
+      this.ruleFormPrimerReporte.fechaDiagnostico = new Date(fechaDiagnost)
+      this.ruleFormPrimerReporte.idResultados = fichaVihGet.data.reporte1[0].idResultados
+      this.ruleFormPrimerReporte.numeroCopias = fichaVihGet.data.reporte1[0].numeroCopias
+      this.paraClinicosFields = fichaVihGet.data.reporte1[0].listParaclinicos
+      this.paraClinicosFields.map((paraclinico: any) => {
+        //examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: ''
+        paraclinico.examenParaClinico = paraclinico.idParaclinicoRealizado;
+        paraclinico.fechaExamenParaClinico = paraclinico.fechaParaclinico;
+        paraclinico.resultadoParaclinico = Number(paraclinico.resultadoParaclinico);
+      })
+      this.ruleFormPrimerReporte.estabaRecibiendoTARAntesEmbarazo = fichaVihGet.data.reporte1[0].estabaRecibiendoTARAntesEmbarazo
+      this.ruleFormPrimerReporte.recibioTARDuranteEmbarazo = fichaVihGet.data.reporte1[0].recibioTARDuranteEmbarazo
+      this.ruleFormPrimerReporte.edadGestacionalInicioTARSemanas = fichaVihGet.data.reporte1[0].edadGestacionalInicioTARSemanas
+      this.ruleFormPrimerReporte.estabaRecibiendoTARDuranteEmbarazoActual = fichaVihGet.data.reporte1[0].estabaRecibiendoTARDuranteEmbarazoActual
+      this.ruleFormPrimerReporte.edadGestacionalCuandoRecibioTAR = fichaVihGet.data.reporte1[0].edadGestacionalCuandoRecibioTAR
+      this.ruleFormPrimerReporte.edadGestacionalAlDianosticoVIHSemanas = fichaVihGet.data.reporte1[0].edadGestacionalAlDianosticoVIHSemanas
+      this.ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo = fichaVihGet.data.reporte1[0].seRealizoControlPrenatalDuranteEmbarazo
+      this.ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas = fichaVihGet.data.reporte1[0].edadGestacionalPrimerControlPrenatalSemanas
+      this.ruleFormPrimerReporte.fechaProbableParto = new Date(fichaVihGet.data.reporte1[0].fechaProbableParto)
+
     }
     if (fichaVihGet.data.reporte2.length !== 0) {
       this.disabledThree = false
+      this.ruleFormSegundoReporte.tieneCargaViral = fichaVihGet.data.reporte2[0].tieneCargaViral;
+      this.ruleFormSegundoReporte.fechaResultado = fichaVihGet.data.reporte2[0].fechaResultado;
+      this.ruleFormSegundoReporte.resultadoCargaViral = fichaVihGet.data.reporte2[0].resultadoCargaViral
     }
     if (fichaVihGet.data.reporte3.length !== 0) {
       this.disabledFour = false
+      this.ruleFormTercerReporte.situacionGestante = fichaVihGet.data.reporte3[0].idSituacionGestante;
+      this.ruleFormTercerReporte.fechaDelParto = fichaVihGet.data.reporte3[0].fechaDelParto;
+      this.ruleFormTercerReporte.tarEnInterparto = fichaVihGet.data.reporte3[0].idEsquemaAntirretroviralIntraparto;
+      this.ruleFormTercerReporte.esquemaArvEnInterparto = fichaVihGet.data.reporte3[0].idEsquemaArvIntraparto;
+      this.ruleFormTercerReporte.condicionRecienNacido = fichaVihGet.data.reporte3[0].idCondicionRecienNacido;
+      this.ruleFormTercerReporte.numeroDeProductosAlNacimiento = fichaVihGet.data.reporte3[0].idNumeroDeProductosNacimiento;
+      this.ruleFormTercerReporte.edadGestacionalAlNacimientoEnSemana = fichaVihGet.data.reporte3[0].edadGestacionalNacimientoSemanas;
+      this.ruleFormTercerReporte.pesoEnGramos = fichaVihGet.data.reporte3[0].pesoRecienNacidoGramos;
+      this.ruleFormTercerReporte.sexo = fichaVihGet.data.reporte3[0].idSexo;
+      this.ruleFormTercerReporte.tipoParto = fichaVihGet.data.reporte3[0].idTipoParto;
+      this.ruleFormTercerReporte.suprecionDeLactancia = fichaVihGet.data.reporte3[0].seRealizoSuprecionLactancia;
+      
+      if (fichaVihGet.data.reporte3[0].medicamentoSuministrado !== "Cabergolina") {
+        this.ruleFormTercerReporte.medicamentoSuministrado = "Otro";
+        this.isVisible = true;
+        this.ruleFormTercerReporte.otroMedicamento = fichaVihGet.data.reporte3[0].medicamentoSuministrado;
+      } else {
+        this.ruleFormTercerReporte.medicamentoSuministrado = "Cabergolina";
+      }
+
     }
     if (fichaVihGet.data.reporte4.length !== 0) {
       this.disabledFive = false
@@ -834,8 +915,8 @@ export default class VihView extends Vue {
     }
   }
 
-  paraClinicosFields = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
-  paraClinicosMenorFields = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
+  paraClinicosFields: IParaclinicos[] = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
+  paraClinicosMenorFields: IParaclinicos[] = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
 
 
   addFields() {
@@ -846,14 +927,14 @@ export default class VihView extends Vue {
     this.paraClinicosMenorFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true });
   }
 
-  validarParaClinicos = false;
-  validarParaClinicosDelMenor = false;
+  validarParaClinicos: any = false;
+  validarParaClinicosDelMenor: any = false;
 
   validateField = (index: number) => {
     const field = this.paraClinicosFields[index];
     console.log('validador', field)
     field.valid = field.examenParaClinico && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
-    console.log(field.valid)
+    console.log('valor', field.valid)
     this.validarParaClinicos = field.valid
   };
 
@@ -1510,7 +1591,7 @@ export default class VihView extends Vue {
     console.log(reporteForm)
 
     if (tabName === 'third') {
-      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte1(reporteForm.idGestanteControl, reporteForm) as any;
+      const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte1POST(reporteForm.idGestanteControl, reporteForm) as any;
       console.log('response', requestPrimerReporte)
 
 
@@ -1532,7 +1613,7 @@ export default class VihView extends Vue {
           this.showMessage(message).then(() => {
             ElMessage.info(message);
             this.activeName = tabName;
-            this.disabledThree = false
+            this.disabledTwo = false
           });
         } else {
           const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
@@ -1558,7 +1639,7 @@ export default class VihView extends Vue {
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
-          this.disabledFour = false
+          this.disabledThree = false
         });
 
       } else {
@@ -1578,7 +1659,7 @@ export default class VihView extends Vue {
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
-          this.disabledFive = false
+          this.disabledFour = false
         });
 
       } else {
@@ -1598,7 +1679,7 @@ export default class VihView extends Vue {
         this.showMessage(message).then(() => {
           ElMessage.info(message);
           this.activeName = tabName;
-          this.disabledSix = false
+          this.disabledFive = false
         });
 
       } else {
@@ -1632,7 +1713,7 @@ export default class VihView extends Vue {
           this.showMessage(message).then(() => {
             ElMessage.info(message);
             this.activeName = tabName;
-            this.disabledSeven = false
+            this.disabledSix = false
           });
         } else {
           const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
@@ -1817,7 +1898,7 @@ export default class VihView extends Vue {
         resultadoPrueba: this.ruleFormquintoReporte.resultadoPrueba,
         idTipoAlimentacionNinoExpuesto: Number(this.ruleFormquintoReporte.tipoAlimentacionNinoExpuesto),
         idSituacionNinoExpuesto: Number(this.ruleFormquintoReporte.situacionNinoExpuesto),
-        listParaclinicos: makeListaParaClinicosMenor
+        listParaclinicos: makeListaParaClinicosMenor as any
       }
       this.registroReporte(request, tabName)
 
@@ -1883,7 +1964,7 @@ export default class VihView extends Vue {
 
   toggleDiv() {
     console.log('que llega', this.ruleFormPrimerReporte.pruebaConfirmarVih)
-    if (Number(this.ruleFormPrimerReporte.pruebaConfirmarVih) === 1) {
+    if (Number(this.ruleFormPrimerReporte.pruebaConfirmarVih) === 36) {
       this.showCopiasMlMomentoDiagn = false;
 
     } else {

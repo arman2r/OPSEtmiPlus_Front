@@ -1,301 +1,132 @@
 <template class="steps-container">
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane label="Datos gestante" name="first" ref="elTab1">
 
-            <el-form :model="ruleFormHbDatosGestante" :rules="rulesHbDatosGestante" style="width: 100%;" label-width="180px"
-                class="demo-ruleForm" :size="formSize" status-icon ref="firstForm" :label-position="labelPosition">
-                <section style="width: 100%;">
-                    <el-row :gutter="10" style="width: 100%;">
-                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                            <h5 class="align-start">DATOS DE LA GESTANTE CON DIAGNOSTICO DE HEPATITIS B</h5>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de ingreso a la estrategia</label>
-                            <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
-                                <el-input v-model="ruleFormHbDatosGestante.nombresApellidos" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Nacionalidad" prop="nacionalidad" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.nacionalidad" placeholder="Nacionalidad">
-                                    <el-option label="Colombiana" value="1" />
-                                    <el-option label="Extranjera" value="2" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento" placeholder="Tipo de Documento">
-                                    <el-option label="Registro civil" value="1" />
-                                    <el-option label="Tarjeta de identidad" value="3" />
-                                    <el-option label="Menor sin identificar" value="4" />
-                                    <el-option label="Adulto sin identificar" value="5" />
-                                    <el-option label="Cedula de ciudadanía" value="6" />
-                                    <el-option label="Pasaporte" value="7" />
-                                    <el-option label="Salvo conducto" value="8" />
-                                    <el-option label="Permiso especial de permanencia" value="9" />
-                                    <el-option label="Cedula de extranjería" value="10" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Número de identificación" prop="documentNumber">
-                                <el-input v-model="ruleFormHbDatosGestante.documentNumber" type="number" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Edad" prop="edad">
-                                <el-input v-model="ruleFormHbDatosGestante.edad" type="number" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.tipoRegimenSalud"
-                                    placeholder="Tipo de regimen de salud">
-                                    <el-option label="Excepción" value="1" />
-                                    <el-option label="Contributivo" value="2" />
-                                    <el-option label="Subsidiado" value="3" />
-                                    <el-option label="Especial" value="4" />
-                                    <el-option label="No asegurado" value="5" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradora">
-                                <el-input v-model="ruleFormHbDatosGestante.nombreAseguradora" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Pertenencia etnica" prop="pertenenciaEtnica" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.pertenenciaEtnica"
-                                    placeholder="Pertenencia etnica">
-                                    <el-option label="Palenquera" value="1" />
-                                    <el-option label="Afrocolombiana" value="2" />
-                                    <el-option label="Indigena" value="3" />
-                                    <el-option label="Raizal" value="4" />
-                                    <el-option label="Otro" value="5" />
-                                    <el-option label="Rom" value="6" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Grupo poblacional" prop="grupoPoblacional" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.grupoPoblacional"
-                                    placeholder="Grupo poblacional">
-                                    <el-option label="Desplazada" value="1" />
-                                    <el-option label="Migrante" value="2" />
-                                    <el-option label="Victima de violencia armada" value="3" />
-                                    <el-option label="Discapacitada" value="4" />
-                                    <el-option label="Carceleria" value="5" />
-                                    <el-option label="Habitante de calle" value="6" />
-                                    <el-option label="Centro psiquiatrico" value="7" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Area de ocurrencia" prop="areaOcurrencia" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.areaOcurrencia"
-                                    placeholder="Area de ocurrencia">
-                                    <el-option label="Cabecera municipal" value="1" />
-                                    <el-option label="Centro poblado" value="2" />
-                                    <el-option label="Rural disperso" value="3" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Departamento de residencia" prop="dptoResidencia" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.dptoResidencia"
-                                    placeholder="Departamento de residencia">
-                                    <el-option label="Colombia" value="1" />
-                                    <el-option label="Panama" value="2" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Municipio de residencia" prop="municipioResidencia" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.municipioResidencia"
-                                    placeholder="Municipio de residencia">
-                                    <el-option label="Colombia" value="1" />
-                                    <el-option label="Panama" value="2" />
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Direccion de residencia" prop="direccionResidencia">
-                                <el-input v-model="ruleFormHbDatosGestante.direccionResidencia" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Teléfono" prop="telefono">
-                                <el-input v-model="ruleFormHbDatosGestante.telefono" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                            <label>¿A la gestante se le realizo control prenatal durante el embarazo?</label><br />
-                            <el-radio-group v-model="ruleFormHbDatosGestante.ctrlPrenatalEnEmbarazo">
-                                <el-radio :label="1">Si</el-radio>
-                                <el-radio :label="2">No</el-radio>
-                            </el-radio-group>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Edad gestacional al primer control prenatal, en semanas" prop="edad">
-                                <el-input v-model="ruleFormHbDatosGestante.edadGestacionalEnPrimerCtrlenSemanas"
-                                    type="number" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                            <!--<el-form-item label="Fecha" prop="fecha">
-                                <el-input v-model="ruleFormSegundoReporte.fecha" />
-                            </el-form-item>-->
-                            <label class="label-field" style="min-width:180px">Fecha probable del parto</label>
-                            <el-date-picker v-model="ruleFormHbDatosGestante.fechaProbableParto" type="date"
-                                placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
-                        </el-col>
-                    </el-row>
-                </section>
-            </el-form>
-        </el-tab-pane>
         <el-tab-pane label="Diagnostico" name="two" ref="elTab2">
 
             <el-form :model="ruleFormHbDiagnosticoHb" :rules="rulesDiagnosticoHb" style="width: 100%;" label-width="180px"
-                class="demo-ruleForm" :size="formSize" status-icon ref="secondForm" :label-position="labelPosition">
+                :size="formSize" status-icon ref="secondForm" label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-row>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start">DIAGNOSTICO DE HEPATITIS B EN LA GESTANTE</h5>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-form-item label="Momento del diagnostico, con relación al embarazo actual"
-                                        prop="municipioResidencia" class="select-width">
-                                        <el-select v-model="ruleFormHbDiagnosticoHb.MomentoDiagnostico"
-                                            placeholder="Momento del diagnostico">
-                                            <el-option label="Antes del embarazo actual" value="1" />
-                                            <el-option label="Durante el embarazo actual" value="2" />
-                                            <el-option label="Posterior al parto" value="3" />
-                                        </el-select>
-                                    </el-form-item>
-                                </el-col>
-                            </el-row>
+
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <h5 class="align-start">DIAGNÓSTICO DE HEPATITIS B EN LA GESTANTE</h5>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-row>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start">Antigeno de superficie de hepatitis B, con relación al embarazo
-                                        actual:</h5>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom">
-                                        <label class="label-field" style="min-width:180px">Fecha del resultado</label>
-                                        <el-date-picker v-model="ruleFormHbDiagnosticoHb.FechaAntigenoSuperficieHb"
-                                            type="date" placeholder="Fecha probable del parto" :format="dateFormat"
-                                            :size="size" />
-                                    </el-col>
-                                </el-col>
-                            </el-row>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+                            <el-form-item label="Momento del diagnostico, con relación al embarazo actual:"
+                                prop="momentoDiagnostico" class="select-width">
+                                <el-select v-model="ruleFormHbDiagnosticoHb.momentoDiagnostico"
+                                    placeholder="Momento del diagnostico">
+                                    <el-option v-for="(mmd, index) in momentoDiagnosticoList" :key="index"
+                                        :label="mmd.valor" :value="mmd.id" />
+                                </el-select>
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-row>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start">Realización de anticuerpos IgM contra el antígeno core de HB
-                                        (anti-HBc IgM):</h5>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <label>Resultado:</label><br />
-                                    <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
-                                        <el-radio :label="0">Reactivo</el-radio>
-                                        <el-radio :label="1">No Reactivo</el-radio>
-                                    </el-radio-group>
-                                </el-col>
-                            </el-row>
+                        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+                            <el-form-item label="Edad gestacional al momento del diagnostico, en semanas:"
+                                prop="edadGestacionalAlNacimientoEnSemana">
+                                <el-input v-model="ruleFormHbDiagnosticoHb.edadGestacional" type="number" />
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom" style="align-items:end">
-                            <label class="label-field" style="min-width:180px;margin-bottom:14px">Fecha del
-                                resultado</label>
-                            <el-date-picker style="margin-bottom:8px"
-                                v-model="ruleFormHbDiagnosticoHb.FechaResultadosAnticuerpo1" type="date"
-                                placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-row>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start">Realización de anticuerpos IgM contra el antígeno core de HB
-                                        (anti-HBc IgM):</h5>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <label>Resultado:</label><br />
-                                    <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo2">
-                                        <el-radio :label="0">Reactivo</el-radio>
-                                        <el-radio :label="1">No Reactivo</el-radio>
-                                    </el-radio-group>
-                                </el-col>
-                            </el-row>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom" style="align-items:end">
-                            <label class="label-field" style="min-width:180px;margin-bottom:14px">Fecha del
-                                resultado</label>
-                            <el-date-picker style="margin-bottom:8px"
-                                v-model="ruleFormHbDiagnosticoHb.FechaResultadosAnticuerpo2" type="date"
-                                placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-row>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start">Realización de anticuerpos IgM contra el antígeno core de HB
-                                        (anti-HBc IgM):</h5>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <label>Resultado:</label><br />
-                                    <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo3">
-                                        <el-radio :label="0">Reactivo</el-radio>
-                                        <el-radio :label="1">No Reactivo</el-radio>
-                                    </el-radio-group>
-                                </el-col>
-                            </el-row>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom" style="align-items:end">
-                            <label class="label-field" style="min-width:180px;margin-bottom:14px">Fecha del
-                                resultado</label>
-                            <el-date-picker style="margin-bottom:8px"
-                                v-model="ruleFormHbDiagnosticoHb.FechaResultadosAnticuerpo3" type="date"
-                                placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-row>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start" style="margin-bottom:0">Resultado de Carga viral para Hepatitis
-                                        B:</h5>
-                                    <sub>Valor unidades internacionales/Ml</sub>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-form-item label="Resultado" prop="ResultadoCargaViralMl">
-                                        <el-input v-model="ruleFormHbDiagnosticoHb.ResultadoCargaViralMl" type="number"
-                                            step="0.1" />
-                                    </el-form-item>
-                                </el-col>
-                            </el-row>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom" style="align-items:end">
-                            <label class="label-field" style="min-width:180px;margin-bottom:14px">Fecha del
-                                resultado</label>
-                            <el-date-picker style="margin-bottom:8px"
-                                v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
-                                placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
+                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+                            <el-form-item label="Antígeno de superficie de HB Reactivo (HBsAg)."
+                                prop="fechaResultadoReactivo" class="select-width w-100">
+                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoReactivo" type="date"
+                                    placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
+                            </el-form-item>
                         </el-col>
 
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <h5 class="align-start">Realización de Anticuerpos IgM contra el antígeno core de HB (anti-HBc
+                                IgM):</h5>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Resultado" prop="resultadoAntiHBcIgM" class="select-width w-100">
+                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.resultadoAntiHBcIgM">
+                                    <el-radio :label="1">Reactivo</el-radio>
+                                    <el-radio :label="0">No Reactivo</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
+                            <el-form-item label="Fecha del resultado" prop="fechaResultadoAntiHBcIgM"
+                                class="select-width w-100">
+                                <el-date-picker style="margin-bottom:8px"
+                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoAntiHBcIgM" type="date"
+                                    placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                            </el-form-item>
+                        </el-col>
+
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <h5 class="align-start">Realización de Anticuerpos totales contra el antígeno core de HB
+                                (anti-HBc total o IgG):</h5>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Resultado:" prop="resultadoAntiHBcTotalOlgG" class="select-width w-100">
+                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.resultadoAntiHBcTotalOlgG">
+                                    <el-radio :label="1">Reactivo</el-radio>
+                                    <el-radio :label="0">No Reactivo</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
+                            <el-form-item label="Fecha probable del parto" prop="fechaResultadoAntiHBcTotalOlgG"
+                                class="select-width w-100">
+                                <el-date-picker style="margin-bottom:8px"
+                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoAntiHBcTotalOlgG" type="date"
+                                    placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
+                            </el-form-item>
+                        </el-col>
+
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <h5 class="align-start">Realización de Antígeno e de HB (HBeAg):</h5>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Resultado:" prop="resultadoAntiHBeAg" class="select-width w-100">
+                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.resultadoAntiHBeAg">
+                                    <el-radio :label="0">Reactivo</el-radio>
+                                    <el-radio :label="1">No Reactivo</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
+                            <el-form-item label="Resultado:" prop="fechaResultadoAntiHBeAg" class="select-width w-100">
+                                <el-date-picker style="margin-bottom:8px"
+                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoAntiHBeAg" type="date"
+                                    placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
+                            </el-form-item>
+                        </el-col>
+
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <h5 class="align-start" style="margin-bottom:0">Realización de Carga viral para Hepatitis
+                                B:</h5>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Valor unidades internacionales/Ml" prop="ResultadoCargaViralMl">
+                                <el-input v-model="ruleFormHbDiagnosticoHb.ResultadoCargaViralMl" type="number"
+                                    step="0.1" />
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Fecha probable del parto" prop="fechaResultadoCargaViralMl">
+                                <el-date-picker style="margin-bottom:8px"
+                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                    placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row class="row-bg" justify="end">
+                        <div class="btn-save">
+                            <el-button type="primary" size="default" @click="submitForm(sevenForm, 'end')">guardar y
+                                continuar</el-button>
+                        </div>
                     </el-row>
                 </section>
             </el-form>
         </el-tab-pane>
         <el-tab-pane label="Tratamiento y seguimiento" name="three" ref="elTab3">
 
-            <el-form :model="ruleFormHbTratamiento" :rules="ruleSFormHbTratamiento" style="width: 100%;" label-width="180px"
-                class="demo-ruleForm" :size="formSize" status-icon ref="thirdForm" :label-position="labelPosition">
+            <el-form :model="ruleFormHbTratamiento" :rules="ruleSFormHbTratamiento" style="width: 100%;" :size="formSize"
+                status-icon ref="thirdForm" label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
 
@@ -308,25 +139,28 @@
                                 actual:</h5>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <label>La gestante venia recibiendo tratamiento para HB antes de iniciar el
-                                embarazo actual:</label><br />
-                            <el-radio-group v-model="ruleFormHbTratamiento.tratadaAntesDelEmbarazo">
-                                <el-radio :label="1">Si</el-radio>
-                                <el-radio :label="0">No</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="La gestante venia recibiendo tratamiento para HB antes de iniciar el
+                                embarazo actual:" prop="recibioTratamientoAntesEmbarazoActual">
+                                <el-radio-group v-model="ruleFormHbTratamiento.recibioTratamientoAntesEmbarazoActual">
+                                    <el-radio :label="1">Si</el-radio>
+                                    <el-radio :label="0">No</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <label>¿La gestante requiere tratamiento para HB durante el embarazo
-                                actual?:</label><br />
-                            <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamiento1">
-                                <el-radio :label="1">Si</el-radio>
-                                <el-radio :label="0">No</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="¿La gestante requiere tratamiento para HB durante el embarazo
+                                actual?:" prop="requiereTratamientoAntesEmbarazoActual">
+                                <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamientoAntesEmbarazoActual">
+                                    <el-radio :label="1">Si</el-radio>
+                                    <el-radio :label="0">No</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="A partir de que semana gestacional lo recibió:"
-                                prop="semanaEnQueRecibioTratamiento1">
-                                <el-input v-model="ruleFormHbTratamiento.semanaEnQueRecibioTratamiento1" type="number" />
+                                prop="edadGestacionalRecibioTratamientoAntesSemana">
+                                <el-input v-model="ruleFormHbTratamiento.edadGestacionalRecibioTratamientoAntesSemana"
+                                    type="number" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -335,27 +169,27 @@
                                 actual:</h5>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <label>¿Requiere tratamiento para HB durante el embarazo actual?:</label><br />
-                            <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamiento2">
-                                <el-radio :label="1">Si</el-radio>
-                                <el-radio :label="0">No</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="¿Requiere tratamiento para HB durante el embarazo actual?:"
+                                prop="requiereTratamientoDuranteEmbarazoActual">
+                                <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamientoDuranteEmbarazoActual">
+                                    <el-radio :label="1">Si</el-radio>
+                                    <el-radio :label="0">No</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="A partir de que semana gestacional lo recibió:"
-                                prop="semanaEnQueRecibioTratamiento2">
-                                <el-input v-model="ruleFormHbTratamiento.semanaEnQueRecibioTratamiento2" type="number" />
+                                prop="edadGestacionalRecibioTratamientoDuranteSemana">
+                                <el-input v-model="ruleFormHbTratamiento.edadGestacionalRecibioTratamientoDuranteSemana" type="number" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-row>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5 class="align-start" style="margin-bottom:0">Nombre del medicamento
-                                        suministrado a la gestante para el tratamiento de la HB:</h5>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-form-item label="medicamento suministrado:" prop="nombreMedicamentoSuministrado">
-                                        <el-input v-model="ruleFormHbTratamiento.nombreMedicamentoSuministrado" />
+                                    <el-form-item label="Nombre del medicamento
+                                        suministrado a la gestante para el tratamiento de la HB:"
+                                        prop="nombreMedicamentoTratamiento">
+                                        <el-input v-model="ruleFormHbTratamiento.nombreMedicamentoTratamiento" />
                                     </el-form-item>
                                 </el-col>
                             </el-row>
@@ -378,8 +212,7 @@
         </el-tab-pane>
         <el-tab-pane label="Seguimiento del menor expuesto" name="four" ref="elTab4">
 
-            <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                ref="fourForm" :label-position="labelPosition">
+            <el-form style="width: 100%;" :size="formSize" status-icon ref="fourForm" label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
 
@@ -387,11 +220,13 @@
                             <h4 class="align-start">Seguimiento del niño o niña expuesto al virus de la hepatis B</h4>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <label class="title-field">Condición del recien nacido</label><br />
-                            <el-radio-group>
-                                <el-radio :label="1">Vivo</el-radio>
-                                <el-radio :label="2">Mortinato</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="Condición del recien nacido:" prop="situacionGestante"
+                                class="select-width">
+                                <el-radio-group>
+                                    <el-radio :label="1">Vivo</el-radio>
+                                    <el-radio :label="2">Mortinato</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                             <el-form-item label="Edad gestacional al nacimiento, en semanas:">
@@ -399,30 +234,35 @@
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <label class="title-field">Tipo de parto</label><br />
-                            <el-radio-group>
-                                <el-radio :label="1">Cesarea</el-radio>
-                                <el-radio :label="2">Vaginal</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="Tipo de parto:" class="select-width">
+                                <el-radio-group>
+                                    <el-radio :label="1">Cesarea</el-radio>
+                                    <el-radio :label="2">Vaginal</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <label class="title-field">Número de productos al nacimiento</label>
-                            <el-radio-group>
-                                <el-radio :label="1">único</el-radio>
-                                <el-radio :label="2">Multiple</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="Número de productos al nacimiento:" class="select-width">
+                                <el-radio-group>
+                                    <el-radio :label="1">único</el-radio>
+                                    <el-radio :label="2">Multiple</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha del parto</label>
-                            <el-date-picker type="date" placeholder="Fecha del parto" :format="dateFormat" :size="size" />
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                            <el-form-item label="Fecha del parto:" class="select-width">
+                                <el-date-picker type="date" placeholder="Fecha del parto" :format="dateFormat"
+                                    :size="size" />
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <label class="title-field">Sexo</label> 
-                            <el-radio-group>
-                                <el-radio :label="1">Hombre</el-radio>
-                                <el-radio :label="2">Mujer</el-radio>
-                                <el-radio :label="3">Intersexual</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="Sexo:" class="select-width">
+                                <el-radio-group>
+                                    <el-radio :label="1">Hombre</el-radio>
+                                    <el-radio :label="2">Mujer</el-radio>
+                                    <el-radio :label="3">Intersexual</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Tipo de regimen en salud">
@@ -460,11 +300,13 @@
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <label>Aplicacion de la dosis de vacuna contra HB recien nacido:</label><br />
-                            <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamiento1">
-                                <el-radio :label="1">Si</el-radio>
-                                <el-radio :label="0">No</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="Aplicacion de la dosis de vacuna contra HB recien nacido:"
+                                prop="documentNumber">
+                                <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamiento1">
+                                    <el-radio :label="1">Si</el-radio>
+                                    <el-radio :label="0">No</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tipoDocumento"
@@ -484,30 +326,33 @@
                                 <el-input />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de aplicacion</label>
-                            <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
-                                :size="size" />
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                            <el-form-item label="Fecha de aplicacion:" class="select-width">
+                                <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
+                                    :size="size" />
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Vacuna">
                                 <el-input />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de aplicacion</label>
-                            <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
-                                :size="size" />
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                            <el-form-item label="Fecha de aplicacion:" class="select-width">
+                                <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
+                                    :size="size" />
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Vacuna">
                                 <el-input />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de aplicacion</label>
-                            <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
-                                :size="size" />
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                            <el-form-item label="Fecha de aplicacion:" class="select-width">
+                                <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
+                                    :size="size" />
+                            </el-form-item>
                         </el-col>
                     </el-row>
                 </section>
@@ -515,48 +360,56 @@
         </el-tab-pane>
         <el-tab-pane label="Clasificación" name="five" ref="elTab5">
 
-            <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                ref="fiveForm" :label-position="labelPosition">
+            <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="fiveForm"
+                label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
 
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                             <h4 class="align-start">clasificación del niño o niña expuesto frente virus de la hepatis B</h4>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left" class="mt mb">
-                            <label>Realizacion de antigeno de superficie de la HB (HBs Ag):</label><br />
-                            <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
-                                <el-radio :label="0">Reactivo</el-radio>
-                                <el-radio :label="1">No Reactivo</el-radio>
-                            </el-radio-group>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left">
+                            <el-form-item label="Realizacion de antigeno de superficie de la HB (HBs Ag):"
+                                prop="ResultadosAnticuerpo1" class="select-width">
+                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                    <el-radio :label="0">Reactivo</el-radio>
+                                    <el-radio :label="1">No Reactivo</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de resultado</label>
-                            <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                placeholder="Fecha de resultado" :format="dateFormat" :size="size" />
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Fecha de resultado:" prop="fechaIngreso" class="select-width">
+                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                    placeholder="Fecha de resultado" :format="dateFormat" :size="size" />
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left" class="mt mb">
-                            <label>Realizacion del anticuerpo contra el antigeno de superficie de la HB(Anti-HBs)
-                                :</label><br />
-                            <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
-                                <el-radio :label="0">Reactivo</el-radio>
-                                <el-radio :label="1">No Reactivo</el-radio>
-                            </el-radio-group>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left">
+                            <el-form-item
+                                label="Realizacion del anticuerpo contra el antigeno de superficie de la HB(Anti-HBs):"
+                                prop="ResultadosAnticuerpo1" class="select-width">
+                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                    <el-radio :label="0">Reactivo</el-radio>
+                                    <el-radio :label="1">No Reactivo</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de resultado</label>
-                            <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                placeholder="Fecha de resultado" :format="dateFormat" :size="size" />
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Fecha de resultado:" prop="fechaIngreso" class="select-width">
+                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                    placeholder="Fecha de resultado" :format="dateFormat" :size="size" />
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="text-align:left"
                             class="column-custom mb">
-                            <label style="margin-right:8px">Condicion final de niño o niña expuesto </label><br />
-                            <el-radio-group>
-                                <el-radio :label="1">Vivo</el-radio>
-                                <el-radio :label="2">muerto</el-radio>
-                            </el-radio-group>
+                            <el-form-item label="Condicion final de niño o niña expuesto:" prop="fechaIngreso"
+                                class="select-width">
+                                <el-radio-group>
+                                    <el-radio :label="1">Vivo</el-radio>
+                                    <el-radio :label="2">muerto</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Clasificaion del niño o niña expuesto frente al virus epatitis B"
                                 prop="tipoDocumento" class="select-width" style="width:100%">
                                 <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
@@ -573,18 +426,20 @@
             </el-form>
         </el-tab-pane>
         <el-tab-pane label="Reporte de datos " name="six" ref="elTab6">
-            <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                ref="sixForm" :label-position="labelPosition">
+            <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="sixForm"
+                label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                             <h4 class="align-start">Reporte de datos por parte de la Entidad Administradora de Planes de
                                 Beneficios</h4>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                            <label class="label-field" style="min-width:180px">Fecha de reporte </label>
-                            <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                placeholder="Fecha de reporte" :format="dateFormat" :size="size" />
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Fecha de reporte" prop="tipoDocumento" class="select-width"
+                                style="width:100%">
+                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                    placeholder="Fecha de reporte" :format="dateFormat" :size="size" />
+                            </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Nombre de EAPB que reporta la información">
@@ -634,6 +489,10 @@ import { ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
+import { IDiagnosticoGestanteHB, ITratamientoSeguimientoGestanteHB, IParametrica } from "@/api/ETMIPLUS_API";
+import moment from 'moment';
+import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
+import axios from 'axios';
 
 type FormInstance = InstanceType<typeof ElForm>
 
@@ -643,7 +502,7 @@ type FormInstance = InstanceType<typeof ElForm>
 
 export default class HepatitisBView extends Vue {
 
-    activeName = 'first'
+    activeName = 'two'
     disabledTwo = true
     disabledThree = true
     disabledFour = true
@@ -653,7 +512,7 @@ export default class HepatitisBView extends Vue {
     isVisible = false
     dateFormat = 'DD/MM/YYYY'
     position = 'right'
-    labelPosition = ref<FormProps['labelPosition']>('right')
+
 
     firstForm = ref<FormInstance>()
     secondForm = ref<FormInstance>()
@@ -663,7 +522,12 @@ export default class HepatitisBView extends Vue {
     sixForm = ref<FormInstance>()
     sevenForm = ref<FormInstance>()
 
-    formSize = 'default'
+    formSize = 'default';
+
+    ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
+
+    momentoDiagnosticoList: IParametrica[] = []
+
 
     handleClick(tab: TabsPaneContext, event: Event) {
         console.log(tab, event)
@@ -673,26 +537,42 @@ export default class HepatitisBView extends Vue {
         // Handle screen resize logic here
         // You can access the window size using `window.innerWidth` and `window.innerHeight`
         //console.log('tamaño window', window.innerWidth)
-        if (window.innerWidth <= 991) {
-            this.position = 'top';
-            this.labelPosition = ref<FormProps['labelPosition']>('top')
-        } else {
-            this.position = 'right';
-            this.labelPosition = ref<FormProps['labelPosition']>('right')
+        /*if (window.innerWidth <= 991) {
+            
+        } else { 
             //this.labelPosition = ref<FormProps['labelPosition']>(this.position)
-        }
+        }*/
     }
 
+    idGestanteCtrl: number | undefined = 0;
     mounted(): void {
-        window.addEventListener('resize', this.onResize);
-        if (window.innerWidth <= 991) {
-            this.position = 'top';
-            this.labelPosition = ref<FormProps['labelPosition']>('top')
-        } else {
-            this.position = 'right';
-            this.labelPosition = ref<FormProps['labelPosition']>('right')
+        /*window.addEventListener('resize', this.onResize);
+        if (window.innerWidth <= 991) { 
+        } else { 
             //this.labelPosition = ref<FormProps['labelPosition']>(this.position)
         }
+*/
+        const gestanteCtrl = this.$route.params.idGCtrl;
+        this.idGestanteCtrl = Number(gestanteCtrl);
+        this.getParamsDbFirsTap('two')
+
+    }
+
+    async getParamsDbFirsTap(step: string) {
+        if (step === 'two') {
+            const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any;
+            console.log('que trae', getParamsDiagnosticMoment)
+            this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
+
+        } /*else if (step === 'three') {
+
+        } else if (step === 'four') {
+
+        } else if (step === 'five') {
+
+        } else if (step === 'six') {
+
+        }*/
     }
 
     checkAll = false
@@ -745,202 +625,95 @@ export default class HepatitisBView extends Vue {
         fechaProbableParto: new Date()
     })
 
-    ruleFormHbDiagnosticoHb = reactive<DiagnosticoFormHb>({
-        MomentoDiagnostico: [],
-        EdadGestancionalEnSemanas: 0,
-        FechaAntigenoSuperficieHb: new Date(),
-        ResultadosAnticuerpo1: false,
-        FechaResultadosAnticuerpo1: new Date(),
-        ResultadosAnticuerpo2: false,
-        FechaResultadosAnticuerpo2: new Date(),
-        ResultadosAnticuerpo3: false,
-        FechaResultadosAnticuerpo3: new Date(),
-        ResultadoCargaViralMl: 0,
-        fechaResultadoCargaViralMl: new Date()
+    ruleFormHbDiagnosticoHb = reactive<IDiagnosticoGestanteHB>({
+        momentoDiagnostico: [] as any,
+        edadGestacional: 0,
+        fechaResultadoReactivo: new Date(),
+        resultadoAntiHBcIgM: 0,
+        fechaResultadoAntiHBcIgM: new Date(),
+        resultadoAntiHBcTotalOlgG: 0,
+        fechaResultadoAntiHBcTotalOlgG: new Date(),
+        resultadoAntiHBeAg: 0,
+        fechaResultadoAntiHBeAg: new Date(),
+        resultadoAntigenoCargaViral: 0,
+        fechaResultadoCargaViral: new Date()
     })
 
-    ruleFormHbTratamiento = reactive<TratamientoFormHb>({
-        tratadaAntesDelEmbarazo: false,
-        requiereTratamiento1: false,
-        semanaEnQueRecibioTratamiento1: 0,
-        requiereTratamiento2: false,
-        semanaEnQueRecibioTratamiento2: 0,
-        nombreMedicamentoSuministrado: '',
-        situacionGestante: []
+    ruleFormHbTratamiento = reactive<ITratamientoSeguimientoGestanteHB>({
+        recibioTratamientoAntesEmbarazoActual: 0,
+        requiereTratamientoAntesEmbarazoActual: 0,
+        edadGestacionalRecibioTratamientoAntesSemana: 0,
+        requiereTratamientoDuranteEmbarazoActual: 0,
+        edadGestacionalRecibioTratamientoDuranteSemana: 0,
+        nombreMedicamentoTratamiento: '',
+        situacionGestante: [] as any,
     })
 
 
-    rulesHbDatosGestante = reactive<FormRules<RuleFormHbDatosGestante>>({
-        fechaIngreso: [
-            {
-                required: true,
-                message: 'Por favor seleccione una fecha',
-                trigger: 'blur',
-            }
-        ],
-        nombresApellidos: [
-            { required: true, message: 'Por favor digite los nombre(s) y apellido(s) completos', trigger: 'blur' },
-            { min: 3, max: 50, message: 'debe tener una longitud entre 2 a 50 caracteres', trigger: 'blur' },
-        ],
-        nacionalidad: [
-            {
-                required: true,
-                message: 'Por favor seleccione la nacionalidad',
-                trigger: 'change',
-            },
-        ],
-        tipoDocumento: [
-            {
-                required: true,
-                message: 'Por favor seleccione el tipo de identificación',
-                trigger: 'change',
-            },
-        ],
-        documentNumber: [
-            { required: true, message: 'Por favor digite el número de documento', trigger: 'blur' },
-            { min: 2, max: 12, message: 'debe tener una longitud entre 2 a 12 caracteres', trigger: 'blur' },
-        ],
-        edad: [
-            { required: true, message: 'Por favor digite la edad', trigger: 'blur' },
-            { min: 1, max: 3, message: 'debe tener una longitud entre 1 a 3 caracteres', trigger: 'blur' },
-        ],
-        tipoRegimenSalud: [
-            {
-                required: true,
-                message: 'Por favor seleccione un regimen de salud',
-                trigger: 'change',
-            },
-        ],
-        nombreAseguradora: [
-            { required: true, message: 'Por favor digite el nombre de la aseguradora', trigger: 'blur' },
-            { min: 1, max: 30, message: 'debe tener una longitud entre 1 a 30 caracteres', trigger: 'blur' },
-        ],
-        pertenenciaEtnica: [
-            {
-                required: true,
-                message: 'Por favor seleccione la pertenencia etnica',
-                trigger: 'change',
-            },
-        ],
-        grupoPoblacional: [
-            {
-                required: true,
-                message: 'Por favor seleccione un grupo poblacional',
-                trigger: 'change',
-            },
-        ],
-        areaOcurrencia: [
-            {
-                required: true,
-                message: 'Por favor seleccione el area de ocurrencia',
-                trigger: 'change',
-            },
-        ],
-        dptoResidencia: [
-            {
-                required: true,
-                message: 'Por favor seleccione el departamento de residencia',
-                trigger: 'change',
-            },
-        ],
-        municipioResidencia: [
-            {
-                required: true,
-                message: 'Por favor seleccione el municipio de residencia',
-                trigger: 'change',
-            },
-        ],
-        direccionResidencia: [
-            { required: true, message: 'Por favor digite la dirección de residencia', trigger: 'blur' },
-            { min: 1, max: 50, message: 'debe tener una longitud entre 1 a 50 caracteres', trigger: 'blur' },
-        ],
-        telefono: [
-            { required: true, message: 'Por favor digite el teléfono', trigger: 'blur' },
-            { min: 1, max: 30, message: 'debe tener una longitud entre 1 a 30 caracteres', trigger: 'blur' },
-        ],
-        ctrlPrenatalEnEmbarazo: [
-            {
-                required: true,
-                message: 'Este campo es requerido',
-                trigger: 'change',
-            }
-        ],
-        edadGestacionalEnPrimerCtrlenSemanas: [
-            { required: true, message: 'Por favor indique la semana gestacional', trigger: 'blur' }
-        ],
-        fechaProbableParto: [
-            {
-                required: true,
-                message: 'Por favor seleccione una fecha',
-                trigger: 'blur',
-            }
-        ]
-    })
-
-    rulesDiagnosticoHb = reactive<FormRules<DiagnosticoFormHb>>({
-        MomentoDiagnostico: [
+    rulesDiagnosticoHb = reactive<FormRules<IDiagnosticoGestanteHB>>({
+        momentoDiagnostico: [
             {
                 required: true,
                 message: 'Por favor seleccione el momento del diagnostico',
                 trigger: 'change',
             },
         ],
-        EdadGestancionalEnSemanas: [
+        edadGestacional: [
             { required: true, message: 'Por favor digite las semanas', trigger: 'blur' }
         ],
-        FechaAntigenoSuperficieHb: [
+        fechaResultadoReactivo: [
             {
                 required: true,
                 message: 'Por favor seleccione una fecha',
                 trigger: 'blur',
             }
         ],
-        ResultadosAnticuerpo1: [
+        resultadoAntiHBcIgM: [
             {
                 required: true,
                 message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ],
-        FechaResultadosAnticuerpo1: [
+        fechaResultadoAntiHBcIgM: [
             {
                 required: true,
                 message: 'Por favor seleccione una fecha',
                 trigger: 'blur',
             }
         ],
-        ResultadosAnticuerpo2: [
+        resultadoAntiHBcTotalOlgG: [
             {
                 required: true,
                 message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ],
-        FechaResultadosAnticuerpo2: [
+        fechaResultadoAntiHBcTotalOlgG: [
             {
                 required: true,
                 message: 'Por favor seleccione una fecha',
                 trigger: 'blur',
             }
         ],
-        ResultadosAnticuerpo3: [
+        resultadoAntiHBeAg: [
             {
                 required: true,
                 message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ],
-        FechaResultadosAnticuerpo3: [
+        fechaResultadoAntiHBeAg: [
             {
                 required: true,
                 message: 'Por favor seleccione una fecha',
                 trigger: 'blur',
             }
         ],
-        ResultadoCargaViralMl: [
+        resultadoAntigenoCargaViral: [
             { required: true, message: 'Por favor ingrese el resultado', trigger: 'blur' }
         ],
-        fechaResultadoCargaViralMl: [
+        fechaResultadoCargaViral: [
             {
                 required: true,
                 message: 'Por favor seleccione una fecha',
@@ -988,6 +761,38 @@ export default class HepatitisBView extends Vue {
             }
         ]
     })
+
+    submitForm = async (formEl: FormInstance | undefined, tab: string) => {
+        if (!formEl) return
+        await formEl.validate((valid, fields) => {
+            if (valid) {
+
+                console.log('enviando!')
+                if (tab !== 'end') {
+                    //console.log(fields)
+                    //this.changeTab(tab)
+                } else {
+                    console.log('valor a guardar', Number(this.idGestanteCtrl))
+
+                    /*const request: IReporteBinomio = {
+                        idGestante: Number(this.idGestanteCtrl),
+                        nombreIPSAtencionVIH: this.ruleFormSeguimiento.nombreIPSAtencionVIH,
+                        nombreRemitenteInformacion: this.ruleFormSeguimiento.nombreRemitenteInformacion,
+                        cargoRemitenteInformacion: this.ruleFormSeguimiento.cargoRemitenteInformacion,
+                        telefonoRemitenteInformacion: this.ruleFormSeguimiento.telefonoRemitenteInformacion,
+                        correoRemitenteInformacion1: this.ruleFormSeguimiento.correoRemitenteInformacion1,
+                        correoRemitenteInformacion2: this.ruleFormSeguimiento.correoRemitenteInformacion2
+                    }
+                    this.registroReporte(request, 'end')*/
+
+                }
+            }
+            else {
+                ElMessageBox.alert(`Por favor complete los campos marcados con *.`, { type: "warning" });
+                console.log('error al enviar!', fields)
+            }
+        })
+    }
 }
 </script>
 
@@ -1079,7 +884,7 @@ h5 {
 
     .el-form-item__label {
         text-align: left !important;
-        width:100% !important;
+        width: 100% !important;
         align-items: start !important;
         display: inline !important;
     }
@@ -1093,13 +898,13 @@ h5 {
         text-align: left;
         width: 100% !important;
     }
-    
-    .el-form-item{
-        flex-flow: column;  
+
+    .el-form-item {
+        flex-flow: column;
         width: 100%;
     }
 
-    .el-form-item label{
+    .el-form-item label {
         width: 100% !important;
         text-align: left !important;
     }
@@ -1109,5 +914,4 @@ h5 {
     width: 100% !important;
     margin-bottom: 18px
 }
-
 </style>
