@@ -180,7 +180,8 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="A partir de que semana gestacional lo recibió:"
                                 prop="edadGestacionalRecibioTratamientoDuranteSemana">
-                                <el-input v-model="ruleFormHbTratamiento.edadGestacionalRecibioTratamientoDuranteSemana" type="number" />
+                                <el-input v-model="ruleFormHbTratamiento.edadGestacionalRecibioTratamientoDuranteSemana"
+                                    type="number" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
@@ -199,10 +200,8 @@
                                 prop="situacionGestante" class="select-width">
                                 <el-select v-model="ruleFormHbTratamiento.situacionGestante"
                                     placeholder="Situación de la gestante">
-                                    <el-option label="Aborto" value="1" />
-                                    <el-option label="IVE" value="2" />
-                                    <el-option label="Mortalidad materna" value="3" />
-                                    <el-option label="Parto" value="3" />
+                                    <el-option v-for="(sg, index) in situacionGestanteList" :key="index" :label="sg.valor"
+                                        :value="sg.id" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
@@ -212,118 +211,137 @@
         </el-tab-pane>
         <el-tab-pane label="Seguimiento del menor expuesto" name="four" ref="elTab4">
 
-            <el-form style="width: 100%;" :size="formSize" status-icon ref="fourForm" label-position="top">
+            <el-form :model="ruleFormHbSeguimientoMenorExp" :rules="rulesFormHbSeguimientoMenorExp" style="width: 100%;" :size="formSize" status-icon ref="fourForm" label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
 
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                            <h4 class="align-start">Seguimiento del niño o niña expuesto al virus de la hepatis B</h4>
+                            <h4 class="align-start">Seguimiento del niño o niña expuesto al virus de la hepatitis B</h4>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
                             <el-form-item label="Condición del recien nacido:" prop="situacionGestante"
                                 class="select-width">
-                                <el-radio-group>
-                                    <el-radio :label="1">Vivo</el-radio>
-                                    <el-radio :label="2">Mortinato</el-radio>
-                                </el-radio-group>
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.condicionRecienNacido"
+                                    placeholder="Situación de la gestante">
+                                    <el-option v-for="(crn, index) in condicionRecienNacidoList" :key="index" :label="crn.valor"
+                                        :value="crn.id" />
+                                </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                            <el-form-item label="Edad gestacional al nacimiento, en semanas:">
+                            <el-form-item v-model="ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas" label="Edad gestacional al nacimiento, en semanas:">
                                 <el-input type="number" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <el-form-item label="Tipo de parto:" class="select-width">
-                                <el-radio-group>
-                                    <el-radio :label="1">Cesarea</el-radio>
-                                    <el-radio :label="2">Vaginal</el-radio>
-                                </el-radio-group>
+                            <el-form-item label="Tipo de parto:" prop="tipoParto"
+                                class="select-width">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoParto"
+                                    placeholder="Tipo de parto:">
+                                    <el-option v-for="(tp, index) in tipoPartoList" :key="index" :label="tp.valor"
+                                        :value="tp.id" />
+                                </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <el-form-item label="Número de productos al nacimiento:" class="select-width">
-                                <el-radio-group>
-                                    <el-radio :label="1">único</el-radio>
-                                    <el-radio :label="2">Multiple</el-radio>
-                                </el-radio-group>
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb"> 
+                            <el-form-item label="Número de productos al nacimiento:" prop="numeroProductosNacimiento"
+                                class="select-width">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.numeroProductosNacimiento"
+                                    placeholder="Número de productos al nacimiento:">
+                                    <el-option v-for="(npn, index) in numeroProductosNacimientoList" :key="index" :label="npn.valor"
+                                        :value="npn.id" />
+                                </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                            <el-form-item label="Fecha del parto:" class="select-width">
-                                <el-date-picker type="date" placeholder="Fecha del parto" :format="dateFormat"
+                            <el-form-item label="Fecha del parto:" class="select-width" prop="fechaParto">
+                                <el-date-picker type="date" placeholder="Fecha del parto" v-model="ruleFormHbSeguimientoMenorExp.fechaParto" :format="dateFormat"
                                     :size="size" />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <el-form-item label="Sexo:" class="select-width">
-                                <el-radio-group>
-                                    <el-radio :label="1">Hombre</el-radio>
-                                    <el-radio :label="2">Mujer</el-radio>
-                                    <el-radio :label="3">Intersexual</el-radio>
-                                </el-radio-group>
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">  
+                            <el-form-item label="Sexo:" prop="sexo"
+                                class="select-width">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.sexo"
+                                    placeholder="Sexo:">
+                                    <el-option v-for="(sxo, index) in sexoList" :key="index" :label="sxo.valor"
+                                        :value="sxo.id" />
+                                </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Tipo de regimen en salud">
-                                <el-input />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Nombre aseguradora (EAPB)">
-                                <el-input />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Nombres y Apellidos">
-                                <el-input />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento" placeholder="Tipo de Documento">
-                                    <el-option label="Registro civil" value="1" />
-                                    <el-option label="Tarjeta de identidad" value="3" />
-                                    <el-option label="Menor sin identificar" value="4" />
-                                    <el-option label="Adulto sin identificar" value="5" />
-                                    <el-option label="Cedula de ciudadanía" value="6" />
-                                    <el-option label="Pasaporte" value="7" />
-                                    <el-option label="Salvo conducto" value="8" />
-                                    <el-option label="Permiso especial de permanencia" value="9" />
-                                    <el-option label="Cedula de extranjería" value="10" />
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"> 
+                            <el-form-item label="Tipo de regimen en salud:" prop="tipoRegimenSalud"
+                                class="select-width">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoRegimenSalud"
+                                    placeholder="Tipo de regimen en salud:">
+                                    <el-option v-for="(trs, index) in tipoRegimenSaludList" :key="index" :label="trs.valor"
+                                        :value="trs.id" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Número de identificación" prop="documentNumber">
-                                <el-input v-model="ruleFormHbDatosGestante.documentNumber" type="number" />
+                            <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradora">
+                                <el-input v-model="ruleFormHbSeguimientoMenorExp.nombreAseguradora" />
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" prop="nombresApellidos">
+                            <el-form-item label="Nombres y Apellidos">
+                                <el-input v-model="ruleFormHbSeguimientoMenorExp.nombresApellidos" />
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"> 
+                            <el-form-item label="Tipo de Documento:" prop="tipoDocumento"
+                                class="select-width">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoDocumento"
+                                    placeholder="Tipo de Documento:">
+                                    <el-option v-for="(td, index) in tipoDocumentoList" :key="index" :label="td.valor"
+                                        :value="td.id" />
+                                </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Aplicacion de la dosis de vacuna contra HB recien nacido:"
-                                prop="documentNumber">
-                                <el-radio-group v-model="ruleFormHbTratamiento.requiereTratamiento1">
+                            <el-form-item label="Número de identificación" prop="numeroIdentificacion">
+                                <el-input v-model="ruleFormHbSeguimientoMenorExp.numeroIdentificacion" type="number" />
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Aplicacion de la dosis de vacuna contra HB al recién nacido:"
+                                prop="aplicaronDosisVacunaRecienNacido">
+                                <el-radio-group v-model="ruleFormHbSeguimientoMenorExp.aplicaronDosisVacunaRecienNacido">
                                     <el-radio :label="1">Si</el-radio>
                                     <el-radio :label="0">No</el-radio>
                                 </el-radio-group>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tipoDocumento"
+                            <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tiempoAplicacionVacuna"
                                 class="select-width">
-                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido" v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionVacuna"
                                     placeholder="Su aplicacion se hizo en que tiempo">
-                                    <el-option label="En las primeras 12 horas " value="1" />
-                                    <el-option label="Mayor a 12 horas y hasta 24 horas" value="3" />
-                                    <el-option label="Despues de 24 horas" value="4" />
+                                    <el-option v-for="(tav, index) in tiempoAplicacionVacunaList" :key="index" :label="tav.valor"
+                                        :value="tav.id" /> 
                                 </el-select>
 
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"></el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Vacuna">
-                                <el-input />
+                            <el-form-item label="Aplicacion de la Inmunoglobina para HB al recién nacido:"
+                                prop="aplicaronInmunoglobulinaRecienNacido">
+                                <el-radio-group v-model="ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido">
+                                    <el-radio :label="1">Si</el-radio>
+                                    <el-radio :label="0">No</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tiempoAplicacionInmonoglobulina"
+                                class="select-width">
+                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido" v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionInmonoglobulina"
+                                    placeholder="Su aplicacion se hizo en que tiempo">
+                                    <el-option v-for="(taiv, index) in tiempoAplicacionInmonoglobulinaList" :key="index" :label="taiv.valor"
+                                        :value="taiv.id" /> 
+                                </el-select>
+
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -489,7 +507,7 @@ import { ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoGestanteHB, ITratamientoSeguimientoGestanteHB, IParametrica } from "@/api/ETMIPLUS_API";
+import { IDiagnosticoGestanteHB, ITratamientoSeguimientoGestanteHB, IParametrica, ISeguimientoNinoExpuestoHB } from "@/api/ETMIPLUS_API";
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
@@ -512,6 +530,7 @@ export default class HepatitisBView extends Vue {
     isVisible = false
     dateFormat = 'DD/MM/YYYY'
     position = 'right'
+    enableaplicaronDosisVacunaRecienNacido = true
 
 
     firstForm = ref<FormInstance>()
@@ -527,10 +546,24 @@ export default class HepatitisBView extends Vue {
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
 
     momentoDiagnosticoList: IParametrica[] = []
+    situacionGestanteList: IParametrica[] = []
+    condicionRecienNacidoList: IParametrica[] = []
+    tipoPartoList: IParametrica[] = []
+    numeroProductosNacimientoList: IParametrica[] = []
+    sexoList: IParametrica[] = []
+    tipoRegimenSaludList: IParametrica[] = []
+    tipoDocumentoList: IParametrica[] = []
+    tiempoAplicacionVacunaList: IParametrica[] = []
+    tiempoAplicacionInmonoglobulinaList: IParametrica[] = []
 
 
     handleClick(tab: TabsPaneContext, event: Event) {
-        console.log(tab, event)
+        console.log('evento tab', tab.props.name, event)
+        const tabName = tab.props.name as string;
+        if (tabName !== undefined) {
+            this.getParamsDbFirsTap(tabName)
+        }
+
     }
 
     onResize(): void {
@@ -561,14 +594,42 @@ export default class HepatitisBView extends Vue {
     async getParamsDbFirsTap(step: string) {
         if (step === 'two') {
             const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any;
-            console.log('que trae', getParamsDiagnosticMoment)
+            console.log('que trae 1', getParamsDiagnosticMoment)
             this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
 
-        } /*else if (step === 'three') {
-
+        } else if (step === 'three') {
+            const getParamsSituacionGestante = await this.ETMIPLUS_API_Client.parametrica2('SITUACION_GESTANTE') as any;
+            console.log('que trae 2', getParamsSituacionGestante)
+            this.situacionGestanteList = getParamsSituacionGestante.data
         } else if (step === 'four') {
+            const condicionRecienNacido = await this.ETMIPLUS_API_Client.parametrica2('CONDICION_FINAL_NINO_EXPUESTO') as any;          
+            this.condicionRecienNacidoList = condicionRecienNacido.data
 
-        } else if (step === 'five') {
+            const tipoParto = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PARTO') as any;        
+            this.tipoPartoList = tipoParto.data
+
+            const numeroProductoNacimiento = await this.ETMIPLUS_API_Client.parametrica2('NUMERO_PRODUCTOS_NACIMIENTO') as any;       
+            this.numeroProductosNacimientoList = numeroProductoNacimiento.data
+
+            const sexo = await this.ETMIPLUS_API_Client.parametrica2('SEXO') as any;         
+            this.sexoList = sexo.data
+
+            const tipoRegimenSalud = await this.ETMIPLUS_API_Client.parametrica2('TIPO_REGIMEN_SALUD') as any;       
+            this.tipoRegimenSaludList = tipoRegimenSalud.data
+
+            const tipoDocumento = await this.ETMIPLUS_API_Client.parametrica2('TIPO_DOCUMENTO') as any; 
+            this.tipoDocumentoList = tipoDocumento.data
+
+            const tiempoAplicacionVacuna = await this.ETMIPLUS_API_Client.parametrica2('TIEMPO_APLICACION_VACUNA_HB') as any; 
+            this.tiempoAplicacionVacunaList = tiempoAplicacionVacuna.data
+
+            const tiempoAplicacionInmuglobina = await this.ETMIPLUS_API_Client.parametrica2('TIEMPO_APLICACION_INMUNOGLOBULINA_HB') as any; 
+            this.tiempoAplicacionInmonoglobulinaList = tiempoAplicacionInmuglobina.data
+
+            
+            
+            
+        } /*else if (step === 'five') {
 
         } else if (step === 'six') {
 
@@ -649,6 +710,27 @@ export default class HepatitisBView extends Vue {
         situacionGestante: [] as any,
     })
 
+    ruleFormHbSeguimientoMenorExp = reactive<ISeguimientoNinoExpuestoHB>({
+        condicionRecienNacido: [] as any,
+        edadGestacionalNacimientoSemanas: 0,
+        tipoParto: [] as any,
+        numeroProductosNacimiento: [] as any,
+        fechaParto: new Date(),
+        sexo: [] as any,
+        tipoRegimenSalud: [] as any,
+        nombreAseguradora: '',
+        direccionTerritorial: '',
+        nombresApellidos: '',
+        tipoDocumento: [] as any,
+        numeroIdentificacion: '',
+        aplicaronDosisVacunaRecienNacido: 0,
+        tiempoAplicacionVacuna: [] as any,
+        aplicaronInmunoglobulinaRecienNacido: 0,
+        tiempoAplicacionInmonoglobulina: [] as any,
+        vacunacion: [] as any,
+        clasificacionNinoExpuesto: []
+    })
+
 
     rulesDiagnosticoHb = reactive<FormRules<IDiagnosticoGestanteHB>>({
         momentoDiagnostico: [
@@ -722,41 +804,151 @@ export default class HepatitisBView extends Vue {
         ]
     })
 
-    ruleSFormHbTratamiento = reactive<FormRules<TratamientoFormHb>>({
-        tratadaAntesDelEmbarazo: [
+    ruleSFormHbTratamiento = reactive<FormRules<ITratamientoSeguimientoGestanteHB>>({
+        recibioTratamientoAntesEmbarazoActual: [
             {
                 required: true,
                 message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ],
-        requiereTratamiento1: [
+        requiereTratamientoAntesEmbarazoActual: [
             {
                 required: true,
                 message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ],
-        semanaEnQueRecibioTratamiento1: [
+        edadGestacionalRecibioTratamientoAntesSemana: [
             { required: true, message: 'Por favor digite la semana', trigger: 'blur' }
         ],
-        requiereTratamiento2: [
+        requiereTratamientoDuranteEmbarazoActual: [
             {
                 required: true,
                 message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ],
-        semanaEnQueRecibioTratamiento2: [
+        edadGestacionalRecibioTratamientoDuranteSemana: [
             { required: true, message: 'Por favor digite la semana', trigger: 'blur' }
         ],
-        nombreMedicamentoSuministrado: [
+        nombreMedicamentoTratamiento: [
             { required: true, message: 'Por favor ingrese el nombre del medicamento', trigger: 'blur' }
         ],
         situacionGestante: [
             {
                 required: true,
                 message: 'Por favor seleccione una opción',
+                trigger: 'change',
+            }
+        ]
+    })
+
+    rulesFormHbSeguimientoMenorExp = reactive<FormRules<ISeguimientoNinoExpuestoHB>>({
+        condicionRecienNacido: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        edadGestacionalNacimientoSemanas: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        tipoParto: [
+            { required: true, message: 'Por favor digite la semana', trigger: 'change' }
+        ],
+        numeroProductosNacimiento: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        fechaParto: [
+            { required: true, message: 'Por favor digite la semana', trigger: 'change' }
+        ],
+        sexo: [
+            { required: true, message: 'Por favor ingrese el nombre del medicamento', trigger: 'change' }
+        ],
+        tipoRegimenSalud: [
+            {
+                required: true,
+                message: 'Por favor seleccione una opción',
+                trigger: 'change',
+            }
+        ],
+        nombreAseguradora: [
+            {
+                required: true,
+                message: 'Por favor seleccione una opción',
+                trigger: 'blur',
+            }
+        ],
+        direccionTerritorial: [
+            {
+                required: false,
+                message: 'Por favor suministre una dirección',
+                trigger: 'blur',
+            }
+        ],
+        nombresApellidos: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'blur',
+            }
+        ],
+        tipoDocumento: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        numeroIdentificacion: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        aplicaronDosisVacunaRecienNacido: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        tiempoAplicacionVacuna: [
+            {
+                required: false,
+                message: 'Indique en que tiempo se le aplico la vacuna',
+                trigger: 'change',
+            }
+        ],
+        aplicaronInmunoglobulinaRecienNacido: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            }
+        ],
+        tiempoAplicacionInmonoglobulina: [
+            {
+                required: false,
+                message: 'Indique en que tiempo se le aplico la vacuna',
+                trigger: 'change',
+            }
+        ],
+        vacunacion: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
                 trigger: 'change',
             }
         ]

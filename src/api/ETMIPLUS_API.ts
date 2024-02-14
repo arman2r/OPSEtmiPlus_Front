@@ -2352,7 +2352,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    seguimientoNinoExpuesto(idGestante: number, body: SeguimientoNinoExpuestoHB | undefined, cancelToken?: CancelToken): Promise<void> {
+    seguimientoNinoExpuesto(idGestante?: number, body?: ISeguimientoNinoExpuestoHB | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestante}/HepatitisB/SeguimientoNinoExpuesto";
         if (idGestante === undefined || idGestante === null)
             throw new Error("The parameter 'idGestante' must be defined.");
@@ -2394,7 +2394,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
