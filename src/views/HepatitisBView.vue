@@ -101,22 +101,22 @@
                                 B:</h5>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Valor unidades internacionales/Ml" prop="ResultadoCargaViralMl">
-                                <el-input v-model="ruleFormHbDiagnosticoHb.ResultadoCargaViralMl" type="number"
-                                    step="0.1" />
+                            <el-form-item label="Valor unidades internacionales/Ml" prop="resultadoAntigenoCargaViral">
+                                <el-input v-model="ruleFormHbDiagnosticoHb.resultadoAntigenoCargaViral" type="number"
+                                    step="0.1" placeholder="Resultado" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Fecha probable del parto" prop="fechaResultadoCargaViralMl">
+                            <el-form-item label="Fecha probable del parto" prop="fechaResultadoCargaViral">
                                 <el-date-picker style="margin-bottom:8px"
-                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl" type="date"
+                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViral" type="date"
                                     placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row class="row-bg" justify="end">
                         <div class="btn-save">
-                            <el-button type="primary" size="default" @click="submitForm(sevenForm, 'end')">guardar y
+                            <el-button type="primary" size="default" @click="submitForm(secondForm, 'three')">guardar y
                                 continuar</el-button>
                         </div>
                     </el-row>
@@ -211,7 +211,8 @@
         </el-tab-pane>
         <el-tab-pane label="Seguimiento del menor expuesto" name="four" ref="elTab4">
 
-            <el-form :model="ruleFormHbSeguimientoMenorExp" :rules="rulesFormHbSeguimientoMenorExp" style="width: 100%;" :size="formSize" status-icon ref="fourForm" label-position="top">
+            <el-form :model="ruleFormHbSeguimientoMenorExp" :rules="rulesFormHbSeguimientoMenorExp" style="width: 100%;"
+                :size="formSize" status-icon ref="fourForm" label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
 
@@ -220,58 +221,54 @@
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
                             <el-form-item label="Condición del recien nacido:" prop="situacionGestante"
-                                class="select-width">
+                                class="select-width w-100">
                                 <el-select v-model="ruleFormHbSeguimientoMenorExp.condicionRecienNacido"
-                                    placeholder="Situación de la gestante">
-                                    <el-option v-for="(crn, index) in condicionRecienNacidoList" :key="index" :label="crn.valor"
-                                        :value="crn.id" />
+                                    placeholder="Condición del recien nacido:">
+                                    <el-option v-for="(crn, index) in condicionRecienNacidoList" :key="index"
+                                        :label="crn.valor" :value="crn.id" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                            <el-form-item v-model="ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas" label="Edad gestacional al nacimiento, en semanas:">
+                            <el-form-item v-model="ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas"
+                                label="Edad gestacional al nacimiento, en semanas:">
                                 <el-input type="number" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <el-form-item label="Tipo de parto:" prop="tipoParto"
-                                class="select-width">
-                                <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoParto"
-                                    placeholder="Tipo de parto:">
+                            <el-form-item label="Tipo de parto:" prop="tipoParto" class="select-width w-100">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoParto" placeholder="Tipo de parto:">
                                     <el-option v-for="(tp, index) in tipoPartoList" :key="index" :label="tp.valor"
                                         :value="tp.id" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb"> 
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
                             <el-form-item label="Número de productos al nacimiento:" prop="numeroProductosNacimiento"
-                                class="select-width">
+                                class="select-width w-100">
                                 <el-select v-model="ruleFormHbSeguimientoMenorExp.numeroProductosNacimiento"
                                     placeholder="Número de productos al nacimiento:">
-                                    <el-option v-for="(npn, index) in numeroProductosNacimientoList" :key="index" :label="npn.valor"
-                                        :value="npn.id" />
+                                    <el-option v-for="(npn, index) in numeroProductosNacimientoList" :key="index"
+                                        :label="npn.valor" :value="npn.id" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                             <el-form-item label="Fecha del parto:" class="select-width" prop="fechaParto">
-                                <el-date-picker type="date" placeholder="Fecha del parto" v-model="ruleFormHbSeguimientoMenorExp.fechaParto" :format="dateFormat"
-                                    :size="size" />
+                                <el-date-picker type="date" placeholder="Fecha del parto"
+                                    v-model="ruleFormHbSeguimientoMenorExp.fechaParto" :format="dateFormat" :size="size" />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">  
-                            <el-form-item label="Sexo:" prop="sexo"
-                                class="select-width">
-                                <el-select v-model="ruleFormHbSeguimientoMenorExp.sexo"
-                                    placeholder="Sexo:">
+                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
+                            <el-form-item label="Sexo:" prop="sexo" class="select-width w-100">
+                                <el-select v-model="ruleFormHbSeguimientoMenorExp.sexo" placeholder="Sexo:">
                                     <el-option v-for="(sxo, index) in sexoList" :key="index" :label="sxo.valor"
                                         :value="sxo.id" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"> 
-                            <el-form-item label="Tipo de regimen en salud:" prop="tipoRegimenSalud"
-                                class="select-width">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Tipo de regimen en salud:" prop="tipoRegimenSalud" class="select-width">
                                 <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoRegimenSalud"
                                     placeholder="Tipo de regimen en salud:">
                                     <el-option v-for="(trs, index) in tipoRegimenSaludList" :key="index" :label="trs.valor"
@@ -289,9 +286,8 @@
                                 <el-input v-model="ruleFormHbSeguimientoMenorExp.nombresApellidos" />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"> 
-                            <el-form-item label="Tipo de Documento:" prop="tipoDocumento"
-                                class="select-width">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Tipo de Documento:" prop="tipoDocumento" class="select-width">
                                 <el-select v-model="ruleFormHbSeguimientoMenorExp.tipoDocumento"
                                     placeholder="Tipo de Documento:">
                                     <el-option v-for="(td, index) in tipoDocumentoList" :key="index" :label="td.valor"
@@ -316,10 +312,11 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tiempoAplicacionVacuna"
                                 class="select-width">
-                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido" v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionVacuna"
+                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido"
+                                    v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionVacuna"
                                     placeholder="Su aplicacion se hizo en que tiempo">
-                                    <el-option v-for="(tav, index) in tiempoAplicacionVacunaList" :key="index" :label="tav.valor"
-                                        :value="tav.id" /> 
+                                    <el-option v-for="(tav, index) in tiempoAplicacionVacunaList" :key="index"
+                                        :label="tav.valor" :value="tav.id" />
                                 </el-select>
 
                             </el-form-item>
@@ -327,7 +324,8 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Aplicacion de la Inmunoglobina para HB al recién nacido:"
                                 prop="aplicaronInmunoglobulinaRecienNacido">
-                                <el-radio-group v-model="ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido">
+                                <el-radio-group
+                                    v-model="ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido">
                                     <el-radio :label="1">Si</el-radio>
                                     <el-radio :label="0">No</el-radio>
                                 </el-radio-group>
@@ -336,10 +334,11 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tiempoAplicacionInmonoglobulina"
                                 class="select-width">
-                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido" v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionInmonoglobulina"
+                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido"
+                                    v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionInmonoglobulina"
                                     placeholder="Su aplicacion se hizo en que tiempo">
-                                    <el-option v-for="(taiv, index) in tiempoAplicacionInmonoglobulinaList" :key="index" :label="taiv.valor"
-                                        :value="taiv.id" /> 
+                                    <el-option v-for="(taiv, index) in tiempoAplicacionInmonoglobulinaList" :key="index"
+                                        :label="taiv.valor" :value="taiv.id" />
                                 </el-select>
 
                             </el-form-item>
@@ -350,27 +349,30 @@
                                     :size="size" />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Vacuna">
-                                <el-input />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                            <el-form-item label="Fecha de aplicacion:" class="select-width">
-                                <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
-                                    :size="size" />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Vacuna">
-                                <el-input />
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                            <el-form-item label="Fecha de aplicacion:" class="select-width">
-                                <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
-                                    :size="size" />
-                            </el-form-item>
+
+
+                        <div v-for="(vs, index) in vacunaSeguimiento" :key="index" class="w-100 no-margin el-row">
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Examen" :prop="dosisVacuna" class="select-width">
+                                    <el-select v-model="vs.dosisVacuna" placeholder="Exámenes paraclínicos"
+                                        @change="validateField(index)">
+                                        <el-option v-for="(pcm, index) in dosisVacunaList" :key="index" :label="pcm.valor"
+                                            :value="pcm.id" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom">
+                                <el-form-item label="Fecha de aplicacion:" :prop="fechaAplicacion" class="w-100">
+                                    <el-date-picker v-model="vs.fechaAplicacion" @change="validateField(index)" type="date"
+                                        placeholder="Fecha de aplicacion:" :format="dateFormat" />
+                                </el-form-item>
+                            </el-col>
+                        </div>
+                        <el-col :span="24">
+                            <el-button type="primary" size="default" @click="addFields"
+                                :disabled="validarVacunaSeguimiento">
+                                Agregar Vacuna
+                            </el-button>
                         </el-col>
                     </el-row>
                 </section>
@@ -389,7 +391,7 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left">
                             <el-form-item label="Realizacion de antigeno de superficie de la HB (HBs Ag):"
                                 prop="ResultadosAnticuerpo1" class="select-width">
-                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                <el-radio-group v-model="ruleFormHbDatosGestante.ResultadosAnticuerpo1">
                                     <el-radio :label="0">Reactivo</el-radio>
                                     <el-radio :label="1">No Reactivo</el-radio>
                                 </el-radio-group>
@@ -428,10 +430,10 @@
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Clasificaion del niño o niña expuesto frente al virus epatitis B"
+                            <el-form-item label="Clasificación del niño o niña expuesto frente al virus epatitis B"
                                 prop="tipoDocumento" class="select-width" style="width:100%">
                                 <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                    placeholder="Clasificaion del niño o niña expuesto">
+                                    placeholder="Clasificación del niño o niña expuesto">
                                     <el-option label="Infeccion por epatitis B confirmada " value="1" />
                                     <el-option label="MInfeccion por epatitis B descartada " value="2" />
                                     <el-option label="Fallecio sin clasificaion" value="3" />
@@ -503,7 +505,7 @@ import 'element-plus/theme-chalk/display.css'
 //import { ref } from 'vue' 
 import { reactive, ref } from 'vue'
 import type { FormRules, FormProps } from 'element-plus'
-import { ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
@@ -513,6 +515,15 @@ import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
 
 type FormInstance = InstanceType<typeof ElForm>
+
+interface IVacunacionHB {
+    idVacuna?: number;
+    idSeguimientoNinoExpuesto?: number;
+    idDosisVacuna?: number;
+    dosisVacuna?: IParametrica | IParametrica[];
+    fechaAplicacion?: Date;
+    valid: boolean
+}
 
 @Options({
     components: {},
@@ -541,9 +552,39 @@ export default class HepatitisBView extends Vue {
     sixForm = ref<FormInstance>()
     sevenForm = ref<FormInstance>()
 
+    dosisVacunaList: IParametrica[] = [];
+
     formSize = 'default';
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
+
+    vacunaSeguimiento: IVacunacionHB[] = [
+        {
+            dosisVacuna: [] as IParametrica[],
+            fechaAplicacion: new Date(),
+            valid: true
+        }
+    ]
+
+
+    addFields() {
+        this.validarVacunaSeguimiento = true
+        if (this.vacunaSeguimiento.length <= 3) {
+            this.vacunaSeguimiento.push({ dosisVacuna: [], fechaAplicacion: new Date(), valid: true });
+        } else {
+            this.validarVacunaSeguimiento = true
+        }
+    }
+
+    validarVacunaSeguimiento: any = true;
+
+    validateField = (index: number) => {
+        const field = this.vacunaSeguimiento[index];
+        console.log('validador', field)
+        field.valid = field.dosisVacuna !== null && field.fechaAplicacion !== null;
+        console.log('valor', field.valid)
+        this.validarVacunaSeguimiento = !field.valid
+    };
 
     momentoDiagnosticoList: IParametrica[] = []
     situacionGestanteList: IParametrica[] = []
@@ -602,33 +643,34 @@ export default class HepatitisBView extends Vue {
             console.log('que trae 2', getParamsSituacionGestante)
             this.situacionGestanteList = getParamsSituacionGestante.data
         } else if (step === 'four') {
-            const condicionRecienNacido = await this.ETMIPLUS_API_Client.parametrica2('CONDICION_FINAL_NINO_EXPUESTO') as any;          
+            const condicionRecienNacido = await this.ETMIPLUS_API_Client.parametrica2('CONDICION_FINAL_NINO_EXPUESTO') as any;
             this.condicionRecienNacidoList = condicionRecienNacido.data
 
-            const tipoParto = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PARTO') as any;        
+            const tipoParto = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PARTO') as any;
             this.tipoPartoList = tipoParto.data
 
-            const numeroProductoNacimiento = await this.ETMIPLUS_API_Client.parametrica2('NUMERO_PRODUCTOS_NACIMIENTO') as any;       
+            const numeroProductoNacimiento = await this.ETMIPLUS_API_Client.parametrica2('NUMERO_PRODUCTOS_NACIMIENTO') as any;
             this.numeroProductosNacimientoList = numeroProductoNacimiento.data
 
-            const sexo = await this.ETMIPLUS_API_Client.parametrica2('SEXO') as any;         
+            const sexo = await this.ETMIPLUS_API_Client.parametrica2('SEXO') as any;
             this.sexoList = sexo.data
 
-            const tipoRegimenSalud = await this.ETMIPLUS_API_Client.parametrica2('TIPO_REGIMEN_SALUD') as any;       
+            const tipoRegimenSalud = await this.ETMIPLUS_API_Client.parametrica2('TIPO_REGIMEN_SALUD') as any;
             this.tipoRegimenSaludList = tipoRegimenSalud.data
 
-            const tipoDocumento = await this.ETMIPLUS_API_Client.parametrica2('TIPO_DOCUMENTO') as any; 
+            const tipoDocumento = await this.ETMIPLUS_API_Client.parametrica2('TIPO_DOCUMENTO') as any;
             this.tipoDocumentoList = tipoDocumento.data
 
-            const tiempoAplicacionVacuna = await this.ETMIPLUS_API_Client.parametrica2('TIEMPO_APLICACION_VACUNA_HB') as any; 
+            const tiempoAplicacionVacuna = await this.ETMIPLUS_API_Client.parametrica2('TIEMPO_APLICACION_VACUNA_HB') as any;
             this.tiempoAplicacionVacunaList = tiempoAplicacionVacuna.data
 
-            const tiempoAplicacionInmuglobina = await this.ETMIPLUS_API_Client.parametrica2('TIEMPO_APLICACION_INMUNOGLOBULINA_HB') as any; 
+            const tiempoAplicacionInmuglobina = await this.ETMIPLUS_API_Client.parametrica2('TIEMPO_APLICACION_INMUNOGLOBULINA_HB') as any;
             this.tiempoAplicacionInmonoglobulinaList = tiempoAplicacionInmuglobina.data
 
-            
-            
-            
+            const dosisVacuna = await this.ETMIPLUS_API_Client.parametrica2('APLICACION_VACUNA_CONTRA_HB') as any;
+            this.dosisVacunaList = dosisVacuna.data
+
+
         } /*else if (step === 'five') {
 
         } else if (step === 'six') {
@@ -954,6 +996,236 @@ export default class HepatitisBView extends Vue {
         ]
     })
 
+    changeTab(tabName: string) {
+
+        console.log('nombre tab',tabName)
+        //document.getElementById('tab-'+tabName)?.classList.remove('is-disabled')
+        //console.log(document.getElementById('tab-'+tabName))
+        //const elTabComponent = this.$refs.elTab2 as HTMLElement; // Or use querySelector if necessary
+        //const elTabComponent: HTMLElement = (this.$refs.elTab2 as any) as HTMLElement;
+        if (tabName === 'two') {
+            this.disabledTwo = false
+            this.activeName = tabName;
+        } else if (tabName === 'three') {
+            console.log('entro 3', tabName)
+            /*if (this.validarParaClinicos) {
+                console.log('enviando!')
+
+                //console.log(fields)
+
+                const valueParaclinicos = this.paraClinicosFields
+                const makeListaParaClinicos: IParaclinicoMadre[] = []
+
+                valueParaclinicos.map((fieldValue: any) => {
+
+
+                    makeListaParaClinicos.push(
+                        {
+                            idParaclinicoRealizado: Number(fieldValue.examenParaClinico),
+                            fechaParaclinico: new Date(moment(fieldValue.fechaExamenParaClinico).format('YYYY-MM-DD HH:mm:ss.sss')),
+                            resultadoParaclinico: Number(fieldValue.resultadoParaclinico)
+                        }
+                    )
+
+                });
+                console.log('makeListaParaClinicos', makeListaParaClinicos)
+
+                const request: IReporte1 = {
+                    idReporte: 0,
+                    idGestanteControl: this.idGestanteCtrl,
+                    idMomentoDiagnostico: Number(this.ruleFormPrimerReporte.momentoDiagnostico),
+                    idPruebaConfirmarVih: Number(this.ruleFormPrimerReporte.pruebaConfirmarVih),
+                    fechaDiagnostico: new Date(moment(this.ruleFormPrimerReporte.fechaDiagnostico).format('YYYY-MM-DD HH:mm:ss.sss')),
+                    idResultados: Number(this.ruleFormPrimerReporte.idResultados),
+                    numeroCopias: Number(this.ruleFormPrimerReporte.numeroCopias),
+                    estabaRecibiendoTARAntesEmbarazo: Number(this.ruleFormPrimerReporte.estabaRecibiendoTARAntesEmbarazo),
+                    recibioTARDuranteEmbarazo: Number(this.ruleFormPrimerReporte.recibioTARDuranteEmbarazo),
+                    estabaRecibiendoTARDuranteEmbarazoActual: Number(this.ruleFormPrimerReporte.estabaRecibiendoTARDuranteEmbarazoActual),
+                    edadGestacionalInicioTARSemanas: Number(this.ruleFormPrimerReporte.edadGestacionalInicioTARSemanas),
+                    edadGestacionalAlDianosticoVIHSemanas: Number(this.ruleFormPrimerReporte.edadGestacionalAlDianosticoVIHSemanas),
+                    medicamentosARVSuministrados: JSON.stringify(this.ruleFormPrimerReporte.medicamentosARVSuministrados),
+                    seRealizoControlPrenatalDuranteEmbarazo: Number(this.ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo),
+                    edadGestacionalPrimerControlPrenatalSemanas: Number(this.ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas),
+                    fechaProbableParto: new Date(moment(this.ruleFormPrimerReporte.fechaProbableParto).format('YYYY-MM-DD HH:mm:ss.sss')),
+                    listParaclinicos: makeListaParaClinicos
+                }
+                this.registroReporte(request, tabName)
+
+            } else {
+                ElMessageBox.alert(`Por favor complete los campos paraclinicos`, { type: "warning" });
+            }
+*/
+            this.disabledThree = false
+            this.activeName = tabName;
+        }   
+        //console.log(elTabComponent)
+    }
+
+    async registroReporte(reporteForm: any, tabName: string) {
+        console.log(reporteForm)
+
+        if (tabName === 'third') {
+            const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte1POST(reporteForm.idGestanteControl, reporteForm) as any;
+            console.log('response', requestPrimerReporte)
+
+
+            if (requestPrimerReporte.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+                reporteForm.listParaclinicos.map((paraClinico: any) => {
+                    paraClinico.idReporte = Number(requestPrimerReporte.data.idReporte)
+                })
+
+                console.log('paraclinicos de la madre', reporteForm.listParaclinicos)
+
+                const requestParaCliniciMadre = await this.ETMIPLUS_API_Client.paraclinicoMadre(requestPrimerReporte.data.idReporte, reporteForm.listParaclinicos) as any;
+
+                if (requestParaCliniciMadre.length !== 0) {
+                    const message = 'Paraclínicos guardados con éxito.'
+                    this.showMessage(message).then(() => {
+                        ElMessage.info(message);
+                        this.activeName = tabName;
+                        this.disabledTwo = false
+                    });
+                } else {
+                    const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                    this.showMessage(message).then(() => {
+                        ElMessage.info(message);
+                    });
+                }
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+
+        } else if (tabName === 'four') {
+            const requestSegundoReporte = await this.ETMIPLUS_API_Client.reporte2POST(reporteForm.idGestanteControl, reporteForm) as any;
+            console.log('response', requestSegundoReporte)
+
+
+            if (requestSegundoReporte.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                    this.activeName = tabName;
+                    this.disabledThree = false
+                });
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+        } else if (tabName === 'five') {
+            console.log('request', reporteForm)
+            const requestTercerReporte = await this.ETMIPLUS_API_Client.reporte3POST(reporteForm.idGestanteControl, reporteForm) as any;
+            console.log('response', requestTercerReporte)
+
+
+            if (requestTercerReporte.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                    this.activeName = tabName;
+                    this.disabledFour = false
+                });
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+        } else if (tabName === 'six') {
+            console.log('request', reporteForm)
+            const requestCuartoReporte = await this.ETMIPLUS_API_Client.reporte4POST(reporteForm.idGestanteControl, reporteForm) as any;
+            console.log('response', requestCuartoReporte)
+
+
+            if (requestCuartoReporte.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                    this.activeName = tabName;
+                    this.disabledFive = false
+                });
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+        } else if (tabName === 'seven') {
+            console.log('request', reporteForm)
+            const requestQuintoReporte = await this.ETMIPLUS_API_Client.reporte5POST(reporteForm.idGestanteControl, reporteForm) as any;
+            console.log('response', requestQuintoReporte)
+
+            this.activeName = tabName
+
+            if (requestQuintoReporte.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+                reporteForm.listParaclinicos.map((paraClinico: any) => {
+                    paraClinico.idReporte = Number(requestQuintoReporte.data.idReporte)
+                })
+
+                console.log('paraclinicos del menor', reporteForm.listParaclinicos)
+
+                const requestParaCliniciMenor = await this.ETMIPLUS_API_Client.paraclinicoNinoPOST(requestQuintoReporte.data.idReporte, reporteForm.listParaclinicos) as any;
+
+                if (requestParaCliniciMenor.length !== 0) {
+                    const message = 'Paraclínicos guardados con éxito.'
+                    this.showMessage(message).then(() => {
+                        ElMessage.info(message);
+                        this.activeName = tabName;
+                        this.disabledSix = false
+                    });
+                } else {
+                    const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                    this.showMessage(message).then(() => {
+                        ElMessage.info(message);
+                    });
+                }
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+
+        } else if (tabName === 'end') {
+            console.log('request', reporteForm)
+            const reporteBinomio = await this.ETMIPLUS_API_Client.reporteBinomioPOST(reporteForm.idGestante, reporteForm) as any;
+            console.log('response', reporteBinomio)
+
+            this.activeName = tabName
+
+            if (reporteBinomio.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+
+        }
+    }
+
     submitForm = async (formEl: FormInstance | undefined, tab: string) => {
         if (!formEl) return
         await formEl.validate((valid, fields) => {
@@ -962,7 +1234,7 @@ export default class HepatitisBView extends Vue {
                 console.log('enviando!')
                 if (tab !== 'end') {
                     //console.log(fields)
-                    //this.changeTab(tab)
+                    this.changeTab(tab)
                 } else {
                     console.log('valor a guardar', Number(this.idGestanteCtrl))
 
@@ -985,6 +1257,14 @@ export default class HepatitisBView extends Vue {
             }
         })
     }
+
+    showMessage(message: string) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(message);
+            }, 1000);
+        });
+    }
 }
 </script>
 
@@ -1003,6 +1283,10 @@ h5 {
 .select-width .select-trigger {
     display: flex;
     flex: 1;
+}
+
+.w-100 {
+    width: 100%;
 }
 
 .demo-ruleForm .el-form-item--default .el-form-item__label {
