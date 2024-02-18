@@ -515,7 +515,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    diagnosticoGestante(idGestante: number, body?: DiagnosticoGestanteHB | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    diagnosticoGestante(idGestante: number, body?: IDiagnosticoGestanteHB | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestante}/HepatitisB/DiagnosticoGestante";
         if (idGestante === undefined || idGestante === null)
             throw new Error("The parameter 'idGestante' must be defined.");
@@ -557,7 +557,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1091,7 +1091,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1209,7 +1209,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1264,7 +1264,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1327,7 +1327,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1377,7 +1377,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1484,7 +1484,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1602,7 +1602,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1720,7 +1720,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1838,7 +1838,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1956,7 +1956,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2787,7 +2787,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    tratamientoSeguimientoGestante(idGestante: number, body: TratamientoSeguimientoGestanteHB | undefined, cancelToken?: CancelToken): Promise<void> {
+    tratamientoSeguimientoGestante(idGestante?: number, body?: ITratamientoSeguimientoGestanteHB | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestante}/HepatitisB/TratamientoSeguimientoGestante";
         if (idGestante === undefined || idGestante === null)
             throw new Error("The parameter 'idGestante' must be defined.");
@@ -2829,7 +2829,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2897,7 +2897,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    vacunacion(idSeguimiento: number, body: VacunacionHB | undefined, cancelToken?: CancelToken): Promise<void> {
+    vacunacion(idSeguimiento?: number, body?: IVacunacionHB | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Seguimiento/{idSeguimiento}/HepatitisB/Vacunacion";
         if (idSeguimiento === undefined || idSeguimiento === null)
             throw new Error("The parameter 'idSeguimiento' must be defined.");
@@ -2939,7 +2939,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -5308,7 +5308,7 @@ export interface ISeguimientoNinoExpuestoHB {
     aplicaronInmunoglobulinaRecienNacido?: number;
     idTiempoAplicacionInmonoglobulina?: number;
     tiempoAplicacionInmonoglobulina?: Parametrica;
-    vacunacion?: VacunacionHB[] | undefined;
+    vacunacion?: IVacunacionHB[] | undefined;
     clasificacionNinoExpuesto?: ClasificacionNinoExpuestoHB[] | undefined;
 }
 

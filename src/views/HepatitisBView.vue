@@ -103,7 +103,7 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Valor unidades internacionales/Ml" prop="resultadoAntigenoCargaViral">
                                 <el-input v-model="ruleFormHbDiagnosticoHb.resultadoAntigenoCargaViral" type="number"
-                                    step="0.1" placeholder="Resultado" />
+                                    step="1" placeholder="Resultado" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
@@ -206,6 +206,12 @@
                             </el-form-item>
                         </el-col>
                     </el-row>
+                    <el-row class="row-bg" justify="end">
+                        <div class="btn-save">
+                            <el-button type="primary" size="default" @click="submitForm(thirdForm, 'four')">guardar y
+                                continuar</el-button>
+                        </div>
+                    </el-row>
                 </section>
             </el-form>
         </el-tab-pane>
@@ -220,7 +226,7 @@
                             <h4 class="align-start">Seguimiento del niño o niña expuesto al virus de la hepatitis B</h4>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                            <el-form-item label="Condición del recien nacido:" prop="situacionGestante"
+                            <el-form-item label="Condición del recien nacido:" prop="condicionRecienNacido"
                                 class="select-width w-100">
                                 <el-select v-model="ruleFormHbSeguimientoMenorExp.condicionRecienNacido"
                                     placeholder="Condición del recien nacido:">
@@ -230,9 +236,10 @@
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                            <el-form-item v-model="ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas"
-                                label="Edad gestacional al nacimiento, en semanas:">
-                                <el-input type="number" />
+                            <el-form-item label="Edad gestacional al nacimiento, en semanas:"
+                                prop="edadGestacionalNacimientoSemanas">
+                                <el-input type="number"
+                                    v-model="ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
@@ -281,8 +288,8 @@
                                 <el-input v-model="ruleFormHbSeguimientoMenorExp.nombreAseguradora" />
                             </el-form-item>
                         </el-col>
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" prop="nombresApellidos">
-                            <el-form-item label="Nombres y Apellidos">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                            <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
                                 <el-input v-model="ruleFormHbSeguimientoMenorExp.nombresApellidos" />
                             </el-form-item>
                         </el-col>
@@ -303,7 +310,8 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Aplicacion de la dosis de vacuna contra HB al recién nacido:"
                                 prop="aplicaronDosisVacunaRecienNacido">
-                                <el-radio-group v-model="ruleFormHbSeguimientoMenorExp.aplicaronDosisVacunaRecienNacido">
+                                <el-radio-group v-model="ruleFormHbSeguimientoMenorExp.aplicaronDosisVacunaRecienNacido"
+                                    @change="toggleEnableBoolean1">
                                     <el-radio :label="1">Si</el-radio>
                                     <el-radio :label="0">No</el-radio>
                                 </el-radio-group>
@@ -324,8 +332,8 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Aplicacion de la Inmunoglobina para HB al recién nacido:"
                                 prop="aplicaronInmunoglobulinaRecienNacido">
-                                <el-radio-group
-                                    v-model="ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido">
+                                <el-radio-group v-model="ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido"
+                                    @change="toggleEnableBoolean2">
                                     <el-radio :label="1">Si</el-radio>
                                     <el-radio :label="0">No</el-radio>
                                 </el-radio-group>
@@ -334,19 +342,13 @@
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                             <el-form-item label="Su aplicacion se hizo en que tiempo" prop="tiempoAplicacionInmonoglobulina"
                                 class="select-width">
-                                <el-select :disabled="enableaplicaronDosisVacunaRecienNacido"
+                                <el-select :disabled="enableInmunoglobinaHbRecienNacido"
                                     v-model="ruleFormHbSeguimientoMenorExp.tiempoAplicacionInmonoglobulina"
                                     placeholder="Su aplicacion se hizo en que tiempo">
                                     <el-option v-for="(taiv, index) in tiempoAplicacionInmonoglobulinaList" :key="index"
                                         :label="taiv.valor" :value="taiv.id" />
                                 </el-select>
 
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                            <el-form-item label="Fecha de aplicacion:" class="select-width">
-                                <el-date-picker type="date" placeholder="Fecha de aplicacion" :format="dateFormat"
-                                    :size="size" />
                             </el-form-item>
                         </el-col>
 
@@ -375,6 +377,12 @@
                             </el-button>
                         </el-col>
                     </el-row>
+                    <el-row class="row-bg" justify="end">
+                        <div class="btn-save">
+                            <el-button type="primary" size="default" @click="submitForm(fourForm, 'five')">guardar y
+                                continuar</el-button>
+                        </div>
+                    </el-row>
                 </section>
             </el-form>
         </el-tab-pane>
@@ -386,10 +394,10 @@
                     <el-row :gutter="10" style="width: 100%;">
 
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                            <h4 class="align-start">clasificación del niño o niña expuesto frente virus de la hepatis B</h4>
+                            <h4 class="align-start">Clasificación del niño o niña expuesto frente virus de la hepatis B</h4>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left">
-                            <el-form-item label="Realizacion de antigeno de superficie de la HB (HBs Ag):"
+                            <el-form-item label="Realización de antigeno de superficie de la HB (HBs Ag):"
                                 prop="ResultadosAnticuerpo1" class="select-width">
                                 <el-radio-group v-model="ruleFormHbDatosGestante.ResultadosAnticuerpo1">
                                     <el-radio :label="0">Reactivo</el-radio>
@@ -441,6 +449,12 @@
 
                             </el-form-item>
                         </el-col>
+                    </el-row>
+                    <el-row class="row-bg" justify="end">
+                        <div class="btn-save">
+                            <el-button type="primary" size="default" @click="submitForm(fiveForm, 'six')">guardar y
+                                continuar</el-button>
+                        </div>
                     </el-row>
                 </section>
             </el-form>
@@ -522,7 +536,7 @@ interface IVacunacionHB {
     idDosisVacuna?: number;
     dosisVacuna?: IParametrica | IParametrica[];
     fechaAplicacion?: Date;
-    valid: boolean
+    valid?: boolean
 }
 
 @Options({
@@ -542,6 +556,7 @@ export default class HepatitisBView extends Vue {
     dateFormat = 'DD/MM/YYYY'
     position = 'right'
     enableaplicaronDosisVacunaRecienNacido = true
+    enableInmunoglobinaHbRecienNacido = true
 
 
     firstForm = ref<FormInstance>()
@@ -566,6 +581,21 @@ export default class HepatitisBView extends Vue {
         }
     ]
 
+    toggleEnableBoolean1() {
+        if (Number(this.ruleFormHbSeguimientoMenorExp.aplicaronDosisVacunaRecienNacido) === 0) {
+            this.enableaplicaronDosisVacunaRecienNacido = true
+        } else {
+            this.enableaplicaronDosisVacunaRecienNacido = false
+        }
+    }
+
+    toggleEnableBoolean2() {
+        if (Number(this.ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido) === 0) {
+            this.enableInmunoglobinaHbRecienNacido = true
+        } else {
+            this.enableInmunoglobinaHbRecienNacido = false
+        }
+    }
 
     addFields() {
         this.validarVacunaSeguimiento = true
@@ -998,7 +1028,7 @@ export default class HepatitisBView extends Vue {
 
     changeTab(tabName: string) {
 
-        console.log('nombre tab',tabName)
+        console.log('nombre tab', tabName)
         //document.getElementById('tab-'+tabName)?.classList.remove('is-disabled')
         //console.log(document.getElementById('tab-'+tabName))
         //const elTabComponent = this.$refs.elTab2 as HTMLElement; // Or use querySelector if necessary
@@ -1008,93 +1038,96 @@ export default class HepatitisBView extends Vue {
             this.activeName = tabName;
         } else if (tabName === 'three') {
             console.log('entro 3', tabName)
-            /*if (this.validarParaClinicos) {
-                console.log('enviando!')
-
-                //console.log(fields)
-
-                const valueParaclinicos = this.paraClinicosFields
-                const makeListaParaClinicos: IParaclinicoMadre[] = []
-
-                valueParaclinicos.map((fieldValue: any) => {
 
 
-                    makeListaParaClinicos.push(
-                        {
-                            idParaclinicoRealizado: Number(fieldValue.examenParaClinico),
-                            fechaParaclinico: new Date(moment(fieldValue.fechaExamenParaClinico).format('YYYY-MM-DD HH:mm:ss.sss')),
-                            resultadoParaclinico: Number(fieldValue.resultadoParaclinico)
-                        }
-                    )
-
-                });
-                console.log('makeListaParaClinicos', makeListaParaClinicos)
-
-                const request: IReporte1 = {
-                    idReporte: 0,
-                    idGestanteControl: this.idGestanteCtrl,
-                    idMomentoDiagnostico: Number(this.ruleFormPrimerReporte.momentoDiagnostico),
-                    idPruebaConfirmarVih: Number(this.ruleFormPrimerReporte.pruebaConfirmarVih),
-                    fechaDiagnostico: new Date(moment(this.ruleFormPrimerReporte.fechaDiagnostico).format('YYYY-MM-DD HH:mm:ss.sss')),
-                    idResultados: Number(this.ruleFormPrimerReporte.idResultados),
-                    numeroCopias: Number(this.ruleFormPrimerReporte.numeroCopias),
-                    estabaRecibiendoTARAntesEmbarazo: Number(this.ruleFormPrimerReporte.estabaRecibiendoTARAntesEmbarazo),
-                    recibioTARDuranteEmbarazo: Number(this.ruleFormPrimerReporte.recibioTARDuranteEmbarazo),
-                    estabaRecibiendoTARDuranteEmbarazoActual: Number(this.ruleFormPrimerReporte.estabaRecibiendoTARDuranteEmbarazoActual),
-                    edadGestacionalInicioTARSemanas: Number(this.ruleFormPrimerReporte.edadGestacionalInicioTARSemanas),
-                    edadGestacionalAlDianosticoVIHSemanas: Number(this.ruleFormPrimerReporte.edadGestacionalAlDianosticoVIHSemanas),
-                    medicamentosARVSuministrados: JSON.stringify(this.ruleFormPrimerReporte.medicamentosARVSuministrados),
-                    seRealizoControlPrenatalDuranteEmbarazo: Number(this.ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo),
-                    edadGestacionalPrimerControlPrenatalSemanas: Number(this.ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas),
-                    fechaProbableParto: new Date(moment(this.ruleFormPrimerReporte.fechaProbableParto).format('YYYY-MM-DD HH:mm:ss.sss')),
-                    listParaclinicos: makeListaParaClinicos
-                }
-                this.registroReporte(request, tabName)
-
-            } else {
-                ElMessageBox.alert(`Por favor complete los campos paraclinicos`, { type: "warning" });
+            const request: IDiagnosticoGestanteHB = {
+                idDiagnosticoGestante: 0,
+                idGestanteControl: this.idGestanteCtrl,
+                idMomentoDiagnostico: Number(this.ruleFormHbDiagnosticoHb.momentoDiagnostico),
+                edadGestacional: Number(this.ruleFormHbDiagnosticoHb.edadGestacional),
+                fechaResultadoReactivo: new Date(moment(this.ruleFormHbDiagnosticoHb.fechaResultadoReactivo).format('YYYY-MM-DD HH:mm:ss.sss')),
+                resultadoAntiHBcIgM: Number(this.ruleFormHbDiagnosticoHb.resultadoAntiHBcIgM),
+                fechaResultadoAntiHBcIgM: new Date(moment(this.ruleFormHbDiagnosticoHb.fechaResultadoAntiHBcIgM).format('YYYY-MM-DD HH:mm:ss.sss')),
+                resultadoAntiHBcTotalOlgG: Number(this.ruleFormHbDiagnosticoHb.resultadoAntiHBcTotalOlgG),
+                fechaResultadoAntiHBcTotalOlgG: new Date(moment(this.ruleFormHbDiagnosticoHb.fechaResultadoAntiHBcTotalOlgG).format('YYYY-MM-DD HH:mm:ss.sss')),
+                resultadoAntiHBeAg: Number(this.ruleFormHbDiagnosticoHb.resultadoAntiHBeAg),
+                fechaResultadoAntiHBeAg: new Date(moment(this.ruleFormHbDiagnosticoHb.fechaResultadoAntiHBeAg).format('YYYY-MM-DD HH:mm:ss.sss')),
+                resultadoAntigenoCargaViral: Number(this.ruleFormHbDiagnosticoHb.resultadoAntigenoCargaViral),
+                fechaResultadoCargaViral: new Date(moment(this.ruleFormHbDiagnosticoHb.fechaResultadoCargaViral).format('YYYY-MM-DD HH:mm:ss.sss'))
             }
-*/
+            this.registroReporte(request, tabName)
+
             this.disabledThree = false
             this.activeName = tabName;
-        }   
+        } else if (tabName === 'four') {
+            //this.activeName = tabName
+
+            const request: ITratamientoSeguimientoGestanteHB = {
+                idTratamientoSeguimiento: 0,
+                idDiagnosticoGestante: Number(this.idGestanteCtrl),
+                recibioTratamientoAntesEmbarazoActual: Number(this.ruleFormHbTratamiento.recibioTratamientoAntesEmbarazoActual),
+                requiereTratamientoAntesEmbarazoActual: Number(this.ruleFormHbTratamiento.requiereTratamientoAntesEmbarazoActual),
+                edadGestacionalRecibioTratamientoAntesSemana: Number(this.ruleFormHbTratamiento.edadGestacionalRecibioTratamientoAntesSemana),
+                requiereTratamientoDuranteEmbarazoActual: Number(this.ruleFormHbTratamiento.requiereTratamientoDuranteEmbarazoActual),
+                edadGestacionalRecibioTratamientoDuranteSemana: Number(this.ruleFormHbTratamiento.edadGestacionalRecibioTratamientoDuranteSemana),
+                nombreMedicamentoTratamiento: this.ruleFormHbTratamiento.nombreMedicamentoTratamiento,
+                idSituacionGestante: Number(this.ruleFormHbTratamiento.situacionGestante)
+            }
+            this.registroReporte(request, tabName)
+
+        } else if (tabName === 'five') {
+            //this.disabledFive = false
+            //this.activeName = tabName  
+            const setVacunacion = this.vacunaSeguimiento.map((res: any) => {
+                return {
+                    idVacuna: 0,
+                    idSeguimientoNinoExpuesto: 0,
+                    idDosisVacuna: res.dosisVacuna,
+                    fechaAplicacion: res.fechaAplicacion
+                }
+
+            })
+
+            console.log('vacunas', setVacunacion)
+
+            const request: ISeguimientoNinoExpuestoHB = {
+                idSeguimientoNinoExpuesto: 0,
+                idGestanteControl: Number(this.idGestanteCtrl),
+                idCondicionRecienNacido: Number(this.ruleFormHbSeguimientoMenorExp.condicionRecienNacido),
+                edadGestacionalNacimientoSemanas: Number(this.ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas),
+                idTipoParto: Number(this.ruleFormHbSeguimientoMenorExp.tipoParto),
+                idNumeroProductosNacimiento: Number(this.ruleFormHbSeguimientoMenorExp.numeroProductosNacimiento),
+                fechaParto: new Date(moment(this.ruleFormHbSeguimientoMenorExp.fechaParto).format('YYYY-MM-DD HH:mm:ss.sss')),
+                idSexo: Number(this.ruleFormHbSeguimientoMenorExp.sexo),
+                idTipoRegimenSalud: Number(this.ruleFormHbSeguimientoMenorExp.tipoRegimenSalud),
+                nombreAseguradora: this.ruleFormHbSeguimientoMenorExp.nombreAseguradora,
+                nombresApellidos: this.ruleFormHbSeguimientoMenorExp.nombresApellidos,
+                idTipoDocumento: Number(this.ruleFormHbSeguimientoMenorExp.tipoDocumento),
+                numeroIdentificacion: this.ruleFormHbSeguimientoMenorExp.numeroIdentificacion,
+                aplicaronDosisVacunaRecienNacido: Number(this.ruleFormHbSeguimientoMenorExp.aplicaronDosisVacunaRecienNacido),
+                idTiempoAplicacionVacuna: Number(this.ruleFormHbSeguimientoMenorExp.tiempoAplicacionVacuna),
+                aplicaronInmunoglobulinaRecienNacido: Number(this.ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido),
+                idTiempoAplicacionInmonoglobulina: Number(this.ruleFormHbSeguimientoMenorExp.tiempoAplicacionInmonoglobulina),
+                //vacunacion: setVacunacion
+            }
+            this.registroReporte(request, tabName)
+        }
         //console.log(elTabComponent)
     }
 
     async registroReporte(reporteForm: any, tabName: string) {
         console.log(reporteForm)
 
-        if (tabName === 'third') {
-            const requestPrimerReporte = await this.ETMIPLUS_API_Client.reporte1POST(reporteForm.idGestanteControl, reporteForm) as any;
+        if (tabName === 'three') {
+            const requestPrimerReporte = await this.ETMIPLUS_API_Client.diagnosticoGestante(reporteForm.idGestanteControl, reporteForm) as any;
             console.log('response', requestPrimerReporte)
 
 
             if (requestPrimerReporte.length !== 0) {
-                const message = 'Reporte guardado con éxito.'
+                const message = 'Diagnostico guardado con éxito.'
                 this.showMessage(message).then(() => {
                     ElMessage.info(message);
                 });
-                reporteForm.listParaclinicos.map((paraClinico: any) => {
-                    paraClinico.idReporte = Number(requestPrimerReporte.data.idReporte)
-                })
-
-                console.log('paraclinicos de la madre', reporteForm.listParaclinicos)
-
-                const requestParaCliniciMadre = await this.ETMIPLUS_API_Client.paraclinicoMadre(requestPrimerReporte.data.idReporte, reporteForm.listParaclinicos) as any;
-
-                if (requestParaCliniciMadre.length !== 0) {
-                    const message = 'Paraclínicos guardados con éxito.'
-                    this.showMessage(message).then(() => {
-                        ElMessage.info(message);
-                        this.activeName = tabName;
-                        this.disabledTwo = false
-                    });
-                } else {
-                    const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
-                    this.showMessage(message).then(() => {
-                        ElMessage.info(message);
-                    });
-                }
 
             } else {
                 const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
@@ -1104,9 +1137,8 @@ export default class HepatitisBView extends Vue {
             }
 
         } else if (tabName === 'four') {
-            const requestSegundoReporte = await this.ETMIPLUS_API_Client.reporte2POST(reporteForm.idGestanteControl, reporteForm) as any;
+            const requestSegundoReporte = await this.ETMIPLUS_API_Client.tratamientoSeguimientoGestante(reporteForm.idDiagnosticoGestante, reporteForm) as any;
             console.log('response', requestSegundoReporte)
-
 
             if (requestSegundoReporte.length !== 0) {
                 const message = 'Reporte guardado con éxito.'
@@ -1124,17 +1156,45 @@ export default class HepatitisBView extends Vue {
             }
         } else if (tabName === 'five') {
             console.log('request', reporteForm)
-            const requestTercerReporte = await this.ETMIPLUS_API_Client.reporte3POST(reporteForm.idGestanteControl, reporteForm) as any;
+            const requestTercerReporte = await this.ETMIPLUS_API_Client.seguimientoNinoExpuesto(reporteForm.idGestanteControl, reporteForm) as any;
             console.log('response', requestTercerReporte)
 
 
             if (requestTercerReporte.length !== 0) {
+
                 const message = 'Reporte guardado con éxito.'
                 this.showMessage(message).then(() => {
                     ElMessage.info(message);
+
+                });
+
+                const setVacunacion = this.vacunaSeguimiento.map((res: any) => {
+                    return {
+                        idVacuna: 0,
+                        idSeguimientoNinoExpuesto: Number(requestTercerReporte.data.idSeguimientoNinoExpuesto),
+                        idDosisVacuna: Number(res.dosisVacuna),
+                        fechaAplicacion: new Date(moment(res.fechaAplicacion).format('YYYY-MM-DD HH:mm:ss.sss')),
+                    }
+
+                })
+
+                console.log('vacunas', setVacunacion)
+                reporteForm.vacunacion = setVacunacion
+
+                const requestVacunasNinoExpHb = await this.ETMIPLUS_API_Client.vacunacion(requestTercerReporte.data.idSeguimientoNinoExpuesto, reporteForm.vacunacion) as any;
+                console.log('response vacunas', requestVacunasNinoExpHb)
+
+                if (requestVacunasNinoExpHb.length !== 0) {
+                    const message = 'Vacunas guardadas con éxito.'
+                    this.showMessage(message).then(() => {
+                        ElMessage.info(message);
+                    });
                     this.activeName = tabName;
                     this.disabledFour = false
-                });
+                } else {
+                    this.activeName = tabName;
+                    this.disabledFour = false
+                }
 
             } else {
                 const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
