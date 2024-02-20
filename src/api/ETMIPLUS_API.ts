@@ -350,7 +350,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    clasificacionNinoExpuesto(idGestante: number, body?: ClasificacionNinoExpuestoHB | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    clasificacionNinoExpuesto(idGestante: number, body?: IClasificacionNinoExpuestoHB | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/Gestante/{idGestante}/HepatitisB/ClasificacionNinoExpuesto";
         if (idGestante === undefined || idGestante === null)
             throw new Error("The parameter 'idGestante' must be defined.");
@@ -392,7 +392,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -460,7 +460,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    diagnosticoEnfermedadGestante(idGestanteControl: number, body?: DiagnosticoEnfermedadGestanteChagas | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    diagnosticoEnfermedadGestante(idGestanteControl?: number, body?: IDiagnosticoEnfermedadGestanteChagas | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/Chagas/DiagnosticoEnfermedadGestante";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -502,7 +502,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -1053,7 +1053,7 @@ export class EtmiPlusClient {
     /**
      * @return Success
      */
-    hepatitisB(idGestanteControl: number, cancelToken?: CancelToken | undefined): Promise<void> {
+    hepatitisB(idGestanteControl?: number, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/HepatitisB/{idGestanteControl}";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -3131,7 +3131,7 @@ export interface IAlgoritmoChagas {
     idDiagnosticoGestante?: number;
     sospechaChagasAgudo?: number;
     idExamenParasitologico?: number;
-    examenParasitologico?: Parametrica;
+    examenParasitologico?: IParametrica;
     resultadoExamenParasitologico?: string | undefined;
     sospechaChagasCronicoOTamizajeControlPrenatal?: number;
     resultadoPruebaTamizajeElisaAntigenosTotales?: number;
@@ -3336,15 +3336,15 @@ export interface IClasificacionNinoExpuestoHB {
     idClasificacionNinoExpuesto?: number;
     idSeguimientoNinoExpuesto?: number;
     idResultadoAntiHBsAg?: number;
-    resultadoAntiHBsAg?: Parametrica;
+    resultadoAntiHBsAg?: IParametrica;
     fechaResultadoAntiHBsAg?: Date;
     idResultadoAntiHBs?: number;
-    resultadoAntiHBs?: Parametrica;
+    resultadoAntiHBs?: IParametrica;
     fechaResultadoAntiHBs?: Date;
     idCondicionFinal?: number;
-    condicionFinal?: Parametrica;
+    condicionFinal?: IParametrica;
     idClasificacionFinal?: number;
-    clasificacionFinal?: Parametrica;
+    clasificacionFinal?: IParametrica;
 }
 
 export class ControlEstadoFichas implements IControlEstadoFichas {
@@ -3544,11 +3544,11 @@ export interface IDiagnosticoEnfermedadGestanteChagas {
     idDiagnosticoGestante?: number;
     idGestanteControl?: number;
     idCondicionDiagnosticoChagas?: number;
-    condicionDiagnoticoChagas?: Parametrica;
+    condicionDiagnoticoChagas?: IParametrica;
     edadGestacionalSemanas?: number;
     edadGestacionalPrimerControlPrentalSemanas?: number;
     fechaProbableParto?: Date;
-    algoritmoChagas?: AlgoritmoChagas[] | undefined;
+    algoritmoChagas?: IAlgoritmoChagas[] | undefined;
 }
 
 export class DiagnosticoGestanteHB implements IDiagnosticoGestanteHB {

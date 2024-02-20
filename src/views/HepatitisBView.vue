@@ -388,63 +388,62 @@
         </el-tab-pane>
         <el-tab-pane label="Clasificación" name="five" ref="elTab5">
 
-            <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="fiveForm"
-                label-position="top">
+            <el-form :model="ruleFormHbClasificacion" :rules="rulesFormHbClasificacion" style="width: 100%;"
+                label-width="180px" :size="formSize" status-icon ref="fiveForm" label-position="top">
                 <section style="width: 100%;">
                     <el-row :gutter="10" style="width: 100%;">
 
                         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                            <h4 class="align-start">Clasificación del niño o niña expuesto frente virus de la hepatis B</h4>
+                            <h4 class="align-start">clasificación del niño o niña expuesto frente virus de la hepatis B</h4>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left">
                             <el-form-item label="Realización de antigeno de superficie de la HB (HBs Ag):"
-                                prop="ResultadosAnticuerpo1" class="select-width">
-                                <el-radio-group v-model="ruleFormHbDatosGestante.ResultadosAnticuerpo1">
-                                    <el-radio :label="0">Reactivo</el-radio>
-                                    <el-radio :label="1">No Reactivo</el-radio>
+                                prop="resultadoAntiHBsAg" class="select-width">
+                                <el-radio-group v-model="ruleFormHbClasificacion.resultadoAntiHBsAg">
+                                    <el-radio :label="1">Reactivo</el-radio>
+                                    <el-radio :label="0">No Reactivo</el-radio>
                                 </el-radio-group>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Fecha de resultado:" prop="fechaIngreso" class="select-width">
-                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                            <el-form-item label="Fecha de resultado:" prop="fechaResultadoAntiHBsAg" class="select-width">
+                                <el-date-picker v-model="ruleFormHbClasificacion.fechaResultadoAntiHBsAg" type="date"
                                     placeholder="Fecha de resultado" :format="dateFormat" :size="size" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="text-align:left">
                             <el-form-item
                                 label="Realizacion del anticuerpo contra el antigeno de superficie de la HB(Anti-HBs):"
-                                prop="ResultadosAnticuerpo1" class="select-width">
-                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
-                                    <el-radio :label="0">Reactivo</el-radio>
-                                    <el-radio :label="1">No Reactivo</el-radio>
+                                prop="resultadoAntiHBs" class="select-width">
+                                <el-radio-group v-model="ruleFormHbClasificacion.resultadoAntiHBs">
+                                    <el-radio :label="1">Reactivo</el-radio>
+                                    <el-radio :label="0">No Reactivo</el-radio>
                                 </el-radio-group>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Fecha de resultado:" prop="fechaIngreso" class="select-width">
-                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                            <el-form-item label="Fecha de resultado:" prop="fechaResultadoAntiHBs" class="select-width">
+                                <el-date-picker v-model="ruleFormHbClasificacion.fechaResultadoAntiHBs" type="date"
                                     placeholder="Fecha de resultado" :format="dateFormat" :size="size" />
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="text-align:left"
                             class="column-custom mb">
-                            <el-form-item label="Condicion final de niño o niña expuesto:" prop="fechaIngreso"
+                            <el-form-item label="Condicion final de niño o niña expuesto:" prop="condicionFinal"
                                 class="select-width">
-                                <el-radio-group>
+                                <el-radio-group v-model="ruleFormHbClasificacion.condicionFinal">
                                     <el-radio :label="1">Vivo</el-radio>
                                     <el-radio :label="2">muerto</el-radio>
                                 </el-radio-group>
                             </el-form-item>
                         </el-col>
                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                            <el-form-item label="Clasificación del niño o niña expuesto frente al virus epatitis B"
-                                prop="tipoDocumento" class="select-width" style="width:100%">
-                                <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                            <el-form-item label="Clasificación del niño o niña expuesto frente al virus hepatitis B"
+                                prop="clasificacionFinal" class="select-width" style="width:100%">
+                                <el-select v-model="ruleFormHbClasificacion.clasificacionFinal"
                                     placeholder="Clasificación del niño o niña expuesto">
-                                    <el-option label="Infeccion por epatitis B confirmada " value="1" />
-                                    <el-option label="MInfeccion por epatitis B descartada " value="2" />
-                                    <el-option label="Fallecio sin clasificaion" value="3" />
+                                    <el-option v-for="(cne, index) in clasificacionNinoExpList" :key="index" :label="cne.valor"
+                                            :value="cne.id" />
                                 </el-select>
 
                             </el-form-item>
@@ -523,7 +522,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoGestanteHB, ITratamientoSeguimientoGestanteHB, IParametrica, ISeguimientoNinoExpuestoHB } from "@/api/ETMIPLUS_API";
+import { IDiagnosticoGestanteHB, ITratamientoSeguimientoGestanteHB, IParametrica, ISeguimientoNinoExpuestoHB, IClasificacionNinoExpuestoHB } from "@/api/ETMIPLUS_API";
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
@@ -568,6 +567,7 @@ export default class HepatitisBView extends Vue {
     sevenForm = ref<FormInstance>()
 
     dosisVacunaList: IParametrica[] = [];
+    clasificacionNinoExpList: IParametrica[] = [];
 
     formSize = 'default';
 
@@ -658,8 +658,72 @@ export default class HepatitisBView extends Vue {
 */
         const gestanteCtrl = this.$route.params.idGCtrl;
         this.idGestanteCtrl = Number(gestanteCtrl);
-        this.getParamsDbFirsTap('two')
+        this.getParamsDbFirsTap('two');
+        this.getAllFicha(this.idGestanteCtrl)
 
+    }
+
+    pulbicIdDiagnosticoGestante = 0
+    publicIdSeguimientoNinoExpuesto = 0
+
+    async getAllFicha(idGestanteCtrl: number) {
+        const fichaHb = await this.ETMIPLUS_API_Client.hepatitisB(idGestanteCtrl) as any;
+        console.log('llego ficha', fichaHb)
+
+        if (fichaHb.data.diagnosticoGestante.length !== 0) {
+            this.pulbicIdDiagnosticoGestante = fichaHb.data.diagnosticoGestante[0].idDiagnosticoGestante;
+            this.ruleFormHbDiagnosticoHb.momentoDiagnostico = fichaHb.data.diagnosticoGestante[0].idMomentoDiagnostico;
+            this.ruleFormHbDiagnosticoHb.edadGestacional = fichaHb.data.diagnosticoGestante[0].edadGestacional;
+            this.ruleFormHbDiagnosticoHb.fechaResultadoReactivo = fichaHb.data.diagnosticoGestante[0].fechaResultadoReactivo;
+            this.ruleFormHbDiagnosticoHb.resultadoAntiHBcIgM = fichaHb.data.diagnosticoGestante[0].resultadoAntiHBcIgM;
+            this.ruleFormHbDiagnosticoHb.fechaResultadoAntiHBcIgM = fichaHb.data.diagnosticoGestante[0].fechaResultadoAntiHBcIgM;
+            this.ruleFormHbDiagnosticoHb.resultadoAntiHBcTotalOlgG = fichaHb.data.diagnosticoGestante[0].resultadoAntiHBcTotalOlgG;
+            this.ruleFormHbDiagnosticoHb.fechaResultadoAntiHBcTotalOlgG = fichaHb.data.diagnosticoGestante[0].fechaResultadoAntiHBcTotalOlgG;
+            this.ruleFormHbDiagnosticoHb.resultadoAntiHBeAg = fichaHb.data.diagnosticoGestante[0].resultadoAntiHBeAg;
+            this.ruleFormHbDiagnosticoHb.fechaResultadoAntiHBeAg = fichaHb.data.diagnosticoGestante[0].fechaResultadoAntiHBeAg;
+            this.ruleFormHbDiagnosticoHb.resultadoAntigenoCargaViral = fichaHb.data.diagnosticoGestante[0].resultadoAntigenoCargaViral;
+            this.ruleFormHbDiagnosticoHb.fechaResultadoCargaViral = fichaHb.data.diagnosticoGestante[0].fechaResultadoCargaViral;
+            this.ruleFormHbDiagnosticoHb.fechaResultadoCargaViral = fichaHb.data.diagnosticoGestante[0].fechaResultadoCargaViral;
+            if (fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante.length !== 0) {
+                console.log('entro aqui')
+                this.ruleFormHbTratamiento.recibioTratamientoAntesEmbarazoActual = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].recibioTratamientoAntesEmbarazoActual;
+                this.ruleFormHbTratamiento.requiereTratamientoAntesEmbarazoActual = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].requiereTratamientoAntesEmbarazoActual;
+                this.ruleFormHbTratamiento.edadGestacionalRecibioTratamientoAntesSemana = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].edadGestacionalRecibioTratamientoAntesSemana;
+                this.ruleFormHbTratamiento.requiereTratamientoDuranteEmbarazoActual = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].requiereTratamientoDuranteEmbarazoActual;
+                this.ruleFormHbTratamiento.edadGestacionalRecibioTratamientoDuranteSemana = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].edadGestacionalRecibioTratamientoDuranteSemana;
+                this.ruleFormHbTratamiento.nombreMedicamentoTratamiento = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].nombreMedicamentoTratamiento;
+                this.ruleFormHbTratamiento.situacionGestante = fichaHb.data.diagnosticoGestante[0].tratamientoSeguimientoGestante[0].idSituacionGestante;
+            }
+        }
+        if (fichaHb.data.seguimientoNinoExpuesto.length !== 0) {
+            this.publicIdSeguimientoNinoExpuesto = fichaHb.data.seguimientoNinoExpuesto[0].idSeguimientoNinoExpuesto;
+            this.ruleFormHbSeguimientoMenorExp.condicionRecienNacido = fichaHb.data.seguimientoNinoExpuesto[0].idCondicionRecienNacido;
+            this.ruleFormHbSeguimientoMenorExp.edadGestacionalNacimientoSemanas = fichaHb.data.seguimientoNinoExpuesto[0].edadGestacionalNacimientoSemanas;
+            this.ruleFormHbSeguimientoMenorExp.tipoParto = fichaHb.data.seguimientoNinoExpuesto[0].idTipoParto;
+            this.ruleFormHbSeguimientoMenorExp.numeroProductosNacimiento = fichaHb.data.seguimientoNinoExpuesto[0].idNumeroProductosNacimiento;
+            this.ruleFormHbSeguimientoMenorExp.fechaParto = fichaHb.data.seguimientoNinoExpuesto[0].fechaParto;
+            this.ruleFormHbSeguimientoMenorExp.sexo = fichaHb.data.seguimientoNinoExpuesto[0].idSexo;
+            this.ruleFormHbSeguimientoMenorExp.tipoRegimenSalud = fichaHb.data.seguimientoNinoExpuesto[0].idTipoRegimenSalud;
+            this.ruleFormHbSeguimientoMenorExp.nombreAseguradora = fichaHb.data.seguimientoNinoExpuesto[0].nombreAseguradora;
+            this.ruleFormHbSeguimientoMenorExp.nombresApellidos = fichaHb.data.seguimientoNinoExpuesto[0].nombresApellidos;
+            this.ruleFormHbSeguimientoMenorExp.tipoDocumento = fichaHb.data.seguimientoNinoExpuesto[0].idTipoDocumento;
+            this.ruleFormHbSeguimientoMenorExp.numeroIdentificacion = fichaHb.data.seguimientoNinoExpuesto[0].numeroIdentificacion;
+            this.ruleFormHbSeguimientoMenorExp.aplicaronDosisVacunaRecienNacido = fichaHb.data.seguimientoNinoExpuesto[0].aplicaronDosisVacunaRecienNacido;
+            this.ruleFormHbSeguimientoMenorExp.tiempoAplicacionVacuna = fichaHb.data.seguimientoNinoExpuesto[0].idTiempoAplicacionVacuna;
+            this.ruleFormHbSeguimientoMenorExp.aplicaronInmunoglobulinaRecienNacido = fichaHb.data.seguimientoNinoExpuesto[0].aplicaronInmunoglobulinaRecienNacido;
+            this.ruleFormHbSeguimientoMenorExp.tiempoAplicacionInmonoglobulina = fichaHb.data.seguimientoNinoExpuesto[0].idTiempoAplicacionInmonoglobulina;
+            this.vacunaSeguimiento = fichaHb.data.seguimientoNinoExpuesto[0].vacunacion
+            this.vacunaSeguimiento.map((vacuna: any) => {
+                console.log('llego la vacuna',vacuna)
+                //examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: ''
+                vacuna.dosisVacuna = vacuna.idDosisVacuna;
+                //vacuna.fechaAplicacion = vacuna.fechaAplicacion; 
+            })
+
+            /*fichaHb.data.seguimientoNinoExpuesto[0].vacunacion.map((vacuna: any) => {
+                this.vacunaSeguimiento.push(vacuna)
+            })*/
+        }
     }
 
     async getParamsDbFirsTap(step: string) {
@@ -701,9 +765,11 @@ export default class HepatitisBView extends Vue {
             this.dosisVacunaList = dosisVacuna.data
 
 
-        } /*else if (step === 'five') {
-
-        } else if (step === 'six') {
+        } else if (step === 'five') {
+            const clasificacionNinoExp = await this.ETMIPLUS_API_Client.parametrica2('CLASIFICACION_FINAL_NINO_EXPUESTO') as any;
+            this.clasificacionNinoExpList = clasificacionNinoExp.data
+            
+        } /*else if (step === 'six') {
 
         }*/
     }
@@ -801,6 +867,15 @@ export default class HepatitisBView extends Vue {
         tiempoAplicacionInmonoglobulina: [] as any,
         vacunacion: [] as any,
         clasificacionNinoExpuesto: []
+    })
+
+    ruleFormHbClasificacion = reactive<IClasificacionNinoExpuestoHB>({
+        resultadoAntiHBsAg: [] as any,
+        fechaResultadoAntiHBsAg: new Date(),
+        resultadoAntiHBs: [] as any,
+        fechaResultadoAntiHBs: new Date(),
+        condicionFinal: [] as any,
+        clasificacionFinal: [] as any
     })
 
 
@@ -1026,6 +1101,51 @@ export default class HepatitisBView extends Vue {
         ]
     })
 
+    rulesFormHbClasificacion = reactive<FormRules<IClasificacionNinoExpuestoHB>>({
+        resultadoAntiHBsAg: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            },
+        ],
+        fechaResultadoAntiHBsAg: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            },
+        ],
+        resultadoAntiHBs: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            },
+        ],
+        fechaResultadoAntiHBs: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            },
+        ],
+        condicionFinal: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            },
+        ],
+        clasificacionFinal: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change',
+            },
+        ]
+    })
+
     changeTab(tabName: string) {
 
         console.log('nombre tab', tabName)
@@ -1111,10 +1231,23 @@ export default class HepatitisBView extends Vue {
                 //vacunacion: setVacunacion
             }
             this.registroReporte(request, tabName)
+        } else if (tabName === 'six') {
+            const request: IClasificacionNinoExpuestoHB = {
+                idClasificacionNinoExpuesto: 0,
+                idSeguimientoNinoExpuesto: 0,
+                idResultadoAntiHBsAg: Number(this.ruleFormHbClasificacion.resultadoAntiHBsAg),
+                fechaResultadoAntiHBsAg: new Date(moment(this.ruleFormHbClasificacion.fechaResultadoAntiHBsAg).format('YYYY-MM-DD HH:mm:ss.sss')),
+                idResultadoAntiHBs: Number(this.ruleFormHbClasificacion.resultadoAntiHBs),
+                fechaResultadoAntiHBs: new Date(moment(this.ruleFormHbClasificacion.fechaResultadoAntiHBs).format('YYYY-MM-DD HH:mm:ss.sss')),
+                idCondicionFinal: Number(this.ruleFormHbClasificacion.condicionFinal),
+                idClasificacionFinal: Number(this.ruleFormHbClasificacion.clasificacionFinal),
+            }
+            this.registroReporte(request, tabName)
         }
         //console.log(elTabComponent)
     }
 
+    idSeguimientNinoExp = 0;
     async registroReporte(reporteForm: any, tabName: string) {
         console.log(reporteForm)
 
@@ -1168,6 +1301,8 @@ export default class HepatitisBView extends Vue {
 
                 });
 
+                this.idSeguimientNinoExp = requestTercerReporte.data.idSeguimientoNinoExpuesto
+
                 const setVacunacion = this.vacunaSeguimiento.map((res: any) => {
                     return {
                         idVacuna: 0,
@@ -1203,8 +1338,11 @@ export default class HepatitisBView extends Vue {
                 });
             }
         } else if (tabName === 'six') {
+            reporteForm.idSeguimientoNinoExpuesto = this.idSeguimientNinoExp !== 0 ? this.idSeguimientNinoExp : this.publicIdSeguimientoNinoExpuesto
             console.log('request', reporteForm)
-            const requestCuartoReporte = await this.ETMIPLUS_API_Client.reporte4POST(reporteForm.idGestanteControl, reporteForm) as any;
+            const ctrlIdGstante = this.idGestanteCtrl as any
+            console.log('id ctrl gestante', ctrlIdGstante)
+            const requestCuartoReporte = await this.ETMIPLUS_API_Client.clasificacionNinoExpuesto(ctrlIdGstante, reporteForm) as any;
             console.log('response', requestCuartoReporte)
 
 
