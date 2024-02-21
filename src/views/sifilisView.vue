@@ -3,164 +3,7 @@
     <h4>SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO:ETMI-PLUS</h4>
     <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb">
         <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-            <el-tab-pane label="Datos" name="first" ref="elTab1">
-                <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                    ref="firstForm" :label-position="labelPosition">
-                    <section style="width: 100%;">
-                        <el-row :gutter="10" style="width: 100%;">
-                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom">
-                                <label class="label-field title-field" style="width:200px;margin-right: 10px;">Fecha de
-                                    registro de la información </label>
-                                <el-date-picker type="date" placeholder="Fecha de registro de la información"
-                                    :format="dateFormat" :size="size" />
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
-                                    <el-input v-model="ruleFormDatosGestante.nombresApellidos" />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Nacionalidad" prop="nacionalidad" class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.nacionalidad" placeholder="Nacionalidad">
-                                        <el-option label="Colombiana" value="1" />
-                                        <el-option label="Extranjera" value="2" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.tipoDocumento"
-                                        placeholder="Tipo de Documento">
-                                        <el-option label="Registro civil" value="1" />
-                                        <el-option label="Tarjeta de identidad" value="3" />
-                                        <el-option label="Menor sin identificar" value="4" />
-                                        <el-option label="Adulto sin identificar" value="5" />
-                                        <el-option label="Cedula de ciudadanía" value="6" />
-                                        <el-option label="Pasaporte" value="7" />
-                                        <el-option label="Salvo conducto" value="8" />
-                                        <el-option label="Permiso especial de permanencia" value="9" />
-                                        <el-option label="Cedula de extranjería" value="10" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Número de identificación" prop="documentNumber">
-                                    <el-input v-model="ruleFormDatosGestante.documentNumber" type="number" />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Edad" prop="edad">
-                                    <el-input v-model="ruleFormDatosGestante.edad" type="number" />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud"
-                                    class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.tipoRegimenSalud"
-                                        placeholder="Tipo de regimen de salud">
-                                        <el-option label="Excepción" value="1" />
-                                        <el-option label="Contributivo" value="2" />
-                                        <el-option label="Subsidiado" value="3" />
-                                        <el-option label="Especial" value="4" />
-                                        <el-option label="No asegurado" value="5" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradora">
-                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Pertenencia etnica" prop="pertenenciaEtnica" class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.pertenenciaEtnica"
-                                        placeholder="Pertenencia etnica">
-                                        <el-option label="Palenquera" value="1" />
-                                        <el-option label="Afrocolombiana" value="2" />
-                                        <el-option label="Indigena" value="3" />
-                                        <el-option label="Raizal" value="4" />
-                                        <el-option label="Otro" value="5" />
-                                        <el-option label="Rom" value="6" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Grupo poblacional" prop="grupoPoblacional" class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.grupoPoblacional"
-                                        placeholder="Grupo poblacional">
-                                        <el-option label="Desplazada" value="1" />
-                                        <el-option label="Migrante" value="2" />
-                                        <el-option label="Victima de violencia armada" value="3" />
-                                        <el-option label="Discapacitada" value="4" />
-                                        <el-option label="Carceleria" value="5" />
-                                        <el-option label="Habitante de calle" value="6" />
-                                        <el-option label="Centro psiquiatrico" value="7" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Area de ocurrencia del caso" prop="areaOcurrencia" class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.areaOcurrencia"
-                                        placeholder="Area de ocurrencia del caso">
-                                        <el-option label="Cabecera municipal" value="1" />
-                                        <el-option label="Centro poblado" value="2" />
-                                        <el-option label="Rural disperso" value="3" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Departamento de residencia" prop="dptoResidencia"
-                                    class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.dptoResidencia"
-                                        placeholder="Departamento de residencia">
-                                        <el-option label="Bogotá" value="1" />
-                                        <el-option label="Cundinamarca" value="2" />
-                                        <el-option label="Quindio" value="3" />
-                                        <el-option label="Santander" value="4" />
-                                        <el-option label="Antioquia" value="5" />
-                                        <el-option label="Tolima" value="6" />
-                                        <el-option label="Atlántico" value="7" />
-                                        <el-option label="La Guajira" value="8" />
-                                        <el-option label="Meta" value="9" />
-                                        <el-option label="Valle del cauca" value="10" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Municipio de residencia" prop="municipioResidencia"
-                                    class="select-width">
-                                    <el-select v-model="ruleFormDatosGestante.municipioResidencia"
-                                        placeholder="Municipio de residencia">
-                                        <el-option label="Colombia" value="1" />
-                                        <el-option label="Panama" value="2" />
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Direccion de residencia" prop="direccionResidencia">
-                                    <el-input v-model="ruleFormDatosGestante.direccionResidencia" />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Teléfono" prop="telefono">
-                                    <el-input v-model="ruleFormDatosGestante.telefono" />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom">
-                                <label class="label-field title-field" style="width:200px;margin-right: 10px;">Fecha probable del parto </label>
-                                <el-date-picker type="date" placeholder="Fecha probable del parto"
-                                    :format="dateFormat" :size="size" />
-                            </el-col>
-                        </el-row>
-                        <el-row class="row-bg" justify="end">
-                            <div class="btn-save">
-                                <el-button type="primary" size="default" @click="submitForm(firstForm, 'end')">guardar y
-                                    continuar</el-button>
-                            </div>
-                        </el-row>
-                    </section>
-                </el-form>
-            </el-tab-pane>
+            
             <el-tab-pane label="Diagnostico materno" name="second" ref="elTab2">
                 <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
                     ref="secondForm" :label-position="labelPosition">
@@ -180,41 +23,36 @@
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                 <label>Edad gestacional al diagnóstcio en semanas(Durante):</label>
-                                <el-form-item label="semanas" prop="nombreAseguradora">
-                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                <el-form-item label="semanas" prop="edadGestacionalDuranteSemanas">
+                                    <el-input v-model="ruleFormDiagnosticoMaterno.edadGestacionalDuranteSemanas" type="number" />
                                 </el-form-item>
-                            </el-col>
-                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                <label class="label-field" style="min-width:180px">Fecha probable del parto</label>
-                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                    placeholder="Fecha probable del parto" :format="dateFormat" :size="size" />
                             </el-col>
                             <el-col :span="24">
                                 <h4>CONTROL PRENATAL:</h4>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                <label class="title-field">A la gente se le realizó control prenatal durante este embarazo</label><br />
-                                <el-radio-group class="ml-4">
+                                <label class="title-field" prop="seRealizoControlPrenatalDuranteEmbarazo">A la gestante se le realizó control prenatal durante este embarazo</label><br />
+                                <el-radio-group class="ml-4" v-model="ruleFormDiagnosticoMaterno.seRealizoControlPrenatalDuranteEmbarazo">
                                     <el-radio label="0">SI</el-radio>
                                     <el-radio label="1">NO</el-radio>
                                 </el-radio-group>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                                 <el-form-item label="Edad gestacional al primer control prenatal, en semanas:">
-                                    <el-input type="number" />
+                                    <el-input type="number"/>
                                 </el-form-item>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                <label class="title-field">Se realizó prueba tréponémica</label><br />
-                                <el-radio-group>
+                                <label class="title-field" prop="seRealizoPruebaTreponemica">Se realizó prueba tréponémica</label><br />
+                                <el-radio-group v-model="ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica">
                                     <el-radio :label="0">SI</el-radio>
                                     <el-radio :label="1">NO</el-radio>
                                 </el-radio-group>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Tipo de prueba tréponémica" prop="nacionalidad"
+                                <el-form-item label="Tipo de prueba tréponémica" prop="pruebaTreponemica"
                                     class="select-width">
-                                    <el-select v-model="ruleFormHbDatosGestante.nacionalidad"
+                                    <el-select v-model="ruleFormDiagnosticoMaterno.pruebaTreponemica"
                                         placeholder="Nacionalidad">
                                         <el-option label="Prueba rápida" value="1" />
                                         <el-option label="TPHA" value="2" />
@@ -224,60 +62,72 @@
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
                                 <label class="title-field"
-                                    style="min-width: 180px !important;width:inherit !important">Resultado de la prueba:</label><br />
-                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                    style="min-width: 180px !important;width:inherit !important"  prop="resultadoPruebaTreponemica">Resultado de la prueba:</label><br />
+                                <el-radio-group v-model="ruleFormDiagnosticoMaterno.resultadoPruebaTreponemica">
                                     <el-radio :label="0">Positivo</el-radio>
                                     <el-radio :label="1">Negativo</el-radio>
                                 </el-radio-group>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                <label class="label-field" style="min-width:180px">Fecha del resultado</label>
-                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                <label class="label-field" style="min-width:180px" prop="fechaResultadoPruebaTreponemica">Fecha del resultado</label>
+                                <el-date-picker v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica" type="date"
                                     placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                 <label>Edad gestacional en semanas a la realización de la prueba treponémica:</label>
-                                <el-form-item label="semanas" prop="nombreAseguradora">
-                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                <el-form-item label="semanas" prop="edadGestacionalALaRealizacionPruebaTreponemicaSemanas">
+                                    <el-input v-model="ruleFormDiagnosticoMaterno.edadGestacionalALaRealizacionPruebaTreponemicaSemanas" type="number" />
                                 </el-form-item>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                                 <label class="title-field">Se realizó prueba no tréponémica</label><br />
-                                <el-radio-group class="ml-4">
-                                    <el-radio label="0">SI</el-radio>
-                                    <el-radio label="1">NO</el-radio>
-                                </el-radio-group>
+                                <el-form-item label="semanas" prop="seRealizoPruebaNoTreponemica">
+                                    <el-radio-group class="ml-4" v-model="ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica">
+                                        <el-radio label="0">SI</el-radio>
+                                        <el-radio label="1">NO</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                                 <label class="title-field">Tipo de prueba no tréponémica</label><br />
-                                <el-radio-group class="ml-4">
-                                    <el-radio label="0">VDRL</el-radio>
-                                    <el-radio label="1">RPR</el-radio>
-                                </el-radio-group>
+                                <el-form-item label="Tipo de prueba" prop="pruebaNoTreponemica">
+                                    <el-radio-group class="ml-4" v-model="ruleFormDiagnosticoMaterno.pruebaNoTreponemica">
+                                        <el-radio label="0">VDRL</el-radio>
+                                        <el-radio label="1">RPR</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
                                 <label class="title-field"
                                     style="min-width: 180px !important;width:inherit !important">Resultado de la prueba:</label><br />
-                                <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
-                                    <el-radio :label="0">Reactiva</el-radio>
-                                    <el-radio :label="1">No reactiva</el-radio>
-                                </el-radio-group>
+                                <el-form-item label="Resultado" prop="resultadoPruebaNoTreponemica">
+                                    <el-radio-group v-model="ruleFormDiagnosticoMaterno.resultadoPruebaNoTreponemica">
+                                        <el-radio :label="0">Reactiva</el-radio>
+                                        <el-radio :label="1">No reactiva</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                 <label class="label-field" style="min-width:180px">Fecha del resultado</label>
-                                <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                    placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                                <el-form-item label="Fecha" prop="fechaResultadoPruebaNoTreponemica">
+                                    <el-date-picker v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica" type="date"
+                                        placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                                </el-form-item>
+                                
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                 <label>Edad gestacional en semanas a la realización de la prueba no treponémica:</label>
                                 <el-form-item label="semanas" prop="nombreAseguradora">
-                                    <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                    <el-input type="number" />
                                 </el-form-item>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
-                                <el-form-item label="Reporte en diluciones si la prueba no tréponemica es reactiva" prop="nacionalidad"
+                                <el-form-item label="Reporte en diluciones si la prueba no tréponemica es reactiva" prop="listReporteDilucionesPruebaNoTreponemicaReactiva"
                                     class="select-width">
-                                    <el-select v-model="ruleFormHbDatosGestante.nacionalidad">
+                                    <el-select v-model="ruleFormDiagnosticoMaterno.listReporteDilucionesPruebaNoTreponemicaReactiva">
                                         <el-option label="" value="1" />
                                         <el-option label="1" value="2" />
                                         <el-option label="2" value="3" />
@@ -304,9 +154,9 @@
                     <section style="width: 100%;">
                         <el-row :gutter="10" style="width: 100%;">
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                <el-form-item label="Clasificación estadío clínico de la sífilis" prop="nacionalidad"
+                                <el-form-item label="Clasificación" prop="clasificacionEstadioClinico"
                                     class="select-width">
-                                    <el-select v-model="ruleFormHbDatosGestante.nacionalidad"
+                                    <el-select v-model="rulesFormEstadioClinico.clasificacionEstadioClinico"
                                         placeholder="Clasificación">
                                         <el-option label="Temprana" value="1" />
                                         <el-option label="Tardía" value="2" />
@@ -316,10 +166,13 @@
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mt mb">
                                 <label class="title-field" style="min-width: 180px !important;width:180px">Aplicación de penicilina benzatínica:</label><br />
-                                <el-radio-group v-model="ruleFormTercerReporte.suprecionDeLactancia">
-                                    <el-radio :label="1">Si</el-radio>
-                                    <el-radio :label="0">No</el-radio>
-                                </el-radio-group>
+                                <el-form-item  prop="aplicaronPenicilinaBenzatinica">
+                                    <el-radio-group v-model="rulesFormEstadioClinico.aplicaronPenicilinaBenzatinica">
+                                        <el-radio :label="1">Si</el-radio>
+                                        <el-radio :label="0">No</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                
                             </el-col>
                             <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                 <el-row>
@@ -387,6 +240,12 @@
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                                 <label class="title-field">El Tratamiento para el manejo de la sífilis gestacional fue:</label><br />
+                                <el-form-item  prop="resultadoManejoSifilisGestacional">
+                                    <el-radio-group class="ml-4"  v-model="rulesFormEstadioClinico.resultadoManejoSifilisGestacional">
+                                        <el-radio :label="1">Adecuado</el-radio>
+                                        <el-radio :label="2">Inadecuado</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
                                 <el-radio-group class="ml-4">
                                     <el-radio :label="1">Adecuado</el-radio>
                                 <el-radio :label="2">Inadecuado</el-radio>
@@ -394,17 +253,22 @@
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                                 <label class="title-field">Se realizó desensibilización para la aplicación de la penicilina benzatínica:</label><br />
-                                <el-radio-group class="ml-4">
-                                    <el-radio :label="1">SI</el-radio>
-                                <el-radio :label="2">NO</el-radio>
-                                </el-radio-group>
+                                <el-form-item  prop="seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica">
+                                    <el-radio-group class="ml-4" v-model="rulesFormEstadioClinico.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica">
+                                        <el-radio :label="1">SI</el-radio>
+                                        <el-radio :label="2">NO</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
                             </el-col>
                             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
                                 <label class="title-field">El tratamiento para prevenir la sífilis congénita fue:</label><br />
-                                <el-radio-group class="ml-4">
-                                    <el-radio :label="1">Adecuado</el-radio>
-                                <el-radio :label="2">Inadecuado</el-radio>
-                                </el-radio-group>
+                                <el-form-item  prop="resultadoPrevenirSifilisCongenita">
+                                    <el-radio-group class="ml-4" v-model="rulesFormEstadioClinico.resultadoPrevenirSifilisCongenita">
+                                        <el-radio :label="1">Adecuado</el-radio>
+                                        <el-radio :label="2">Inadecuado</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                
                             </el-col>
                         </el-row>
                     </section>
@@ -1207,6 +1071,7 @@ import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
+import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico } from '@/api/ETMIPLUS_API';
 type FormInstance = InstanceType<typeof ElForm>
 
 @Options({
@@ -1306,6 +1171,39 @@ export default class HepatitisBView extends Vue {
         //console.log(elTabComponent)
     }
 
+    /**Inicio Diagnostic materno sifilis */
+
+    ruleFormDiagnosticoMaterno = reactive<IDiagnosticoMaterno>({
+        edadGestacionalDuranteSemanas: 0,
+        seRealizoControlPrenatalDuranteEmbarazo: 0,
+        seRealizoPruebaTreponemica: 0,
+        pruebaTreponemica: [] as any,
+        resultadoPruebaTreponemica: [] as any,
+        fechaResultadoPruebaTreponemica: new Date(),
+        edadGestacionalALaRealizacionPruebaTreponemicaSemanas: 0,
+        seRealizoPruebaNoTreponemica: 0,
+        pruebaNoTreponemica: [] as any,
+        resultadoPruebaNoTreponemica: [] as any,
+        fechaResultadoPruebaNoTreponemica: new Date(),
+        listReporteDilucionesPruebaNoTreponemicaReactiva: []
+    })
+
+
+    /**Fin Diagnostic materno sifilis */
+
+    /**Inicio tratamiento materno y estadío clinico sifilis */
+
+    ruleFormEstadioClinico = reactive<ITratamientoMaternoEstadioClinico>({
+        clasificacionEstadioClinico: [] as any,
+        aplicaronPenicilinaBenzatinica: 0,
+        resultadoManejoSifilisGestacional: [0] as any,
+        seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica: 0,
+        resultadoPrevenirSifilisCongenita: [0] as any
+    })
+
+
+    /**Inicio tratamiento materno y estadío clinico sifilis */
+
     ruleFormDatosGestante = reactive<RuleFormDatosGestante>({
         nombresApellidos: '',
         nacionalidad: [],
@@ -1385,6 +1283,128 @@ export default class HepatitisBView extends Vue {
         correoelectronico: '',
         observacionesCaso: ''
     })
+
+    /**Inicio validaciones sifilis */
+
+    rulesFomrDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
+        edadGestacionalDuranteSemanas: [
+            {   required: true, 
+                message: 'Por favor digite edad gestacional al diagnostico', 
+                trigger: 'blur' },
+        ],
+        seRealizoControlPrenatalDuranteEmbarazo: [
+            {
+                required: true,
+                message: 'Por favor seleccione la opción de control prenatal',
+                trigger: 'change',
+            },
+        ],
+        seRealizoPruebaTreponemica: [
+            {
+                required: true,
+                message: 'Por favor seleccione la opción',
+                trigger: 'change',
+            },
+        ],
+        pruebaTreponemica: [
+            {   required: true, 
+                message: 'Por favor elije el tipo de prueba', 
+                trigger: 'change' 
+            },
+        ],
+        resultadoPruebaTreponemica: [
+            {   required: true, 
+                message: 'Por favor digite la edad', 
+                trigger: 'change' },
+        ],
+        fechaResultadoPruebaTreponemica: [
+            {
+                required: true,
+                message: 'Por favor indique unafecha del resultado',
+                trigger: 'blur',
+            },
+        ],
+        edadGestacionalALaRealizacionPruebaTreponemicaSemanas: [
+            {
+                required: true,
+                message: 'Por favor digite edad gestacional',
+                trigger: 'blur',
+            },
+        ],
+        seRealizoPruebaNoTreponemica: [
+            {
+                required: true,
+                message: 'Por favor confirmar prueba no tréponémica',
+                trigger: 'change',
+            },
+        ],
+        pruebaNoTreponemica: [
+            {
+                required: true,
+                message: 'Por favor seleccione tipo de prueba',
+                trigger: 'change',
+            },
+        ],
+        resultadoPruebaNoTreponemica: [
+            {
+                required: true,
+                message: 'Por favor seleccione el resultado',
+                trigger: 'change',
+            },
+        ],
+        fechaResultadoPruebaNoTreponemica:[
+            {
+                required: true,
+                message: 'Por favor fecha del resultado',
+                trigger: 'change',
+            },
+        ],
+        listReporteDilucionesPruebaNoTreponemicaReactiva: [
+            {   required: true,
+                message: 'Por favor elija la dilucion respectiva', 
+                trigger: 'blur' },
+        ]
+    })
+
+
+    rulesFormEstadioClinico = reactive<FormRules<ITratamientoMaternoEstadioClinico>>({
+        clasificacionEstadioClinico: [
+            {
+                required: true,
+                message: 'Por favor elija clasificación', 
+                trigger: 'change'
+            }
+        ],
+        aplicaronPenicilinaBenzatinica: [
+            {
+                required: true,
+                message: 'Por favor seleccione la opción', 
+                trigger: 'change'
+            }
+        ],
+        resultadoManejoSifilisGestacional: [
+            {
+                required: true,
+                message: 'Por favor seleccione la opción', 
+                trigger: 'change'
+            }
+        ],
+        seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica: [
+            {
+                required: true,
+                message: 'Por favor elija si o no', 
+                trigger: 'change'
+            }
+        ],
+        resultadoPrevenirSifilisCongenita: [
+            {
+                required: true,
+                message: 'Por favor elija la opción correspondiente', 
+                trigger: 'change'
+            }
+        ]
+    })
+    /**Fin validaciones sifilis */
 
     rulesDatosGestante = reactive<FormRules<RuleFormDatosGestante>>({
         nombresApellidos: [
