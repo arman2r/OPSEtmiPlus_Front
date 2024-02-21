@@ -28,7 +28,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    algoritmo(idDiagnostico: number, body?: AlgoritmoChagas | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    algoritmo(idDiagnostico?: number, body?: IAlgoritmoChagas | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Diagnostico/{idDiagnostico}/Chagas/Algoritmo";
         if (idDiagnostico === undefined || idDiagnostico === null)
             throw new Error("The parameter 'idDiagnostico' must be defined.");
@@ -70,7 +70,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2677,7 +2677,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    tratamientoMaterno(idAlgoritmo: number, body: TratamientoMaternoChagas | undefined, cancelToken?: CancelToken): Promise<void> {
+    tratamientoMaterno(idAlgoritmo?: number, body?: ITratamientoMaternoChagas | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Algoritmo/{idAlgoritmo}/Chagas/TratamientoMaterno";
         if (idAlgoritmo === undefined || idAlgoritmo === null)
             throw new Error("The parameter 'idAlgoritmo' must be defined.");
@@ -2719,7 +2719,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -3011,6 +3011,8 @@ export class AlgoritmoChagas implements IAlgoritmoChagas {
     fechaRecoleccionMuestra?: Date;
     fechaEmisionResultado?: Date;
     resultadoPruebaTamizajeElisaAntigenosRecombinantes1?: number;
+    fechaRecoleccionMuestraElisaAntigenosTotales?: Date;
+    fechaEmisionResultadoElisaAntigenosTotales?: Date;
     fechaRecoleccionMuestraRecombinantes1?: Date;
     fechaEmisionResultadoRecombinantes1?: Date;
     resultadoPruebaTamizajeInmunocromatografia?: number;
@@ -3053,6 +3055,8 @@ export class AlgoritmoChagas implements IAlgoritmoChagas {
             this.fechaRecoleccionMuestra = _data["fechaRecoleccionMuestra"] ? new Date(_data["fechaRecoleccionMuestra"].toString()) : <any>undefined;
             this.fechaEmisionResultado = _data["fechaEmisionResultado"] ? new Date(_data["fechaEmisionResultado"].toString()) : <any>undefined;
             this.resultadoPruebaTamizajeElisaAntigenosRecombinantes1 = _data["resultadoPruebaTamizajeElisaAntigenosRecombinantes1"];
+            this.fechaRecoleccionMuestraElisaAntigenosTotales = _data["fechaRecoleccionMuestraElisaAntigenosTotales"];
+            this.fechaEmisionResultadoElisaAntigenosTotales = _data["fechaEmisionResultadoElisaAntigenosTotales"];
             this.fechaRecoleccionMuestraRecombinantes1 = _data["fechaRecoleccionMuestraRecombinantes1"] ? new Date(_data["fechaRecoleccionMuestraRecombinantes1"].toString()) : <any>undefined;
             this.fechaEmisionResultadoRecombinantes1 = _data["fechaEmisionResultadoRecombinantes1"] ? new Date(_data["fechaEmisionResultadoRecombinantes1"].toString()) : <any>undefined;
             this.resultadoPruebaTamizajeInmunocromatografia = _data["resultadoPruebaTamizajeInmunocromatografia"];
@@ -3099,6 +3103,8 @@ export class AlgoritmoChagas implements IAlgoritmoChagas {
         data["fechaRecoleccionMuestra"] = this.fechaRecoleccionMuestra ? this.fechaRecoleccionMuestra.toISOString() : <any>undefined;
         data["fechaEmisionResultado"] = this.fechaEmisionResultado ? this.fechaEmisionResultado.toISOString() : <any>undefined;
         data["resultadoPruebaTamizajeElisaAntigenosRecombinantes1"] = this.resultadoPruebaTamizajeElisaAntigenosRecombinantes1;
+        data["fechaRecoleccionMuestraElisaAntigenosTotales"] = this.fechaRecoleccionMuestraElisaAntigenosTotales;
+        data["fechaEmisionResultadoElisaAntigenosTotales"] = this.fechaEmisionResultadoElisaAntigenosTotales;
         data["fechaRecoleccionMuestraRecombinantes1"] = this.fechaRecoleccionMuestraRecombinantes1 ? this.fechaRecoleccionMuestraRecombinantes1.toISOString() : <any>undefined;
         data["fechaEmisionResultadoRecombinantes1"] = this.fechaEmisionResultadoRecombinantes1 ? this.fechaEmisionResultadoRecombinantes1.toISOString() : <any>undefined;
         data["resultadoPruebaTamizajeInmunocromatografia"] = this.resultadoPruebaTamizajeInmunocromatografia;
@@ -3138,6 +3144,8 @@ export interface IAlgoritmoChagas {
     fechaRecoleccionMuestra?: Date;
     fechaEmisionResultado?: Date;
     resultadoPruebaTamizajeElisaAntigenosRecombinantes1?: number;
+    fechaRecoleccionMuestraElisaAntigenosTotales?: Date;
+    fechaEmisionResultadoElisaAntigenosTotales?: Date;
     fechaRecoleccionMuestraRecombinantes1?: Date;
     fechaEmisionResultadoRecombinantes1?: Date;
     resultadoPruebaTamizajeInmunocromatografia?: number;
@@ -3904,7 +3912,7 @@ export interface IDiagnosticoNinoExpuestoChagas {
     idGestanteControl?: number;
     fechaNacimiento?: number;
     idExamenParasitologico?: number;
-    examenParasitologico?: Parametrica;
+    examenParasitologico?: IParametrica;
     resultadoExamenParasitologico?: string | undefined;
     fechaRecoleccionMuestra?: Date;
     fechaEmisiónResultado?: Date;
