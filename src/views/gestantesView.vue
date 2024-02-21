@@ -1127,4 +1127,22 @@ h5 {
 .el-form-item label {
     font-size: .8rem;
 }
+
+.el-collapse-item{
+    margin-bottom: 14px
+}
+
+.el-collapse-item__header{
+    font-weight: bold !important;
+    background-color: #f1f1f1 !important;
+    font-size: 14px !important;
+    padding: 0 0 0 13px !important;
+}
+
+.el-collapse-item__content{
+    padding-top: 25px;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #f7f7f7 !important;
+}
 </style>

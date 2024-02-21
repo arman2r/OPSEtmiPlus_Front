@@ -625,7 +625,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    diagnosticoNinoExpuesto(idGestanteControl: number, body?: DiagnosticoNinoExpuestoChagas | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    diagnosticoNinoExpuesto(idGestanteControl?: number, body?: IDiagnosticoNinoExpuestoChagas | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/Chagas/DiagnosticoNinoExpuesto";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -2407,7 +2407,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    seguimientoNinoExpuestoChagas(idDiagnostico: number, body: SeguimientoNinoExpuestoChagas | undefined, cancelToken?: CancelToken): Promise<void> {
+    seguimientoNinoExpuestoChagas(idDiagnostico?: number, body?: ISeguimientoNinoExpuestoChagas | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Diagnostico/{idDiagnostico}/Chagas/SeguimientoNinoExpuestoChagas";
         if (idDiagnostico === undefined || idDiagnostico === null)
             throw new Error("The parameter 'idDiagnostico' must be defined.");
@@ -3917,6 +3917,7 @@ export interface IDiagnosticoNinoExpuestoChagas {
     fechaRecoleccionMuestra?: Date;
     fechaEmisiónResultado?: Date;
     seHacePruebaDiagnostica3Meses?: number;
+    examenParasitologico3Meses: IParametrica;
     idExamenParasitologico3Meses?: number;
     resultadoExamenParasitologico3Meses?: string | undefined;
     fechaRecoleccionMuestra3Meses?: Date;
