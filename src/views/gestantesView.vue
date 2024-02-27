@@ -355,7 +355,7 @@ export default class gestantesView extends Vue {
     loadingInstance = ElLoading.service(
         {
             fullscreen: true,
-            text: 'Aguade...', // The text of the loading spinner
+            text: 'Aguarde...', // The text of the loading spinner
             background: 'rgba(0, 0, 0, 0.8)', // The background color of the loading spinner
             lock: true,
 
