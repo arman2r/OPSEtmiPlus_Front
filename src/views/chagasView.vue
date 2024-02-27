@@ -179,8 +179,8 @@
                                         prop="sospechaChagasCronicoOTamizajeControlPrenatal">
                                         <el-radio-group
                                             v-model="ruleFormAlgoritmoChagas.sospechaChagasCronicoOTamizajeControlPrenatal">
-                                            <el-radio :label="0">Aplica</el-radio>
-                                            <el-radio :label="1">No Aplica</el-radio>
+                                            <el-radio :label="1">Aplica</el-radio>
+                                            <el-radio :label="0">No Aplica</el-radio>
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
@@ -539,9 +539,9 @@
                                                             class="hidden-sm-and-down hidden-sm-and-up hidden-md-and-down hidden-md-and-up hidden-lg-and-down hidden-lg-and-up">
                                                             <el-form-item class="w-100" label="Fecha
                                                                 de nacimiento" prop="fechaNacimiento">
-                                                                <el-input v-model="ruleFormDiagnosticoMenor.fechaNacimiento"
-                                                                    style="margin-bottom:8px"
-                                                                    placeholder="Fecha de nacimiento" type="number" />
+                                                                <el-date-picker style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de emisión" :format="dateFormat"
+                                                                    v-model="ruleFormDiagnosticoMenor.fechaNacimiento" />
                                                             </el-form-item>
                                                         </el-col>
                                                         <el-radio-group
@@ -1013,7 +1013,8 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Tratamiento del menor" name="six" ref="elTab6">
-                    <el-form style="width: 100%;" label-position="top" :size="formSize" status-icon ref="sixForm">
+                    <el-form :model="ruleFormTratamientoSeguimientoNino" :rules="rulesFormTratamientoSeguimientoNino"
+                        style="width: 100%;" label-position="top" :size="formSize" status-icon ref="sixForm">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -1022,7 +1023,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                                     <el-form-item label="Medicamento:" prop="benznidazolX60Dias" class="w-100">
-                                        <el-checkbox v-model="ruleFormTratamientoMaterno.benznidazolX60Dias">Benznidazol *
+                                        <el-checkbox
+                                            v-model="ruleFormTratamientoSeguimientoNino.benznidazolX60Dias">Benznidazol *
                                             60 días</el-checkbox>
                                     </el-form-item>
                                 </el-col>
@@ -1032,18 +1034,19 @@
                                         class="w-100">
                                         <el-date-picker style="margin-bottom:8px" type="date" placeholder="Fecha de emisión"
                                             :format="dateFormat"
-                                            v-model="ruleFormTratamientoMaterno.fechaInicioTratamiento" />
+                                            v-model="ruleFormTratamientoSeguimientoNino.fechaInicioTratamiento" />
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                                     <el-form-item label="Medicamento:" prop="nufurtimoxX60Dias" class="w-100">
-                                        <el-checkbox v-model="ruleFormTratamientoMaterno.nufurtimoxX60Dias">Nufurtimox *60
+                                        <el-checkbox
+                                            v-model="ruleFormTratamientoSeguimientoNino.nufurtimoxX60Dias">Nufurtimox *60
                                             días</el-checkbox>
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Controles médicos" prop="nufurtimoxControlesMedicos" class="w-100">
-                                        <el-select v-model="ruleFormTratamientoMaterno.nufurtimoxControlesMedicos"
+                                        <el-select v-model="ruleFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos"
                                             placeholder="Select" style="width: 100%">
                                             <el-option v-for="(item, index) in nufurtimoxCtrlMedico" :key="index"
                                                 :label="item.valor" :value="item.id" />
@@ -1061,20 +1064,20 @@
                                                     <el-row :gutter="20">
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
                                                             class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosTotales"
+                                                            <el-form-item label="Antigenos:" prop="esAntigenosTotales6Meses"
                                                                 class="w-100">
                                                                 <el-checkbox
-                                                                    v-model="ruleFormDiagnosticoMenor.esAntigenosTotales"
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosTotales6Meses"
                                                                     :label="1">Antigenos
                                                                     totales</el-checkbox>
                                                             </el-form-item>
                                                         </el-col>
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
                                                             class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosRecombinantes"
-                                                                class="w-100">
+                                                            <el-form-item label="Antigenos:"
+                                                                prop="esAntigenosRecombinantes6Meses" class="w-100">
                                                                 <el-checkbox
-                                                                    v-model="ruleFormDiagnosticoMenor.esAntigenosRecombinantes"
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses"
                                                                     :label="2">Antigenos
                                                                     recombinantes</el-checkbox>
                                                             </el-form-item>
@@ -1083,12 +1086,13 @@
                                                             class="column-custom" style="align-items:end">
                                                             <el-form-item label="RESULTADO" class="w-100"
                                                                 prop="resultadoPrueba">
-                                                                <el-input v-model="ruleFormDiagnosticoMenor.resultadoPrueba"
+                                                                <el-input
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses"
                                                                     type="number" />
                                                             </el-form-item>
                                                         </el-col>
 
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
                                                             style="align-items:end">
                                                             <el-form-item label="Fecha
                                                                 de recolección de muestra"
@@ -1096,7 +1100,7 @@
                                                                 <el-date-picker style="margin-bottom:8px" type="date"
                                                                     placeholder="Fecha de recolección de muestra"
                                                                     :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra10Meses" />
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.fechaRecoleccionMuestra10Meses" />
                                                             </el-form-item>
                                                         </el-col>
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
@@ -1107,9 +1111,10 @@
                                                                 <el-date-picker style="margin-bottom:8px" type="date"
                                                                     placeholder="Fecha de emisión del resultado"
                                                                     :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaEmisionResultado10Meses" />
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.fechaEmisionResultado10Meses" />
                                                             </el-form-item>
                                                         </el-col>
+                                                    -->
                                                     </el-row>
                                                 </div>
                                             </el-collapse-item>
@@ -1120,20 +1125,20 @@
                                                     <el-row :gutter="20">
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
                                                             class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosTotales"
-                                                                class="w-100">
+                                                            <el-form-item label="Antigenos:"
+                                                                prop="esAntigenosTotales12Meses" class="w-100">
                                                                 <el-checkbox
-                                                                    v-model="ruleFormDiagnosticoMenor.esAntigenosTotales"
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosTotales12Meses"
                                                                     :label="1">Antigenos
                                                                     totales</el-checkbox>
                                                             </el-form-item>
                                                         </el-col>
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
                                                             class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosRecombinantes"
-                                                                class="w-100">
+                                                            <el-form-item label="Antigenos:"
+                                                                prop="esAntigenosRecombinantes12Meses" class="w-100">
                                                                 <el-checkbox
-                                                                    v-model="ruleFormDiagnosticoMenor.esAntigenosRecombinantes"
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses"
                                                                     :label="2">Antigenos
                                                                     recombinantes</el-checkbox>
                                                             </el-form-item>
@@ -1141,12 +1146,13 @@
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
                                                             class="column-custom" style="align-items:end">
                                                             <el-form-item label="RESULTADO" class="w-100"
-                                                                prop="resultadoPrueba">
-                                                                <el-input v-model="ruleFormDiagnosticoMenor.resultadoPrueba"
+                                                                prop="resultadoPruebaSerologica12Meses">
+                                                                <el-input
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses"
                                                                     type="number" />
                                                             </el-form-item>
                                                         </el-col>
-
+                                                        <!--
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
                                                             style="align-items:end">
                                                             <el-form-item label="Fecha
@@ -1155,7 +1161,7 @@
                                                                 <el-date-picker style="margin-bottom:8px" type="date"
                                                                     placeholder="Fecha de recolección de muestra"
                                                                     :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra10Meses" />
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.fechaRecoleccionMuestra10Meses" />
                                                             </el-form-item>
                                                         </el-col>
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
@@ -1166,16 +1172,19 @@
                                                                 <el-date-picker style="margin-bottom:8px" type="date"
                                                                     placeholder="Fecha de emisión del resultado"
                                                                     :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaEmisionResultado10Meses" />
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.fechaEmisionResultado10Meses" />
                                                             </el-form-item>
                                                         </el-col>
+                                                        -->
                                                     </el-row>
                                                 </div>
                                             </el-collapse-item>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-form-item label="Niño curado
-                                                    de la enfermedad de chagas" prop="tipoDocumento" class="w-100">
-                                                    <el-radio-group>
+                                                    de la enfermedad de chagas" prop="esNinoCuradoChagas"
+                                                    class="w-100">
+                                                    <el-radio-group
+                                                        v-model="ruleFormTratamientoSeguimientoNino.esNinoCuradoChagas">
                                                         <el-radio :label="1">Si</el-radio>
                                                         <el-radio :label="0">No</el-radio>
                                                     </el-radio-group>
@@ -1187,7 +1196,7 @@
                             </el-row>
                             <el-row class="row-bg" justify="end">
                                 <div class="btn-save">
-                                    <el-button type="primary" size="default" @click="submitForm(thirdForm, 'four')">guardar
+                                    <el-button type="primary" size="default" @click="submitForm(sixForm, 'end')">guardar
                                         y
                                         continuar</el-button>
                                 </div>
@@ -1212,7 +1221,7 @@ import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoEnfermedadGestanteChagas, IAlgoritmoChagas, IParametrica, ITratamientoMaternoChagas, ISeguimientoNinoExpuestoChagas, IDiagnosticoNinoExpuestoChagas } from "@/api/ETMIPLUS_API";
+import { IDiagnosticoEnfermedadGestanteChagas, IAlgoritmoChagas, IParametrica, ITratamientoMaternoChagas, ISeguimientoNinoExpuestoChagas, IDiagnosticoNinoExpuestoChagas, ITratamientoSeguimientoNinoChagas } from "@/api/ETMIPLUS_API";
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
@@ -1282,7 +1291,7 @@ export default class HepatitisBView extends Vue {
 
     handleClick(tab?: TabsPaneContext, event?: Event) {
         console.log(tab, event)
-        const tabName = tab.props.name as string;
+        const tabName = tab.props.name as any;
         if (tabName !== undefined) {
             this.getParamsDbFirsTap(tabName)
         }
@@ -1299,8 +1308,58 @@ export default class HepatitisBView extends Vue {
         const gestanteCtrl = this.$route.params.idGCtrl;
         this.idGestanteCtrl = Number(gestanteCtrl);
         this.getParamsDbFirsTap('two');
-        //this.getAllFicha(this.idGestanteCtrl)
+        this.getAllFicha(this.idGestanteCtrl)
 
+    }
+
+    async getAllFicha(idGestanteCtrl: number) {
+        const fichaChagas = await this.ETMIPLUS_API_Client.chagas(idGestanteCtrl) as any;
+        console.log('llego ficha chagas', fichaChagas)
+
+        if (fichaChagas.data.diagnosticoCompletoGestante.length !== 0) {
+            this.ruleFormDiagnosticoGestante.condicionDiagnoticoChagas = fichaChagas.data.diagnosticoCompletoGestante[0].idCondicionDiagnosticoChagas
+            this.ruleFormDiagnosticoGestante.edadGestacionalPrimerControlPrentalSemanas = fichaChagas.data.diagnosticoCompletoGestante[0].edadGestacionalPrimerControlPrentalSemanas
+            this.ruleFormDiagnosticoGestante.edadGestacionalSemanas = fichaChagas.data.diagnosticoCompletoGestante[0].edadGestacionalSemanas
+            this.ruleFormDiagnosticoGestante.fechaProbableParto = fichaChagas.data.diagnosticoCompletoGestante[0].fechaProbableParto
+            this.idDiagnosticoGstte = fichaChagas.data.diagnosticoCompletoGestante[0].idDiagnosticoGestante;
+            if(fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas.length !== 0){
+                this.ruleFormAlgoritmoChagas.esConfirmadoGestanteConChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].esConfirmadoGestanteConChagas
+                this.ruleFormAlgoritmoChagas.examenParasitologico = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].idExamenParasitologico
+                this.ruleFormAlgoritmoChagas.resultadoExamenParasitologico = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoExamenParasitologico
+                this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestra = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaRecoleccionMuestra
+                this.ruleFormAlgoritmoChagas.fechaEmisionResultado = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaEmisionResultado
+                this.ruleFormAlgoritmoChagas.sospechaChagasCronicoOTamizajeControlPrenatal = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].sospechaChagasCronicoOTamizajeControlPrenatal
+                this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosTotales = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoPruebaTamizajeElisaAntigenosTotales
+                this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraElisaAntigenosTotales = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaRecoleccionMuestraElisaAntigenosTotales
+                this.ruleFormAlgoritmoChagas.fechaEmisionResultadoElisaAntigenosTotales = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaEmisionResultadoElisaAntigenosTotales
+                this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes1 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoPruebaTamizajeElisaAntigenosRecombinantes1
+                this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaRecoleccionMuestraInmunocromatografia
+                this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes1 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaEmisionResultadoRecombinantes1
+                this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes2 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoPruebaTamizajeElisaAntigenosRecombinantes2
+                this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaRecoleccionMuestraRecombinantes2
+                this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaEmisionResultadoRecombinantes2
+                this.ruleFormAlgoritmoChagas.tipoPruebaUtilizada = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tipoPruebaUtilizada
+                this.ruleFormAlgoritmoChagas.tipoPruebaUtilizada = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tipoPruebaUtilizada
+                this.ruleFormAlgoritmoChagas.resultadoPruebaUtilizada = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoPruebaUtilizada
+                this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaRecoleccionMuestraNoConcordante
+                this.ruleFormAlgoritmoChagas.fechaEmisionNoConcordante = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaEmisionResultadoRecombinantes3
+                this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes3 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoPruebaTamizajeElisaAntigenosRecombinantes3
+                this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaRecoleccionMuestraRecombinantes3
+                this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3 = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].fechaEmisionResultadoRecombinantes3
+                this.ruleFormAlgoritmoChagas.esConfirmadoGestanteConChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].esConfirmadoGestanteConChagas
+                this.ruleFormAlgoritmoChagas.esDescartadoGestanteConChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].esDescartadoGestanteConChagas
+                this.ruleFormAlgoritmoChagas.numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas
+            }
+            if(fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas.length !== 0){ 
+
+                this.ruleFormTratamientoMaterno.benznidazolX60Dias = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].benznidazolX60Dias
+                this.ruleFormTratamientoMaterno.fechaInicioTratamiento = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].fechaInicioTratamiento
+                this.ruleFormTratamientoMaterno.nufurtimoxX60Dias = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].nufurtimoxX60Dias
+                this.ruleFormTratamientoMaterno.nufurtimoxControlesMedicos = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].idNufurtimoxControlesMedicos
+                this.ruleFormTratamientoMaterno.finalizacionLactanciaMaterna = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].finalizacionLactanciaMaterna
+                this.ruleFormTratamientoMaterno.metodoAnticonceptivoUtilizadoDuranteTratamiento = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].metodoAnticonceptivoUtilizadoDuranteTratamiento
+            }
+        }
     }
 
     condicionMomentoDiagnosticoList: IParametrica[] = []
@@ -1399,7 +1458,7 @@ export default class HepatitisBView extends Vue {
             const request: IDiagnosticoNinoExpuestoChagas = {
                 idDiagnosticoNinoExpuesto: 0,
                 idGestanteControl: this.idGestanteCtrl,
-                fechaNacimiento: Number(this.ruleFormDiagnosticoMenor.fechaNacimiento),
+                fechaNacimiento: new Date(moment(this.ruleFormDiagnosticoMenor.fechaNacimiento).format('YYYY-MM-DD HH:mm:ss.sss')),
                 idExamenParasitologico: Number(this.ruleFormDiagnosticoMenor.examenParasitologico),
                 resultadoExamenParasitologico: this.ruleFormDiagnosticoMenor.resultadoExamenParasitologico,
                 fechaRecoleccionMuestra: new Date(moment(this.ruleFormDiagnosticoMenor.fechaRecoleccionMuestra).format('YYYY-MM-DD HH:mm:ss.sss')),
@@ -1441,9 +1500,9 @@ export default class HepatitisBView extends Vue {
                 numeroIdentificacion: Number(this.ruleFormSeguimientoNinoExpuesto.numeroIdentificacion),
             }
             this.registroReporte(request, tabName)
-        } else if (tabName === 'seven') {
+        } /*else if (tabName === 'seven') {
             this.disabledSeven = false
-        }
+        }*/
 
         //console.log(elTabComponent)
     }
@@ -1451,6 +1510,7 @@ export default class HepatitisBView extends Vue {
     idDiagnosticoGstte = 0;
     idAlgoritmoPublic = 0;
     idDiagnosticoMenor = 0;
+    idSeguimientoTratmtoNino = 0;
     async registroReporte(reporteForm: any, tabName: string) {
         console.log('primer formulario', reporteForm)
         console.log('segundo formulario', this.ruleFormAlgoritmoChagas)
@@ -1580,6 +1640,29 @@ export default class HepatitisBView extends Vue {
                     this.disabledSix = false
                 });
 
+                this.idSeguimientoTratmtoNino = requestSeguimiento.data.idSeguimientoNinoExpuesto;
+
+            } else {
+                const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                });
+            }
+        } else if (tabName === 'end') {
+            reporteForm.idSeguimientoNinoExpuesto = this.idSeguimientoTratmtoNino
+            const requestSeguimiento = await this.ETMIPLUS_API_Client.seguimientoNinoExpuestoChagas(reporteForm.idSeguimientoNinoExpuesto, reporteForm) as any;
+            console.log('response', requestSeguimiento)
+
+            if (requestSeguimiento.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                    this.activeName = tabName;
+                    this.disabledSix = false
+                });
+
+                this.idSeguimientoTratmtoNino = requestSeguimiento.data.idSeguimientoNinoExpuesto;
+
             } else {
                 const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
                 this.showMessage(message).then(() => {
@@ -1640,13 +1723,13 @@ export default class HepatitisBView extends Vue {
         fechaInicioTratamiento: new Date(),
         nufurtimoxX60Dias: 0,
         idNufurtimoxControlesMedicos: 0,
-        nufurtimoxControlesMedicos: [] as IParametrica[],
+        nufurtimoxControlesMedicos: [] as any[],
         finalizacionLactanciaMaterna: 0,
         metodoAnticonceptivoUtilizadoDuranteTratamiento: '',
     })
 
     ruleFormDiagnosticoMenor = reactive<IDiagnosticoNinoExpuestoChagas>({
-        fechaNacimiento: 0,
+        fechaNacimiento: new Date(),
         examenParasitologico: {} as any,
         resultadoExamenParasitologico: '',
         fechaRecoleccionMuestra: new Date(),
@@ -1682,6 +1765,20 @@ export default class HepatitisBView extends Vue {
         nombresApellidos: '',
         tipoDocumento: [] as any,
         numeroIdentificacion: '',
+    })
+
+    ruleFormTratamientoSeguimientoNino = reactive<ITratamientoSeguimientoNinoChagas>({
+        benznidazolX60Dias: 0,
+        fechaInicioTratamiento: new Date(),
+        nufurtimoxX60Dias: 0,
+        nufurtimoxControlesMedicos: {} as any,
+        esAntigenosTotales6Meses: 0,
+        esAntigenosRecombinantes6Meses: 0,
+        resultadoPruebaSerologica6Meses: '',
+        esAntigenosTotales12Meses: 0,
+        esAntigenosRecombinantes12Meses: 0,
+        resultadoPruebaSerologica12Meses: '',
+        esNinoCuradoChagas: 0,
     })
 
     ruleFormHbDatosGestante = reactive<RuleFormHbDatosGestante>({
@@ -1979,6 +2076,42 @@ export default class HepatitisBView extends Vue {
         ]
     })
 
+    rulesFormTratamientoSeguimientoNino = reactive<FormRules<ITratamientoSeguimientoNinoChagas>>({
+        benznidazolX60Dias: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        fechaInicioTratamiento: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        nufurtimoxX60Dias: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        nufurtimoxControlesMedicos: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        esAntigenosTotales6Meses: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        esAntigenosRecombinantes6Meses: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        resultadoPruebaSerologica6Meses: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        esAntigenosTotales12Meses: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        esAntigenosRecombinantes12Meses: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        resultadoPruebaSerologica12Meses: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        esNinoCuradoChagas: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+    })
+
     submitForm = async (formEl: FormInstance | undefined, tab: string) => {
         if (!formEl) return
         await formEl.validate((valid, fields) => {
@@ -1991,16 +2124,22 @@ export default class HepatitisBView extends Vue {
                 } else {
                     console.log('valor a guardar', Number(this.idGestanteCtrl))
 
-                    /*const request: IReporteBinomio = {
-                        idGestante: Number(this.idGestanteCtrl),
-                        nombreIPSAtencionVIH: this.ruleFormSeguimiento.nombreIPSAtencionVIH,
-                        nombreRemitenteInformacion: this.ruleFormSeguimiento.nombreRemitenteInformacion,
-                        cargoRemitenteInformacion: this.ruleFormSeguimiento.cargoRemitenteInformacion,
-                        telefonoRemitenteInformacion: this.ruleFormSeguimiento.telefonoRemitenteInformacion,
-                        correoRemitenteInformacion1: this.ruleFormSeguimiento.correoRemitenteInformacion1,
-                        correoRemitenteInformacion2: this.ruleFormSeguimiento.correoRemitenteInformacion2
+                    const request: ITratamientoSeguimientoNinoChagas = {
+                        idTratamientoSeguimientoNino: 0,
+                        idSeguimientoNinoExpuesto: this.idSeguimientoTratmtoNino,
+                        benznidazolX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.benznidazolX60Dias),
+                        fechaInicioTratamiento: new Date(moment(this.rulesFormTratamientoSeguimientoNino.fechaInicioTratamiento).format('YYYY-MM-DD HH:mm:ss.sss')),
+                        nufurtimoxX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxX60Dias),
+                        idNufurtimoxControlesMedicos: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos),
+                        esAntigenosTotales6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales6Meses),
+                        esAntigenosRecombinantes6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses),
+                        resultadoPruebaSerologica6Meses: this.rulesFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses,
+                        esAntigenosTotales12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales12Meses),
+                        esAntigenosRecombinantes12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses),
+                        resultadoPruebaSerologica12Meses: this.rulesFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses,
+                        esNinoCuradoChagas: Number(this.rulesFormTratamientoSeguimientoNino.esNinoCuradoChagas),
                     }
-                    this.registroReporte(request, 'end')*/
+                    this.registroReporte(request, 'end')
 
                 }
             }
@@ -2173,18 +2312,18 @@ h5 {
     width: 100%;
 }
 
-.el-collapse-item{
+.el-collapse-item {
     margin-bottom: 14px
 }
 
-.el-collapse-item__header{
+.el-collapse-item__header {
     font-weight: bold !important;
     background-color: #f1f1f1 !important;
     font-size: 14px !important;
     padding: 0 0 0 13px !important;
 }
 
-.el-collapse-item__content{
+.el-collapse-item__content {
     padding-top: 25px;
     padding-left: 13px;
     padding-right: 13px;
