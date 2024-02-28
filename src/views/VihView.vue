@@ -15,7 +15,7 @@
             </el-col>
 
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-              <el-form-item label="Momento del diagnostico de VIH" prop="momentoDiagnostico" class="select-width">
+              <el-form-item label="Momento del diagnóstico de VIH, con relación al embarazo actual" prop="momentoDiagnostico" class="select-width">
                 <el-select v-model="ruleFormPrimerReporte.momentoDiagnostico" placeholder="Momento del diagnostico">
                   <el-option v-for="(mmd, index) in momentoDiagnosticoList" :key="index" :label="mmd.valor"
                     :value="mmd.id" />
@@ -57,13 +57,13 @@
             </el-col>
             <el-divider />
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">PARACLINICOS REALIZADOS A LA GESTANTE EN EL EMBARAZO ACTUAL:</h5>
+              <h5 class="align-start">PARACLÍNICOS REALIZADOS A LA GESTANTE EN EL EMBARAZO ACTUAL:</h5>
             </el-col>
             <div v-for="(paraclinico, index) in paraClinicosFields" :key="index" class="w-100 no-margin el-row">
 
               <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
 
-                <el-form-item label="Examen" :prop="examenParaClinico" class="select-width">
+                <el-form-item label="Exámenes paraclinicos" :prop="examenParaClinico" class="select-width">
                   <el-select v-model="paraclinico.examenParaClinico" placeholder="Exámenes paraclínicos"
                     @change="validateField(index)">
                     <el-option v-for="(pcm, index) in examenParaClinicoList" :key="index" :label="pcm.valor"
@@ -93,7 +93,8 @@
             </el-col>
             <el-divider />
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH ANTES DEL EMBARAZO ACTUAL:</h5>
+              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text
+                  type="primary">ANTES</el-text> DEL EMBARAZO ACTUAL:</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="La gestante venía recibiendo TAR para VIH antes de iniciar el embarazo actual"
@@ -114,17 +115,17 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
-              <el-form-item label="Semana gestacional en que lo recibió:" prop="edadGestacionalInicioTARSemanas">
+              <el-form-item label="A partir de que semana gestacional lo recibió:" prop="edadGestacionalInicioTARSemanas">
                 <el-input v-model="ruleFormPrimerReporte.edadGestacionalInicioTARSemanas"
                   :disabled="enableSemanaRecibioTar" type="number" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH DURANTE EL EMBARAZO ACTUAL <el-text
+              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text
                   type="primary">(POSTERIOR AL PARTO):</el-text></h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-              <el-form-item label="¿Recibió TAR para VIH durante el embarazo actual?"
+              <el-form-item label="¿Recibió TAR para VIH durante el embarazo reportado?"
                 prop="estabaRecibiendoTARDuranteEmbarazoActual" @change="toggleEnableBoolean3">
                 <el-radio-group v-model="ruleFormPrimerReporte.estabaRecibiendoTARDuranteEmbarazoActual">
                   <el-radio :label="1">Si</el-radio>
@@ -133,7 +134,7 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-              <el-form-item label="Semana gestacional en que lo recibió:" prop="edadGestacionalCuandoRecibioTAR">
+              <el-form-item label="A partir de que semana gestacional lo recibió:" prop="edadGestacionalCuandoRecibioTAR">
                 <el-input v-model="ruleFormPrimerReporte.edadGestacionalCuandoRecibioTAR"
                   :disabled="enableRecibioTarDurantEmbarazo" type="number" />
               </el-form-item>
@@ -162,7 +163,7 @@
               <h5 class="align-start">CONTROL PRENATAL</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
-              <el-form-item label="Recibio Control Prenatal" prop="seRealizoControlPrenatalDuranteEmbarazo">
+              <el-form-item label="Recibió Control Prenatal" prop="seRealizoControlPrenatalDuranteEmbarazo">
                 <el-radio-group v-model="ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo">
                   <el-radio :label="1">Si</el-radio>
                   <el-radio :label="0">No</el-radio>
@@ -267,7 +268,7 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-              <el-form-item label="Recibio TAR en interparto" prop="tarEnInterparto">
+              <el-form-item label="Recibió TAR en interparto" prop="tarEnInterparto">
                 <el-radio-group v-model="ruleFormTercerReporte.tarEnInterparto">
                   <el-radio :label="1">Si</el-radio>
                   <el-radio :label="0">No</el-radio>
@@ -285,7 +286,7 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
-              <el-form-item label="Condición del recien nacido" prop="condicionRecienNacido">
+              <el-form-item label="Condición del recién nacido" prop="condicionRecienNacido">
                 <el-radio-group v-model="ruleFormTercerReporte.condicionRecienNacido">
                   <el-radio :label="1">Vivo</el-radio>
                   <el-radio :label="2">Mortinato</el-radio>
@@ -293,9 +294,9 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
-              <el-form-item label="Numero de productos al nacimiento" prop="numeroDeProductosAlNacimiento">
+              <el-form-item label="Número de productos al nacimiento" prop="numeroDeProductosAlNacimiento">
                 <el-select v-model="ruleFormTercerReporte.numeroDeProductosAlNacimiento" class="w-100"
-                  placeholder="Numero de productos al nacimiento">
+                  placeholder="Número de productos al nacimiento">
                   <el-option v-for="(nroProNac, index) in NroPrtsNacimiento" :key="index" :label="nroProNac.valor"
                     :value="nroProNac.id" />
                 </el-select>
@@ -501,7 +502,7 @@
         <section style="width: 100%;">
           <el-row :gutter="10">
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">PARACLINICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH</h5>
+              <h5 class="align-start">PARACLÍNICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
               <el-form-item label="Fecha de resultado" prop="fechaResultadoCargasVirales">
