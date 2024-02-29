@@ -1004,7 +1004,7 @@
                             </el-row>
                             <el-row class="row-bg" justify="end">
                                 <div class="btn-save">
-                                    <el-button type="primary" size="default" @click="submitForm(fourForm, 'five')">guardar
+                                    <el-button type="primary" size="default" @click="submitForm(fiveForm, 'six')">guardar
                                         y
                                         continuar</el-button>
                                 </div>
@@ -1322,7 +1322,7 @@ export default class HepatitisBView extends Vue {
             this.ruleFormDiagnosticoGestante.edadGestacionalSemanas = fichaChagas.data.diagnosticoCompletoGestante[0].edadGestacionalSemanas
             this.ruleFormDiagnosticoGestante.fechaProbableParto = fichaChagas.data.diagnosticoCompletoGestante[0].fechaProbableParto
             this.idDiagnosticoGstte = fichaChagas.data.diagnosticoCompletoGestante[0].idDiagnosticoGestante;
-            if(fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas.length !== 0){
+            if (fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas.length !== 0) {
                 this.ruleFormAlgoritmoChagas.esConfirmadoGestanteConChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].esConfirmadoGestanteConChagas
                 this.ruleFormAlgoritmoChagas.examenParasitologico = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].idExamenParasitologico
                 this.ruleFormAlgoritmoChagas.resultadoExamenParasitologico = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].resultadoExamenParasitologico
@@ -1350,28 +1350,39 @@ export default class HepatitisBView extends Vue {
                 this.ruleFormAlgoritmoChagas.esDescartadoGestanteConChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].esDescartadoGestanteConChagas
                 this.ruleFormAlgoritmoChagas.numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas
             }
-            if(fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas.length !== 0){ 
+            if (fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas.length !== 0) {
 
-                this.ruleFormTratamientoMaterno.benznidazolX60Dias = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].benznidazolX60Dias
+                this.ruleFormTratamientoMaterno.benznidazolX60Dias = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].benznidazolX60Dias === 1 ? true : false
                 this.ruleFormTratamientoMaterno.fechaInicioTratamiento = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].fechaInicioTratamiento
-                this.ruleFormTratamientoMaterno.nufurtimoxX60Dias = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].nufurtimoxX60Dias
+                this.ruleFormTratamientoMaterno.nufurtimoxX60Dias = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].nufurtimoxX60Dias === 1 ? true : false
                 this.ruleFormTratamientoMaterno.nufurtimoxControlesMedicos = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].idNufurtimoxControlesMedicos
                 this.ruleFormTratamientoMaterno.finalizacionLactanciaMaterna = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].finalizacionLactanciaMaterna
                 this.ruleFormTratamientoMaterno.metodoAnticonceptivoUtilizadoDuranteTratamiento = fichaChagas.data.diagnosticoCompletoGestante[0].algoritmoChagas[0].tratamientosMaternoChagas[0].metodoAnticonceptivoUtilizadoDuranteTratamiento
             }
         }
+        if (fichaChagas.data.diagnosticoNinoExpuestoChagas.length !== 0) {
+            this.idDiagnosticoMenor = fichaChagas.data.diagnosticoNinoExpuestoChagas[0].idDiagnosticoNinoExpuesto;
+            if (fichaChagas.data.diagnosticoNinoExpuestoChagas[0].seguimientoNinoExpuestoChagas.length !== 0) {
+                console.log('entro aqui', fichaChagas.data.diagnosticoNinoExpuestoChagas[0].seguimientoNinoExpuestoChagas[0].idSeguimientoNinoExpuesto)
+                this.idSeguimientoTratmtoNino = fichaChagas.data.diagnosticoNinoExpuestoChagas[0].seguimientoNinoExpuestoChagas[0].idSeguimientoNinoExpuesto
+                console.log('id del seg.', this.idSeguimientoTratmtoNino)
+
+            }
+        }
+
     }
 
     condicionMomentoDiagnosticoList: IParametrica[] = []
     nufurtimoxCtrlMedico: IParametrica[] = []
 
     async getParamsDbFirsTap(step: string) {
+        console.log('step', step)
         if (step === 'two') {
             const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO_CHAGAS') as any;
             console.log('que trae 1', getParamsDiagnosticMoment)
             this.condicionMomentoDiagnosticoList = getParamsDiagnosticMoment.data
 
-        } else if (step === 'third') {
+        } else if (step === 'six') {
             const ctrlsNufurtimoxCtrlMedico = await this.ETMIPLUS_API_Client.parametrica2('NUFURTIMOX_CONTROL_MEDICO') as any;
             console.log('que trae 2', ctrlsNufurtimoxCtrlMedico)
             this.nufurtimoxCtrlMedico = ctrlsNufurtimoxCtrlMedico.data
@@ -1497,7 +1508,7 @@ export default class HepatitisBView extends Vue {
                 nombreAseguradoraEAPB: this.ruleFormSeguimientoNinoExpuesto.nombreAseguradoraEAPB,
                 nombresApellidos: this.ruleFormSeguimientoNinoExpuesto.nombresApellidos,
                 idTipoDocumento: Number(this.ruleFormSeguimientoNinoExpuesto.tipoDocumento),
-                numeroIdentificacion: Number(this.ruleFormSeguimientoNinoExpuesto.numeroIdentificacion),
+                numeroIdentificacion: this.ruleFormSeguimientoNinoExpuesto.numeroIdentificacion,
             }
             this.registroReporte(request, tabName)
         } /*else if (tabName === 'seven') {
@@ -1649,8 +1660,10 @@ export default class HepatitisBView extends Vue {
                 });
             }
         } else if (tabName === 'end') {
+            console.log('id seguimiento', this.idSeguimientoTratmtoNino)
             reporteForm.idSeguimientoNinoExpuesto = this.idSeguimientoTratmtoNino
-            const requestSeguimiento = await this.ETMIPLUS_API_Client.seguimientoNinoExpuestoChagas(reporteForm.idSeguimientoNinoExpuesto, reporteForm) as any;
+            console.log('formulario a enviar', reporteForm)
+            const requestSeguimiento = await this.ETMIPLUS_API_Client.tratamientoSeguimientoNino(this.idSeguimientoTratmtoNino, reporteForm) as any;
             console.log('response', requestSeguimiento)
 
             if (requestSeguimiento.length !== 0) {
@@ -1661,7 +1674,7 @@ export default class HepatitisBView extends Vue {
                     this.disabledSix = false
                 });
 
-                this.idSeguimientoTratmtoNino = requestSeguimiento.data.idSeguimientoNinoExpuesto;
+                //this.idSeguimientoTratmtoNino = requestSeguimiento.data.idSeguimientoNinoExpuesto;
 
             } else {
                 const message = 'Se presentó un error. Verifiqué la información e intenté de nuevo.'
@@ -2123,19 +2136,19 @@ export default class HepatitisBView extends Vue {
                     this.changeTab(tab)
                 } else {
                     console.log('valor a guardar', Number(this.idGestanteCtrl))
-
+                    
                     const request: ITratamientoSeguimientoNinoChagas = {
                         idTratamientoSeguimientoNino: 0,
                         idSeguimientoNinoExpuesto: this.idSeguimientoTratmtoNino,
-                        benznidazolX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.benznidazolX60Dias),
+                        benznidazolX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.benznidazolX60Dias ? 1 : 0),
                         fechaInicioTratamiento: new Date(moment(this.rulesFormTratamientoSeguimientoNino.fechaInicioTratamiento).format('YYYY-MM-DD HH:mm:ss.sss')),
-                        nufurtimoxX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxX60Dias),
+                        nufurtimoxX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxX60Dias ? 1 : 0),
                         idNufurtimoxControlesMedicos: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos),
-                        esAntigenosTotales6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales6Meses),
-                        esAntigenosRecombinantes6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses),
+                        esAntigenosTotales6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales6Meses ? 1 : 0),
+                        esAntigenosRecombinantes6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses ? 1 : 0),
                         resultadoPruebaSerologica6Meses: this.rulesFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses,
-                        esAntigenosTotales12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales12Meses),
-                        esAntigenosRecombinantes12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses),
+                        esAntigenosTotales12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales12Meses ? 1 : 0),
+                        esAntigenosRecombinantes12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses ? 1 : 0),
                         resultadoPruebaSerologica12Meses: this.rulesFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses,
                         esNinoCuradoChagas: Number(this.rulesFormTratamientoSeguimientoNino.esNinoCuradoChagas),
                     }

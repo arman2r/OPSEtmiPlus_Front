@@ -8,10 +8,10 @@
         <section style="width: 100%;">
           <el-row :gutter="10" style="width: 100%;">
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h4 class="align-start">DIAGNOSTICO - TRATAMIENTO ANTIRRETROVIRAL Y SEGUIMIENTO</h4>
+              <h4 class="align-start">DIAGNÓSTICO - TRATAMIENTO ANTIRRETROVIRAL Y SEGUIMIENTO</h4>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">MOMENTO DEL DIAGNOSTICO DE VIH, CON RELACIÓN AL EMBARAZO ACTUAL:</h5>
+              <h5 class="align-start">MOMENTO DEL DIAGNÓSTICO DE VIH, CON RELACIÓN AL EMBARAZO ACTUAL:</h5>
             </el-col>
 
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">

@@ -2449,7 +2449,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2842,7 +2842,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    tratamientoSeguimientoNino(idSeguimiento: number, body: TratamientoSeguimientoNinoChagas | undefined, cancelToken?: CancelToken): Promise<void> {
+    tratamientoSeguimientoNino(idSeguimiento?: number, body?: ITratamientoSeguimientoNinoChagas | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Seguimiento/{idSeguimiento}/Chagas/TratamientoSeguimientoNino";
         if (idSeguimiento === undefined || idSeguimiento === null)
             throw new Error("The parameter 'idSeguimiento' must be defined.");
@@ -2884,7 +2884,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -5635,7 +5635,7 @@ export interface ITratamientoMaternoChagas {
     fechaInicioTratamiento?: Date;
     nufurtimoxX60Dias?: number;
     idNufurtimoxControlesMedicos?: number;
-    nufurtimoxControlesMedicos?: Parametrica;
+    nufurtimoxControlesMedicos?: IParametrica | IParametrica[];
     finalizacionLactanciaMaterna?: number;
     metodoAnticonceptivoUtilizadoDuranteTratamiento?: string | undefined;
 }
