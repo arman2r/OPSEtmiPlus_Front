@@ -10,12 +10,23 @@
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
               <h4 class="align-start">DIAGNÓSTICO - TRATAMIENTO ANTIRRETROVIRAL Y SEGUIMIENTO</h4>
             </el-col>
+
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
               <h5 class="align-start">MOMENTO DEL DIAGNÓSTICO DE VIH, CON RELACIÓN AL EMBARAZO ACTUAL:</h5>
             </el-col>
 
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-              <el-form-item label="Momento del diagnóstico de VIH, con relación al embarazo actual" prop="momentoDiagnostico" class="select-width">
+              <el-form-item label="Recibió Control Prenatal" prop="seRealizoControlPrenatalDuranteEmbarazo">
+                <el-radio-group v-model="ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo">
+                  <el-radio :label="1">Si</el-radio>
+                  <el-radio :label="0">No</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+
+            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+              <el-form-item label="Momento del diagnóstico de VIH, con relación al embarazo actual"
+                prop="momentoDiagnostico" class="select-width">
                 <el-select v-model="ruleFormPrimerReporte.momentoDiagnostico" placeholder="Momento del diagnostico">
                   <el-option v-for="(mmd, index) in momentoDiagnosticoList" :key="index" :label="mmd.valor"
                     :value="mmd.id" />
@@ -79,22 +90,26 @@
                   <el-date-picker v-model="paraclinico.fechaExamenParaClinico" @change="validateField(index)" type="date"
                     placeholder="Fecha" :format="dateFormat" :size="size" />
                 </el-form-item>
-              </el-col>
-              <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-                <el-form-item label="Resultado: copias/mls" prop="resultadoParaclinico">
+              </el-col> 
+              <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8" :xl="index >= 1 ? 7 : 8">
+                <el-form-item :label="paraclinico.labelValue" prop="resultadoParaclinico">
                   <el-input v-model="paraclinico.resultadoParaclinico" type="number" @input="validateField(index)" />
                 </el-form-item>
               </el-col>
+              <el-col :md="1" :lg="1" :xl="1" class="center-button">
+                <el-button v-if="paraClinicosFields.length >= 2 && index !== 0" :icon="DeleteIcon"
+                  @click="removeFields(index)" type="danger" circle></el-button>
+              </el-col>
             </div>
             <el-col :span="24">
-              <el-button type="primary" size="default" @click="addFields">
+              <el-button type="primary" size="default" :disabled="validarParaClinicos" @click="addFields">
                 Agregar exámen
               </el-button>
             </el-col>
             <el-divider />
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text
-                  type="primary">ANTES</el-text> DEL EMBARAZO ACTUAL:</h5>
+              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text type="primary">ANTES</el-text> DEL EMBARAZO
+                ACTUAL:</h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="La gestante venía recibiendo TAR para VIH antes de iniciar el embarazo actual"
@@ -121,8 +136,8 @@
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text
-                  type="primary">(POSTERIOR AL PARTO):</el-text></h5>
+              <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text type="primary">(POSTERIOR AL
+                  PARTO):</el-text></h5>
             </el-col>
             <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
               <el-form-item label="¿Recibió TAR para VIH durante el embarazo reportado?"
@@ -159,17 +174,7 @@
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-              <h5 class="align-start">CONTROL PRENATAL</h5>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
-              <el-form-item label="Recibió Control Prenatal" prop="seRealizoControlPrenatalDuranteEmbarazo">
-                <el-radio-group v-model="ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo">
-                  <el-radio :label="1">Si</el-radio>
-                  <el-radio :label="0">No</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
+
             <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
               <el-form-item label="Edad gestacional al primer control prenatal, en semanas"
                 prop="edadGestacionalPrimerControlPrenatalSemanas">
@@ -665,6 +670,9 @@ import { IParaclinicoMadre, IParaclinicoNino, IParametrica, IReporte1, IReporte2
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
+import {
+  Delete
+} from '@element-plus/icons-vue'
 
 type FormInstance = InstanceType<typeof ElForm>
 
@@ -679,6 +687,7 @@ interface IParaclinicos {
   examenParaClinico?: [];
   fechaExamenParaClinico?: Date;
   resultadoParaclinico?: string;
+  labelValue?: string;
   valid?: boolean;
 }
 
@@ -688,6 +697,7 @@ interface IParaclinicos {
 
 export default class VihView extends Vue {
 
+  DeleteIcon: any = Delete
   collapseReportes = ['1']
   activeName = 'second'
   paraClinicoActivo = 'first'
@@ -867,6 +877,7 @@ export default class VihView extends Vue {
         paraclinico.examenParaClinico = paraclinico.idParaclinicoRealizado;
         paraclinico.fechaExamenParaClinico = paraclinico.fechaParaclinico;
         paraclinico.resultadoParaclinico = Number(paraclinico.resultadoParaclinico);
+        paraclinico.labelValue = paraclinico.idParaclinicoRealizado === 116 ? 'Resultado: copias/cm3' : 'Resultado: copias/mls'
       })
       this.ruleFormPrimerReporte.estabaRecibiendoTARAntesEmbarazo = fichaVihGet.data.reporte1[0].estabaRecibiendoTARAntesEmbarazo
       this.ruleFormPrimerReporte.recibioTARDuranteEmbarazo = fichaVihGet.data.reporte1[0].recibioTARDuranteEmbarazo
@@ -898,7 +909,7 @@ export default class VihView extends Vue {
       this.ruleFormTercerReporte.sexo = fichaVihGet.data.reporte3[0].idSexo;
       this.ruleFormTercerReporte.tipoParto = fichaVihGet.data.reporte3[0].idTipoParto;
       this.ruleFormTercerReporte.suprecionDeLactancia = fichaVihGet.data.reporte3[0].seRealizoSuprecionLactancia;
-      
+
       if (fichaVihGet.data.reporte3[0].medicamentoSuministrado !== "Cabergolina") {
         this.ruleFormTercerReporte.medicamentoSuministrado = "Otro";
         this.isVisible = true;
@@ -916,33 +927,54 @@ export default class VihView extends Vue {
     }
   }
 
-  paraClinicosFields: IParaclinicos[] = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
-  paraClinicosMenorFields: IParaclinicos[] = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true }]
+  paraClinicosFields: IParaclinicos[] = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', labelValue: 'Resultados:', valid: true }]
+  paraClinicosMenorFields: IParaclinicos[] = [{ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', labelValue: 'Resultados:', valid: true }]
 
 
   addFields() {
-    this.paraClinicosFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true });
+
+    this.validarParaClinicos = true
+    if (this.paraClinicosFields.length <= 4) {
+      this.paraClinicosFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', labelValue: 'Resultados:', valid: true });
+    } else {
+      this.validarParaClinicos = true
+    }
+
+    //this.paraClinicosFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true });
   }
 
   addFieldsMenor() {
-    this.paraClinicosMenorFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', valid: true });
+    this.paraClinicosMenorFields.push({ examenParaClinico: [], fechaExamenParaClinico: new Date(), resultadoParaclinico: '', labelValue: 'Resultados:', valid: true });
   }
 
-  validarParaClinicos: any = false;
+  removeFields(index: any) {
+    this.paraClinicosFields.splice(index, 1);
+  }
+
+  validarParaClinicos: any = true;
   validarParaClinicosDelMenor: any = false;
+  resultadoTypeExam: any = 'Resultado: copias/mls'
 
   validateField = (index: number) => {
     const field = this.paraClinicosFields[index];
-    console.log('validador', field)
-    field.valid = field.examenParaClinico && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
+    console.log('validador', field.examenParaClinico)
+
+    if (field.examenParaClinico as any === 116) {
+      field.labelValue = 'Resultado: copias/cm3'
+    } else {
+      field.labelValue = 'Resultado: copias/mls'
+    }
+    console.log('todos los valores', field.examenParaClinico !== null, field.fechaExamenParaClinico !== null, field.resultadoParaclinico !== '')
+    field.valid = field.examenParaClinico !== null && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
     console.log('valor', field.valid)
-    this.validarParaClinicos = field.valid
+    this.validarParaClinicos = !field.valid
+
   };
 
   validateMenorField = (index: number) => {
     const field = this.paraClinicosMenorFields[index];
     console.log('validador', field)
-    field.valid = field.examenParaClinico && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
+    field.valid = field.examenParaClinico !== null && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
     console.log(field.valid)
     this.validarParaClinicosDelMenor = field.valid
   };
@@ -1764,8 +1796,8 @@ export default class VihView extends Vue {
       this.disabledTwo = false
       this.activeName = tabName;
     } else if (tabName === 'third') {
-      //console.log('valor del formulario', this.rulesFormPrimerReporte)
-      if (this.validarParaClinicos) {
+      console.log('valor del formulario paraclinicos', this.validarParaClinicos)
+      if (!this.validarParaClinicos) {
         console.log('enviando!')
 
         //console.log(fields)
@@ -2168,21 +2200,31 @@ h5 {
   text-align: left !important;
 }
 
-.el-collapse-item{
-    margin-bottom: 14px
+.el-collapse-item {
+  margin-bottom: 14px
 }
 
-.el-collapse-item__header{
-    font-weight: bold !important;
-    background-color: #f1f1f1 !important;
-    font-size: 14px !important;
-    padding: 0 0 0 13px !important;
+.el-collapse-item__header {
+  font-weight: bold !important;
+  background-color: #f1f1f1 !important;
+  font-size: 14px !important;
+  padding: 0 0 0 13px !important;
 }
 
-.el-collapse-item__content{
-    padding-top: 25px;
-    padding-left: 13px;
-    padding-right: 13px;
-    background-color: #f7f7f7 !important;
+.el-collapse-item__content {
+  padding-top: 25px;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: #f7f7f7 !important;
+}
+
+.center-button{
+  display:flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-button button{
+  margin-top:-10px
 }
 </style>

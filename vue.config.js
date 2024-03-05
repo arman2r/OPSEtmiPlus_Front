@@ -28,5 +28,5 @@ module.exports = defineConfig({
     headers: {
       'Access-Control-Allow-Origin': '*'
     }
-  }
+  },
 })

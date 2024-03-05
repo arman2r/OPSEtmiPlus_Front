@@ -1087,8 +1087,7 @@
                                                             <el-form-item label="RESULTADO" class="w-100"
                                                                 prop="resultadoPrueba">
                                                                 <el-input
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses"
-                                                                    type="number" />
+                                                                    v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses"/>
                                                             </el-form-item>
                                                         </el-col>
 
@@ -1149,7 +1148,7 @@
                                                                 prop="resultadoPruebaSerologica12Meses">
                                                                 <el-input
                                                                     v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses"
-                                                                    type="number" />
+                                                                    type="string" />
                                                             </el-form-item>
                                                         </el-col>
                                                         <!--
@@ -1670,8 +1669,8 @@ export default class HepatitisBView extends Vue {
                 const message = 'Reporte guardado con éxito.'
                 this.showMessage(message).then(() => {
                     ElMessage.info(message);
-                    this.activeName = tabName;
-                    this.disabledSix = false
+                    /*this.activeName = tabName;
+                    this.disabledSix = false*/
                 });
 
                 //this.idSeguimientoTratmtoNino = requestSeguimiento.data.idSeguimientoNinoExpuesto;
@@ -2109,7 +2108,7 @@ export default class HepatitisBView extends Vue {
             { required: true, message: 'Este campo es requerido', trigger: 'change' }
         ],
         resultadoPruebaSerologica6Meses: [
-            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
         ],
         esAntigenosTotales12Meses: [
             { required: true, message: 'Este campo es requerido', trigger: 'change' }
@@ -2118,7 +2117,7 @@ export default class HepatitisBView extends Vue {
             { required: true, message: 'Este campo es requerido', trigger: 'change' }
         ],
         resultadoPruebaSerologica12Meses: [
-            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
         ],
         esNinoCuradoChagas: [
             { required: true, message: 'Este campo es requerido', trigger: 'change' }
@@ -2140,17 +2139,17 @@ export default class HepatitisBView extends Vue {
                     const request: ITratamientoSeguimientoNinoChagas = {
                         idTratamientoSeguimientoNino: 0,
                         idSeguimientoNinoExpuesto: this.idSeguimientoTratmtoNino,
-                        benznidazolX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.benznidazolX60Dias ? 1 : 0),
-                        fechaInicioTratamiento: new Date(moment(this.rulesFormTratamientoSeguimientoNino.fechaInicioTratamiento).format('YYYY-MM-DD HH:mm:ss.sss')),
-                        nufurtimoxX60Dias: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxX60Dias ? 1 : 0),
-                        idNufurtimoxControlesMedicos: Number(this.rulesFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos),
-                        esAntigenosTotales6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales6Meses ? 1 : 0),
-                        esAntigenosRecombinantes6Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses ? 1 : 0),
-                        resultadoPruebaSerologica6Meses: this.rulesFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses,
-                        esAntigenosTotales12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosTotales12Meses ? 1 : 0),
-                        esAntigenosRecombinantes12Meses: Number(this.rulesFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses ? 1 : 0),
-                        resultadoPruebaSerologica12Meses: this.rulesFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses,
-                        esNinoCuradoChagas: Number(this.rulesFormTratamientoSeguimientoNino.esNinoCuradoChagas),
+                        benznidazolX60Dias: Number(this.ruleFormTratamientoSeguimientoNino.benznidazolX60Dias ? 1 : 0),
+                        fechaInicioTratamiento: new Date(moment(this.ruleFormTratamientoSeguimientoNino.fechaInicioTratamiento).format('YYYY-MM-DD HH:mm:ss.sss')),
+                        nufurtimoxX60Dias: Number(this.ruleFormTratamientoSeguimientoNino.nufurtimoxX60Dias ? 1 : 0),
+                        idNufurtimoxControlesMedicos: Number(this.ruleFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos),
+                        esAntigenosTotales6Meses: Number(this.ruleFormTratamientoSeguimientoNino.esAntigenosTotales6Meses ? 1 : 0),
+                        esAntigenosRecombinantes6Meses: Number(this.ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses ? 1 : 0),
+                        resultadoPruebaSerologica6Meses: this.ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses,
+                        esAntigenosTotales12Meses: Number(this.ruleFormTratamientoSeguimientoNino.esAntigenosTotales12Meses ? 1 : 0),
+                        esAntigenosRecombinantes12Meses: Number(this.ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses ? 1 : 0),
+                        resultadoPruebaSerologica12Meses: this.ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses,
+                        esNinoCuradoChagas: Number(this.ruleFormTratamientoSeguimientoNino.esNinoCuradoChagas),
                     }
                     this.registroReporte(request, 'end')
 

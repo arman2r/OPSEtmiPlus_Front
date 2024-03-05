@@ -3843,7 +3843,7 @@ export class DiagnosticoNinoExpuestoChagas implements IDiagnosticoNinoExpuestoCh
             this.fechaRecoleccionMuestra = _data["fechaRecoleccionMuestra"] ? new Date(_data["fechaRecoleccionMuestra"].toString()) : <any>undefined;
             this.fechaEmisiónResultado = _data["fechaEmisiónResultado"] ? new Date(_data["fechaEmisiónResultado"].toString()) : <any>undefined;
             this.seHacePruebaDiagnostica3Meses = _data["seHacePruebaDiagnostica3Meses"];
-            this.examenParasitologico3Meses = _data["examenParasitologico3Meses"];
+            this.examenParasitologico3Meses = _data["examenParasitologico3Meses"] ? Parametrica.fromJS(_data["examenParasitologico3Meses"]) : <any>undefined;
             this.idExamenParasitologico3Meses = _data["idExamenParasitologico3Meses"];
             this.resultadoExamenParasitologico3Meses = _data["resultadoExamenParasitologico3Meses"];
             this.fechaRecoleccionMuestra3Meses = _data["fechaRecoleccionMuestra3Meses"] ? new Date(_data["fechaRecoleccionMuestra3Meses"].toString()) : <any>undefined;
@@ -3885,7 +3885,7 @@ export class DiagnosticoNinoExpuestoChagas implements IDiagnosticoNinoExpuestoCh
         data["fechaRecoleccionMuestra"] = this.fechaRecoleccionMuestra ? this.fechaRecoleccionMuestra.toISOString() : <any>undefined;
         data["fechaEmisiónResultado"] = this.fechaEmisiónResultado ? this.fechaEmisiónResultado.toISOString() : <any>undefined;
         data["seHacePruebaDiagnostica3Meses"] = this.seHacePruebaDiagnostica3Meses;
-        data["examenParasitologico3Meses"] = this.examenParasitologico3Meses; 
+        data["examenParasitologico3Meses"] = this.examenParasitologico3Meses ? this.examenParasitologico3Meses.toJSON() : <any>undefined;
         data["idExamenParasitologico3Meses"] = this.idExamenParasitologico3Meses;
         data["resultadoExamenParasitologico3Meses"] = this.resultadoExamenParasitologico3Meses;
         data["fechaRecoleccionMuestra3Meses"] = this.fechaRecoleccionMuestra3Meses ? this.fechaRecoleccionMuestra3Meses.toISOString() : <any>undefined;
