@@ -3805,7 +3805,7 @@ export class DiagnosticoNinoExpuestoChagas implements IDiagnosticoNinoExpuestoCh
     fechaRecoleccionMuestra?: Date;
     fechaEmisiónResultado?: Date;
     seHacePruebaDiagnostica3Meses?: number;
-    examenParasitologico3Meses: Parametrica;
+    examenParasitologico3Meses?: Parametrica;
     idExamenParasitologico3Meses?: number;
     resultadoExamenParasitologico3Meses?: string | undefined;
     fechaRecoleccionMuestra3Meses?: Date;
@@ -3885,7 +3885,7 @@ export class DiagnosticoNinoExpuestoChagas implements IDiagnosticoNinoExpuestoCh
         data["fechaRecoleccionMuestra"] = this.fechaRecoleccionMuestra ? this.fechaRecoleccionMuestra.toISOString() : <any>undefined;
         data["fechaEmisiónResultado"] = this.fechaEmisiónResultado ? this.fechaEmisiónResultado.toISOString() : <any>undefined;
         data["seHacePruebaDiagnostica3Meses"] = this.seHacePruebaDiagnostica3Meses;
-        data["examenParasitologico3Meses"] = this.examenParasitologico3Meses ? this.examenParasitologico3Meses.toJSON() : <any>undefined;
+        data["examenParasitologico3Meses"] = this.examenParasitologico3Meses ? this.examenParasitologico3Meses.toJSON() : <any>undefined;; 
         data["idExamenParasitologico3Meses"] = this.idExamenParasitologico3Meses;
         data["resultadoExamenParasitologico3Meses"] = this.resultadoExamenParasitologico3Meses;
         data["fechaRecoleccionMuestra3Meses"] = this.fechaRecoleccionMuestra3Meses ? this.fechaRecoleccionMuestra3Meses.toISOString() : <any>undefined;
@@ -3920,7 +3920,7 @@ export interface IDiagnosticoNinoExpuestoChagas {
     fechaRecoleccionMuestra?: Date;
     fechaEmisiónResultado?: Date;
     seHacePruebaDiagnostica3Meses?: number;
-    examenParasitologico3Meses: IParametrica;
+    examenParasitologico3Meses?: Parametrica | IParametrica;
     idExamenParasitologico3Meses?: number;
     resultadoExamenParasitologico3Meses?: string | undefined;
     fechaRecoleccionMuestra3Meses?: Date;

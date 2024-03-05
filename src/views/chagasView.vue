@@ -1,1097 +1,1082 @@
 <template class="steps-container">
-    <el-row style="align-content: start;">
-        <h4>SEGUIMIENTO CLÍNICO DE LA GESTANTE CON ENFERMEDAD DE CHAGAS</h4>
-        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb">
-            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+    <div class="w-100">
+    <h4>SEGUIMIENTO CLÍNICO DE LA GESTANTE CON ENFERMEDAD DE CHAGAS</h4>
+    <section class="w-100">
+        <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
 
-                <el-tab-pane label="Diagnostico" name="second" ref="elTab2">
+            <el-tab-pane label="Diagnostico" name="second" ref="elTab2">
 
-                    <section style="width: 100%;">
-                        <el-form :model="ruleFormDiagnosticoGestante" :rules="rulesFormDiagnosticoGestante"
-                            style="width: 100%;" label-width="50%" label-position="top" :size="formSize" status-icon
-                            ref="secondForm">
-                            <el-row :gutter="10" style="width: 100%;">
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h5>CONDICIÓN EN EL MOMENTO DEL DIAGNÓSTICO DE ENFERMEDAD DE CHAGAS</h5>
-                                </el-col>
+                <section style="width: 100%;">
+                    <el-form :model="ruleFormDiagnosticoGestante" :rules="rulesFormDiagnosticoGestante" style="width: 100%;"
+                        label-width="50%" label-position="top" :size="formSize" status-icon ref="secondForm">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <h5>CONDICIÓN EN EL MOMENTO DEL DIAGNÓSTICO DE ENFERMEDAD DE CHAGAS</h5>
+                            </el-col>
 
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-form-item label="Condición en el momento del diagnostico"
-                                        prop="condicionDiagnoticoChagas" class="w-100">
-                                        <el-select v-model="ruleFormDiagnosticoGestante.condicionDiagnoticoChagas"
-                                            placeholder="Condición en el momento del diagnostico">
-                                            <el-option v-for="(cmmd, index) in condicionMomentoDiagnosticoList" :key="index"
-                                                :label="cmmd.valor" :value="cmmd.id" />
-                                        </el-select>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-form-item label="Si el diagnostico se realiza durante la gestación indique la edad gestacional en
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-form-item label="Condición en el momento del diagnostico"
+                                    prop="condicionDiagnoticoChagas" class="w-100">
+                                    <el-select v-model="ruleFormDiagnosticoGestante.condicionDiagnoticoChagas"
+                                        placeholder="Condición en el momento del diagnostico">
+                                        <el-option v-for="(cmmd, index) in condicionMomentoDiagnosticoList" :key="index"
+                                            :label="cmmd.valor" :value="cmmd.id" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <el-form-item label="Si el diagnostico se realiza durante la gestación indique la edad gestacional en
                                         semanas:" prop="edadGestacionalSemanas">
-                                        <el-input v-model="ruleFormDiagnosticoGestante.edadGestacionalSemanas"
-                                            placeholder="Semanas" type="number" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Edad gestacional en semanas del primer control prenatal:"
-                                        prop="edadGestacionalPrimerControlPrentalSemanas">
-                                        <el-input
-                                            v-model="ruleFormDiagnosticoGestante.edadGestacionalPrimerControlPrentalSemanas"
-                                            placeholder="Semanas" type="number" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Fecha probable del parto:" prop="fechaProbableParto" class="w-100">
-                                        <el-date-picker type="date" placeholder="Fecha probable del parto"
-                                            v-model="ruleFormDiagnosticoGestante.fechaProbableParto" :format="dateFormat" />
-                                    </el-form-item>
-                                </el-col>
+                                    <el-input v-model="ruleFormDiagnosticoGestante.edadGestacionalSemanas"
+                                        placeholder="Semanas" type="number" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Edad gestacional en semanas del primer control prenatal:"
+                                    prop="edadGestacionalPrimerControlPrentalSemanas">
+                                    <el-input
+                                        v-model="ruleFormDiagnosticoGestante.edadGestacionalPrimerControlPrentalSemanas"
+                                        placeholder="Semanas" type="number" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Fecha probable del parto:" prop="fechaProbableParto" class="w-100">
+                                    <el-date-picker type="date" placeholder="Fecha probable del parto"
+                                        v-model="ruleFormDiagnosticoGestante.fechaProbableParto" :format="dateFormat" />
+                                </el-form-item>
+                            </el-col>
 
-                            </el-row>
-                        </el-form>
-                        <el-form :model="ruleFormAlgoritmoChagas" :rules="rulesFormAlgoritmoChagas" style="width: 100%;"
-                            label-position="top" :size="formSize" status-icon ref="secondFormAlgoritmoChagas">
-                            <el-row :gutter="10" style="width: 100%;">
-                                <el-col :span="24">
-                                    <h4>ALGORITMO UTILIZADO PARA CONFIRMAR EL DIAGNOSTICO DE ENFERDAD DE CHAGAS:</h4>
-                                </el-col>
-
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb">
-
-                                    <el-form-item label="Sospecha de enfermedad
-                                        de chagas agudo:" prop="sospechaChagasAgudo">
-                                        <el-radio-group v-model="ruleFormAlgoritmoChagas.sospechaChagasAgudo">
-                                            <el-radio :label="0">Aplica</el-radio>
-                                            <el-radio :label="1">No Aplica</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <div class="demo-collapse">
-                                        <el-collapse>
-                                            <el-collapse-item title="EXAMEN PARASITOLÓGICO" name="1">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-radio-group
-                                                            v-model="ruleFormAlgoritmoChagas.examenParasitologico">
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="1">Gota gruesa a partir de sangre
-                                                                        fresca</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="2">Frotis o extendido a partir de
-                                                                        sangre</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="3">Microhematocrito</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="4">Método de strout</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="5">Micrométodo</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                                style="align-items:center">
-                                                                <el-form-item class="w-100" label="Fecha
-                                                                de recolección de muestra"
-                                                                    prop="fechaRecoleccionMuestra">
-                                                                    <el-date-picker
-                                                                        v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestra"
-                                                                        style="margin-bottom:8px" type="date"
-                                                                        placeholder="Fecha de recolección de muestra"
-                                                                        :format="dateFormat" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                                style="align-items:center">
-                                                                <el-form-item class="w-100"
-                                                                    label="Fecha de emisión del resultado"
-                                                                    prop="fechaEmisionResultado">
-                                                                    <el-date-picker
-                                                                        v-model="ruleFormAlgoritmoChagas.fechaEmisionResultado"
-                                                                        style="margin-bottom:8px" type="date"
-                                                                        placeholder="Fecha de recolección de muestra"
-                                                                        :format="dateFormat" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                        </el-radio-group>
-                                                    </el-row>
-
-                                                </div>
-                                            </el-collapse-item>
-                                        </el-collapse>
-                                    </div>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
-                                    <el-form-item label="Sospecha de enfermedad
-                                        de chagas cronico o tamizaje del control prenatal:"
-                                        prop="sospechaChagasCronicoOTamizajeControlPrenatal">
-                                        <el-radio-group
-                                            v-model="ruleFormAlgoritmoChagas.sospechaChagasCronicoOTamizajeControlPrenatal">
-                                            <el-radio :label="1">Aplica</el-radio>
-                                            <el-radio :label="0">No Aplica</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <div class="demo-collapse">
-                                        <el-collapse>
-                                            <el-collapse-item
-                                                title="Algoritmo 1. Serología para detección de anticuerpos totales contra Tripanozoma Cruzi por dos tecnicas de ELISA"
-                                                name="1">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                            class="align-end">
-                                                            <h5>Prueba de tamizaje ELISA con Antigenos totales</h5>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                            <el-form-item label="RESULTADO"
-                                                                prop="resultadoPruebaTamizajeElisaAntigenosTotales">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosTotales"
-                                                                    type="number" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de recolección de muestra</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraElisaAntigenosTotales"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de recolección de muestra"
-                                                                :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de emisión del resultado</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoElisaAntigenosTotales"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de emisión" :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                            class="align-end">
-                                                            <h5>Prueba confirmatoria ELISA con Antigenos recombinantes</h5>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                            <el-form-item label="RESULTADO"
-                                                                prop="resultadoPruebaTamizajeElisaAntigenosRecombinantes1">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes1"
-                                                                    type="number" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de recolección de muestra</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes1"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de recolección de muestra"
-                                                                :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de emisión del resultado</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes1"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de emisión" :format="dateFormat" />
-                                                        </el-col>
-                                                    </el-row>
-
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-collapse-item
-                                                title="Algoritmo 2. Serología con la primera prueba rápida y la segunda ELISA recombinante"
-                                                name="2">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                            class="align-end">
-                                                            <h5>Prueba de tamizaje Inmunocromatografía o prueba rápida</h5>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                            <el-form-item label="RESULTADO"
-                                                                prop="resultadoPruebaTamizajeInmunocromatografia">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeInmunocromatografia"
-                                                                    type="number" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de recolección de muestra</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de recolección de muestra"
-                                                                :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de emisión del resultado</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaEmisionInmunocromatografia"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de emisión" :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                            class="align-end">
-                                                            <h5>Prueba confirmatoria ELISA con Antígenos recombinantes</h5>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                            <el-form-item label="RESULTADO"
-                                                                prop="resultadoPruebaTamizajeElisaAntigenosRecombinantes1">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes2"
-                                                                    type="number" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de recolección de muestra</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de recolección de muestra"
-                                                                :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de emisión del resultado</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de emisión" :format="dateFormat" />
-                                                        </el-col>
-                                                    </el-row>
-
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-collapse-item
-                                                title="Pruebas no concordantes (tercera para decidir resultado)" name="3">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                            <el-form-item label="Tipo de prueba utilizada">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.tipoPruebaUtilizada" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                            <el-form-item label="RESULTADO" prop="resultadoPruebaUtilizada">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.resultadoPruebaUtilizada"
-                                                                    type="number" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de recolección de muestra</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de recolección de muestra"
-                                                                :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de emisión del resultado</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaEmisionNoConcordante"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de emisión" :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                            class="align-end mt">
-                                                            <h5>Prueba confirmatoria ELISA con Antigenos recombinantes</h5>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mt">
-                                                            <el-form-item label="RESULTADO"
-                                                                prop="resultadoPruebaTamizajeElisaAntigenosRecombinantes3">
-                                                                <el-input
-                                                                    v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes3"
-                                                                    type="number" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de recolección de muestra</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de recolección de muestra"
-                                                                :format="dateFormat" />
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <label class="title-field"
-                                                                style="min-width: 180px !important;width:inherit !important">Fecha
-                                                                de emisión del resultado</label>
-                                                            <el-date-picker
-                                                                v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3"
-                                                                style="margin-bottom:8px" type="date"
-                                                                placeholder="Fecha de emisión" :format="dateFormat" />
-                                                        </el-col>
-                                                    </el-row>
-
-                                                </div>
-                                            </el-collapse-item>
-                                        </el-collapse>
-                                    </div>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="column-custom mb mt">
-                                    <el-form-item label="Caso confirmado de
-                                        gestante con enferdad de chagas:" prop="esConfirmadoGestanteConChagas">
-                                        <el-radio-group v-model="ruleFormAlgoritmoChagas.esConfirmadoGestanteConChagas">
-                                            <el-radio :label="1">Si</el-radio>
-                                            <el-radio :label="0">No</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="column-custom mb mt">
-                                    <el-form-item label="Caso de gestante
-                                        descartado con enferdad de chagas:" prop="esDescartadoGestanteConChagas">
-                                        <el-radio-group v-model="ruleFormAlgoritmoChagas.esDescartadoGestanteConChagas">
-                                            <el-radio :label="1">Si</el-radio>
-                                            <el-radio :label="0">No</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
-                                    <el-form-item label="Número de hijos
-                                        diferentes al fruto del embarazo en curso a los que se les debe realizar pruebas de
-                                        diagnostico de Chagas:">
-                                        <el-form-item label="Nro de Hijos"
-                                            prop="numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas">
-                                            <el-input
-                                                v-model="ruleFormAlgoritmoChagas.numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas"
-                                                type="number" />
-                                        </el-form-item>
-                                    </el-form-item>
-                                </el-col>
-                            </el-row>
-                            <el-row class="row-bg" justify="end">
-                                <div class="btn-save">
-                                    <el-button type="primary" size="default"
-                                        @click="submitForm(secondForm, 'third')">guardar y
-                                        continuar</el-button>
-                                </div>
-                            </el-row>
-                        </el-form>
-                    </section>
-                </el-tab-pane>
-                <el-tab-pane label="Tratamiento materno" name="third" ref="elTab3">
-                    <el-form :model="ruleFormTratamientoMaterno" :rules="rulesFormTratamientoMaterno" style="width: 100%;"
-                        label-position="top" :size="formSize" status-icon ref="thirdForm">
-                        <section style="width: 100%;">
-                            <el-row :gutter="10" style="width: 100%;">
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                    <el-form-item label="Medicamento:" prop="benznidazolX60Dias" class="w-100">
-                                        <el-checkbox v-model="ruleFormTratamientoMaterno.benznidazolX60Dias">Benznidazol *
-                                            60 días</el-checkbox>
-                                    </el-form-item>
-                                </el-col>
-
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
-                                    <el-form-item label="Fecha de inicio del tratamiento" prop="fechaInicioTratamiento"
-                                        class="w-100">
-                                        <el-date-picker style="margin-bottom:8px" type="date" placeholder="Fecha de emisión"
-                                            :format="dateFormat"
-                                            v-model="ruleFormTratamientoMaterno.fechaInicioTratamiento" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                    <el-form-item label="Medicamento:" prop="nufurtimoxX60Dias" class="w-100">
-                                        <el-checkbox v-model="ruleFormTratamientoMaterno.nufurtimoxX60Dias">Nufurtimox *60
-                                            días</el-checkbox>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Controles médicos" prop="nufurtimoxControlesMedicos" class="w-100">
-                                        <el-select v-model="ruleFormTratamientoMaterno.nufurtimoxControlesMedicos"
-                                            placeholder="Select" style="width: 100%">
-                                            <el-option v-for="(item, index) in nufurtimoxCtrlMedico" :key="index"
-                                                :label="item.valor" :value="item.id" />
-                                        </el-select>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                    <el-form-item label="Finalización de lactancia materna"
-                                        prop="finalizacionLactanciaMaterna" class="w-100">
-                                        <el-radio-group v-model="ruleFormTratamientoMaterno.finalizacionLactanciaMaterna">
-                                            <el-radio :label="1">Si</el-radio>
-                                            <el-radio :label="0">No</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                    <el-form-item label="Metodo anticonceptivo utilizado durante el embarazo"
-                                        prop="metodoAnticonceptivoUtilizadoDuranteTratamiento">
-                                        <el-input
-                                            v-model="ruleFormTratamientoMaterno.metodoAnticonceptivoUtilizadoDuranteTratamiento" />
-                                    </el-form-item>
-                                </el-col>
-                            </el-row>
-                            <el-row class="row-bg" justify="end">
-                                <div class="btn-save">
-                                    <el-button type="primary" size="default" @click="submitForm(thirdForm, 'four')">guardar
-                                        y
-                                        continuar</el-button>
-                                </div>
-                            </el-row>
-                        </section>
+                        </el-row>
                     </el-form>
+                    <el-form :model="ruleFormAlgoritmoChagas" :rules="rulesFormAlgoritmoChagas" style="width: 100%;"
+                        label-position="top" :size="formSize" status-icon ref="secondFormAlgoritmoChagas">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :span="24">
+                                <h4>ALGORITMO UTILIZADO PARA CONFIRMAR EL DIAGNOSTICO DE ENFERDAD DE CHAGAS:</h4>
+                            </el-col>
 
-                </el-tab-pane>
-                <el-tab-pane label="Diagnostico del menor" name="four" ref="elTab5">
-                    <el-form :model="ruleFormDiagnosticoMenor" :rules="rulesFormDiagnosticoMenor" style="width: 100%;"
-                        label-position="top" :size="formSize" status-icon ref="fourForm">
-                        <section style="width: 100%;">
-                            <el-row :gutter="10" style="width: 100%;">
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb">
 
-                                    <div class="demo-collapse">
-                                        <el-collapse v-model="activeCollapseKids1">
-                                            <el-collapse-item title="Prueba de diagnostico al nacer" name="1">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :lg="24">
-                                                            <h4 class="align-start">EXAMEN PARASITOLÓGICO</h4>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:center"
-                                                            class="hidden-sm-and-down hidden-sm-and-up hidden-md-and-down hidden-md-and-up hidden-lg-and-down hidden-lg-and-up">
-                                                            <el-form-item class="w-100" label="Fecha
-                                                                de nacimiento" prop="fechaNacimiento">
-                                                                <el-date-picker style="margin-bottom:8px" type="date"
-                                                                    placeholder="Fecha de emisión" :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaNacimiento" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-radio-group
-                                                            v-model="ruleFormDiagnosticoMenor.examenParasitologico">
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="1">Gota gruesa a partir de sangre
-                                                                        fresca</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="2">Frotis o extendido a partir de
-                                                                        sangre</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="3">Microhematocrito</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="4">Método de strout</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="5">Micrométodo</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                                style="align-items:center">
-                                                                <el-form-item class="w-100" label="Fecha
-                                                                de recolección de muestra"
-                                                                    prop="fechaRecoleccionMuestra">
-                                                                    <el-date-picker
-                                                                        v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra"
-                                                                        style="margin-bottom:8px" type="date"
-                                                                        placeholder="Fecha de recolección de muestra"
-                                                                        :format="dateFormat" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                                style="align-items:center">
-                                                                <el-form-item class="w-100"
-                                                                    label="Fecha de emisión del resultado"
-                                                                    prop="fechaEmisiónResultado">
-                                                                    <el-date-picker
-                                                                        v-model="ruleFormDiagnosticoMenor.fechaEmisiónResultado"
-                                                                        style="margin-bottom:8px" type="date"
-                                                                        placeholder="Fecha de recolección de muestra"
-                                                                        :format="dateFormat" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                        </el-radio-group>
-                                                    </el-row>
-
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"
-                                                class="column-custom mb mt">
-                                                <el-form-item label="Prueba de
-                                                    diagnostico a los 3 meses de nacido, en caso de que la prueba de
-                                                    diagnóstico al nacer sea NEGATIVA"
-                                                    prop="seHacePruebaDiagnostica3Meses">
-                                                    <el-radio-group
-                                                        v-model="ruleFormDiagnosticoMenor.seHacePruebaDiagnostica3Meses">
-                                                        <el-radio :label="1">Aplica</el-radio>
-                                                        <el-radio :label="0">No Aplica</el-radio>
-                                                    </el-radio-group>
-                                                </el-form-item>
-                                            </el-col>
-                                            <el-collapse-item title="Examen parasitologico" name="2">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :lg="24">
-                                                            <h4 class="align-start">EXAMEN PARASITOLÓGICO</h4>
-                                                        </el-col>
-
-                                                        <el-radio-group
-                                                            v-model="ruleFormDiagnosticoMenor.examenParasitologico3Meses">
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="1">Gota gruesa a partir de sangre
-                                                                        fresca</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="2">Frotis o extendido a partir de
-                                                                        sangre</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="3">Microhematocrito</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="4">Método de strout</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                                class="align-end">
-                                                                <el-form-item>
-                                                                    <el-radio :label="5">Micrométodo</el-radio>
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                                                <el-form-item label="RESULTADO">
-                                                                    <el-input
-                                                                        v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
-                                                                        type="number" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                                style="align-items:center">
-                                                                <el-form-item class="w-100" label="Fecha
-                                                                de recolección de muestra"
-                                                                    prop="fechaRecoleccionMuestra3Meses">
-                                                                    <el-date-picker
-                                                                        v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra3Meses"
-                                                                        style="margin-bottom:8px" type="date"
-                                                                        placeholder="Fecha de recolección de muestra"
-                                                                        :format="dateFormat" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                                style="align-items:center">
-                                                                <el-form-item class="w-100"
-                                                                    label="Fecha de emisión del resultado"
-                                                                    prop="fechaEmisiónResultado3Meses">
-                                                                    <el-date-picker
-                                                                        v-model="ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses"
-                                                                        style="margin-bottom:8px" type="date"
-                                                                        placeholder="Fecha de recolección de muestra"
-                                                                        :format="dateFormat" />
-                                                                </el-form-item>
-                                                            </el-col>
-                                                        </el-radio-group>
-                                                    </el-row>
-
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"
-                                                class="column-custom mb mt">
-                                                <el-form-item label="Prueba de
-                                                    diagnostico molecular por criterio clínico o
-                                                    epidemiológico" prop="seHacePrueebaDiagnosticoMolecular">
-                                                    <el-radio-group
-                                                        v-model="ruleFormDiagnosticoMenor.seHacePrueebaDiagnosticoMolecular">
-                                                        <el-radio :label="1">Si Aplica</el-radio>
-                                                        <el-radio :label="0">No Aplica</el-radio>
-                                                    </el-radio-group>
-                                                </el-form-item>
-                                            </el-col>
-                                            <el-collapse-item title="Prueba de diagnostico al nacer" name="3">
-                                                <div>
-                                                    <el-row :gutter="20">
+                                <el-form-item label="Sospecha de enfermedad
+                                        de chagas agudo:" prop="sospechaChagasAgudo">
+                                    <el-radio-group v-model="ruleFormAlgoritmoChagas.sospechaChagasAgudo">
+                                        <el-radio :label="0">Aplica</el-radio>
+                                        <el-radio :label="1">No Aplica</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <div class="demo-collapse">
+                                    <el-collapse>
+                                        <el-collapse-item title="EXAMEN PARASITOLÓGICO" name="1">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-radio-group v-model="ruleFormAlgoritmoChagas.examenParasitologico">
                                                         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <el-form-item label="Reacción
-                                                                en cadena polimerasa (PCR)" prop="resultadoPCR">
-                                                                <el-input v-model="ruleFormDiagnosticoMenor.resultadoPCR"
-                                                                    placeholder="RESULTADO" type="number" />
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="1">Gota gruesa a partir de sangre
+                                                                    fresca</el-radio>
                                                             </el-form-item>
                                                         </el-col>
-
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="2">Frotis o extendido a partir de
+                                                                    sangre</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="3">Microhematocrito</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="4">Método de strout</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="5">Micrométodo</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormAlgoritmoChagas.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <el-form-item label="Fecha
-                                                                de recolección de muestra" prop="fechaRecolecionPCR">
-                                                                <el-date-picker style="margin-bottom:8px" type="date"
-                                                                    placeholder="Reacción
-                                                                en cadena polimerasa (PCR)"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaRecolecionPCR"
+                                                            style="align-items:center">
+                                                            <el-form-item class="w-100" label="Fecha
+                                                                de recolección de muestra"
+                                                                prop="fechaRecoleccionMuestra">
+                                                                <el-date-picker
+                                                                    v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestra"
+                                                                    style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de recolección de muestra"
                                                                     :format="dateFormat" />
                                                             </el-form-item>
                                                         </el-col>
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <el-form-item label="Fecha
-                                                                de emisión del resultado" prop="fechaEmisionPCR">
-                                                                <el-date-picker style="margin-bottom:8px" type="date"
-                                                                    placeholder="Fecha de emisión del resultado"
-                                                                    :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaEmisionPCR" />
+                                                            style="align-items:center">
+                                                            <el-form-item class="w-100"
+                                                                label="Fecha de emisión del resultado"
+                                                                prop="fechaEmisionResultado">
+                                                                <el-date-picker
+                                                                    v-model="ruleFormAlgoritmoChagas.fechaEmisionResultado"
+                                                                    style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de recolección de muestra"
+                                                                    :format="dateFormat" />
                                                             </el-form-item>
                                                         </el-col>
-                                                    </el-row>
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"
-                                                class="column-custom mb mt">
-                                                <el-form-item label="Pruebas de
-                                                    diagnostico serológico a los 8 a 10 meses de nacido si las pruebas de
-                                                    diagnóstico directo al momento del nacimiento y a los tre meses de nacer
-                                                    son negativas" prop="seHacePruebaDiagnostico10Meses">
-                                                    <el-radio-group
-                                                        v-model="ruleFormDiagnosticoMenor.seHacePruebaDiagnostico10Meses">
-                                                        <el-radio :label="1">Si Aplica</el-radio>
-                                                        <el-radio :label="0">No Aplica</el-radio>
                                                     </el-radio-group>
-                                                </el-form-item>
-                                            </el-col>
-                                            <el-collapse-item title="Prueba de diagnostico al nacer" name="4">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosTotales"
-                                                                class="w-100">
-                                                                <el-checkbox
-                                                                    v-model="ruleFormDiagnosticoMenor.esAntigenosTotales"
-                                                                    :label="1">Antigenos
-                                                                    totales</el-checkbox>
+                                                </el-row>
+
+                                            </div>
+                                        </el-collapse-item>
+                                    </el-collapse>
+                                </div>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <el-form-item label="Sospecha de enfermedad
+                                        de chagas cronico o tamizaje del control prenatal:"
+                                    prop="sospechaChagasCronicoOTamizajeControlPrenatal">
+                                    <el-radio-group
+                                        v-model="ruleFormAlgoritmoChagas.sospechaChagasCronicoOTamizajeControlPrenatal">
+                                        <el-radio :label="1">Aplica</el-radio>
+                                        <el-radio :label="0">No Aplica</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <div class="demo-collapse">
+                                    <el-collapse>
+                                        <el-collapse-item
+                                            title="Algoritmo 1. Serología para detección de anticuerpos totales contra Tripanozoma Cruzi por dos tecnicas de ELISA"
+                                            name="1">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="align-end">
+                                                        <h5>Prueba de tamizaje ELISA con Antigenos totales</h5>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                        <el-form-item label="RESULTADO"
+                                                            prop="resultadoPruebaTamizajeElisaAntigenosTotales">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosTotales"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de recolección de muestra</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraElisaAntigenosTotales"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de recolección de muestra"
+                                                            :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de emisión del resultado</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoElisaAntigenosTotales"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de emisión" :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="align-end">
+                                                        <h5>Prueba confirmatoria ELISA con Antigenos recombinantes</h5>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                        <el-form-item label="RESULTADO"
+                                                            prop="resultadoPruebaTamizajeElisaAntigenosRecombinantes1">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes1"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de recolección de muestra</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes1"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de recolección de muestra"
+                                                            :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de emisión del resultado</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes1"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de emisión" :format="dateFormat" />
+                                                    </el-col>
+                                                </el-row>
+
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-collapse-item
+                                            title="Algoritmo 2. Serología con la primera prueba rápida y la segunda ELISA recombinante"
+                                            name="2">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="align-end">
+                                                        <h5>Prueba de tamizaje Inmunocromatografía o prueba rápida</h5>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                        <el-form-item label="RESULTADO"
+                                                            prop="resultadoPruebaTamizajeInmunocromatografia">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeInmunocromatografia"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de recolección de muestra</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de recolección de muestra"
+                                                            :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de emisión del resultado</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaEmisionInmunocromatografia"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de emisión" :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="align-end">
+                                                        <h5>Prueba confirmatoria ELISA con Antígenos recombinantes</h5>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                        <el-form-item label="RESULTADO"
+                                                            prop="resultadoPruebaTamizajeElisaAntigenosRecombinantes1">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes2"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de recolección de muestra</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de recolección de muestra"
+                                                            :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de emisión del resultado</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de emisión" :format="dateFormat" />
+                                                    </el-col>
+                                                </el-row>
+
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-collapse-item title="Pruebas no concordantes (tercera para decidir resultado)"
+                                            name="3">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                        <el-form-item label="Tipo de prueba utilizada">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.tipoPruebaUtilizada" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                        <el-form-item label="RESULTADO" prop="resultadoPruebaUtilizada">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.resultadoPruebaUtilizada"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de recolección de muestra</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de recolección de muestra"
+                                                            :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de emisión del resultado</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaEmisionNoConcordante"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de emisión" :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                        class="align-end mt">
+                                                        <h5>Prueba confirmatoria ELISA con Antigenos recombinantes</h5>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mt">
+                                                        <el-form-item label="RESULTADO"
+                                                            prop="resultadoPruebaTamizajeElisaAntigenosRecombinantes3">
+                                                            <el-input
+                                                                v-model="ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes3"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de recolección de muestra</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de recolección de muestra"
+                                                            :format="dateFormat" />
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <label class="title-field"
+                                                            style="min-width: 180px !important;width:inherit !important">Fecha
+                                                            de emisión del resultado</label>
+                                                        <el-date-picker
+                                                            v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3"
+                                                            style="margin-bottom:8px" type="date"
+                                                            placeholder="Fecha de emisión" :format="dateFormat" />
+                                                    </el-col>
+                                                </el-row>
+
+                                            </div>
+                                        </el-collapse-item>
+                                    </el-collapse>
+                                </div>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="column-custom mb mt">
+                                <el-form-item label="Caso confirmado de
+                                        gestante con enferdad de chagas:" prop="esConfirmadoGestanteConChagas">
+                                    <el-radio-group v-model="ruleFormAlgoritmoChagas.esConfirmadoGestanteConChagas">
+                                        <el-radio :label="1">Si</el-radio>
+                                        <el-radio :label="0">No</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="column-custom mb mt">
+                                <el-form-item label="Caso de gestante
+                                        descartado con enferdad de chagas:" prop="esDescartadoGestanteConChagas">
+                                    <el-radio-group v-model="ruleFormAlgoritmoChagas.esDescartadoGestanteConChagas">
+                                        <el-radio :label="1">Si</el-radio>
+                                        <el-radio :label="0">No</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <el-form-item label="Número de hijos
+                                        diferentes al fruto del embarazo en curso a los que se les debe realizar pruebas de
+                                        diagnostico de Chagas:">
+                                    <el-form-item label="Nro de Hijos"
+                                        prop="numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas">
+                                        <el-input
+                                            v-model="ruleFormAlgoritmoChagas.numeroHijosDiferenteAlEmbarazoParaRealizarDiagnosticoChagas"
+                                            type="number" />
+                                    </el-form-item>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row class="row-bg" justify="end">
+                            <div class="btn-save">
+                                <el-button type="primary" size="default" @click="submitForm(secondForm, 'third')">guardar y
+                                    continuar</el-button>
+                            </div>
+                        </el-row>
+                    </el-form>
+                </section>
+            </el-tab-pane>
+            <el-tab-pane label="Tratamiento materno" name="third" ref="elTab3">
+                <el-form :model="ruleFormTratamientoMaterno" :rules="rulesFormTratamientoMaterno" style="width: 100%;"
+                    label-position="top" :size="formSize" status-icon ref="thirdForm">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Medicamento:" prop="benznidazolX60Dias" class="w-100">
+                                    <el-checkbox v-model="ruleFormTratamientoMaterno.benznidazolX60Dias">Benznidazol *
+                                        60 días</el-checkbox>
+                                </el-form-item>
+                            </el-col>
+
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
+                                <el-form-item label="Fecha de inicio del tratamiento" prop="fechaInicioTratamiento"
+                                    class="w-100">
+                                    <el-date-picker style="margin-bottom:8px" type="date" placeholder="Fecha de emisión"
+                                        :format="dateFormat" v-model="ruleFormTratamientoMaterno.fechaInicioTratamiento" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Medicamento:" prop="nufurtimoxX60Dias" class="w-100">
+                                    <el-checkbox v-model="ruleFormTratamientoMaterno.nufurtimoxX60Dias">Nufurtimox *60
+                                        días</el-checkbox>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Controles médicos" prop="nufurtimoxControlesMedicos" class="w-100">
+                                    <el-select v-model="ruleFormTratamientoMaterno.nufurtimoxControlesMedicos"
+                                        placeholder="Select" style="width: 100%">
+                                        <el-option v-for="(item, index) in nufurtimoxCtrlMedico" :key="index"
+                                            :label="item.valor" :value="item.id" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Finalización de lactancia materna" prop="finalizacionLactanciaMaterna"
+                                    class="w-100">
+                                    <el-radio-group v-model="ruleFormTratamientoMaterno.finalizacionLactanciaMaterna">
+                                        <el-radio :label="1">Si</el-radio>
+                                        <el-radio :label="0">No</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Metodo anticonceptivo utilizado durante el embarazo"
+                                    prop="metodoAnticonceptivoUtilizadoDuranteTratamiento">
+                                    <el-input
+                                        v-model="ruleFormTratamientoMaterno.metodoAnticonceptivoUtilizadoDuranteTratamiento" />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row class="row-bg" justify="end">
+                            <div class="btn-save">
+                                <el-button type="primary" size="default" @click="submitForm(thirdForm, 'four')">guardar
+                                    y
+                                    continuar</el-button>
+                            </div>
+                        </el-row>
+                    </section>
+                </el-form>
+
+            </el-tab-pane>
+            <el-tab-pane label="Diagnostico del menor" name="four" ref="elTab5">
+                <el-form :model="ruleFormDiagnosticoMenor" :rules="rulesFormDiagnosticoMenor" style="width: 100%;"
+                    label-position="top" :size="formSize" status-icon ref="fourForm">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+
+                                <div class="demo-collapse">
+                                    <el-collapse v-model="activeCollapseKids1">
+                                        <el-collapse-item title="Prueba de diagnostico al nacer" name="1">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :lg="24">
+                                                        <h4 class="align-start">EXAMEN PARASITOLÓGICO</h4>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:center"
+                                                        class="hidden-sm-and-down hidden-sm-and-up hidden-md-and-down hidden-md-and-up hidden-lg-and-down hidden-lg-and-up">
+                                                        <el-form-item class="w-100" label="Fecha
+                                                                de nacimiento" prop="fechaNacimiento">
+                                                            <el-date-picker style="margin-bottom:8px" type="date"
+                                                                placeholder="Fecha de emisión" :format="dateFormat"
+                                                                v-model="ruleFormDiagnosticoMenor.fechaNacimiento" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-radio-group v-model="ruleFormDiagnosticoMenor.examenParasitologico">
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="1">Gota gruesa a partir de sangre
+                                                                    fresca</el-radio>
                                                             </el-form-item>
                                                         </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosRecombinantes"
-                                                                class="w-100">
-                                                                <el-checkbox
-                                                                    v-model="ruleFormDiagnosticoMenor.esAntigenosRecombinantes"
-                                                                    :label="2">Antigenos
-                                                                    recombinantes</el-checkbox>
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom" style="align-items:end">
-                                                            <el-form-item label="RESULTADO" class="w-100"
-                                                                prop="resultadoPrueba">
-                                                                <el-input v-model="ruleFormDiagnosticoMenor.resultadoPrueba"
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
                                                                     type="number" />
                                                             </el-form-item>
                                                         </el-col>
-
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <el-form-item label="Fecha
-                                                                de recolección de muestra"
-                                                                prop="fechaRecoleccionMuestra10Meses">
-                                                                <el-date-picker style="margin-bottom:8px" type="date"
-                                                                    placeholder="Fecha de recolección de muestra"
-                                                                    :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra10Meses" />
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="2">Frotis o extendido a partir de
+                                                                    sangre</el-radio>
                                                             </el-form-item>
                                                         </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
-                                                            style="align-items:end">
-                                                            <el-form-item label="Fecha
-                                                                de emisión del resultado"
-                                                                prop="fechaEmisionResultado10Meses">
-                                                                <el-date-picker style="margin-bottom:8px" type="date"
-                                                                    placeholder="Fecha de emisión del resultado"
-                                                                    :format="dateFormat"
-                                                                    v-model="ruleFormDiagnosticoMenor.fechaEmisionResultado10Meses" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                    </el-row>
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"
-                                                class="column-custom mb mt">
-                                                <el-form-item label="Caso
-                                                    confirmado de TMI de la enfermedad de chagas"
-                                                    prop="esCasoConfirmadoTMIChagas">
-                                                    <el-radio-group
-                                                        v-model="ruleFormDiagnosticoMenor.esCasoConfirmadoTMIChagas">
-                                                        <el-radio :label="1">Si</el-radio>
-                                                        <el-radio :label="0">No</el-radio>
-                                                    </el-radio-group>
-                                                </el-form-item>
-                                            </el-col>
-                                        </el-collapse>
-                                    </div>
-                                </el-col>
-                            </el-row>
-                            <el-row class="row-bg" justify="end">
-                                <div class="btn-save">
-                                    <el-button type="primary" size="default" @click="submitForm(fourForm, 'five')">guardar
-                                        y
-                                        continuar</el-button>
-                                </div>
-                            </el-row>
-                        </section>
-                    </el-form>
-                </el-tab-pane>
-                <el-tab-pane label="Datos demograficos" name="five" ref="elTab4">
-                    <el-form :model="ruleFormSeguimientoNinoExpuesto" :rules="rulesFormSeguimientoNinoExpuesto"
-                        style="width: 100%;" label-position="top" :size="formSize" status-icon ref="fiveForm">
-                        <section style="width: 100%;">
-                            <el-row :gutter="10" style="width: 100%;">
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Fecha de
-                                        nacimiento" prop="fechaNacimiento">
-                                        <el-date-picker v-model="ruleFormSeguimientoNinoExpuesto.fechaNacimiento"
-                                            type="date" placeholder="Fecha de nacimiento" :format="dateFormat" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                                    <el-form-item label="Condición del recien nacido" prop="condicionRecienNacido">
-                                        <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.condicionRecienNacido">
-                                            <el-radio :label="1">Vivo</el-radio>
-                                            <el-radio :label="2">Mortinato</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                                    <el-form-item label="Número de productos al nacimiento"
-                                        prop="numeroProductosNacimiento">
-                                        <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.numeroProductosNacimiento">
-                                            <el-radio :label="1">único</el-radio>
-                                            <el-radio :label="2">Multiple</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Edad gestacional al nacimiento, en semanas"
-                                        prop="edadGestacionalNacimientoSemanas">
-                                        <el-input type="number"
-                                            v-model="ruleFormSeguimientoNinoExpuesto.edadGestacionalNacimientoSemanas" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Peso en gramos" prop="pesoGramos">
-                                        <el-input type="number" v-model="ruleFormSeguimientoNinoExpuesto.pesoGramos" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                                    <el-form-item label="Sexo" prop="sexo">
-                                        <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.sexo">
-                                            <el-radio :label="1">Hombre</el-radio>
-                                            <el-radio :label="2">Mujer</el-radio>
-                                            <el-radio :label="3">Intersexual</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
-                                    <el-form-item label="Tipo de parto" prop="tipoParto">
-                                        <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.tipoParto">
-                                            <el-radio :label="1">Cesarea</el-radio>
-                                            <el-radio :label="2">Vaginal</el-radio>
-                                        </el-radio-group>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud" class="w-100">
-                                        <el-select placeholder="Tipo de regimen de salud"
-                                            v-model="ruleFormSeguimientoNinoExpuesto.tipoRegimenSalud">
-                                            <el-option label="Excepción" value="1" />
-                                            <el-option label="Contributivo" value="2" />
-                                            <el-option label="Subsidiado" value="3" />
-                                            <el-option label="Especial" value="4" />
-                                            <el-option label="No asegurado" value="5" />
-                                        </el-select>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradoraEAPB">
-                                        <el-input v-model="ruleFormSeguimientoNinoExpuesto.nombreAseguradoraEAPB" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
-                                        <el-input v-model="ruleFormSeguimientoNinoExpuesto.nombresApellidos" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="w-100">
-                                        <el-select placeholder="Tipo de Documento"
-                                            v-model="ruleFormSeguimientoNinoExpuesto.tipoDocumento">
-                                            <el-option label="RC" value="1" />
-                                            <el-option label="CNV" value="2" />
-                                            <el-option label="MS" value="3" />
-
-                                        </el-select>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Número de identificación" prop="numeroIdentificacion">
-                                        <el-input type="number"
-                                            v-model="ruleFormSeguimientoNinoExpuesto.numeroIdentificacion" />
-                                    </el-form-item>
-                                </el-col>
-                            </el-row>
-                            <el-row class="row-bg" justify="end">
-                                <div class="btn-save">
-                                    <el-button type="primary" size="default" @click="submitForm(fiveForm, 'six')">guardar
-                                        y
-                                        continuar</el-button>
-                                </div>
-                            </el-row>
-                        </section>
-                    </el-form>
-                </el-tab-pane>
-                <el-tab-pane label="Tratamiento del menor" name="six" ref="elTab6">
-                    <el-form :model="ruleFormTratamientoSeguimientoNino" :rules="rulesFormTratamientoSeguimientoNino"
-                        style="width: 100%;" label-position="top" :size="formSize" status-icon ref="sixForm">
-                        <section style="width: 100%;">
-                            <el-row :gutter="10" style="width: 100%;">
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <h4 class="align-start">TRATAMIENTO Y SEGUIMIENTO DEL NIÑO O NIÑA CONFIRMADO CON
-                                        ENFERMEDAD DE CHAGAS CONGENITO</h4>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                    <el-form-item label="Medicamento:" prop="benznidazolX60Dias" class="w-100">
-                                        <el-checkbox
-                                            v-model="ruleFormTratamientoSeguimientoNino.benznidazolX60Dias">Benznidazol *
-                                            60 días</el-checkbox>
-                                    </el-form-item>
-                                </el-col>
-
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
-                                    <el-form-item label="Fecha de inicio del tratamiento" prop="fechaInicioTratamiento"
-                                        class="w-100">
-                                        <el-date-picker style="margin-bottom:8px" type="date" placeholder="Fecha de emisión"
-                                            :format="dateFormat"
-                                            v-model="ruleFormTratamientoSeguimientoNino.fechaInicioTratamiento" />
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                                    <el-form-item label="Medicamento:" prop="nufurtimoxX60Dias" class="w-100">
-                                        <el-checkbox
-                                            v-model="ruleFormTratamientoSeguimientoNino.nufurtimoxX60Dias">Nufurtimox *60
-                                            días</el-checkbox>
-                                    </el-form-item>
-                                </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Controles médicos" prop="nufurtimoxControlesMedicos" class="w-100">
-                                        <el-select v-model="ruleFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos"
-                                            placeholder="Select" style="width: 100%">
-                                            <el-option v-for="(item, index) in nufurtimoxCtrlMedico" :key="index"
-                                                :label="item.valor" :value="item.id" />
-                                        </el-select>
-                                    </el-form-item>
-                                </el-col>
-
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <div class="demo-collapse">
-                                        <el-collapse v-model="activeCollapseKids1">
-                                            <el-collapse-item
-                                                title="Prueba de serología a los 6 meses de terminar el tratamiento"
-                                                name="1">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom">
-                                                            <el-form-item label="Antigenos:" prop="esAntigenosTotales6Meses"
-                                                                class="w-100">
-                                                                <el-checkbox
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosTotales6Meses"
-                                                                    :label="1">Antigenos
-                                                                    totales</el-checkbox>
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom">
-                                                            <el-form-item label="Antigenos:"
-                                                                prop="esAntigenosRecombinantes6Meses" class="w-100">
-                                                                <el-checkbox
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses"
-                                                                    :label="2">Antigenos
-                                                                    recombinantes</el-checkbox>
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom" style="align-items:end">
-                                                            <el-form-item label="RESULTADO" class="w-100"
-                                                                prop="resultadoPrueba">
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
                                                                 <el-input
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses"/>
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
+                                                                    type="number" />
                                                             </el-form-item>
                                                         </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="3">Microhematocrito</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="4">Método de strout</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="5">Micrométodo</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                            style="align-items:center">
+                                                            <el-form-item class="w-100" label="Fecha
+                                                                de recolección de muestra"
+                                                                prop="fechaRecoleccionMuestra">
+                                                                <el-date-picker
+                                                                    v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra"
+                                                                    style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de recolección de muestra"
+                                                                    :format="dateFormat" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                            style="align-items:center">
+                                                            <el-form-item class="w-100"
+                                                                label="Fecha de emisión del resultado"
+                                                                prop="fechaEmisiónResultado">
+                                                                <el-date-picker
+                                                                    v-model="ruleFormDiagnosticoMenor.fechaEmisiónResultado"
+                                                                    style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de recolección de muestra"
+                                                                    :format="dateFormat" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                    </el-radio-group>
+                                                </el-row>
 
-                                                        <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                            <el-form-item label="Prueba de
+                                                    diagnostico a los 3 meses de nacido, en caso de que la prueba de
+                                                    diagnóstico al nacer sea NEGATIVA"
+                                                prop="seHacePruebaDiagnostica3Meses">
+                                                <el-radio-group
+                                                    v-model="ruleFormDiagnosticoMenor.seHacePruebaDiagnostica3Meses">
+                                                    <el-radio :label="1">Aplica</el-radio>
+                                                    <el-radio :label="0">No Aplica</el-radio>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-collapse-item title="Examen parasitologico" name="2">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :lg="24">
+                                                        <h4 class="align-start">EXAMEN PARASITOLÓGICO</h4>
+                                                    </el-col>
+
+                                                    <el-radio-group
+                                                        v-model="ruleFormDiagnosticoMenor.examenParasitologico3Meses">
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="1">Gota gruesa a partir de sangre
+                                                                    fresca</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="2">Frotis o extendido a partir de
+                                                                    sangre</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="3">Microhematocrito</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="4">Método de strout</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                            class="align-end">
+                                                            <el-form-item>
+                                                                <el-radio :label="5">Micrométodo</el-radio>
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                                            <el-form-item label="RESULTADO">
+                                                                <el-input
+                                                                    v-model="ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses"
+                                                                    type="number" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                            style="align-items:center">
+                                                            <el-form-item class="w-100" label="Fecha
+                                                                de recolección de muestra"
+                                                                prop="fechaRecoleccionMuestra3Meses">
+                                                                <el-date-picker
+                                                                    v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra3Meses"
+                                                                    style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de recolección de muestra"
+                                                                    :format="dateFormat" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                            style="align-items:center">
+                                                            <el-form-item class="w-100"
+                                                                label="Fecha de emisión del resultado"
+                                                                prop="fechaEmisiónResultado3Meses">
+                                                                <el-date-picker
+                                                                    v-model="ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses"
+                                                                    style="margin-bottom:8px" type="date"
+                                                                    placeholder="Fecha de recolección de muestra"
+                                                                    :format="dateFormat" />
+                                                            </el-form-item>
+                                                        </el-col>
+                                                    </el-radio-group>
+                                                </el-row>
+
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                            <el-form-item label="Prueba de
+                                                    diagnostico molecular por criterio clínico o
+                                                    epidemiológico" prop="seHacePrueebaDiagnosticoMolecular">
+                                                <el-radio-group
+                                                    v-model="ruleFormDiagnosticoMenor.seHacePrueebaDiagnosticoMolecular">
+                                                    <el-radio :label="1">Si Aplica</el-radio>
+                                                    <el-radio :label="0">No Aplica</el-radio>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-collapse-item title="Prueba de diagnostico al nacer" name="3">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <el-form-item label="Reacción
+                                                                en cadena polimerasa (PCR)" prop="resultadoPCR">
+                                                            <el-input v-model="ruleFormDiagnosticoMenor.resultadoPCR"
+                                                                placeholder="RESULTADO" type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <el-form-item label="Fecha
+                                                                de recolección de muestra" prop="fechaRecolecionPCR">
+                                                            <el-date-picker style="margin-bottom:8px" type="date"
+                                                                placeholder="Reacción
+                                                                en cadena polimerasa (PCR)"
+                                                                v-model="ruleFormDiagnosticoMenor.fechaRecolecionPCR"
+                                                                :format="dateFormat" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <el-form-item label="Fecha
+                                                                de emisión del resultado" prop="fechaEmisionPCR">
+                                                            <el-date-picker style="margin-bottom:8px" type="date"
+                                                                placeholder="Fecha de emisión del resultado"
+                                                                :format="dateFormat"
+                                                                v-model="ruleFormDiagnosticoMenor.fechaEmisionPCR" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                </el-row>
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                            <el-form-item label="Pruebas de
+                                                    diagnostico serológico a los 8 a 10 meses de nacido si las pruebas de
+                                                    diagnóstico directo al momento del nacimiento y a los tre meses de nacer
+                                                    son negativas" prop="seHacePruebaDiagnostico10Meses">
+                                                <el-radio-group
+                                                    v-model="ruleFormDiagnosticoMenor.seHacePruebaDiagnostico10Meses">
+                                                    <el-radio :label="1">Si Aplica</el-radio>
+                                                    <el-radio :label="0">No Aplica</el-radio>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-collapse-item title="Prueba de diagnostico al nacer" name="4">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                                                        class="column-custom">
+                                                        <el-form-item label="Antigenos:" prop="esAntigenosTotales"
+                                                            class="w-100">
+                                                            <el-checkbox
+                                                                v-model="ruleFormDiagnosticoMenor.esAntigenosTotales"
+                                                                :label="1">Antigenos
+                                                                totales</el-checkbox>
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                                                        class="column-custom">
+                                                        <el-form-item label="Antigenos:" prop="esAntigenosRecombinantes"
+                                                            class="w-100">
+                                                            <el-checkbox
+                                                                v-model="ruleFormDiagnosticoMenor.esAntigenosRecombinantes"
+                                                                :label="2">Antigenos
+                                                                recombinantes</el-checkbox>
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="column-custom"
+                                                        style="align-items:end">
+                                                        <el-form-item label="RESULTADO" class="w-100"
+                                                            prop="resultadoPrueba">
+                                                            <el-input v-model="ruleFormDiagnosticoMenor.resultadoPrueba"
+                                                                type="number" />
+                                                        </el-form-item>
+                                                    </el-col>
+
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <el-form-item label="Fecha
+                                                                de recolección de muestra"
+                                                            prop="fechaRecoleccionMuestra10Meses">
+                                                            <el-date-picker style="margin-bottom:8px" type="date"
+                                                                placeholder="Fecha de recolección de muestra"
+                                                                :format="dateFormat"
+                                                                v-model="ruleFormDiagnosticoMenor.fechaRecoleccionMuestra10Meses" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
+                                                        style="align-items:end">
+                                                        <el-form-item label="Fecha
+                                                                de emisión del resultado"
+                                                            prop="fechaEmisionResultado10Meses">
+                                                            <el-date-picker style="margin-bottom:8px" type="date"
+                                                                placeholder="Fecha de emisión del resultado"
+                                                                :format="dateFormat"
+                                                                v-model="ruleFormDiagnosticoMenor.fechaEmisionResultado10Meses" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                </el-row>
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                            <el-form-item label="Caso
+                                                    confirmado de TMI de la enfermedad de chagas"
+                                                prop="esCasoConfirmadoTMIChagas">
+                                                <el-radio-group
+                                                    v-model="ruleFormDiagnosticoMenor.esCasoConfirmadoTMIChagas">
+                                                    <el-radio :label="1">Si</el-radio>
+                                                    <el-radio :label="0">No</el-radio>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-collapse>
+                                </div>
+                            </el-col>
+                        </el-row>
+                        <el-row class="row-bg" justify="end">
+                            <div class="btn-save">
+                                <el-button type="primary" size="default" @click="submitForm(fourForm, 'five')">guardar
+                                    y
+                                    continuar</el-button>
+                            </div>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Datos demograficos" name="five" ref="elTab4">
+                <el-form :model="ruleFormSeguimientoNinoExpuesto" :rules="rulesFormSeguimientoNinoExpuesto"
+                    style="width: 100%;" label-position="top" :size="formSize" status-icon ref="fiveForm">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Fecha de
+                                        nacimiento" prop="fechaNacimiento">
+                                    <el-date-picker v-model="ruleFormSeguimientoNinoExpuesto.fechaNacimiento" type="date"
+                                        placeholder="Fecha de nacimiento" :format="dateFormat" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
+                                <el-form-item label="Condición del recien nacido" prop="condicionRecienNacido">
+                                    <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.condicionRecienNacido">
+                                        <el-radio :label="1">Vivo</el-radio>
+                                        <el-radio :label="2">Mortinato</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
+                                <el-form-item label="Número de productos al nacimiento" prop="numeroProductosNacimiento">
+                                    <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.numeroProductosNacimiento">
+                                        <el-radio :label="1">único</el-radio>
+                                        <el-radio :label="2">Multiple</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Edad gestacional al nacimiento, en semanas"
+                                    prop="edadGestacionalNacimientoSemanas">
+                                    <el-input type="number"
+                                        v-model="ruleFormSeguimientoNinoExpuesto.edadGestacionalNacimientoSemanas" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Peso en gramos" prop="pesoGramos">
+                                    <el-input type="number" v-model="ruleFormSeguimientoNinoExpuesto.pesoGramos" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
+                                <el-form-item label="Sexo" prop="sexo">
+                                    <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.sexo">
+                                        <el-radio :label="1">Hombre</el-radio>
+                                        <el-radio :label="2">Mujer</el-radio>
+                                        <el-radio :label="3">Intersexual</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="column-custom mb">
+                                <el-form-item label="Tipo de parto" prop="tipoParto">
+                                    <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.tipoParto">
+                                        <el-radio :label="1">Cesarea</el-radio>
+                                        <el-radio :label="2">Vaginal</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud" class="w-100">
+                                    <el-select placeholder="Tipo de regimen de salud"
+                                        v-model="ruleFormSeguimientoNinoExpuesto.tipoRegimenSalud">
+                                        <el-option label="Excepción" value="1" />
+                                        <el-option label="Contributivo" value="2" />
+                                        <el-option label="Subsidiado" value="3" />
+                                        <el-option label="Especial" value="4" />
+                                        <el-option label="No asegurado" value="5" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradoraEAPB">
+                                    <el-input v-model="ruleFormSeguimientoNinoExpuesto.nombreAseguradoraEAPB" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
+                                    <el-input v-model="ruleFormSeguimientoNinoExpuesto.nombresApellidos" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="w-100">
+                                    <el-select placeholder="Tipo de Documento"
+                                        v-model="ruleFormSeguimientoNinoExpuesto.tipoDocumento">
+                                        <el-option label="RC" value="1" />
+                                        <el-option label="CNV" value="2" />
+                                        <el-option label="MS" value="3" />
+
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Número de identificación" prop="numeroIdentificacion">
+                                    <el-input type="number"
+                                        v-model="ruleFormSeguimientoNinoExpuesto.numeroIdentificacion" />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row class="row-bg" justify="end">
+                            <div class="btn-save">
+                                <el-button type="primary" size="default" @click="submitForm(fiveForm, 'six')">guardar
+                                    y
+                                    continuar</el-button>
+                            </div>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane label="Tratamiento del menor" name="six" ref="elTab6">
+                <el-form :model="ruleFormTratamientoSeguimientoNino" :rules="rulesFormTratamientoSeguimientoNino"
+                    style="width: 100%;" label-position="top" :size="formSize" status-icon ref="sixForm">
+                    <section style="width: 100%;">
+                        <el-row :gutter="10" style="width: 100%;">
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <h4 class="align-start">TRATAMIENTO Y SEGUIMIENTO DEL NIÑO O NIÑA CONFIRMADO CON
+                                    ENFERMEDAD DE CHAGAS CONGENITO</h4>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Medicamento:" prop="benznidazolX60Dias" class="w-100">
+                                    <el-checkbox v-model="ruleFormTratamientoSeguimientoNino.benznidazolX60Dias">Benznidazol
+                                        *
+                                        60 días</el-checkbox>
+                                </el-form-item>
+                            </el-col>
+
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="align-items:end">
+                                <el-form-item label="Fecha de inicio del tratamiento" prop="fechaInicioTratamiento"
+                                    class="w-100">
+                                    <el-date-picker style="margin-bottom:8px" type="date" placeholder="Fecha de emisión"
+                                        :format="dateFormat"
+                                        v-model="ruleFormTratamientoSeguimientoNino.fechaInicioTratamiento" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+                                <el-form-item label="Medicamento:" prop="nufurtimoxX60Dias" class="w-100">
+                                    <el-checkbox v-model="ruleFormTratamientoSeguimientoNino.nufurtimoxX60Dias">Nufurtimox
+                                        *60
+                                        días</el-checkbox>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-form-item label="Controles médicos" prop="nufurtimoxControlesMedicos" class="w-100">
+                                    <el-select v-model="ruleFormTratamientoSeguimientoNino.nufurtimoxControlesMedicos"
+                                        placeholder="Select" style="width: 100%">
+                                        <el-option v-for="(item, index) in nufurtimoxCtrlMedico" :key="index"
+                                            :label="item.valor" :value="item.id" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+
+                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                <div class="demo-collapse">
+                                    <el-collapse v-model="activeCollapseKids1">
+                                        <el-collapse-item
+                                            title="Prueba de serología a los 6 meses de terminar el tratamiento" name="1">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                                                        class="column-custom">
+                                                        <el-form-item label="Antigenos:" prop="esAntigenosTotales6Meses"
+                                                            class="w-100">
+                                                            <el-checkbox
+                                                                v-model="ruleFormTratamientoSeguimientoNino.esAntigenosTotales6Meses"
+                                                                :label="1">Antigenos
+                                                                totales</el-checkbox>
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                                                        class="column-custom">
+                                                        <el-form-item label="Antigenos:"
+                                                            prop="esAntigenosRecombinantes6Meses" class="w-100">
+                                                            <el-checkbox
+                                                                v-model="ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses"
+                                                                :label="2">Antigenos
+                                                                recombinantes</el-checkbox>
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="column-custom"
+                                                        style="align-items:end">
+                                                        <el-form-item label="RESULTADO" class="w-100"
+                                                            prop="resultadoPrueba">
+                                                            <el-input
+                                                                v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica6Meses" />
+                                                        </el-form-item>
+                                                    </el-col>
+
+                                                    <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
                                                             style="align-items:end">
                                                             <el-form-item label="Fecha
                                                                 de recolección de muestra"
@@ -1114,44 +1099,43 @@
                                                             </el-form-item>
                                                         </el-col>
                                                     -->
-                                                    </el-row>
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-collapse-item
-                                                title="Prueba de serología a los 12 meses de terminar el tratamiento"
-                                                name="2">
-                                                <div>
-                                                    <el-row :gutter="20">
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom">
-                                                            <el-form-item label="Antigenos:"
-                                                                prop="esAntigenosTotales12Meses" class="w-100">
-                                                                <el-checkbox
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosTotales12Meses"
-                                                                    :label="1">Antigenos
-                                                                    totales</el-checkbox>
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom">
-                                                            <el-form-item label="Antigenos:"
-                                                                prop="esAntigenosRecombinantes12Meses" class="w-100">
-                                                                <el-checkbox
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses"
-                                                                    :label="2">Antigenos
-                                                                    recombinantes</el-checkbox>
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
-                                                            class="column-custom" style="align-items:end">
-                                                            <el-form-item label="RESULTADO" class="w-100"
-                                                                prop="resultadoPruebaSerologica12Meses">
-                                                                <el-input
-                                                                    v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses"
-                                                                    type="string" />
-                                                            </el-form-item>
-                                                        </el-col>
-                                                        <!--
+                                                </el-row>
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-collapse-item
+                                            title="Prueba de serología a los 12 meses de terminar el tratamiento" name="2">
+                                            <div>
+                                                <el-row :gutter="20">
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                                                        class="column-custom">
+                                                        <el-form-item label="Antigenos:" prop="esAntigenosTotales12Meses"
+                                                            class="w-100">
+                                                            <el-checkbox
+                                                                v-model="ruleFormTratamientoSeguimientoNino.esAntigenosTotales12Meses"
+                                                                :label="1">Antigenos
+                                                                totales</el-checkbox>
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                                                        class="column-custom">
+                                                        <el-form-item label="Antigenos:"
+                                                            prop="esAntigenosRecombinantes12Meses" class="w-100">
+                                                            <el-checkbox
+                                                                v-model="ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses"
+                                                                :label="2">Antigenos
+                                                                recombinantes</el-checkbox>
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="column-custom"
+                                                        style="align-items:end">
+                                                        <el-form-item label="RESULTADO" class="w-100"
+                                                            prop="resultadoPruebaSerologica12Meses">
+                                                            <el-input
+                                                                v-model="ruleFormTratamientoSeguimientoNino.resultadoPruebaSerologica12Meses"
+                                                                type="string" />
+                                                        </el-form-item>
+                                                    </el-col>
+                                                    <!--
                                                         <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"
                                                             style="align-items:end">
                                                             <el-form-item label="Fecha
@@ -1175,37 +1159,37 @@
                                                             </el-form-item>
                                                         </el-col>
                                                         -->
-                                                    </el-row>
-                                                </div>
-                                            </el-collapse-item>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-form-item label="Niño curado
+                                                </el-row>
+                                            </div>
+                                        </el-collapse-item>
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                            <el-form-item label="Niño curado
                                                     de la enfermedad de chagas" prop="esNinoCuradoChagas"
-                                                    class="w-100">
-                                                    <el-radio-group
-                                                        v-model="ruleFormTratamientoSeguimientoNino.esNinoCuradoChagas">
-                                                        <el-radio :label="1">Si</el-radio>
-                                                        <el-radio :label="0">No</el-radio>
-                                                    </el-radio-group>
-                                                </el-form-item>
-                                            </el-col>
-                                        </el-collapse>
-                                    </div>
-                                </el-col>
-                            </el-row>
-                            <el-row class="row-bg" justify="end">
-                                <div class="btn-save">
-                                    <el-button type="primary" size="default" @click="submitForm(sixForm, 'end')">guardar
-                                        y
-                                        continuar</el-button>
+                                                class="w-100">
+                                                <el-radio-group
+                                                    v-model="ruleFormTratamientoSeguimientoNino.esNinoCuradoChagas">
+                                                    <el-radio :label="1">Si</el-radio>
+                                                    <el-radio :label="0">No</el-radio>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-collapse>
                                 </div>
-                            </el-row>
-                        </section>
-                    </el-form>
-                </el-tab-pane>
-            </el-tabs>
-        </el-col>
-    </el-row>
+                            </el-col>
+                        </el-row>
+                        <el-row class="row-bg" justify="end">
+                            <div class="btn-save">
+                                <el-button type="primary" size="default" @click="submitForm(sixForm, 'end')">guardar
+                                    y
+                                    continuar</el-button>
+                            </div>
+                        </el-row>
+                    </section>
+                </el-form>
+            </el-tab-pane>
+        </el-tabs>
+    </section>
+</div>
 </template>
 
 <script lang="ts">
@@ -2135,7 +2119,7 @@ export default class HepatitisBView extends Vue {
                     this.changeTab(tab)
                 } else {
                     console.log('valor a guardar', Number(this.idGestanteCtrl))
-                    
+
                     const request: ITratamientoSeguimientoNinoChagas = {
                         idTratamientoSeguimientoNino: 0,
                         idSeguimientoNinoExpuesto: this.idSeguimientoTratmtoNino,
