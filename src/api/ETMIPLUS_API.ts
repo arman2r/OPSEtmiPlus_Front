@@ -20,7 +20,8 @@ export class EtmiPlusClient {
 
         this.instance = instance ? instance : axios.create();
 
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
+        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
 
     }
 
@@ -570,7 +571,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    diagnosticoMaterno(idGestanteControl: number, body?: DiagnosticoMaterno | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    diagnosticoMaterno(idGestanteControl: number, body?: IDiagnosticoMaterno | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/Sifilis/DiagnosticoMaterno";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");
@@ -3774,25 +3775,25 @@ export interface IDiagnosticoMaterno {
     idDiagnosticoMaterno?: number;
     idGestanteControl?: number;
     idMomentoDiagnostico?: number;
-    momentoDiagnostico?: Parametrica;
+    momentoDiagnostico?: IParametrica;
     edadGestacionalDuranteSemanas?: number;
     seRealizoControlPrenatalDuranteEmbarazo?: number;
     seRealizoPruebaTreponemica?: number;
     idPruebaTreponemica?: number;
-    pruebaTreponemica?: Parametrica;
+    pruebaTreponemica?: IParametrica;
     idResultadoPruebaTreponemica?: number;
-    resultadoPruebaTreponemica?: Parametrica;
+    resultadoPruebaTreponemica?: IParametrica;
     fechaResultadoPruebaTreponemica?: Date;
     edadGestacionalALaRealizacionPruebaTreponemicaSemanas?: number;
     seRealizoPruebaNoTreponemica?: number;
     idPruebaNoTreponemica?: number;
-    pruebaNoTreponemica?: Parametrica;
+    pruebaNoTreponemica?: IParametrica;
     idResultadoPruebaNoTreponemica?: number;
-    resultadoPruebaNoTreponemica?: Parametrica;
+    resultadoPruebaNoTreponemica?: IParametrica;
     fechaResultadoPruebaNoTreponemica?: Date;
     reporteDilucionesPruebaNoTreponemicaReactiva?: string | undefined;
-    listReporteDilucionesPruebaNoTreponemicaReactiva?: Parametrica[] | undefined;
-    tratamientoMaternoEstadioClinico?: TratamientoMaternoEstadioClinico[] | undefined;
+    listReporteDilucionesPruebaNoTreponemicaReactiva?: IParametrica[] | undefined;
+    tratamientoMaternoEstadioClinico?: ITratamientoMaternoEstadioClinico[] | undefined;
 }
 
 export class DiagnosticoNinoExpuestoChagas implements IDiagnosticoNinoExpuestoChagas {

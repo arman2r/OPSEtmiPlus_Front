@@ -1,8 +1,9 @@
 <template class="steps-container">
     <div class="full-width">
-        <h4 class="steps-container">SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO:ETMI-PLUS</h4>
+        <h4 class="steps-container">SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO:ETMI-PLUS
+        </h4>
         <section style="width:100%">
-            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick"> 
+            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
                 <el-tab-pane label="Diagnostico materno" name="second" ref="elTab2">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
                         label-position="top">
@@ -10,7 +11,7 @@
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item
-                                        label="Momento del diagnóstico de sífilis con relaciíon a la gestación actual"
+                                        label="Momento del diagnóstico de sífilis con relación a la gestación actual"
                                         prop="nacionalidad" class="select-width">
                                         <el-select v-model="ruleFormHbDatosGestante.nacionalidad"
                                             placeholder="Nacionalidad">
@@ -78,9 +79,9 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Fecha del resultado:" prop="fechaResultadoPruebaTreponemica"
                                         class="select-width">
-                                        <el-date-picker v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica"
-                                            type="date" placeholder="Fecha del resultado" :format="dateFormat"
-                                            :size="size" />
+                                        <el-date-picker
+                                            v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica"
+                                            type="date" placeholder="Fecha del resultado" :format="dateFormat" />
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
@@ -115,7 +116,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
                                     <el-form-item label="Resultado de la prueba:" prop="resultadoPruebaNoTreponemica">
-                                        <el-radio-group v-model="ruleFormDiagnosticoMaterno.resultadoPruebaNoTreponemica">
+                                        <el-radio-group
+                                            v-model="ruleFormDiagnosticoMaterno.resultadoPruebaNoTreponemica">
                                             <el-radio :label="1">Reactiva</el-radio>
                                             <el-radio :label="0">No reactiva</el-radio>
                                         </el-radio-group>
@@ -126,8 +128,7 @@
                                     <el-form-item label="Fecha del resultado" prop="fechaResultadoPruebaNoTreponemica">
                                         <el-date-picker
                                             v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica"
-                                            type="date" placeholder="Fecha del resultado" :format="dateFormat"
-                                            :size="size" />
+                                            type="date" placeholder="Fecha del resultado" :format="dateFormat" />
                                     </el-form-item>
 
                                 </el-col>
@@ -182,7 +183,8 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Aplicación de penicilina benzatinica:"
                                         prop="aplicaronPenicilinaBenzatinica">
-                                        <el-radio-group v-model="rulesFormEstadioClinico.aplicaronPenicilinaBenzatinica">
+                                        <el-radio-group
+                                            v-model="rulesFormEstadioClinico.aplicaronPenicilinaBenzatinica">
                                             <el-radio :label="1">Si</el-radio>
                                             <el-radio :label="0">No</el-radio>
                                         </el-radio-group>
@@ -236,19 +238,20 @@
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="24" :lg="7" :xl="7">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Edad gestacional <br>a la aplicación en
+                                                <h5 class="serologia-retratamiento">Edad gestacional <br>a la aplicación
+                                                    en
                                                     semanas</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
                                             </el-col>
                                         </el-col>
                                     </el-row>
@@ -264,7 +267,8 @@
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item prop="seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica" label="Se realizó desensibilización para la aplicación de la
+                                    <el-form-item prop="seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica"
+                                        label="Se realizó desensibilización para la aplicación de la
                                         penicilina benzatínica:">
                                         <el-radio-group class="ml-4"
                                             v-model="rulesFormEstadioClinico.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica">
@@ -335,20 +339,21 @@
                                                 <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
                                             </el-col>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="4" :lg="5" :xl="5" class="me-2">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Resultado: <br> reporte en diluciones
+                                                <h5 class="serologia-retratamiento">Resultado: <br> reporte en
+                                                    diluciones
                                                 </h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -469,15 +474,15 @@
                                                     semanas</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
-                                                <el-date-picker v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat"
-                                                    :size="size" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
+                                                <el-date-picker
+                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
+                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
                                             </el-col>
                                         </el-col>
                                     </el-row>
@@ -603,11 +608,12 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <label class="label-field" style="min-width:180px">Fecha del parto</label>
                                     <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                        placeholder="Fecha del parto" :format="dateFormat" :size="size" />
+                                        placeholder="Fecha del parto" :format="dateFormat" />
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
                                     <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Condición del recién
+                                        style="min-width: 180px !important;width:inherit !important">Condición del
+                                        recién
                                         nacido:</label><br />
                                     <el-radio-group class="ml-4">
                                         <el-radio :label="1">Vivo</el-radio>
@@ -737,7 +743,7 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <label class="label-field" style="min-width:180px">Fecha del resultado</label>
                                     <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                        placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                                        placeholder="Fecha del resultado" :format="dateFormat" />
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva"
@@ -759,7 +765,8 @@
                                     </el-form-item>
                                 </el-col>
                                 <el-col :span="24">
-                                    <h5>REALIZACIÓN DE PRUEBA NO TREPONÉMICA A LA NIÑA O NIÑO EXPUESTO - AL NACIMIENTO:</h5>
+                                    <h5>REALIZACIÓN DE PRUEBA NO TREPONÉMICA A LA NIÑA O NIÑO EXPUESTO - AL NACIMIENTO:
+                                    </h5>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
                                     <label class="title-field"
@@ -793,7 +800,7 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <label class="label-field" style="min-width:180px">Fecha del resultado</label>
                                     <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                        placeholder="Fecha del resultado" :format="dateFormat" :size="size" />
+                                        placeholder="Fecha del resultado" :format="dateFormat" />
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva"
@@ -835,7 +842,8 @@
                                     </el-radio-group>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño Sano, se aplico dosis profilactica con penicilina
+                                    <label class="title-field">Niña o niño Sano, se aplico dosis profilactica con
+                                        penicilina
                                         benzatinica:</label><br />
                                     <el-radio-group class="ml-4">
                                         <el-radio :label="1">SI</el-radio>
@@ -851,7 +859,8 @@
                                     </el-radio-group>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño con diagnóstico de sífilis, se aplico tratamiento
+                                    <label class="title-field">Niña o niño con diagnóstico de sífilis, se aplico
+                                        tratamiento
                                         para sífilis:</label><br />
                                     <el-radio-group class="ml-4">
                                         <el-radio :label="1">SI</el-radio>
@@ -867,14 +876,16 @@
                                     </el-radio-group>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño recibió tratamiento por 10 días:</label><br />
+                                    <label class="title-field">Niña o niño recibió tratamiento por 10
+                                        días:</label><br />
                                     <el-radio-group class="ml-4">
                                         <el-radio :label="1">SI</el-radio>
                                         <el-radio :label="2">NO</el-radio>
                                     </el-radio-group>
                                 </el-col>
                                 <el-col :span="24">
-                                    <h5>CRITERIO UTILIZADO PARA EL DIAGNÓSTICO DE SÍFILIS CONGÉNITA EN LA NIÑA O NIÑO</h5>
+                                    <h5>CRITERIO UTILIZADO PARA EL DIAGNÓSTICO DE SÍFILIS CONGÉNITA EN LA NIÑA O NIÑO
+                                    </h5>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Criterio utilizado" prop="nacionalidad" class="select-width">
@@ -898,7 +909,8 @@
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
-                                    <h4>SEGUIMIENTO DE LA NIÑA O NIÑO CON SÍFILIS CONGENITA DURANTE EL PRIMER AÑO DE VIDA
+                                    <h4>SEGUIMIENTO DE LA NIÑA O NIÑO CON SÍFILIS CONGENITA DURANTE EL PRIMER AÑO DE
+                                        VIDA
                                     </h4>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
@@ -1113,7 +1125,8 @@
                                     </el-form-item>
                                 </el-col>
                                 <el-col :span="24">
-                                    <h4>OBSERVACIONES RELEVANTES DEL CASO - NO REGISTRE NUEVAMENTE DATOS YA REGISTRADOS EN
+                                    <h4>OBSERVACIONES RELEVANTES DEL CASO - NO REGISTRE NUEVAMENTE DATOS YA REGISTRADOS
+                                        EN
                                         EL FORMATO</h4>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -1247,6 +1260,7 @@ export default class HepatitisBView extends Vue {
     /**Inicio Diagnostic materno sifilis */
 
     ruleFormDiagnosticoMaterno = reactive<IDiagnosticoMaterno>({
+        momentoDiagnostico: [] as any,
         edadGestacionalDuranteSemanas: 0,
         seRealizoControlPrenatalDuranteEmbarazo: 0,
         seRealizoPruebaTreponemica: 0,
@@ -1258,7 +1272,9 @@ export default class HepatitisBView extends Vue {
         pruebaNoTreponemica: [] as any,
         resultadoPruebaNoTreponemica: [] as any,
         fechaResultadoPruebaNoTreponemica: new Date(),
-        listReporteDilucionesPruebaNoTreponemicaReactiva: []
+        reporteDilucionesPruebaNoTreponemicaReactiva: '',
+        listReporteDilucionesPruebaNoTreponemicaReactiva: [] as any,
+        tratamientoMaternoEstadioClinico: [] as any,
     })
 
 
@@ -1744,7 +1760,7 @@ h5 {
 }
 
 .full-width {
-    width:100%
+    width: 100%
 }
 
 @media(max-width:991px) {
@@ -1759,4 +1775,5 @@ h5 {
         display: flex !important;
         justify-content: end !important;
     }
-}</style>
+}
+</style>
