@@ -15,7 +15,8 @@ module.exports = defineConfig({
 	},
 
   // https://cli.vuejs.org/config/#publicpath
-  publicPath: process.env.PUBLICPATH,
+  //publicPath: process.env.PUBLICPATH,
+  publicPath: process.env.NODE_ENV === 'production' ? '/https://github.com/arman2r/OPSEtmiPlus_Front/' : '/',
   
   // https://webpack.js.org/configuration/dev-server/#devserverserver
   devServer: {
