@@ -229,11 +229,11 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                             </el-col>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="24" :lg="7" :xl="7">
@@ -459,11 +459,11 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                             </el-col>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
@@ -561,11 +561,11 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                             </el-col>
                                         </el-col>
                                     </el-row>
@@ -952,13 +952,13 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
                                             </el-col>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
