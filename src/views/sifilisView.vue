@@ -291,7 +291,7 @@
                         </section>
                     </el-form>
                 </el-tab-pane>
-                <el-tab-pane label="Serología" name="four" ref="elTab4">
+                <el-tab-pane label="Seguimiento serológico" name="four" ref="elTab4">
                     <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
                         ref="secondForm" :label-position="labelPosition">
                         <section style="width: 100%;">
@@ -305,8 +305,8 @@
                                 </el-col>
                                 <br />
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-row>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="5" :xl="5">
+                                    <el-row :gutter="8">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Prueba <br> utilizada</h5>
                                             </el-col>
@@ -334,7 +334,7 @@
                                                 </el-form-item>
                                             </el-col>
                                         </el-col>
-                                        <el-col :xs="24" :sm="24" :md="4" :lg="5" :xl="5" class="me-2">
+                                        <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
                                             </el-col>
@@ -350,7 +350,7 @@
                                                     type="date" placeholder="Fecha de emisión" :format="dateFormat" />
                                             </el-col>
                                         </el-col>
-                                        <el-col :xs="24" :sm="24" :md="4" :lg="5" :xl="5" class="me-2">
+                                        <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Resultado: <br> reporte en
                                                     diluciones
@@ -365,7 +365,7 @@
                                                     v-model="ruleFormDatosGestante.direccionResidencia" />
                                             </el-col>
                                         </el-col>
-                                        <el-col :xs="24" :sm="24" :md="4" :lg="5" :xl="5" class="me-2">
+                                        <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Edad gestacional en semanas a la
                                                     realización</h5>
@@ -386,45 +386,43 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Retratamiento Materno" name="five" ref="elTab5">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
                                     <h4>RETRATAMIENTO MATERNO PARA LA SÍFILIS GESTACIONAL</h4>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Requirio
-                                        retratamiento:</label><br />
-                                    <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Requirió retratamiento:">
+                                        <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
 
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Aplicación de
-                                        penicilina benzatínica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Causa del retratamiento:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">Tratamiento inadecuado</el-radio>
+                                            <el-radio :label="2">Reinfección</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Causa
-                                        del
-                                        retratamiento:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">Tratamiento inadecuado</el-radio>
-                                        <el-radio :label="2">Reinfección</el-radio>
-                                    </el-radio-group>
+
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Aplicación de penicilina benzatínica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
+
                                 <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-row>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                    <el-row :gutter="8">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
                                             </el-col>
@@ -455,7 +453,7 @@
                                                 </el-form-item>
                                             </el-col>
                                         </el-col>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
                                             </el-col>
@@ -468,9 +466,10 @@
                                                     v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
                                             </el-col>
                                         </el-col>
-                                        <el-col :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Edad gestacional a la aplicación en
+                                                <h5 class="serologia-retratamiento">Edad gestacional a la <br>aplicación
+                                                    en
                                                     semanas</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -492,46 +491,40 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento" name="six" ref="elTab6">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
                                     <h4>SEGUIMIENTO A SUS CONTACTOS SEXUALES</h4>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Se
-                                        realizó notificacion
-                                        a los contactos:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Se realizó notificacion a los contactos:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Se
-                                        realizó tratamiento
-                                        a contactos:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Se realizó tratamiento a contactos:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Se
-                                        aplico penicilina
-                                        benzatínica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Se aplicó penicilina benzatínica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-row>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                    <el-row :gutter="8">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
                                             </el-col>
@@ -562,7 +555,7 @@
                                                 </el-form-item>
                                             </el-col>
                                         </el-col>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
                                             </el-col>
@@ -580,7 +573,7 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                     <el-form-item
                                         label="Si no se utilizó penicilina benzatínica, escriba el nombre del medicamento utilizado">
-                                        <el-input />
+                                        <el-input type="text" v-model="ruleFormDatosGestante.nombreAseguradora" />
                                     </el-form-item>
                                 </el-col>
                             </el-row>
@@ -588,8 +581,8 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Situación" name="seven" ref="elTab7">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -606,45 +599,41 @@
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                    <label class="label-field" style="min-width:180px">Fecha del parto</label>
-                                    <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                        placeholder="Fecha del parto" :format="dateFormat" />
+                                    <el-form-item label="Fecha del parto">
+                                        <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                            placeholder="Fecha del parto" :format="dateFormat" />
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Condición del
-                                        recién
-                                        nacido:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">Vivo</el-radio>
-                                        <el-radio :label="2">Mortinato</el-radio>
-                                    </el-radio-group>
+                                    <el-form-item label="Condición del recién nacido:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">Vivo</el-radio>
+                                            <el-radio :label="2">Mortinato</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Número
-                                        de productos al
-                                        nacimiento:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">Único</el-radio>
-                                        <el-radio :label="2">Múltiple</el-radio>
-                                    </el-radio-group>
+                                    <el-form-item label="Número de productos al nacimiento:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">Único</el-radio>
+                                            <el-radio :label="2">Múltiple</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <label>Edad gestacional al nacimiento en semanas:</label>
-                                    <el-form-item label="semanas" prop="nombreAseguradora">
+                                    <el-form-item label="Edad gestacional al nacimiento en semanas:"
+                                        prop="nombreAseguradora">
                                         <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <label>Peso en gramos:</label>
-                                    <el-form-item label="Peso" prop="nombreAseguradora">
+                                    <el-form-item label="Peso en gramos:" prop="nombreAseguradora">
                                         <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
                                     </el-form-item>
                                 </el-col>
                                 <br />
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Sexo" prop="sexo" class="select-width">
+                                    <el-form-item label="Sexo:" prop="sexo" class="select-width">
                                         <el-select v-model="ruleFormTercerReporte.sexo" placeholder="Sexo">
                                             <el-option label="Hombre" value="1" />
                                             <el-option label="Mujer" value="2" />
@@ -701,8 +690,8 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Diagnostico" name="eigth" ref="elTab8">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -711,39 +700,35 @@
                                 <el-col :span="24">
                                     <h5>REALIZACIÓN DE PRUEBA NO TREPONÉMICA DE LA MADRE AL MOMENTO DEL PARTO:</h5>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Se
-                                        realizó prueba no
-                                        treonémica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Se realizó prueba no treponémica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Tipo
-                                        de prueba no
-                                        treponémica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">VDRL</el-radio>
-                                        <el-radio :label="2">RPR</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Tipo de prueba no treponémica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">VDRL</el-radio>
+                                            <el-radio :label="2">RPR</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Resultado de la
-                                        prueba:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">Reactiva</el-radio>
-                                        <el-radio :label="2">No reactiva</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                    <el-form-item label="Resultado de la prueba:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">Reactiva</el-radio>
+                                            <el-radio :label="2">No reactiva</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                    <label class="label-field" style="min-width:180px">Fecha del resultado</label>
-                                    <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                        placeholder="Fecha del resultado" :format="dateFormat" />
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Fecha del resultado:">
+                                        <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                            placeholder="Fecha del resultado" :format="dateFormat" />
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva"
@@ -769,38 +754,34 @@
                                     </h5>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Se
-                                        realizó prueba no
-                                        treonémica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                    <el-form-item label="Se realizó prueba no treonémica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Tipo
-                                        de prueba no
-                                        treponémica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">VDRL</el-radio>
-                                        <el-radio :label="2">RPR</el-radio>
-                                    </el-radio-group>
+                                    <el-form-item label="Tipo de prueba no treponémica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">VDRL</el-radio>
+                                            <el-radio :label="2">RPR</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Resultado de la
-                                        prueba:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">Reactiva</el-radio>
-                                        <el-radio :label="2">No reactiva</el-radio>
-                                    </el-radio-group>
+                                    <el-form-item label="Resultado de la prueba:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">Reactiva</el-radio>
+                                            <el-radio :label="2">No reactiva</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                    <label class="label-field" style="min-width:180px">Fecha del resultado</label>
-                                    <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
-                                        placeholder="Fecha del resultado" :format="dateFormat" />
+                                    <el-form-item label="Fecha del resultado:">
+                                        <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                            placeholder="Fecha del resultado" :format="dateFormat" />
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva"
@@ -826,62 +807,62 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Intervenciones" name="nine" ref="elTab9">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
                                     <h4>DIAGNÓSTICO E INTERVENCIONES DE LA NIÑA O NIÑO FRENTE A LA SÍFILIS</h4>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño con diagnóstico descartado de sífilis -
-                                        Sano:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Niña o niño con diagnóstico descartado de sífilis - Sano:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño Sano, se aplico dosis profilactica con
-                                        penicilina
-                                        benzatinica:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item
+                                        label="Niña o niño Sano, se aplico dosis profilactica con penicilina benzatinica:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño con diagnóstico confirmado de
-                                        sífilis:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Niña o niño con diagnóstico confirmado de sífilis:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño con diagnóstico de sífilis, se aplico
-                                        tratamiento
-                                        para sífilis:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item
+                                        label="Niña o niño con diagnóstico de sífilis, se aplico tratamiento para sífilis:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño recibió tratamiento con penicilina
-                                        cristalina:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Niña o niño recibió tratamiento con penicilina cristalina:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <label class="title-field">Niña o niño recibió tratamiento por 10
-                                        días:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Niña o niño recibió tratamiento por 10 días:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                                 <el-col :span="24">
                                     <h5>CRITERIO UTILIZADO PARA EL DIAGNÓSTICO DE SÍFILIS CONGÉNITA EN LA NIÑA O NIÑO
@@ -904,8 +885,8 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento niña o niño" name="ten" ref="elTab10">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -913,25 +894,24 @@
                                         VIDA
                                     </h4>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">Se
-                                        realizó deguimiento
-                                        al niño con sífilis a los: 3, 6 ,9 y 12 meses de edad:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mt">
+                                    <el-form-item
+                                        label="Se realizó deguimiento al niño con sífilis a los: 3, 6 ,9 y 12 meses de edad:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb">
                                     <label class="title-field"
                                         style="min-width: 180px !important;width:inherit !important">Si
                                         la respues es SI
                                         registre la siguiente informacion:</label>
                                 </el-col>
                                 <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-row>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                    <el-row :gutter="8">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Prueba <br> utilizada</h5>
                                             </el-col>
@@ -966,7 +946,7 @@
                                                 </el-form-item>
                                             </el-col>
                                         </el-col>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
+                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
                                             </el-col>
@@ -1058,22 +1038,20 @@
                                     </el-row>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
-                                    <label class="title-field"
-                                        style="min-width: 180px !important;width:inherit !important">La
-                                        niña o niño cumple
-                                        criterios de curación para sífilis:</label><br />
-                                    <el-radio-group class="ml-4">
-                                        <el-radio :label="1">SI</el-radio>
-                                        <el-radio :label="2">NO</el-radio>
-                                    </el-radio-group>
+                                    <el-form-item label="La niña o niño cumple criterios de curación para sífilis:">
+                                        <el-radio-group class="ml-4">
+                                            <el-radio :label="1">SI</el-radio>
+                                            <el-radio :label="0">NO</el-radio>
+                                        </el-radio-group>
+                                    </el-form-item>
                                 </el-col>
                             </el-row>
                         </section>
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Reporte" name="eleven" ref="elTab11">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -1775,5 +1753,10 @@ h5 {
         display: flex !important;
         justify-content: end !important;
     }
+}
+
+.el-tabs__nav-wrap{
+    display: flex;
+    align-items: center;
 }
 </style>

@@ -23,11 +23,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: { hideParams: true }
   },
   {
-    path: '/vihList',
-    name: 'vihList',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/VihListView.vue')
-  },
-  {
     path: '/gestantes',
     name: 'gestantes',
     // route level code-splitting

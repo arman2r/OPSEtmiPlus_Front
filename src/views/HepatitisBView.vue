@@ -666,7 +666,7 @@ export default class HepatitisBView extends Vue {
 
     }
 
-    onResize(): void {
+    /*onResize(): void {
         // Handle screen resize logic here
         // You can access the window size using `window.innerWidth` and `window.innerHeight`
         //console.log('tamaño window', window.innerWidth)
@@ -674,8 +674,8 @@ export default class HepatitisBView extends Vue {
             
         } else { 
             //this.labelPosition = ref<FormProps['labelPosition']>(this.position)
-        }*/
-    }
+        }*//*
+    }*/
 
     idGestanteCtrl: number | undefined = 0;
     mounted(): void {
@@ -1634,4 +1634,10 @@ h5 {
     padding-left: 13px;
     padding-right: 13px;
     background-color: #f7f7f7 !important;
-}</style>
+}
+
+.el-tabs__nav-wrap{
+    display: flex;
+    align-items: center;
+}
+</style>

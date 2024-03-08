@@ -1,7 +1,7 @@
 <template>
     <el-row :gutter="10" style="width: 100%;">
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <el-row justify="space-between center">
+            <el-row justify="space-between">
                 <div>
                     <h4>Reportes Vih</h4>
                 </div>

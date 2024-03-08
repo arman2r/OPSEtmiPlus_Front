@@ -2342,4 +2342,10 @@ h5 {
     padding-left: 13px;
     padding-right: 13px;
     background-color: #f7f7f7 !important;
-}</style>
+}
+
+.el-tabs__nav-wrap{
+    display: flex;
+    align-items: center;
+}
+</style>

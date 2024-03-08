@@ -6,19 +6,32 @@
 -->
   <el-container class="layout-container-demo">
     <el-aside :width="asideWidth">
+      <!--<el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
+        <el-radio-button :value="false">expand</el-radio-button>
+        <el-radio-button :value="true">collapse</el-radio-button>
+      </el-radio-group>
+      -->
+      <!--<el-button class="hidden-sm-and-up" @click="toggleCollapse"><el-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-ea893728=""><path fill="currentColor" d="M160 448a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32zm448 0a32 32 0 0 1-32-32V160.064a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32V416a32 32 0 0 1-32 32zM160 896a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32zm448 0a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h255.936a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32z"></path></svg></el-icon></el-button>-->
       <el-scrollbar>
+        
         <el-menu :default-openeds="defaultOpen" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
-          <el-menu-item index="1">
-            <router-link to="/gestantes">
-              <el-icon><svg style="font-size: 24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+
+          <router-link to="/gestantes">
+            <el-menu-item index="1">
+
+              <el-icon><icon-menu><svg style="font-size: 24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24">
                   <path fill="currentColor"
                     d="M9 4c0-1.11.89-2 2-2c1.11 0 2 .89 2 2c0 1.11-.89 2-2 2c-1.11 0-2-.89-2-2m7 9c0-1.34-.83-2.5-2-3a3 3 0 0 0-3-3a3 3 0 0 0-3 3v7h2v5h3v-5h3z" />
-                </svg></el-icon>
-              <span>Gestantes</span>
-            </router-link>
-          </el-menu-item>
-          <el-sub-menu index="1">
+                </svg>
+              </icon-menu></el-icon>
+
+              <template #title>Gestantes</template>
+
+            </el-menu-item>
+          </router-link>
+
+          <el-sub-menu index="2">
             <template #title>
               <el-icon>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024">
@@ -43,16 +56,29 @@
       <router-view />
     </el-container>
   </el-container>
-</template> 
+</template>
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
+import { onUnmounted } from 'vue';
+
 
 
 export default class App extends Vue {
   asideWidth = '200px'
-  defaultOpen = ['1']
+  defaultOpen = ['2']
   isCollapse = false
+
+  toggleCollapse() {
+    this.isCollapse = !this.isCollapse
+    if(this.isCollapse === false){
+      this.asideWidth = '200px'
+    } else {
+      this.asideWidth = '64px'
+    }
+    
+  }
+
   handleOpen(key: string, keyPath: string[]) {
     console.log(key, keyPath)
   }
@@ -74,20 +100,23 @@ export default class App extends Vue {
   }
 
   mounted(): void {
-    window.addEventListener('resize', this.onResize);
-    if (window.innerWidth <= 991) {
+    this.onResize();
+    /*if (window.innerWidth <= 991) {
       this.isCollapse = true;
       this.asideWidth = '64px'
     } else {
       this.isCollapse = false
       this.asideWidth = '200px'
-    }
+    }*/
   }
 
-  beforeUnmount(): void {
+  /*beforeUnmount(): void {
     window.removeEventListener('resize', this.onResize);
-  }
+  }*/
 
+  /*onUnmounted() {
+    resizeObserver.disconnect();
+  };*/
 
 }
 </script>
@@ -123,6 +152,14 @@ nav a.router-link-exact-active {
   max-width: 1360px;
   width: 100%;
   margin: auto;
+}
+
+.el-scrollbar__view {
+  height: 100% !important;
+}
+
+.el-scrollbar ul.el-menu {
+  height: 100% !important;
 }
 
 @media(max-width: 991px) {

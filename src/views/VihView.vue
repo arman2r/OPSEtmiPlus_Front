@@ -2254,4 +2254,9 @@ h5 {
 .center-button button {
   margin-top: -10px
 }
+
+.el-tabs__nav-wrap{
+    display: flex;
+    align-items: center;
+}
 </style>

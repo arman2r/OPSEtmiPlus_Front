@@ -1,7 +1,7 @@
 <template>
     <el-row :gutter="10" style="width: 100%;">
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <el-row justify="space-between center">
+            <el-row justify="space-between">
                 <div>
                     <h4>Gestantes</h4>
                 </div>
@@ -731,7 +731,9 @@ export default class gestantesView extends Vue {
 
         const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
         console.log('data que llega', getDataGestantes)
-        this.tableData = getDataGestantes.data.data
+        if(getDataGestantes.length !== 0){
+            this.tableData = getDataGestantes.data.data
+        }
 
         //API de Consulta para dptos y ciudades
         const dataDptos = localStorage.getItem('allDptos');
