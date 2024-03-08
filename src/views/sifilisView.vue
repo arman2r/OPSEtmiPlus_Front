@@ -6,19 +6,17 @@
             <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
                 <el-tab-pane label="Diagnostico materno" name="second" ref="elTab2">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormDiagnosticoMaterno" :rules="rulesFormDiagnosticoMaterno">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item
                                         label="Momento del diagnóstico de sífilis con relación a la gestación actual"
-                                        prop="nacionalidad" class="select-width">
-                                        <el-select v-model="ruleFormHbDatosGestante.nacionalidad"
-                                            placeholder="Nacionalidad">
-                                            <el-option label="Diagnostico antes de la gestación actual" value="1" />
-                                            <el-option label="Embarazo" value="2" />
-                                            <el-option label="Parto" value="2" />
-                                            <el-option label="Puerperio" value="2" />
+                                        prop="momentoDiagnostico" class="select-width">
+                                        <el-select v-model="ruleFormDiagnosticoMaterno.momentoDiagnostico"
+                                            placeholder="Momento del diagnóstico de sífilis con relación a la gestación actual">
+                                            <el-option v-for="(mmd, index) in momentoDiagnosticoList" :key="index"
+                                                :label="mmd.valor" :value="mmd.id" />
                                         </el-select>
                                     </el-form-item>
                                 </el-col>
@@ -29,10 +27,10 @@
                                             type="number" />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :span="24">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                     <h4>CONTROL PRENATAL:</h4>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item
                                         label="A la gestante se le realizó control prenatal durante este embarazo:"
                                         prop="seRealizoControlPrenatalDuranteEmbarazo">
@@ -43,13 +41,13 @@
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Edad gestacional al primer control prenatal, en semanas:">
                                         <el-input type="number" />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
-                                    <el-form-item label="Se realizó prueba treponémica:">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                    <el-form-item label="Se realizó prueba treponémica:" prop="seRealizoPruebaTreponemica">
                                         <el-radio-group v-model="ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
@@ -60,19 +58,18 @@
                                     <el-form-item label="Tipo de prueba treponémica" prop="pruebaTreponemica"
                                         class="select-width">
                                         <el-select v-model="ruleFormDiagnosticoMaterno.pruebaTreponemica"
-                                            placeholder="Nacionalidad">
-                                            <el-option label="Prueba rápida" value="1" />
-                                            <el-option label="TPHA" value="2" />
-                                            <el-option label="TPPA" value="3" />
+                                            placeholder="Tipo de prueba treponémica">
+                                            <el-option v-for="(tpt, index) in tipoPruebaTreponemicaList" :key="index"
+                                                :label="tpt.valor" :value="tpt.id" />
                                         </el-select>
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Resultado de la prueba:" prop="resultadoPruebaTreponemica"
                                         class="select-width">
                                         <el-radio-group v-model="ruleFormDiagnosticoMaterno.resultadoPruebaTreponemica">
-                                            <el-radio :label="0">Positivo</el-radio>
-                                            <el-radio :label="1">Negativo</el-radio>
+                                            <el-radio :label="1">Positivo</el-radio>
+                                            <el-radio :label="0">Negativo</el-radio>
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
@@ -93,7 +90,7 @@
                                             type="number" />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se realizó prueba no tréponémica"
                                         prop="seRealizoPruebaNoTreponemica">
                                         <el-radio-group class="ml-4"
@@ -104,17 +101,16 @@
                                     </el-form-item>
 
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mb">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Tipo de prueba no tréponémica" prop="pruebaNoTreponemica">
                                         <el-radio-group class="ml-4"
                                             v-model="ruleFormDiagnosticoMaterno.pruebaNoTreponemica">
-                                            <el-radio label="0">VDRL</el-radio>
-                                            <el-radio label="1">RPR</el-radio>
+                                            <el-radio v-for="(tpnt, index) in tipoPruebaNoTreponemicaList" :key="index" :label="tpnt.id">{{tpnt.valor}}</el-radio>
                                         </el-radio-group>
                                     </el-form-item>
 
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Resultado de la prueba:" prop="resultadoPruebaNoTreponemica">
                                         <el-radio-group
                                             v-model="ruleFormDiagnosticoMaterno.resultadoPruebaNoTreponemica">
@@ -130,7 +126,6 @@
                                             v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica"
                                             type="date" placeholder="Fecha del resultado" :format="dateFormat" />
                                     </el-form-item>
-
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item
@@ -139,28 +134,25 @@
                                         <el-input type="number" />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" v-if="reporteDilucionesList.length !== 0">
                                     <el-form-item label="Reporte en diluciones si la prueba no tréponemica es reactiva"
                                         prop="listReporteDilucionesPruebaNoTreponemicaReactiva" class="select-width">
-                                        <el-select
+                                        <el-radio-group
                                             v-model="ruleFormDiagnosticoMaterno.listReporteDilucionesPruebaNoTreponemicaReactiva">
-                                            <el-option label="" value="1" />
-                                            <el-option label="1" value="2" />
-                                            <el-option label="2" value="3" />
-                                            <el-option label="4" value="4" />
-                                            <el-option label="8" value="5" />
-                                            <el-option label="16" value="6" />
-                                            <el-option label="32" value="7" />
-                                            <el-option label="64" value="8" />
-                                            <el-option label="128" value="9" />
-                                            <el-option label="256" value="10" />
-                                            <el-option label="512" value="11" />
-                                            <el-option label="1024" value="12" />
-                                        </el-select>
+                                            <el-radio v-for="(rds, index) in reporteDilucionesList" :key="index" :label="rds.id">{{rds.valor}}</el-radio>
+                                        </el-radio-group>
                                     </el-form-item>
                                 </el-col>
 
                             </el-row>
+                            <el-row class="row-bg" justify="end">
+                                <div class="btn-save">
+                                    <el-button type="primary" size="default"
+                                        @click="submitForm(secondForm, 'three')">guardar y
+                                        continuar</el-button>
+                                </div>
+                            </el-row>
+                            
                         </section>
                     </el-form>
                 </el-tab-pane>
@@ -1135,8 +1127,11 @@ import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico } from '@/api/ETMIPLUS_API';
+import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica } from '@/api/ETMIPLUS_API';
 type FormInstance = InstanceType<typeof ElForm>
+import moment from 'moment';
+import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
+import axios from 'axios';
 
 @Options({
     components: {},
@@ -1173,6 +1168,8 @@ export default class HepatitisBView extends Vue {
     teneForm = ref<FormInstance>()
 
     formSize = 'default'
+
+    ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
 
     value1 = []
     options = [
@@ -1352,8 +1349,7 @@ export default class HepatitisBView extends Vue {
     })
 
     /**Inicio validaciones sifilis */
-
-    rulesFomrDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
+    rulesFormDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
         edadGestacionalDuranteSemanas: [
             {
                 required: true,
@@ -1435,7 +1431,7 @@ export default class HepatitisBView extends Vue {
             {
                 required: true,
                 message: 'Por favor elija la dilucion respectiva',
-                trigger: 'blur'
+                trigger: 'change'
             },
         ]
     })
@@ -1575,7 +1571,50 @@ export default class HepatitisBView extends Vue {
                 trigger: 'change',
             },
         ]
-    })
+    });
+
+    idGestanteCtrl: number | undefined = 0;
+    mounted(): void {
+        /*window.addEventListener('resize', this.onResize);
+        if (window.innerWidth <= 991) { 
+        } else { 
+            //this.labelPosition = ref<FormProps['labelPosition']>(this.position)
+        }
+*/
+        const gestanteCtrl = this.$route.params.idGCtrl;
+        this.idGestanteCtrl = Number(gestanteCtrl);
+        this.getParamsDbFirsTap('second');
+        //this.getAllFicha(this.idGestanteCtrl)
+
+    }
+
+    momentoDiagnosticoList: IParametrica[] = [];
+    tipoPruebaTreponemicaList: IParametrica[] = [];
+    tipoPruebaNoTreponemicaList: IParametrica[] = [];
+    reporteDilucionesList: IParametrica[] = [];
+
+    async getParamsDbFirsTap(step: string) {
+        if (step === 'second') {
+            const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any;
+            console.log('que trae 1', getParamsDiagnosticMoment)
+            this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
+
+            const getParamsPruebaTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_TREPONEMICA') as any;
+            console.log('que trae 1', getParamsPruebaTreponemica)
+            this.tipoPruebaTreponemicaList = getParamsPruebaTreponemica.data
+
+            const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
+            console.log('que trae 1', getParamsPruebaTreponemica)
+            this.tipoPruebaNoTreponemicaList = getParamsPruebaNoTreponemica.data
+
+            const getParamsReporteDiluciones = await this.ETMIPLUS_API_Client.parametrica2('DILUCIONES_PRUEBA_NO_TREPONEMICA_ES_REACTIVA') as any;
+            console.log('que trae 1', getParamsPruebaTreponemica)
+            this.reporteDilucionesList = getParamsReporteDiluciones.data
+
+        }
+        /* else if (step === 'three') {
+        }*/
+    }
 
     submitForm = async (formEl: FormInstance | undefined, tab: string) => {
         if (!formEl) return
@@ -1755,7 +1794,7 @@ h5 {
     }
 }
 
-.el-tabs__nav-wrap{
+.el-tabs__nav-wrap {
     display: flex;
     align-items: center;
 }

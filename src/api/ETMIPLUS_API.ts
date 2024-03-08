@@ -20,8 +20,8 @@ export class EtmiPlusClient {
 
         this.instance = instance ? instance : axios.create();
 
-        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
+        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
 
     }
 
@@ -613,7 +613,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
