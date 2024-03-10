@@ -47,7 +47,8 @@
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Se realizó prueba treponémica:" prop="seRealizoPruebaTreponemica">
+                                    <el-form-item label="Se realizó prueba treponémica:"
+                                        prop="seRealizoPruebaTreponemica">
                                         <el-radio-group v-model="ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
@@ -105,7 +106,8 @@
                                     <el-form-item label="Tipo de prueba no tréponémica" prop="pruebaNoTreponemica">
                                         <el-radio-group class="ml-4"
                                             v-model="ruleFormDiagnosticoMaterno.pruebaNoTreponemica">
-                                            <el-radio v-for="(tpnt, index) in tipoPruebaNoTreponemicaList" :key="index" :label="tpnt.id">{{tpnt.valor}}</el-radio>
+                                            <el-radio v-for="(tpnt, index) in tipoPruebaNoTreponemicaList" :key="index"
+                                                :label="tpnt.id">{{ tpnt.valor }}</el-radio>
                                         </el-radio-group>
                                     </el-form-item>
 
@@ -134,13 +136,15 @@
                                         <el-input type="number" />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" v-if="reporteDilucionesList.length !== 0">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"
+                                    v-if="reporteDilucionesList.length !== 0">
                                     <el-form-item label="Reporte en diluciones si la prueba no tréponemica es reactiva"
                                         prop="listReporteDilucionesPruebaNoTreponemicaReactiva" class="select-width">
-                                        <el-radio-group
+                                        <el-checkbox-group
                                             v-model="ruleFormDiagnosticoMaterno.listReporteDilucionesPruebaNoTreponemicaReactiva">
-                                            <el-radio v-for="(rds, index) in reporteDilucionesList" :key="index" :label="rds.id">{{rds.valor}}</el-radio>
-                                        </el-radio-group>
+                                            <el-checkbox v-for="(rds, index) in reporteDilucionesList" :key="index"
+                                                :value="rds.valor" :label="rds.id" />
+                                        </el-checkbox-group>
                                     </el-form-item>
                                 </el-col>
 
@@ -152,31 +156,29 @@
                                         continuar</el-button>
                                 </div>
                             </el-row>
-                            
+
                         </section>
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Tratamiento Materno" name="third" ref="elTab3">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormEstadioClinico" :rules="rulesFormEstadioClinico">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Clasificación estado clínico de la sífilis:"
                                         prop="clasificacionEstadioClinico" class="select-width">
-                                        <el-select v-model="rulesFormEstadioClinico.clasificacionEstadioClinico"
+                                        <el-select v-model="ruleFormEstadioClinico.clasificacionEstadioClinico"
                                             placeholder="Clasificación">
-                                            <el-option label="Temprana" value="1" />
-                                            <el-option label="Tardía" value="2" />
-                                            <el-option label="Duración desconocida" value="3" />
+                                            <el-option v-for="(cn, index) in clasificacionEstadioClinicoList"
+                                                :key="index" :label="cn.valor" :value="cn.id" />
                                         </el-select>
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Aplicación de penicilina benzatinica:"
                                         prop="aplicaronPenicilinaBenzatinica">
-                                        <el-radio-group
-                                            v-model="rulesFormEstadioClinico.aplicaronPenicilinaBenzatinica">
+                                        <el-radio-group v-model="ruleFormEstadioClinico.aplicaronPenicilinaBenzatinica">
                                             <el-radio :label="1">Si</el-radio>
                                             <el-radio :label="0">No</el-radio>
                                         </el-radio-group>
@@ -189,24 +191,23 @@
                                                 <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                <el-form-item prop="nroDosis1" class="select-width">
+                                                    <el-select
+                                                        placeholder="Número de dosis">
+                                                        <el-option v-for="(cn, index) in tipoDocList" :key="index"
+                                                            :label="cn.valor" :value="cn.id" />
+                                                    </el-select>
+                                                </el-form-item>
+                                                <el-form-item prop="nroDosis2" class="select-width">
+                                                    <el-select
                                                         placeholder="Número de dosis">
                                                         <el-option label="Primera dosis" value="1" />
                                                         <el-option label="Sgunda dosis" value="2" />
                                                         <el-option label="Tercera dosis" value="3" />
                                                     </el-select>
                                                 </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Número de dosis">
-                                                        <el-option label="Primera dosis" value="1" />
-                                                        <el-option label="Sgunda dosis" value="2" />
-                                                        <el-option label="Tercera dosis" value="3" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                <el-form-item prop="nroDosis3" class="select-width">
+                                                    <el-select
                                                         placeholder="Número de dosis">
                                                         <el-option label="Primera dosis" value="1" />
                                                         <el-option label="Sgunda dosis" value="2" />
@@ -1127,11 +1128,27 @@ import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica } from '@/api/ETMIPLUS_API';
+import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica } from '@/api/ETMIPLUS_API';
 type FormInstance = InstanceType<typeof ElForm>
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
+
+interface ITratamientoMaternoEstadioClinicoFront {
+    idTratamientoMaternoEstadioClinico?: number;
+    idDiagnosticoMaterno?: number;
+    idClasificacionEstadioClinico?: number;
+    clasificacionEstadioClinico?: IParametrica;
+    aplicaronPenicilinaBenzatinica?: number;
+    idResultadoManejoSifilisGestacional?: number;
+    resultadoManejoSifilisGestacional?: IParametrica;
+    seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica?: number;
+    idResultadoPrevenirSifilisCongenita?: number;
+    resultadoPrevenirSifilisCongenita?: IParametrica;
+    seguimientoSerologicoGestante?: ISeguimientoSerologicoGestante[] | undefined;
+    retratamientoMaternoGestacional?: IRetratamientoMaternoGestacional[] | undefined;
+    tratamientoMaterno?: IAplicacionPenicilinaBenzatinica[] | undefined;
+}
 
 @Options({
     components: {},
@@ -1257,12 +1274,13 @@ export default class HepatitisBView extends Vue {
 
     /**Inicio tratamiento materno y estadío clinico sifilis */
 
-    ruleFormEstadioClinico = reactive<ITratamientoMaternoEstadioClinico>({
+    ruleFormEstadioClinico = reactive<ITratamientoMaternoEstadioClinicoFront>({
         clasificacionEstadioClinico: [] as any,
         aplicaronPenicilinaBenzatinica: 0,
-        resultadoManejoSifilisGestacional: [0] as any,
+        resultadoManejoSifilisGestacional: [] as any,
         seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica: 0,
-        resultadoPrevenirSifilisCongenita: [0] as any
+        resultadoPrevenirSifilisCongenita: [] as any,
+        tratamientoMaterno: [] as IAplicacionPenicilinaBenzatinica[],
     })
 
 
@@ -1592,28 +1610,97 @@ export default class HepatitisBView extends Vue {
     tipoPruebaTreponemicaList: IParametrica[] = [];
     tipoPruebaNoTreponemicaList: IParametrica[] = [];
     reporteDilucionesList: IParametrica[] = [];
+    clasificacionEstadioClinicoList: IParametrica[] = [];
+    dosisPenicilinaBenzList: IParametrica[] = [];
+    dosisPruebaNoTreponemica: IParametrica[] = [];
+    situacionGestanteList: IParametrica[] = [];
+    sexoList: IParametrica[] = [];
+    tipoDocList: IParametrica[] = [];
+    criterioUtilizadoList: IParametrica[] = [];
 
     async getParamsDbFirsTap(step: string) {
         if (step === 'second') {
-            const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any;
-            console.log('que trae 1', getParamsDiagnosticMoment)
-            this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
+            if (this.momentoDiagnosticoList.length === 0) {
+                const getParamsDiagnosticMoment = await this.ETMIPLUS_API_Client.parametrica2('MOMENTO_DIAGNOSTICO') as any;
+                console.log('que trae 1', getParamsDiagnosticMoment)
+                this.momentoDiagnosticoList = getParamsDiagnosticMoment.data
+            }
 
-            const getParamsPruebaTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_TREPONEMICA') as any;
-            console.log('que trae 1', getParamsPruebaTreponemica)
-            this.tipoPruebaTreponemicaList = getParamsPruebaTreponemica.data
+            if (this.tipoPruebaTreponemicaList.length === 0) {
+                const getParamsPruebaTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_TREPONEMICA') as any;
+                console.log('que trae 1', getParamsPruebaTreponemica)
+                this.tipoPruebaTreponemicaList = getParamsPruebaTreponemica.data
+            }
 
-            const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
-            console.log('que trae 1', getParamsPruebaTreponemica)
-            this.tipoPruebaNoTreponemicaList = getParamsPruebaNoTreponemica.data
+            if (this.tipoPruebaNoTreponemicaList.length === 0) {
+                const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
+                console.log('que trae 1', getParamsPruebaNoTreponemica)
+                this.tipoPruebaNoTreponemicaList = getParamsPruebaNoTreponemica.data
+            }
 
-            const getParamsReporteDiluciones = await this.ETMIPLUS_API_Client.parametrica2('DILUCIONES_PRUEBA_NO_TREPONEMICA_ES_REACTIVA') as any;
-            console.log('que trae 1', getParamsPruebaTreponemica)
-            this.reporteDilucionesList = getParamsReporteDiluciones.data
+            if (this.reporteDilucionesList.length === 0) {
+                const getParamsReporteDiluciones = await this.ETMIPLUS_API_Client.parametrica2('DILUCIONES_PRUEBA_NO_TREPONEMICA_ES_REACTIVA') as any;
+                console.log('que trae 1', getParamsReporteDiluciones)
+                this.reporteDilucionesList = getParamsReporteDiluciones.data
+            }
 
+
+        } else if (step === 'third') {
+            if (this.reporteDilucionesList.length === 0) {
+                const getParamsEstadoClinico = await this.ETMIPLUS_API_Client.parametrica2('CLASIFICACION_ESTADIO_CLINICO') as any;
+                console.log('que trae 1', getParamsEstadoClinico)
+                this.clasificacionEstadioClinicoList = getParamsEstadoClinico.data
+            }
+
+            if (this.dosisPenicilinaBenzList.length === 0) {
+                const getParamsdosisPenicilinaBenz = await this.ETMIPLUS_API_Client.parametrica2('DOSIS_PENICILINA_BENZATINICA') as any;
+                console.log('que trae 1', getParamsdosisPenicilinaBenz)
+                this.dosisPenicilinaBenzList = getParamsdosisPenicilinaBenz.data
+            }
+        } else if (step === 'four') {
+
+            if (this.tipoPruebaNoTreponemicaList.length === 0) {
+                const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
+                console.log('que trae 1', getParamsPruebaNoTreponemica)
+                this.tipoPruebaNoTreponemicaList = getParamsPruebaNoTreponemica.data
+            }
+        } else if (step === 'seven') {
+
+            if (this.situacionGestanteList.length === 0) {
+                const getParamsSituacionGestante = await this.ETMIPLUS_API_Client.parametrica2('SITUACION_GESTANTE') as any;
+                console.log('que trae 1', getParamsSituacionGestante)
+                this.situacionGestanteList = getParamsSituacionGestante.data
+            }
+
+            if (this.sexoList.length === 0) {
+                const getParamsSexo = await this.ETMIPLUS_API_Client.parametrica2('SEXO') as any;
+                console.log('que trae 1', getParamsSexo)
+                this.sexoList = getParamsSexo.data
+            }
+
+            if (this.tipoDocList.length === 0) {
+                const getParamsTipoDoc = await this.ETMIPLUS_API_Client.parametrica2('TIPO_DOCUMENTO_NINO') as any;
+                console.log('que trae 1', getParamsTipoDoc)
+                this.tipoDocList = getParamsTipoDoc.data
+            }
+        } else if (step === 'eigth') {
+            if (this.tipoPruebaNoTreponemicaList.length === 0) {
+                const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
+                console.log('que trae 1', getParamsPruebaNoTreponemica)
+                this.tipoPruebaNoTreponemicaList = getParamsPruebaNoTreponemica.data
+            }
+            if (this.reporteDilucionesList.length === 0) {
+                const getParamsReporteDiluciones = await this.ETMIPLUS_API_Client.parametrica2('DILUCIONES_PRUEBA_NO_TREPONEMICA_ES_REACTIVA') as any;
+                console.log('que trae 1', getParamsReporteDiluciones)
+                this.reporteDilucionesList = getParamsReporteDiluciones.data
+            }
+        } else if (step === 'nine') {
+            if (this.criterioUtilizadoList.length === 0) {
+                const getParamsCriterioUtilizado = await this.ETMIPLUS_API_Client.parametrica2('CRITERIO_UTILIZADO') as any;
+                console.log('que trae 1', getParamsCriterioUtilizado)
+                this.criterioUtilizadoList = getParamsCriterioUtilizado.data
+            }
         }
-        /* else if (step === 'three') {
-        }*/
     }
 
     submitForm = async (formEl: FormInstance | undefined, tab: string) => {

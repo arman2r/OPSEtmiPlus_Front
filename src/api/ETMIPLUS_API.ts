@@ -3231,7 +3231,7 @@ export interface IAplicacionPenicilinaBenzatinica {
     idSeguimientoContactoSexual?: number | undefined;
     esRetratamiento?: number;
     idDosisPenicilinaBenzatinica?: number;
-    dosisPenicilinaBenzatinica?: Parametrica;
+    dosisPenicilinaBenzatinica?: IParametrica;
     fechaAplicacionPenicilinaBenzatinica?: Date;
     edadGestionalAplicacionPenicilinaBenzatinicaSemanas?: number;
 }
