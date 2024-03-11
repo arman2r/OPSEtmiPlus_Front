@@ -329,7 +329,7 @@
                                             </el-col>
                                             <el-col :md="1" :lg="1" :xl="1" class="center-button">
                                                 <el-button v-if="seguimientoSerologicoList.length >= 2 && index !== 0"
-                                                    :icon="DeleteIcon" @click="removeFields(index)" type="danger"
+                                                    :icon="DeleteIcon" @click="removeFieldSegSerologico(index)" type="danger"
                                                     circle></el-button>
                                             </el-col>
                                         </div>
