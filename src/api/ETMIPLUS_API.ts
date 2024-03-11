@@ -20,8 +20,8 @@ export class EtmiPlusClient {
 
         this.instance = instance ? instance : axios.create();
 
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
-        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
+        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
 
     }
 
@@ -2243,7 +2243,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    retratamientoMaternoGestacional(idTratamientoMaternoEstadioClinico: number, body: RetratamientoMaternoGestacional | undefined, cancelToken?: CancelToken): Promise<void> {
+    retratamientoMaternoGestacional(idTratamientoMaternoEstadioClinico: number, body: IRetratamientoMaternoGestacional | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/TratamientoMaternoEstadioClinico/{idTratamientoMaternoEstadioClinico}/Sifilis/RetratamientoMaternoGestacional";
         if (idTratamientoMaternoEstadioClinico === undefined || idTratamientoMaternoEstadioClinico === null)
             throw new Error("The parameter 'idTratamientoMaternoEstadioClinico' must be defined.");

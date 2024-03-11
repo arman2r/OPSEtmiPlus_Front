@@ -289,7 +289,9 @@
 
                                                 <el-form-item label="Prueba utilizada"
                                                     prop="tipoPruebaNoTreponemicaDuranteGestacion" class="select-width">
-                                                    <el-radio-group v-model="ssco.tipoPruebaNoTreponemicaDuranteGestacion" @change="validateFieldSegSerologico(index)">
+                                                    <el-radio-group
+                                                        v-model="ssco.tipoPruebaNoTreponemicaDuranteGestacion"
+                                                        @change="validateFieldSegSerologico(index)">
                                                         <el-radio :label="1">VDRL</el-radio>
                                                         <el-radio :label="2">RPR</el-radio>
                                                     </el-radio-group>
@@ -313,8 +315,7 @@
                                                         multiple placeholder="Select" style="width: 240px"
                                                         @change="validateFieldSegSerologico(index)">
                                                         <el-option v-for="(rteds, index) in reporteDilucionesList"
-                                                            :key="index" :label="rteds.id"
-                                                            :value="rteds.valor" />
+                                                            :key="index" :label="rteds.id" :value="rteds.valor" />
                                                     </el-select>
                                                 </el-form-item>
                                             </el-col>
@@ -329,8 +330,8 @@
                                             </el-col>
                                             <el-col :md="1" :lg="1" :xl="1" class="center-button">
                                                 <el-button v-if="seguimientoSerologicoList.length >= 2 && index !== 0"
-                                                    :icon="DeleteIcon" @click="removeFieldSegSerologico(index)" type="danger"
-                                                    circle></el-button>
+                                                    :icon="DeleteIcon" @click="removeFieldSegSerologico(index)"
+                                                    type="danger" circle></el-button>
                                             </el-col>
                                         </div>
                                         <el-col :span="24">
@@ -423,15 +424,15 @@
                 </el-tab-pane>
                 <el-tab-pane label="Retratamiento Materno" name="five" ref="elTab5">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormRetMaterno" :rules="rulesFormRetMaterno">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
                                     <h4>RETRATAMIENTO MATERNO PARA LA SÍFILIS GESTACIONAL</h4>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Requirió retratamiento:">
-                                        <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
+                                    <el-form-item label="Requirió retratamiento:" prop="requirioTratamiento">
+                                        <el-radio-group v-model="ruleFormRetMaterno.requirioTratamiento">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -439,17 +440,19 @@
                                 </el-col>
 
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Causa del retratamiento:">
-                                        <el-radio-group class="ml-4">
-                                            <el-radio :label="1">Tratamiento inadecuado</el-radio>
-                                            <el-radio :label="2">Reinfección</el-radio>
+                                    <el-form-item label="Causa del retratamiento:" prop="causaRetratamiento">
+                                        <el-radio-group class="ml-4" v-model="ruleFormRetMaterno.causaRetratamiento">
+                                            <el-radio v-for="(rtmtno, index) in retratamientoMaternoList" :key="index"
+                                                :label="rtmtno.id">{{ rtmtno.valor }}</el-radio> 
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
 
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Aplicación de penicilina benzatínica:">
-                                        <el-radio-group class="ml-4">
+                                    <el-form-item label="Aplicación de penicilina benzatínica:"
+                                        prop="aplicaronPenicilinaBenzatinica">
+                                        <el-radio-group class="ml-4"
+                                            v-model="ruleFormRetMaterno.aplicaronPenicilinaBenzatinica">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -1496,6 +1499,12 @@ export default class HepatitisBView extends Vue {
         observacionesCaso: ''
     })
 
+    ruleFormRetMaterno = reactive<IRetratamientoMaternoGestacional>({
+        requirioTratamiento: 0,
+        causaRetratamiento: [] as any,
+        aplicaronPenicilinaBenzatinica: 0,
+    })
+
     /**Inicio validaciones sifilis */
     rulesFormDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
         edadGestacionalDuranteSemanas: [
@@ -1747,6 +1756,7 @@ export default class HepatitisBView extends Vue {
     sexoList: IParametrica[] = [];
     tipoDocList: IParametrica[] = [];
     criterioUtilizadoList: IParametrica[] = [];
+    retratamientoMaternoList: IParametrica[] = [];
 
     async getParamsDbFirsTap(step: string) {
         if (step === 'second') {
@@ -1794,6 +1804,14 @@ export default class HepatitisBView extends Vue {
                 console.log('que trae 1', getParamsPruebaNoTreponemica)
                 this.tipoPruebaNoTreponemicaList = getParamsPruebaNoTreponemica.data
             }
+        } else if (step === 'five') {
+
+            if (this.retratamientoMaternoList.length === 0) {
+                const getRetratamientoMaterno = await this.ETMIPLUS_API_Client.parametrica2('CAUSA_RETRATAMIENTO') as any;
+                console.log('que trae 1', getRetratamientoMaterno)
+                this.retratamientoMaternoList = getRetratamientoMaterno.data
+            }
+   
         } else if (step === 'seven') {
 
             if (this.situacionGestanteList.length === 0) {
