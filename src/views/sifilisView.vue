@@ -338,7 +338,7 @@
                                             <el-button type="primary" size="default"
                                                 :disabled="validarStoSerologicoMaternoList"
                                                 @click="addFieldsSegSerologico">
-                                                Agregar dosis
+                                                Agregar prueba
                                             </el-button>
                                         </el-col>
                                     </el-col>
