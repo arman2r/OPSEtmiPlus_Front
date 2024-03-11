@@ -1196,6 +1196,31 @@ interface ITratamientoMaternoEstadioClinicoFront {
     tratamientoMaterno?: IAplicacionPenicilinaBenzatinica[] | undefined;
 }
 
+export interface IAplicacionPenicilinaBenzatinicaList {
+    idAplicacionPenicilinaBenzatinica?: number;
+    idTratamientoMaternoEstadioClinico?: number | undefined;
+    idRetratamientoMaternoGestacional?: number | undefined;
+    idSeguimientoContactoSexual?: number | undefined;
+    esRetratamiento?: number;
+    idDosisPenicilinaBenzatinica?: number;
+    dosisPenicilinaBenzatinica?: IParametrica;
+    fechaAplicacionPenicilinaBenzatinica?: Date;
+    edadGestionalAplicacionPenicilinaBenzatinicaSemanas?: number;
+    valid?: boolean;
+}
+
+export interface ISeguimientoSerologicoGestanteList {
+    idSeguimientoSerologicoGestante?: number;
+    idTratamientoMaternoEstadioClinico?: number;
+    idTipoPruebaNoTreponemicaDuranteGestacion?: number;
+    tipoPruebaNoTreponemicaDuranteGestacion?: IParametrica;
+    fechaResultadoPruebaNoTreponemica?: Date;
+    idDilucionesPruebaNoTreponemicaEsReactiva?: number;
+    dilucionesPruebaNoTreponemicaEsReactiva?: [];
+    edadGestacionalRealizacionPruebaNoTreponemica?: number;
+    valid?: boolean;
+}
+
 @Options({
     components: {},
 })
@@ -1235,15 +1260,15 @@ export default class HepatitisBView extends Vue {
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
     validarTtoMaternoList: any = true;
-    ttoMaternoList: IAplicacionPenicilinaBenzatinica[] = [{ dosisPenicilinaBenzatinica: [], fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: '', valid: true }]
+    ttoMaternoList: IAplicacionPenicilinaBenzatinicaList[] = [{ dosisPenicilinaBenzatinica: [] as any, fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: 0, valid: true }]
 
     validarStoSerologicoMaternoList: any = true;
-    seguimientoSerologicoList: ISeguimientoSerologicoGestante[] = [{ tipoPruebaNoTreponemicaDuranteGestacion: [], fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: [] as IParametrica[], edadGestacionalRealizacionPruebaNoTreponemica: 0, valid: true }]
+    seguimientoSerologicoList: ISeguimientoSerologicoGestanteList[] = [{ tipoPruebaNoTreponemicaDuranteGestacion: [] as any, fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: [] as any, edadGestacionalRealizacionPruebaNoTreponemica: 0, valid: true }]
 
     addFields() {
         this.validarTtoMaternoList = true
         if (this.ttoMaternoList.length <= 2) {
-            this.ttoMaternoList.push({ dosisPenicilinaBenzatinica: [], fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: '', valid: true });
+            this.ttoMaternoList.push({ dosisPenicilinaBenzatinica: [] as any, fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: 0, valid: true });
         } else {
             this.validarTtoMaternoList = true
         }
@@ -1257,8 +1282,8 @@ export default class HepatitisBView extends Vue {
         const field = this.ttoMaternoList[index];
         console.log('validador', field.dosisPenicilinaBenzatinica)
 
-        console.log('todos los valores', field.dosisPenicilinaBenzatinica !== null, field.fechaAplicacionPenicilinaBenzatinica !== null, field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== '')
-        field.valid = field.dosisPenicilinaBenzatinica !== null && field.fechaAplicacionPenicilinaBenzatinica !== null && field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== '';
+        console.log('todos los valores', field.dosisPenicilinaBenzatinica !== null, field.fechaAplicacionPenicilinaBenzatinica !== null, field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== null)
+        field.valid = field.dosisPenicilinaBenzatinica !== null && field.fechaAplicacionPenicilinaBenzatinica !== null && field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== null;
         console.log('valor', field.valid)
         this.validarTtoMaternoList = !field.valid
     };
@@ -1266,7 +1291,7 @@ export default class HepatitisBView extends Vue {
     addFieldsSegSerologico() {
         this.validarStoSerologicoMaternoList = true
         if (this.seguimientoSerologicoList.length <= 2) {
-            this.seguimientoSerologicoList.push({ tipoPruebaNoTreponemicaDuranteGestacion: [], fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: '', edadGestacionalRealizacionPruebaNoTreponemica: '', valid: true });
+            this.seguimientoSerologicoList.push({ tipoPruebaNoTreponemicaDuranteGestacion: [] as any, fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: [] as any, edadGestacionalRealizacionPruebaNoTreponemica: 0, valid: true });
         } else {
             this.validarStoSerologicoMaternoList = true
         }
@@ -1278,10 +1303,10 @@ export default class HepatitisBView extends Vue {
 
     validateFieldSegSerologico = (index: number) => {
         const field = this.seguimientoSerologicoList[index];
-        console.log('validador', field.tipoPruebaNoTreponemicaDuranteGestacion.length)
+        console.log('validador', field.tipoPruebaNoTreponemicaDuranteGestacion)
 
-        console.log('todos los valores', field.tipoPruebaNoTreponemicaDuranteGestacion.length !== 0, field.fechaResultadoPruebaNoTreponemica !== null, field.dilucionesPruebaNoTreponemicaEsReactiva !== '', field.edadGestacionalRealizacionPruebaNoTreponemica !== null)
-        field.valid = field.tipoPruebaNoTreponemicaDuranteGestacion.length !== 0 && field.fechaResultadoPruebaNoTreponemica !== null && field.dilucionesPruebaNoTreponemicaEsReactiva !== '' && field.edadGestacionalRealizacionPruebaNoTreponemica !== null;
+        console.log('todos los valores', field.tipoPruebaNoTreponemicaDuranteGestacion, field.fechaResultadoPruebaNoTreponemica !== null, field.dilucionesPruebaNoTreponemicaEsReactiva, field.edadGestacionalRealizacionPruebaNoTreponemica !== null)
+        field.valid = field.tipoPruebaNoTreponemicaDuranteGestacion == 1 || field.tipoPruebaNoTreponemicaDuranteGestacion == 2 && field.fechaResultadoPruebaNoTreponemica !== null && field.dilucionesPruebaNoTreponemicaEsReactiva !== null && field.edadGestacionalRealizacionPruebaNoTreponemica !== null;
         console.log('valor', field.valid)
         this.validarStoSerologicoMaternoList = !field.valid
 

@@ -5453,7 +5453,7 @@ export interface ISeguimientoSerologicoGestante {
     tipoPruebaNoTreponemicaDuranteGestacion?: Parametrica;
     fechaResultadoPruebaNoTreponemica?: Date;
     idDilucionesPruebaNoTreponemicaEsReactiva?: number;
-    dilucionesPruebaNoTreponemicaEsReactiva?: Parametrica;
+    dilucionesPruebaNoTreponemicaEsReactiva?: IParametrica;
     edadGestacionalRealizacionPruebaNoTreponemica?: number;
 }
 
