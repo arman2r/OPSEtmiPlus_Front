@@ -20,8 +20,8 @@ export class EtmiPlusClient {
 
         this.instance = instance ? instance : axios.create();
 
-        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "http://localhost:5150" : "";
+        //this.baseUrl = baseUrl !== undefined && baseUrl !== null ? "https://etmiplus-qa.azurewebsites.net" : "";
 
     }
 
@@ -84,7 +84,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    tratamiento(id: number, body?: AplicacionPenicilinaBenzatinica | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    tratamiento(id: number, body?: IAplicacionPenicilinaBenzatinica | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Sifilis/AplicacionPenicilinaBenzatinica/{id}/Tratamiento";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");

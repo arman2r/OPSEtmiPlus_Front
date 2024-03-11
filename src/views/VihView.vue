@@ -76,7 +76,7 @@
 
                   <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
 
-                    <el-form-item label="Exámenes paraclinicos" :prop="examenParaClinico" class="select-width">
+                    <el-form-item label="Exámenes paraclinicos" prop="examenParaClinico" class="select-width">
                       <el-select v-model="paraclinico.examenParaClinico" placeholder="Exámenes paraclínicos"
                         @change="validateField(index)">
                         <el-option v-for="(pcm, index) in examenParaClinicoList" :key="index" :label="pcm.valor"

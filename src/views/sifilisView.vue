@@ -184,31 +184,70 @@
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
-                                <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-row>
+                                <el-col class="mb mt" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                    <div v-for="(ttom, index) in ttoMaternoList" :key="index"
+                                        class="w-100 no-margin el-row">
+
+                                        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+
+                                            <el-form-item label="Número de dosis" prop="dosisPenicilinaBenzatinica" class="select-width">
+                                                <el-select v-model="ttom.dosisPenicilinaBenzatinica" placeholder="Número de dosis"
+                                                    @change="validateField(index)">
+                                                    <el-option v-for="(dttom, index) in dosisPenicilinaBenzList"
+                                                        :key="index" :label="dttom.valor" :value="dttom.id" />
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="column-custom">
+                                            <!--<el-form-item label="Fecha" prop="fechaExamenMl1">
+<el-input v-model="ruleFormPrimerReporte.fechaExamenMl1" />
+</el-form-item>-->
+                                            <el-form-item label="Fecha" prop="fechaAplicacionPenicilinaBenzatinica" class="w-100">
+                                                <el-date-picker v-model="ttom.fechaAplicacionPenicilinaBenzatinica" @change="validateField(index)"
+                                                    type="date" placeholder="Fecha" :format="dateFormat" :size="size" />
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8"
+                                            :xl="index >= 1 ? 7 : 8">
+                                            <el-form-item label="Edad gestacional a la aplicación en semanas:"
+                                                prop="edadGestionalAplicacionPenicilinaBenzatinicaSemanas">
+                                                <el-input v-model="ttom.edadGestionalAplicacionPenicilinaBenzatinicaSemanas" type="number"
+                                                    @input="validateField(index)" />
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :md="1" :lg="1" :xl="1" class="center-button">
+                                            <el-button v-if="ttoMaternoList.length >= 2 && index !== 0"
+                                                :icon="DeleteIcon" @click="removeFields(index)" type="danger"
+                                                circle></el-button>
+                                        </el-col>
+                                    </div>
+                                    <el-col :span="24">
+                                        <el-button type="primary" size="default" :disabled="validarTtoMaternoList"
+                                            @click="addFields">
+                                            Agregar dosis
+                                        </el-button>
+                                    </el-col>
+                                    <!--<el-row>
                                         <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="7" :xl="7">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-form-item prop="nroDosis1" class="select-width">
-                                                    <el-select
-                                                        placeholder="Número de dosis">
+                                                    <el-select placeholder="Número de dosis">
                                                         <el-option v-for="(cn, index) in tipoDocList" :key="index"
                                                             :label="cn.valor" :value="cn.id" />
                                                     </el-select>
                                                 </el-form-item>
                                                 <el-form-item prop="nroDosis2" class="select-width">
-                                                    <el-select
-                                                        placeholder="Número de dosis">
+                                                    <el-select placeholder="Número de dosis">
                                                         <el-option label="Primera dosis" value="1" />
                                                         <el-option label="Sgunda dosis" value="2" />
                                                         <el-option label="Tercera dosis" value="3" />
                                                     </el-select>
                                                 </el-form-item>
                                                 <el-form-item prop="nroDosis3" class="select-width">
-                                                    <el-select
-                                                        placeholder="Número de dosis">
+                                                    <el-select placeholder="Número de dosis">
                                                         <el-option label="Primera dosis" value="1" />
                                                         <el-option label="Sgunda dosis" value="2" />
                                                         <el-option label="Tercera dosis" value="3" />
@@ -247,7 +286,7 @@
                                                     type="date" placeholder="Fecha de emisión" :format="dateFormat" />
                                             </el-col>
                                         </el-col>
-                                    </el-row>
+                                    </el-row>-->
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item prop="resultadoManejoSifilisGestacional" label="El Tratamiento para el manejo de la sífilis gestacional
@@ -1133,6 +1172,9 @@ type FormInstance = InstanceType<typeof ElForm>
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
+import {
+  Delete
+} from '@element-plus/icons-vue'
 
 interface ITratamientoMaternoEstadioClinicoFront {
     idTratamientoMaternoEstadioClinico?: number;
@@ -1171,6 +1213,7 @@ export default class HepatitisBView extends Vue {
     isVisible = false
     dateFormat = 'DD/MM/YYYY'
     position = 'right'
+    DeleteIcon: any = Delete
     labelPosition = ref<FormProps['labelPosition']>('right')
 
     firstForm = ref<FormInstance>()
@@ -1187,6 +1230,38 @@ export default class HepatitisBView extends Vue {
     formSize = 'default'
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
+    validarTtoMaternoList: any = true;
+    ttoMaternoList: IAplicacionPenicilinaBenzatinica[] = [{ dosisPenicilinaBenzatinica: [], fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: '', valid: true }]
+    //ttoMaternoList
+
+    addFields() {
+        this.validarTtoMaternoList = true
+        if (this.ttoMaternoList.length <= 2) {
+            this.ttoMaternoList.push({ dosisPenicilinaBenzatinica: [], fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: '', valid: true });
+        } else {
+            this.validarTtoMaternoList = true
+        }
+    }
+
+    removeFields(index: any) {
+        this.ttoMaternoList.splice(index, 1);
+    }
+
+    validateField = (index: number) => {
+        const field = this.ttoMaternoList[index];
+        console.log('validador', field.dosisPenicilinaBenzatinica)
+
+        /*if (field.dosisPenicilinaBenzatinica as any === 116) {
+            field.labelValue = 'Resultado: copias/cm3'
+        } else {
+            field.labelValue = 'Resultado: copias/mls'
+        }*/
+        console.log('todos los valores', field.dosisPenicilinaBenzatinica !== null, field.fechaAplicacionPenicilinaBenzatinica !== null, field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== '')
+        field.valid = field.dosisPenicilinaBenzatinica !== null && field.fechaAplicacionPenicilinaBenzatinica !== null && field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== '';
+        console.log('valor', field.valid)
+        this.validarTtoMaternoList = !field.valid
+
+    };
 
     value1 = []
     options = [
@@ -1218,6 +1293,12 @@ export default class HepatitisBView extends Vue {
 
     handleClick(tab: TabsPaneContext, event: Event) {
         console.log(tab, event)
+
+        const tabName = tab.props.name as string;
+        console.log('que tab es?:', tabName)
+        if (tabName !== undefined) {
+            this.getParamsDbFirsTap(tabName)
+        }
     }
 
     changeTab(tabName: string) {
@@ -1646,15 +1727,15 @@ export default class HepatitisBView extends Vue {
 
 
         } else if (step === 'third') {
-            if (this.reporteDilucionesList.length === 0) {
+            if (this.clasificacionEstadioClinicoList.length === 0) {
                 const getParamsEstadoClinico = await this.ETMIPLUS_API_Client.parametrica2('CLASIFICACION_ESTADIO_CLINICO') as any;
-                console.log('que trae 1', getParamsEstadoClinico)
+                console.log('que trae getParamsEstadoClinico', getParamsEstadoClinico)
                 this.clasificacionEstadioClinicoList = getParamsEstadoClinico.data
             }
 
             if (this.dosisPenicilinaBenzList.length === 0) {
                 const getParamsdosisPenicilinaBenz = await this.ETMIPLUS_API_Client.parametrica2('DOSIS_PENICILINA_BENZATINICA') as any;
-                console.log('que trae 1', getParamsdosisPenicilinaBenz)
+                console.log('que trae getParamsdosisPenicilinaBenz', getParamsdosisPenicilinaBenz)
                 this.dosisPenicilinaBenzList = getParamsdosisPenicilinaBenz.data
             }
         } else if (step === 'four') {
