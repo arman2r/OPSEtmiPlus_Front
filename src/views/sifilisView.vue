@@ -190,9 +190,10 @@
 
                                         <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
 
-                                            <el-form-item label="Número de dosis" prop="dosisPenicilinaBenzatinica" class="select-width">
-                                                <el-select v-model="ttom.dosisPenicilinaBenzatinica" placeholder="Número de dosis"
-                                                    @change="validateField(index)">
+                                            <el-form-item label="Número de dosis" prop="dosisPenicilinaBenzatinica"
+                                                class="select-width">
+                                                <el-select v-model="ttom.dosisPenicilinaBenzatinica"
+                                                    placeholder="Número de dosis" @change="validateField(index)">
                                                     <el-option v-for="(dttom, index) in dosisPenicilinaBenzList"
                                                         :key="index" :label="dttom.valor" :value="dttom.id" />
                                                 </el-select>
@@ -202,17 +203,20 @@
                                             <!--<el-form-item label="Fecha" prop="fechaExamenMl1">
 <el-input v-model="ruleFormPrimerReporte.fechaExamenMl1" />
 </el-form-item>-->
-                                            <el-form-item label="Fecha" prop="fechaAplicacionPenicilinaBenzatinica" class="w-100">
-                                                <el-date-picker v-model="ttom.fechaAplicacionPenicilinaBenzatinica" @change="validateField(index)"
-                                                    type="date" placeholder="Fecha" :format="dateFormat" :size="size" />
+                                            <el-form-item label="Fecha" prop="fechaAplicacionPenicilinaBenzatinica"
+                                                class="w-100">
+                                                <el-date-picker v-model="ttom.fechaAplicacionPenicilinaBenzatinica"
+                                                    @change="validateField(index)" type="date" placeholder="Fecha"
+                                                    :format="dateFormat" :size="size" />
                                             </el-form-item>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8"
                                             :xl="index >= 1 ? 7 : 8">
                                             <el-form-item label="Edad gestacional a la aplicación en semanas:"
                                                 prop="edadGestionalAplicacionPenicilinaBenzatinicaSemanas">
-                                                <el-input v-model="ttom.edadGestionalAplicacionPenicilinaBenzatinicaSemanas" type="number"
-                                                    @input="validateField(index)" />
+                                                <el-input
+                                                    v-model="ttom.edadGestionalAplicacionPenicilinaBenzatinicaSemanas"
+                                                    type="number" @input="validateField(index)" />
                                             </el-form-item>
                                         </el-col>
                                         <el-col :md="1" :lg="1" :xl="1" class="center-button">
@@ -227,66 +231,6 @@
                                             Agregar dosis
                                         </el-button>
                                     </el-col>
-                                    <!--<el-row>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="7" :xl="7">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-form-item prop="nroDosis1" class="select-width">
-                                                    <el-select placeholder="Número de dosis">
-                                                        <el-option v-for="(cn, index) in tipoDocList" :key="index"
-                                                            :label="cn.valor" :value="cn.id" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="nroDosis2" class="select-width">
-                                                    <el-select placeholder="Número de dosis">
-                                                        <el-option label="Primera dosis" value="1" />
-                                                        <el-option label="Sgunda dosis" value="2" />
-                                                        <el-option label="Tercera dosis" value="3" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="nroDosis3" class="select-width">
-                                                    <el-select placeholder="Número de dosis">
-                                                        <el-option label="Primera dosis" value="1" />
-                                                        <el-option label="Sgunda dosis" value="2" />
-                                                        <el-option label="Tercera dosis" value="3" />
-                                                    </el-select>
-                                                </el-form-item>
-                                            </el-col>
-                                        </el-col>
-                                        <el-col class="me-2" :xs="24" :sm="24" :md="24" :lg="7" :xl="7">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                            </el-col>
-                                        </el-col>
-                                        <el-col :xs="24" :sm="24" :md="24" :lg="7" :xl="7">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Edad gestacional <br>a la aplicación
-                                                    en
-                                                    semanas</h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-date-picker
-                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
-                                                <el-date-picker
-                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
-                                                <el-date-picker
-                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
-                                            </el-col>
-                                        </el-col>
-                                    </el-row>-->
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item prop="resultadoManejoSifilisGestacional" label="El Tratamiento para el manejo de la sífilis gestacional
@@ -324,8 +268,8 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento serológico" name="four" ref="elTab4">
-                    <el-form style="width: 100%;" label-width="180px" class="demo-ruleForm" :size="formSize" status-icon
-                        ref="secondForm" :label-position="labelPosition">
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                        label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -337,7 +281,67 @@
                                 </el-col>
                                 <br />
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                    <el-row :gutter="8">
+                                    <el-col class="mb mt" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                                        <div v-for="(ssco, index) in seguimientoSerologicoList" :key="index"
+                                            class="w-100 no-margin el-row">
+
+                                            <el-col :xs="24" :sm="24" :md="12" :lg="5" :xl="5">
+
+                                                <el-form-item label="Prueba utilizada"
+                                                    prop="tipoPruebaNoTreponemicaDuranteGestacion" class="select-width">
+                                                    <el-radio-group v-model="ssco.tipoPruebaNoTreponemicaDuranteGestacion" @change="validateFieldSegSerologico(index)">
+                                                        <el-radio :label="1">VDRL</el-radio>
+                                                        <el-radio :label="2">RPR</el-radio>
+                                                    </el-radio-group>
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6" class="column-custom">
+                                                <!--<el-form-item label="Fecha" prop="fechaExamenMl1">
+<el-input v-model="ruleFormPrimerReporte.fechaExamenMl1" />
+</el-form-item>-->
+                                                <el-form-item label="Fecha" prop="fechaResultadoPruebaNoTreponemica"
+                                                    class="w-100">
+                                                    <el-date-picker v-model="ssco.fechaResultadoPruebaNoTreponemica"
+                                                        @change="validateFieldSegSerologico(index)" type="date"
+                                                        placeholder="Fecha" :format="dateFormat" :size="size" />
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6" class="column-custom">
+                                                <el-form-item label="Resultado: reporte en diluciones"
+                                                    prop="dilucionesPruebaNoTreponemicaEsReactiva">
+                                                    <el-select v-model="ssco.dilucionesPruebaNoTreponemicaEsReactiva"
+                                                        multiple placeholder="Select" style="width: 240px"
+                                                        @change="validateFieldSegSerologico(index)">
+                                                        <el-option v-for="(rteds, index) in reporteDilucionesList"
+                                                            :key="index" :label="rteds.id"
+                                                            :value="rteds.valor" />
+                                                    </el-select>
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :xs="24" :sm="24" :md="index >= 1 ? 11 : 6" :lg="index >= 1 ? 6 : 6"
+                                                :xl="index >= 1 ? 6 : 6" class="column-custom">
+                                                <el-form-item label="Edad gest. En semanas a la realización:"
+                                                    prop="edadGestacionalRealizacionPruebaNoTreponemica">
+                                                    <el-input type="number"
+                                                        v-model="ssco.edadGestacionalRealizacionPruebaNoTreponemica"
+                                                        @change="validateFieldSegSerologico(index)" />
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :md="1" :lg="1" :xl="1" class="center-button">
+                                                <el-button v-if="seguimientoSerologicoList.length >= 2 && index !== 0"
+                                                    :icon="DeleteIcon" @click="removeFields(index)" type="danger"
+                                                    circle></el-button>
+                                            </el-col>
+                                        </div>
+                                        <el-col :span="24">
+                                            <el-button type="primary" size="default"
+                                                :disabled="validarStoSerologicoMaternoList"
+                                                @click="addFieldsSegSerologico">
+                                                Agregar dosis
+                                            </el-button>
+                                        </el-col>
+                                    </el-col>
+                                    <!--<el-row :gutter="8">
                                         <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Prueba <br> utilizada</h5>
@@ -411,7 +415,7 @@
                                                     v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
                                             </el-col>
                                         </el-col>
-                                    </el-row>
+                                    </el-row>-->
                                 </el-col>
                             </el-row>
                         </section>
@@ -425,7 +429,7 @@
                                 <el-col :span="24">
                                     <h4>RETRATAMIENTO MATERNO PARA LA SÍFILIS GESTACIONAL</h4>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Requirió retratamiento:">
                                         <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
                                             <el-radio :label="1">SI</el-radio>
@@ -517,7 +521,7 @@
                                             </el-col>
                                         </el-col>
                                     </el-row>
-                                </el-col>
+                                </el-col>-->
                             </el-row>
                         </section>
                     </el-form>
@@ -1173,7 +1177,7 @@ import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
 import axios from 'axios';
 import {
-  Delete
+    Delete
 } from '@element-plus/icons-vue'
 
 interface ITratamientoMaternoEstadioClinicoFront {
@@ -1232,7 +1236,9 @@ export default class HepatitisBView extends Vue {
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
     validarTtoMaternoList: any = true;
     ttoMaternoList: IAplicacionPenicilinaBenzatinica[] = [{ dosisPenicilinaBenzatinica: [], fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: '', valid: true }]
-    //ttoMaternoList
+
+    validarStoSerologicoMaternoList: any = true;
+    seguimientoSerologicoList: ISeguimientoSerologicoGestante[] = [{ tipoPruebaNoTreponemicaDuranteGestacion: [], fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: [] as IParametrica[], edadGestacionalRealizacionPruebaNoTreponemica: 0, valid: true }]
 
     addFields() {
         this.validarTtoMaternoList = true
@@ -1251,15 +1257,33 @@ export default class HepatitisBView extends Vue {
         const field = this.ttoMaternoList[index];
         console.log('validador', field.dosisPenicilinaBenzatinica)
 
-        /*if (field.dosisPenicilinaBenzatinica as any === 116) {
-            field.labelValue = 'Resultado: copias/cm3'
-        } else {
-            field.labelValue = 'Resultado: copias/mls'
-        }*/
         console.log('todos los valores', field.dosisPenicilinaBenzatinica !== null, field.fechaAplicacionPenicilinaBenzatinica !== null, field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== '')
         field.valid = field.dosisPenicilinaBenzatinica !== null && field.fechaAplicacionPenicilinaBenzatinica !== null && field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== '';
         console.log('valor', field.valid)
         this.validarTtoMaternoList = !field.valid
+    };
+
+    addFieldsSegSerologico() {
+        this.validarStoSerologicoMaternoList = true
+        if (this.seguimientoSerologicoList.length <= 2) {
+            this.seguimientoSerologicoList.push({ tipoPruebaNoTreponemicaDuranteGestacion: [], fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: '', edadGestacionalRealizacionPruebaNoTreponemica: '', valid: true });
+        } else {
+            this.validarStoSerologicoMaternoList = true
+        }
+    }
+
+    removeFieldSegSerologico(index: any) {
+        this.seguimientoSerologicoList.splice(index, 1);
+    }
+
+    validateFieldSegSerologico = (index: number) => {
+        const field = this.seguimientoSerologicoList[index];
+        console.log('validador', field.tipoPruebaNoTreponemicaDuranteGestacion.length)
+
+        console.log('todos los valores', field.tipoPruebaNoTreponemicaDuranteGestacion.length !== 0, field.fechaResultadoPruebaNoTreponemica !== null, field.dilucionesPruebaNoTreponemicaEsReactiva !== '', field.edadGestacionalRealizacionPruebaNoTreponemica !== null)
+        field.valid = field.tipoPruebaNoTreponemicaDuranteGestacion.length !== 0 && field.fechaResultadoPruebaNoTreponemica !== null && field.dilucionesPruebaNoTreponemicaEsReactiva !== '' && field.edadGestacionalRealizacionPruebaNoTreponemica !== null;
+        console.log('valor', field.valid)
+        this.validarStoSerologicoMaternoList = !field.valid
 
     };
 
