@@ -194,7 +194,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    seguimiento(id: number, body?: AplicacionPenicilinaBenzatinica | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    seguimiento(id: number, body?: IAplicacionPenicilinaBenzatinica | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Sifilis/AplicacionPenicilinaBenzatinica/{id}/Seguimiento";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2298,7 +2298,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    seguimientoContactoSexual(idGestanteControl: number, body: SeguimientoContactoSexual | undefined, cancelToken?: CancelToken): Promise<void> {
+    seguimientoContactoSexual(idGestanteControl: number, body: ISeguimientoContactoSexual | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestanteControl}/Sifilis/SeguimientoContactoSexual";
         if (idGestanteControl === undefined || idGestanteControl === null)
             throw new Error("The parameter 'idGestanteControl' must be defined.");

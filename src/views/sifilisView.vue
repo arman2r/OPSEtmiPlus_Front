@@ -394,7 +394,8 @@
                                                 <el-form-item label="Número de dosis" prop="dosisPenicilinaBenzatinica"
                                                     class="select-width">
                                                     <el-select v-model="rttom.dosisPenicilinaBenzatinica"
-                                                        placeholder="Número de dosis" @change="validateFieldRttmto(index)">
+                                                        placeholder="Número de dosis"
+                                                        @change="validateFieldRttmto(index)">
                                                         <el-option v-for="(dttom, index) in dosisPenicilinaBenzList"
                                                             :key="index" :label="dttom.valor" :value="dttom.id" />
                                                     </el-select>
@@ -407,8 +408,8 @@
                                                 <el-form-item label="Fecha" prop="fechaAplicacionPenicilinaBenzatinica"
                                                     class="w-100">
                                                     <el-date-picker v-model="rttom.fechaAplicacionPenicilinaBenzatinica"
-                                                        @change="validateFieldRttmto(index)" type="date" placeholder="Fecha"
-                                                        :format="dateFormat" :size="size" />
+                                                        @change="validateFieldRttmto(index)" type="date"
+                                                        placeholder="Fecha" :format="dateFormat" :size="size" />
                                                 </el-form-item>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8"
@@ -502,7 +503,7 @@
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento" name="six" ref="elTab6">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormSeguimientoCs" :rules="rulesFormSeguimientoCs">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -510,7 +511,7 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se realizó notificacion a los contactos:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group v-model="ruleFormSeguimientoCs.seNotifico" class="ml-4">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -518,7 +519,7 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se realizó tratamiento a contactos:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group v-model="ruleFormSeguimientoCs.seRealizoTratamiento" class="ml-4">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -526,7 +527,7 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se aplicó penicilina benzatínica:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group v-model="ruleFormSeguimientoCs.seAplicoPenicilinaBenzatinica" class="ml-4">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -540,27 +541,10 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
+                                                    <el-select v-model="ruleFormSeguimientoCs.dosisPenicilinaBenzatinica"
                                                         placeholder="Número de dosis">
-                                                        <el-option label="Primera dosis" value="1" />
-                                                        <el-option label="Sgunda dosis" value="2" />
-                                                        <el-option label="Tercera dosis" value="3" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Número de dosis">
-                                                        <el-option label="Primera dosis" value="1" />
-                                                        <el-option label="Sgunda dosis" value="2" />
-                                                        <el-option label="Tercera dosis" value="3" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Número de dosis">
-                                                        <el-option label="Primera dosis" value="1" />
-                                                        <el-option label="Sgunda dosis" value="2" />
-                                                        <el-option label="Tercera dosis" value="3" />
+                                                        <el-option v-for="(dttom, index) in dosisPenicilinaBenzList"
+                                                            :key="index" :label="dttom.valor" :value="dttom.id" />
                                                     </el-select>
                                                 </el-form-item>
                                             </el-col>
@@ -571,11 +555,7 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
+                                                    v-model="ruleFormSeguimientoCs.fechaAplicacionPenicilinaBenzatinica" type="date" />
                                             </el-col>
                                         </el-col>
                                     </el-row>
@@ -583,7 +563,8 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                     <el-form-item
                                         label="Si no se utilizó penicilina benzatínica, escriba el nombre del medicamento utilizado">
-                                        <el-input type="text" v-model="ruleFormDatosGestante.nombreAseguradora" />
+                                        <el-input type="text"
+                                            v-model="ruleFormSeguimientoCs.nombreMedicamentoDiferentePenicilinaBenzatinica" />
                                     </el-form-item>
                                 </el-col>
                             </el-row>
@@ -1145,7 +1126,7 @@ import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica } from '@/api/ETMIPLUS_API';
+import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica, ISeguimientoContactoSexual } from '@/api/ETMIPLUS_API';
 type FormInstance = InstanceType<typeof ElForm>
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
@@ -1501,6 +1482,16 @@ export default class HepatitisBView extends Vue {
         aplicaronPenicilinaBenzatinica: 0,
     })
 
+    ruleFormSeguimientoCs = reactive<ISeguimientoContactoSexual>({
+        seNotifico: 0,
+        seRealizoTratamiento: 0,
+        seAplicoPenicilinaBenzatinica: 0,
+        idDosisPenicilinaBenzatinica: 0,
+        dosisPenicilinaBenzatinica: [] as any,
+        fechaAplicacionPenicilinaBenzatinica: new Date(),
+        nombreMedicamentoDiferentePenicilinaBenzatinica: '',
+    })
+
     /**Inicio validaciones sifilis */
     rulesFormDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
         edadGestacionalDuranteSemanas: [
@@ -1726,6 +1717,24 @@ export default class HepatitisBView extends Vue {
         ]
     });
 
+    rulesFormSeguimientoCs = reactive<FormRules<ISeguimientoContactoSexual>>({
+        seNotifico: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        seRealizoTratamiento: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        seAplicoPenicilinaBenzatinica: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        dosisPenicilinaBenzatinica: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        fechaAplicacionPenicilinaBenzatinica: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ]
+    })
+
     idGestanteCtrl: number | undefined = 0;
     mounted(): void {
         /*window.addEventListener('resize', this.onResize);
@@ -1814,6 +1823,12 @@ export default class HepatitisBView extends Vue {
                 this.dosisPenicilinaBenzList = getParamsdosisPenicilinaBenz.data
             }
 
+        } else if(step === 'six') {
+            if (this.dosisPenicilinaBenzList.length === 0) {
+                const getParamsdosisPenicilinaBenz = await this.ETMIPLUS_API_Client.parametrica2('DOSIS_PENICILINA_BENZATINICA') as any;
+                console.log('que trae getParamsdosisPenicilinaBenz', getParamsdosisPenicilinaBenz)
+                this.dosisPenicilinaBenzList = getParamsdosisPenicilinaBenz.data
+            }
         } else if (step === 'seven') {
 
             if (this.situacionGestanteList.length === 0) {
@@ -1833,6 +1848,8 @@ export default class HepatitisBView extends Vue {
                 console.log('que trae 1', getParamsTipoDoc)
                 this.tipoDocList = getParamsTipoDoc.data
             }
+
+            
         } else if (step === 'eigth') {
             if (this.tipoPruebaNoTreponemicaList.length === 0) {
                 const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
