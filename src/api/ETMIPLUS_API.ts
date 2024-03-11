@@ -139,7 +139,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    retratamiento(id: number, body?: AplicacionPenicilinaBenzatinica | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+    retratamiento(id: number, body?: IAplicacionPenicilinaBenzatinica | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/Sifilis/AplicacionPenicilinaBenzatinica/{id}/Retratamiento";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");

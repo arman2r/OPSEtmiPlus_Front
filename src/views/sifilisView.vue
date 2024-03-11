@@ -342,81 +342,6 @@
                                             </el-button>
                                         </el-col>
                                     </el-col>
-                                    <!--<el-row :gutter="8">
-                                        <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Prueba <br> utilizada</h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Número de dosis">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Número de dosis">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Número de dosis">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
-                                                </el-form-item>
-                                            </el-col>
-                                        </el-col>
-                                        <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Fecha: <br> Día/Mes/Año</h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-date-picker
-                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
-                                                <el-date-picker
-                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
-                                                <el-date-picker
-                                                    v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
-                                                    type="date" placeholder="Fecha de emisión" :format="dateFormat" />
-                                            </el-col>
-                                        </el-col>
-                                        <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Resultado: <br> reporte en
-                                                    diluciones
-                                                </h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.direccionResidencia" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.direccionResidencia" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.direccionResidencia" />
-                                            </el-col>
-                                        </el-col>
-                                        <el-col :xs="24" :sm="24" :md="4" :lg="6" :xl="6">
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <h5 class="serologia-retratamiento">Edad gestacional en semanas a la
-                                                    realización</h5>
-                                            </el-col>
-                                            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
-                                            </el-col>
-                                        </el-col>
-                                    </el-row>-->
                                 </el-col>
                             </el-row>
                         </section>
@@ -443,7 +368,7 @@
                                     <el-form-item label="Causa del retratamiento:" prop="causaRetratamiento">
                                         <el-radio-group class="ml-4" v-model="ruleFormRetMaterno.causaRetratamiento">
                                             <el-radio v-for="(rtmtno, index) in retratamientoMaternoList" :key="index"
-                                                :label="rtmtno.id">{{ rtmtno.valor }}</el-radio> 
+                                                :label="rtmtno.id">{{ rtmtno.valor }}</el-radio>
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
@@ -461,7 +386,53 @@
 
                                 <el-col class="mb" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                     <el-row :gutter="8">
-                                        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+                                        <div v-for="(rttom, index) in rttoMaternoList" :key="index"
+                                            class="w-100 no-margin el-row">
+
+                                            <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+
+                                                <el-form-item label="Número de dosis" prop="dosisPenicilinaBenzatinica"
+                                                    class="select-width">
+                                                    <el-select v-model="rttom.dosisPenicilinaBenzatinica"
+                                                        placeholder="Número de dosis" @change="validateFieldRttmto(index)">
+                                                        <el-option v-for="(dttom, index) in dosisPenicilinaBenzList"
+                                                            :key="index" :label="dttom.valor" :value="dttom.id" />
+                                                    </el-select>
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="column-custom">
+                                                <!--<el-form-item label="Fecha" prop="fechaExamenMl1">
+<el-input v-model="ruleFormPrimerReporte.fechaExamenMl1" />
+</el-form-item>-->
+                                                <el-form-item label="Fecha" prop="fechaAplicacionPenicilinaBenzatinica"
+                                                    class="w-100">
+                                                    <el-date-picker v-model="rttom.fechaAplicacionPenicilinaBenzatinica"
+                                                        @change="validateFieldRttmto(index)" type="date" placeholder="Fecha"
+                                                        :format="dateFormat" :size="size" />
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8"
+                                                :xl="index >= 1 ? 7 : 8">
+                                                <el-form-item label="Edad gestacional a la aplicación en semanas:"
+                                                    prop="edadGestionalAplicacionPenicilinaBenzatinicaSemanas">
+                                                    <el-input
+                                                        v-model="rttom.edadGestionalAplicacionPenicilinaBenzatinicaSemanas"
+                                                        type="number" @input="validateFieldRttmto(index)" />
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :md="1" :lg="1" :xl="1" class="center-button">
+                                                <el-button v-if="ttoMaternoList.length >= 2 && index !== 0"
+                                                    :icon="DeleteIcon" @click="removeFieldsRttmto(index)" type="danger"
+                                                    circle></el-button>
+                                            </el-col>
+                                        </div>
+                                        <el-col :span="24">
+                                            <el-button type="primary" size="default" :disabled="validarRTtoMaternoList"
+                                                @click="addFieldsRttmto">
+                                                Agregar dosis
+                                            </el-button>
+                                        </el-col>
+                                        <!--<el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
                                             </el-col>
@@ -522,7 +493,7 @@
                                                     v-model="ruleFormHbDiagnosticoHb.fechaResultadoCargaViralMl"
                                                     type="date" placeholder="Fecha de emisión" :format="dateFormat" />
                                             </el-col>
-                                        </el-col>
+                                        </el-col>-->
                                     </el-row>
                                 </el-col>
                             </el-row>
@@ -1263,7 +1234,9 @@ export default class HepatitisBView extends Vue {
 
     ETMIPLUS_API_Client = new ETMIPLUS_API.EtmiPlusClient(process.env.VUE_APP_APIURL, axios);
     validarTtoMaternoList: any = true;
+    validarRTtoMaternoList: any = true;
     ttoMaternoList: IAplicacionPenicilinaBenzatinicaList[] = [{ dosisPenicilinaBenzatinica: [] as any, fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: 0, valid: true }]
+    rttoMaternoList: IAplicacionPenicilinaBenzatinicaList[] = [{ dosisPenicilinaBenzatinica: [] as any, fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: 0, valid: true }]
 
     validarStoSerologicoMaternoList: any = true;
     seguimientoSerologicoList: ISeguimientoSerologicoGestanteList[] = [{ tipoPruebaNoTreponemicaDuranteGestacion: [] as any, fechaResultadoPruebaNoTreponemica: new Date(), dilucionesPruebaNoTreponemicaEsReactiva: [] as any, edadGestacionalRealizacionPruebaNoTreponemica: 0, valid: true }]
@@ -1313,6 +1286,29 @@ export default class HepatitisBView extends Vue {
         console.log('valor', field.valid)
         this.validarStoSerologicoMaternoList = !field.valid
 
+    };
+
+    addFieldsRttmto() {
+        this.validarRTtoMaternoList = true
+        if (this.rttoMaternoList.length <= 2) {
+            this.rttoMaternoList.push({ dosisPenicilinaBenzatinica: [] as any, fechaAplicacionPenicilinaBenzatinica: new Date(), edadGestionalAplicacionPenicilinaBenzatinicaSemanas: 0, valid: true });
+        } else {
+            this.validarRTtoMaternoList = true
+        }
+    }
+
+    removeFieldsRttmto(index: any) {
+        this.rttoMaternoList.splice(index, 1);
+    }
+
+    validateFieldRttmto = (index: number) => {
+        const field = this.rttoMaternoList[index];
+        console.log('validador', field.dosisPenicilinaBenzatinica)
+
+        console.log('todos los valores', field.dosisPenicilinaBenzatinica !== null, field.fechaAplicacionPenicilinaBenzatinica !== null, field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== null)
+        field.valid = field.dosisPenicilinaBenzatinica !== null && field.fechaAplicacionPenicilinaBenzatinica !== null && field.edadGestionalAplicacionPenicilinaBenzatinicaSemanas !== null;
+        console.log('valor', field.valid)
+        this.validarRTtoMaternoList = !field.valid
     };
 
     value1 = []
@@ -1811,7 +1807,13 @@ export default class HepatitisBView extends Vue {
                 console.log('que trae 1', getRetratamientoMaterno)
                 this.retratamientoMaternoList = getRetratamientoMaterno.data
             }
-   
+
+            if (this.dosisPenicilinaBenzList.length === 0) {
+                const getParamsdosisPenicilinaBenz = await this.ETMIPLUS_API_Client.parametrica2('DOSIS_PENICILINA_BENZATINICA') as any;
+                console.log('que trae getParamsdosisPenicilinaBenz', getParamsdosisPenicilinaBenz)
+                this.dosisPenicilinaBenzList = getParamsdosisPenicilinaBenz.data
+            }
+
         } else if (step === 'seven') {
 
             if (this.situacionGestanteList.length === 0) {
