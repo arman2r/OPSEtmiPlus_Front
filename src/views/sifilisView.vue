@@ -429,7 +429,7 @@
                                 <el-col :span="24">
                                     <h4>RETRATAMIENTO MATERNO PARA LA SÍFILIS GESTACIONAL</h4>
                                 </el-col>
-                                <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Requirió retratamiento:">
                                         <el-radio-group v-model="ruleFormHbDiagnosticoHb.ResultadosAnticuerpo1">
                                             <el-radio :label="1">SI</el-radio>
@@ -521,7 +521,7 @@
                                             </el-col>
                                         </el-col>
                                     </el-row>
-                                </el-col>-->
+                                </el-col>
                             </el-row>
                         </section>
                     </el-form>
