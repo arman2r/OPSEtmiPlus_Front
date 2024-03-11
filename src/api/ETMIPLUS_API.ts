@@ -2463,7 +2463,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    seguimientoNinoPrimerAnio(idDiagnosticoIntervencionNino: number, body: SeguimientoNinoPrimerAnio | undefined, cancelToken?: CancelToken): Promise<void> {
+    seguimientoNinoPrimerAnio(idDiagnosticoIntervencionNino: number, body: ISeguimientoNinoPrimerAnio | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/DiagnosticoIntervencionNino/{idDiagnosticoIntervencionNino}/Sifilis/SeguimientoNinoPrimerAnio";
         if (idDiagnosticoIntervencionNino === undefined || idDiagnosticoIntervencionNino === null)
             throw new Error("The parameter 'idDiagnosticoIntervencionNino' must be defined.");
@@ -5386,7 +5386,7 @@ export interface ISeguimientoNinoPrimerAnio {
     idDiagnosticoEIntervencionNino?: number;
     seRealizoSeguimiento?: number;
     idTipoPruebaNoTreponemica?: number;
-    tipoPruebaNoTreponemica?: Parametrica;
+    tipoPruebaNoTreponemica?: IParametrica;
     fechaResultado?: Date;
     idDilucionesPruebaNoTreponemica?: number;
     dilucionesPruebaNoTreponemica?: Parametrica;

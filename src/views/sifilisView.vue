@@ -143,7 +143,7 @@
                                         <el-checkbox-group
                                             v-model="ruleFormDiagnosticoMaterno.listReporteDilucionesPruebaNoTreponemicaReactiva">
                                             <el-checkbox v-for="(rds, index) in reporteDilucionesList" :key="index"
-                                                :value="rds.valor" :label="rds.id" />
+                                                :value="rds.id" :label="rds.valor" />
                                         </el-checkbox-group>
                                     </el-form-item>
                                 </el-col>
@@ -315,7 +315,7 @@
                                                         multiple placeholder="Select" style="width: 240px"
                                                         @change="validateFieldSegSerologico(index)">
                                                         <el-option v-for="(rteds, index) in reporteDilucionesList"
-                                                            :key="index" :label="rteds.id" :value="rteds.valor" />
+                                                            :key="index" :label="rteds.valor" :value="rteds.id" />
                                                     </el-select>
                                                 </el-form-item>
                                             </el-col>
@@ -519,7 +519,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se realizó tratamiento a contactos:">
-                                        <el-radio-group v-model="ruleFormSeguimientoCs.seRealizoTratamiento" class="ml-4">
+                                        <el-radio-group v-model="ruleFormSeguimientoCs.seRealizoTratamiento"
+                                            class="ml-4">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -527,7 +528,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se aplicó penicilina benzatínica:">
-                                        <el-radio-group v-model="ruleFormSeguimientoCs.seAplicoPenicilinaBenzatinica" class="ml-4">
+                                        <el-radio-group v-model="ruleFormSeguimientoCs.seAplicoPenicilinaBenzatinica"
+                                            class="ml-4">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -541,7 +543,8 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormSeguimientoCs.dosisPenicilinaBenzatinica"
+                                                    <el-select
+                                                        v-model="ruleFormSeguimientoCs.dosisPenicilinaBenzatinica"
                                                         placeholder="Número de dosis">
                                                         <el-option v-for="(dttom, index) in dosisPenicilinaBenzList"
                                                             :key="index" :label="dttom.valor" :value="dttom.id" />
@@ -555,7 +558,8 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormSeguimientoCs.fechaAplicacionPenicilinaBenzatinica" type="date" />
+                                                    v-model="ruleFormSeguimientoCs.fechaAplicacionPenicilinaBenzatinica"
+                                                    type="date" />
                                             </el-col>
                                         </el-col>
                                     </el-row>
@@ -723,8 +727,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Reporte de diluciones si la prueba no treponémica es reactiva"
-                                        prop="nacionalidad" class="select-width">
-                                        <el-select v-model="ruleFormHbDatosGestante.nacionalidad">
+                                        class="select-width">
+                                        <!--<el-select v-model="ruleFormHbDatosGestante.nacionalidad">
                                             <el-option label="" value="1" />
                                             <el-option label="1" value="2" />
                                             <el-option label="2" value="3" />
@@ -737,6 +741,11 @@
                                             <el-option label="256" value="10" />
                                             <el-option label="512" value="11" />
                                             <el-option label="1024" value="12" />
+                                        </el-select>-->
+                                        <el-select multiple
+                                            placeholder="Select" style="width: 240px">
+                                            <el-option v-for="(rteds, index) in reporteDilucionesList" :key="index"
+                                                :label="rteds.valor" :value="rteds.id" />
                                         </el-select>
                                     </el-form-item>
                                 </el-col>
@@ -877,7 +886,7 @@
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento niña o niño" name="ten" ref="elTab10">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormSeguimientoMenor" :rules="rulesFormSeguimientoMenor">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -888,7 +897,8 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mt">
                                     <el-form-item
                                         label="Se realizó deguimiento al niño con sífilis a los: 3, 6 ,9 y 12 meses de edad:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group class="ml-4"
+                                            v-model="ruleFormSeguimientoMenor.seRealizoSeguimiento">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -907,34 +917,14 @@
                                                 <h5 class="serologia-retratamiento">Prueba <br> utilizada</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Tipo de prueba">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
+                                                <el-form-item prop="tipoPruebaNoTreponemica" class="select-width">
+                                                    <el-radio-group
+                                                        v-model="ruleFormSeguimientoMenor.tipoPruebaNoTreponemica">
+                                                        <el-radio :label="1">VDRL</el-radio>
+                                                        <el-radio :label="2">RPR</el-radio>
+                                                    </el-radio-group>
                                                 </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Tipo de prueba">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Tipo de prueba">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
-                                                </el-form-item>
-                                                <el-form-item prop="tipoDocumento" class="select-width">
-                                                    <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                        placeholder="Tipo de prueba">
-                                                        <el-option label="VDRL" value="1" />
-                                                        <el-option label="RPR" value="2" />
-                                                    </el-select>
-                                                </el-form-item>
+
                                             </el-col>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
@@ -943,13 +933,8 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
-                                                <el-input style="margin-bottom: 18px;"
-                                                    v-model="ruleFormDatosGestante.nombreAseguradora" type="date" />
+                                                    v-model="ruleFormSeguimientoMenor.fechaResultado" type="date" />
+
                                             </el-col>
                                         </el-col>
                                         <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
@@ -959,70 +944,16 @@
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                    <el-form-item prop="tipoDocumento" class="select-width">
-                                                        <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                            placeholder="Diluciones">
-                                                            <el-option label="1" value="1" />
-                                                            <el-option label="2" value="2" />
-                                                            <el-option label="4" value="3" />
-                                                            <el-option label="8" value="4" />
-                                                            <el-option label="16" value="5" />
-                                                            <el-option label="32" value="6" />
-                                                            <el-option label="64" value="7" />
-                                                            <el-option label="128" value="8" />
-                                                            <el-option label="256" value="9" />
-                                                            <el-option label="512" value="10" />
-                                                            <el-option label="1024" value="11" />
+
+                                                    <el-form-item prop="dilucionesPruebaNoTreponemica">
+                                                        <el-select
+                                                            v-model="ruleFormHbDatosGestante.dilucionesPruebaNoTreponemica"
+                                                            multiple placeholder="Select" style="width: 240px">
+                                                            <el-option v-for="(rteds, index) in reporteDilucionesList"
+                                                                :key="index" :label="rteds.valor" :value="rteds.id" />
                                                         </el-select>
                                                     </el-form-item>
-                                                    <el-form-item prop="tipoDocumento" class="select-width">
-                                                        <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                            placeholder="Diluciones">
-                                                            <el-option label="1" value="1" />
-                                                            <el-option label="2" value="2" />
-                                                            <el-option label="4" value="3" />
-                                                            <el-option label="8" value="4" />
-                                                            <el-option label="16" value="5" />
-                                                            <el-option label="32" value="6" />
-                                                            <el-option label="64" value="7" />
-                                                            <el-option label="128" value="8" />
-                                                            <el-option label="256" value="9" />
-                                                            <el-option label="512" value="10" />
-                                                            <el-option label="1024" value="11" />
-                                                        </el-select>
-                                                    </el-form-item>
-                                                    <el-form-item prop="tipoDocumento" class="select-width">
-                                                        <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                            placeholder="Diluciones">
-                                                            <el-option label="1" value="1" />
-                                                            <el-option label="2" value="2" />
-                                                            <el-option label="4" value="3" />
-                                                            <el-option label="8" value="4" />
-                                                            <el-option label="16" value="5" />
-                                                            <el-option label="32" value="6" />
-                                                            <el-option label="64" value="7" />
-                                                            <el-option label="128" value="8" />
-                                                            <el-option label="256" value="9" />
-                                                            <el-option label="512" value="10" />
-                                                            <el-option label="1024" value="11" />
-                                                        </el-select>
-                                                    </el-form-item>
-                                                    <el-form-item prop="tipoDocumento" class="select-width">
-                                                        <el-select v-model="ruleFormHbDatosGestante.tipoDocumento"
-                                                            placeholder="Diluciones">
-                                                            <el-option label="1" value="1" />
-                                                            <el-option label="2" value="2" />
-                                                            <el-option label="4" value="3" />
-                                                            <el-option label="8" value="4" />
-                                                            <el-option label="16" value="5" />
-                                                            <el-option label="32" value="6" />
-                                                            <el-option label="64" value="7" />
-                                                            <el-option label="128" value="8" />
-                                                            <el-option label="256" value="9" />
-                                                            <el-option label="512" value="10" />
-                                                            <el-option label="1024" value="11" />
-                                                        </el-select>
-                                                    </el-form-item>
+
                                                 </el-col>
                                             </el-col>
                                         </el-col>
@@ -1030,7 +961,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="column-custom mb mt">
                                     <el-form-item label="La niña o niño cumple criterios de curación para sífilis:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group class="ml-4"
+                                            v-model="ruleFormSeguimientoMenor.cumpleCriteriosCuracion">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -1126,7 +1058,7 @@ import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica, ISeguimientoContactoSexual } from '@/api/ETMIPLUS_API';
+import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica, ISeguimientoContactoSexual, ISeguimientoNinoPrimerAnio } from '@/api/ETMIPLUS_API';
 type FormInstance = InstanceType<typeof ElForm>
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
@@ -1492,6 +1424,14 @@ export default class HepatitisBView extends Vue {
         nombreMedicamentoDiferentePenicilinaBenzatinica: '',
     })
 
+    ruleFormSeguimientoMenor = reactive<ISeguimientoNinoPrimerAnio>({
+        seRealizoSeguimiento: 0,
+        tipoPruebaNoTreponemica: [] as any,
+        fechaResultado: new Date(),
+        dilucionesPruebaNoTreponemica: [] as any,
+        cumpleCriteriosCuracion: 0,
+    })
+
     /**Inicio validaciones sifilis */
     rulesFormDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
         edadGestacionalDuranteSemanas: [
@@ -1735,6 +1675,15 @@ export default class HepatitisBView extends Vue {
         ]
     })
 
+    rulesFormSeguimientoMenor = reactive<FormRules<ISeguimientoNinoPrimerAnio>>({
+        seRealizoSeguimiento: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        cumpleCriteriosCuracion: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+    })
+
     idGestanteCtrl: number | undefined = 0;
     mounted(): void {
         /*window.addEventListener('resize', this.onResize);
@@ -1823,7 +1772,7 @@ export default class HepatitisBView extends Vue {
                 this.dosisPenicilinaBenzList = getParamsdosisPenicilinaBenz.data
             }
 
-        } else if(step === 'six') {
+        } else if (step === 'six') {
             if (this.dosisPenicilinaBenzList.length === 0) {
                 const getParamsdosisPenicilinaBenz = await this.ETMIPLUS_API_Client.parametrica2('DOSIS_PENICILINA_BENZATINICA') as any;
                 console.log('que trae getParamsdosisPenicilinaBenz', getParamsdosisPenicilinaBenz)
@@ -1849,7 +1798,7 @@ export default class HepatitisBView extends Vue {
                 this.tipoDocList = getParamsTipoDoc.data
             }
 
-            
+
         } else if (step === 'eigth') {
             if (this.tipoPruebaNoTreponemicaList.length === 0) {
                 const getParamsPruebaNoTreponemica = await this.ETMIPLUS_API_Client.parametrica2('TIPO_PRUEBA_NO_TREPONEMICA') as any;
