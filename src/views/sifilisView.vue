@@ -41,11 +41,11 @@
                                         </el-radio-group>
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Edad gestacional al primer control prenatal, en semanas:">
-                                        <el-input type="number" />
+                                        <el-input type="number" v-model="any" />
                                     </el-form-item>
-                                </el-col>
+                                </el-col>-->
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Se realizó prueba treponémica:"
                                         prop="seRealizoPruebaTreponemica">
@@ -76,7 +76,7 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Fecha del resultado:" prop="fechaResultadoPruebaTreponemica"
-                                        class="select-width">
+                                        class="w-100">
                                         <el-date-picker
                                             v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica"
                                             type="date" placeholder="Fecha del resultado" :format="dateFormat" />
@@ -123,12 +123,13 @@
 
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                    <el-form-item label="Fecha del resultado" prop="fechaResultadoPruebaNoTreponemica">
+                                    <el-form-item label="Fecha del resultado" prop="fechaResultadoPruebaNoTreponemica" class="w-100">
                                         <el-date-picker
                                             v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica"
                                             type="date" placeholder="Fecha del resultado" :format="dateFormat" />
                                     </el-form-item>
                                 </el-col>
+                                <!--
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item
                                         label="Edad gestacional en semanas a la realización de la prueba no treponémica:"
@@ -136,6 +137,7 @@
                                         <el-input type="number" />
                                     </el-form-item>
                                 </el-col>
+                                -->
                                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"
                                     v-if="reporteDilucionesList.length !== 0">
                                     <el-form-item label="Reporte en diluciones si la prueba no tréponemica es reactiva"
@@ -152,7 +154,7 @@
                             <el-row class="row-bg" justify="end">
                                 <div class="btn-save">
                                     <el-button type="primary" size="default"
-                                        @click="submitForm(secondForm, 'three')">guardar y
+                                        @click="submitForm(secondForm, 'thirdForm')">guardar y
                                         continuar</el-button>
                                 </div>
                             </el-row>
@@ -161,7 +163,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Tratamiento Materno" name="third" ref="elTab3">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="thirdForm"
                         label-position="top" :model="ruleFormEstadioClinico" :rules="rulesFormEstadioClinico">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -268,7 +270,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento serológico" name="four" ref="elTab4">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="FourForm"
                         label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -348,7 +350,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Retratamiento Materno" name="five" ref="elTab5">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="fiveForm"
                         label-position="top" :model="ruleFormRetMaterno" :rules="rulesFormRetMaterno">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -502,7 +504,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento" name="six" ref="elTab6">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="sixForm"
                         label-position="top" :model="ruleFormSeguimientoCs" :rules="rulesFormSeguimientoCs">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -576,7 +578,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Situación" name="seven" ref="elTab7">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="sixForm"
                         label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -685,7 +687,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Diagnostico" name="eigth" ref="elTab8">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="sevenForm"
                         label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -742,8 +744,7 @@
                                             <el-option label="512" value="11" />
                                             <el-option label="1024" value="12" />
                                         </el-select>-->
-                                        <el-select multiple
-                                            placeholder="Select" style="width: 240px">
+                                        <el-select multiple placeholder="Select" style="width: 240px">
                                             <el-option v-for="(rteds, index) in reporteDilucionesList" :key="index"
                                                 :label="rteds.valor" :value="rteds.id" />
                                         </el-select>
@@ -807,7 +808,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Intervenciones" name="nine" ref="elTab9">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="eightForm"
                         label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -885,7 +886,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Seguimiento niña o niño" name="ten" ref="elTab10">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="nineForm"
                         label-position="top" :model="ruleFormSeguimientoMenor" :rules="rulesFormSeguimientoMenor">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -948,7 +949,7 @@
                                                     <el-form-item prop="dilucionesPruebaNoTreponemica">
                                                         <el-select
                                                             v-model="ruleFormHbDatosGestante.dilucionesPruebaNoTreponemica"
-                                                            multiple placeholder="Select" style="width: 240px">
+                                                            multiple placeholder="Select" class="w-100">
                                                             <el-option v-for="(rteds, index) in reporteDilucionesList"
                                                                 :key="index" :label="rteds.valor" :value="rteds.id" />
                                                         </el-select>
@@ -973,7 +974,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="Reporte" name="eleven" ref="elTab11">
-                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
+                    <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="tenForm"
                         label-position="top">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
@@ -1052,7 +1053,7 @@ import 'element-plus/theme-chalk/display.css'
 //import { ref } from 'vue' 
 import { reactive, ref } from 'vue'
 import type { FormRules, FormProps } from 'element-plus'
-import { ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import type { TabsPaneContext, ElForm } from 'element-plus'
 import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
@@ -1141,7 +1142,7 @@ export default class HepatitisBView extends Vue {
     sevenForm = ref<FormInstance>()
     eightForm = ref<FormInstance>()
     nineForm = ref<FormInstance>()
-    teneForm = ref<FormInstance>()
+    tenForm = ref<FormInstance>()
 
     formSize = 'default'
 
@@ -1271,8 +1272,25 @@ export default class HepatitisBView extends Vue {
         //const elTabComponent: HTMLElement = (this.$refs.elTab2 as any) as HTMLElement;
         if (tabName === 'second') {
             this.disabledTwo = false
-        } else if (tabName === 'third') {
-            this.disabledThree = false
+        } else if (tabName === 'three') {
+            //this.disabledThree = false
+            const request: IDiagnosticoMaterno = {
+                idGestanteControl: this.idGestanteCtrl,
+                idMomentoDiagnostico: Number(this.ruleFormDiagnosticoMaterno.momentoDiagnostico),
+                edadGestacionalDuranteSemanas: Number(this.ruleFormDiagnosticoMaterno.edadGestacionalDuranteSemanas),
+                seRealizoControlPrenatalDuranteEmbarazo: Number(this.ruleFormDiagnosticoMaterno.seRealizoControlPrenatalDuranteEmbarazo),
+                seRealizoPruebaTreponemica: Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica),
+                idPruebaTreponemica: Number(this.ruleFormDiagnosticoMaterno.pruebaTreponemica),
+                idResultadoPruebaTreponemica: Number(this.ruleFormDiagnosticoMaterno.resultadoPruebaTreponemica),
+                fechaResultadoPruebaTreponemica: new Date(moment(this.ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica).format('YYYY-MM-DD HH:mm:ss.sss')),
+                edadGestacionalALaRealizacionPruebaTreponemicaSemanas: Number(this.ruleFormDiagnosticoMaterno.edadGestacionalALaRealizacionPruebaTreponemicaSemanas),
+                seRealizoPruebaNoTreponemica: Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica),
+                idPruebaNoTreponemica: Number(this.ruleFormDiagnosticoMaterno.pruebaNoTreponemica),
+                idResultadoPruebaNoTreponemica: Number(this.ruleFormDiagnosticoMaterno.resultadoPruebaNoTreponemica),
+                fechaResultadoPruebaNoTreponemica: new Date(moment(this.ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica).format('YYYY-MM-DD HH:mm:ss.sss')),
+                reporteDilucionesPruebaNoTreponemicaReactiva: this.ruleFormDiagnosticoMaterno.reporteDilucionesPruebaNoTreponemicaReactiva
+            }
+            this.registroReporte(request, tabName)
         } else if (tabName === 'four') {
             this.disabledFour = false
         } else if (tabName === 'five') {
@@ -1291,6 +1309,33 @@ export default class HepatitisBView extends Vue {
         //console.log(elTabComponent)
     }
 
+    async registroReporte(reporteForm: any, tabName: string) {
+        console.log(reporteForm)
+
+        if (tabName === 'three') {
+            const requestSegundoReporte = await this.ETMIPLUS_API_Client.diagnosticoMaterno(reporteForm.idGestanteControl, reporteForm) as any;
+            console.log('response', requestSegundoReporte)
+
+            if (requestSegundoReporte.length !== 0) {
+                const message = 'Reporte guardado con éxito.'
+                this.showMessage(message).then(() => {
+                    ElMessage.info(message);
+                    this.activeName = tabName;
+                    this.disabledThree = false
+                });
+
+            }
+        }
+    }
+
+    showMessage(message: string) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(message);
+            }, 1000);
+        });
+    }
+
     /**Inicio Diagnostic materno sifilis */
 
     ruleFormDiagnosticoMaterno = reactive<IDiagnosticoMaterno>({
@@ -1307,8 +1352,8 @@ export default class HepatitisBView extends Vue {
         resultadoPruebaNoTreponemica: [] as any,
         fechaResultadoPruebaNoTreponemica: new Date(),
         reporteDilucionesPruebaNoTreponemicaReactiva: '',
-        listReporteDilucionesPruebaNoTreponemicaReactiva: [] as any,
-        tratamientoMaternoEstadioClinico: [] as any,
+        listReporteDilucionesPruebaNoTreponemicaReactiva: [] as any
+        //tratamientoMaternoEstadioClinico: [] as any,
     })
 
 
@@ -1434,38 +1479,45 @@ export default class HepatitisBView extends Vue {
 
     /**Inicio validaciones sifilis */
     rulesFormDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
+        momentoDiagnostico: [
+            {
+                required: true,
+                message: 'Este campo es requerido',
+                trigger: 'change'
+            },
+        ],
         edadGestacionalDuranteSemanas: [
             {
                 required: true,
-                message: 'Por favor digite edad gestacional al diagnostico',
-                trigger: 'blur'
+                message: 'Este campo es requerido',
+                trigger: 'change',
             },
         ],
         seRealizoControlPrenatalDuranteEmbarazo: [
             {
                 required: true,
-                message: 'Por favor seleccione la opción de control prenatal',
+                message: 'Este campo es requerido',
                 trigger: 'change',
             },
         ],
         seRealizoPruebaTreponemica: [
             {
                 required: true,
-                message: 'Por favor seleccione la opción',
-                trigger: 'change',
+                message: 'Este campo es requerido',
+                trigger: 'change'
             },
         ],
         pruebaTreponemica: [
             {
                 required: true,
-                message: 'Por favor elije el tipo de prueba',
+                message: 'Este campo es requerido',
                 trigger: 'change'
             },
         ],
         resultadoPruebaTreponemica: [
             {
                 required: true,
-                message: 'Por favor digite la edad',
+                message: 'Este campo es requerido',
                 trigger: 'change'
             },
         ],

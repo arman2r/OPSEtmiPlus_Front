@@ -1237,7 +1237,7 @@ export default class VihView extends Vue {
       },
     ],
     numeroCopias: [
-      { required: true, message: 'Esté campo es requerido', trigger: 'blur' }
+      { required: true, message: 'Este campo es requerido', trigger: 'blur' }
     ],
     fechaDiagnostico: [
       { required: true, message: 'Por favor ingrese la fecha del diagnóstico', trigger: 'blur' }
