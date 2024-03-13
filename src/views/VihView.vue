@@ -95,7 +95,8 @@
                   </el-col>
                   <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8" :xl="index >= 1 ? 7 : 8">
                     <el-form-item :label="paraclinico.labelValue" prop="resultadoParaclinico">
-                      <el-input v-model="paraclinico.resultadoParaclinico" type="number" @input="validateField(index)" />
+                      <el-input v-model="paraclinico.resultadoParaclinico" type="number"
+                        @input="validateField(index)" />
                     </el-form-item>
                   </el-col>
                   <el-col :md="1" :lg="1" :xl="1" class="center-button">
@@ -183,7 +184,8 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                   <el-form-item label="Edad gestacional al primer control prenatal, en semanas"
                     prop="edadGestacionalPrimerControlPrenatalSemanas">
-                    <el-input v-model="ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas" type="number" />
+                    <el-input v-model="ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas"
+                      type="number" />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="column-custom">
@@ -466,7 +468,8 @@
                   <el-form-item label="Resultado ADN proviral" prop="resultadoADNProviral">
                     <!--<el-input :disabled="toggleEnableAdnProviralStatus"
                       v-model="ruleFormCuartoReporte.resultadoADNProviral" type="number" />-->
-                    <el-radio-group :disabled="toggleEnableAdnProviralStatus" v-model="ruleFormCuartoReporte.resultadoADNProviral">
+                    <el-radio-group :disabled="toggleEnableAdnProviralStatus"
+                      v-model="ruleFormCuartoReporte.resultadoADNProviral">
                       <el-radio :label="1">Positivo</el-radio>
                       <el-radio :label="0">Negativo</el-radio>
                     </el-radio-group>
@@ -499,8 +502,8 @@
                   <el-form-item
                     label="Si a la niña o niño expuesto se le realizaron otras pruebas, registre la información"
                     prop="otrasPruebasNinoExpuesto">
-                    <el-select v-model="ruleFormCuartoReporte.otrasPruebasNinoExpuesto" class="w-100" multiple filterable
-                      clearable>
+                    <el-select v-model="ruleFormCuartoReporte.otrasPruebasNinoExpuesto" class="w-100" multiple
+                      filterable clearable>
                       <el-option v-for="item in otrasPruebasNinoExpuestoList" :key="item.id" :label="item.valor"
                         :value="item.id" />
                     </el-select>
@@ -523,7 +526,8 @@
             <section style="width: 100%;">
               <el-row :gutter="10">
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                  <h5 class="align-start">PARACLÍNICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH</h5>
+                  <h5 class="align-start">PARACLÍNICOS REALIZADOS A LA NIÑA O NIÑO EXPUESTO AL RIESGO DE TMI DEL VIH
+                  </h5>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
                   <el-form-item label="Fecha de resultado" prop="fechaResultadoCargasVirales">
@@ -535,7 +539,9 @@
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
                   <el-form-item label="Prueba realizada" prop="tipoPrueba">
                     <el-select v-model="ruleFormquintoReporte.tipoPrueba" placeholder="Prueba realizada" class="w-100">
-                      <el-option v-for="item in tipoPruebaList" :key="item.id" :label="item.valor" :value="item.id" />
+                      <!--<el-option v-for="item in tipoPruebaList" :key="item.id" :label="item.valor" :value="item.id" />-->
+                      <el-option v-for="(pcvih, index) in pruebConfirmVihList" :key="index" :label="pcvih.valor"
+                        :value="pcvih.id" />
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -552,7 +558,7 @@
                     INFORMACIÓN:
                   </h5>
                 </el-col>
-                <div v-for="(paraclinicoMenor, index) in paraClinicosMenorFields" :key="index"
+                <!--<div v-for="(paraclinicoMenor, index) in paraClinicosMenorFields" :key="index"
                   class="w-100 no-margin el-row">
 
                   <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
@@ -583,6 +589,46 @@
                   <el-button type="primary" size="default" @click="addFieldsMenor">
                     Agregar exámen
                   </el-button>
+                </el-col>-->
+                <div v-for="(paraclinicoMenor, index) in paraClinicosMenorFields" :key="index"
+                  class="w-100 no-margin el-row">
+
+                  <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+
+                    <el-form-item label="Exámenes paraclinicos" prop="examenParaClinico" class="select-width">
+                      <el-select v-model="paraclinicoMenor.examenParaClinico" placeholder="Exámenes paraclínicos"
+                        @change="validateMenorField(index)">
+                        <el-option v-for="(pcm, index) in examenParaClinicoList" :key="index" :label="pcm.valor"
+                          :value="pcm.id" />
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="column-custom">
+                    <!--<el-form-item label="Fecha" prop="fechaExamenMl1">
+<el-input v-model="ruleFormPrimerReporte.fechaExamenMl1" />
+</el-form-item>-->
+                    <el-form-item label="Fecha" prop="fechaExamenParaClinico" class="w-100">
+                      <el-date-picker v-model="paraclinicoMenor.fechaExamenParaClinico"
+                        @change="validateMenorField(index)" type="date" placeholder="Fecha" :format="dateFormat"
+                        :size="size" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :xs="24" :sm="24" :md="index >= 1 ? 7 : 8" :lg="index >= 1 ? 7 : 8" :xl="index >= 1 ? 7 : 8">
+                    <el-form-item :label="paraclinicoMenor.labelValue" prop="resultadoParaclinico">
+                      <el-input v-model="paraclinicoMenor.resultadoParaclinico" type="number"
+                        @input="validateMenorField(index)" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :md="1" :lg="1" :xl="1" class="center-button">
+                    <el-button v-if="paraClinicosMenorFields.length >= 2 && index !== 0" :icon="DeleteIcon"
+                      @click="removeFieldsMenor(index)" type="danger" circle></el-button>
+                  </el-col>
+                </div>
+                <el-col :span="24">
+                  <el-button type="primary" size="default" :disabled="validarParaClinicosDelMenor"
+                    @click="addFieldsMenor">
+                    Agregar exámen
+                  </el-button>
                 </el-col>
                 <el-divider />
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -604,10 +650,14 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                   <el-form-item label="Situación de la niña o niño expuesto frente al VIH" prop="situacionNinoExpuesto"
                     class="select-width">
-                    <el-select v-model="ruleFormquintoReporte.situacionNinoExpuesto" placeholder="niño expuesto">
+                    <!--<el-select v-model="ruleFormquintoReporte.situacionNinoExpuesto" placeholder="niño expuesto">
                       <el-option v-for="item in situacionMenorExpList" :key="item.id" :label="item.valor"
                         :value="item.id" />
-                    </el-select>
+                    </el-select>-->
+                    <el-radio-group v-model="ruleFormquintoReporte.situacionNinoExpuesto">
+                      <el-radio v-for="(item, index) in situacionMenorExpList" :key="index" :label="item.valor"
+                        :value="item.id" />
+                    </el-radio-group>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -677,7 +727,7 @@
   <!--<el-button style="margin-top: 12px" @click="next">Next step</el-button>-->
 </template>
 
- 
+
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 //import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
@@ -977,6 +1027,10 @@ export default class VihView extends Vue {
     this.paraClinicosFields.splice(index, 1);
   }
 
+  removeFieldsMenor(index: any) {
+    this.paraClinicosMenorFields.splice(index, 1);
+  }
+
   validarParaClinicos: any = true;
   validarParaClinicosDelMenor: any = false;
   resultadoTypeExam: any = 'Resultado: copias/mls'
@@ -998,11 +1052,24 @@ export default class VihView extends Vue {
   };
 
   validateMenorField = (index: number) => {
-    const field = this.paraClinicosMenorFields[index];
+    /*const field = this.paraClinicosMenorFields[index];
     console.log('validador', field)
     field.valid = field.examenParaClinico !== null && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
     console.log(field.valid)
-    this.validarParaClinicosDelMenor = field.valid
+    this.validarParaClinicosDelMenor = field.valid*/
+
+    const field = this.paraClinicosMenorFields[index];
+    console.log('validador', field.examenParaClinico)
+
+    if (field.examenParaClinico as any === 116) {
+      field.labelValue = 'Resultado: copias/cm3'
+    } else {
+      field.labelValue = 'Resultado: copias/mls'
+    }
+    console.log('todos los valores', field.examenParaClinico !== null, field.fechaExamenParaClinico !== null, field.resultadoParaclinico !== '')
+    field.valid = field.examenParaClinico !== null && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
+    console.log('valor', field.valid)
+    this.validarParaClinicosDelMenor = !field.valid
   };
 
   medicamentos = [
@@ -2094,7 +2161,7 @@ export default class VihView extends Vue {
   }
 
 }
-</script> 
+</script>
 
 <style>
 h4,
@@ -2108,6 +2175,10 @@ h5 {
 
 .steps-container {
   width: 100%;
+}
+
+.el-form-item {
+  position: relative;
 }
 
 .select-width .el-form-item__content,
@@ -2255,8 +2326,8 @@ h5 {
   margin-top: -10px
 }
 
-.el-tabs__nav-wrap{
-    display: flex;
-    align-items: center;
+.el-tabs__nav-wrap {
+  display: flex;
+  align-items: center;
 }
 </style>
