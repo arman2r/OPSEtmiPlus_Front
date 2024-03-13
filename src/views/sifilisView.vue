@@ -123,7 +123,8 @@
 
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
-                                    <el-form-item label="Fecha del resultado" prop="fechaResultadoPruebaNoTreponemica" class="w-100">
+                                    <el-form-item label="Fecha del resultado" prop="fechaResultadoPruebaNoTreponemica"
+                                        class="w-100">
                                         <el-date-picker
                                             v-model="ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica"
                                             type="date" placeholder="Fecha del resultado" :format="dateFormat" />
@@ -544,7 +545,7 @@
                                                 <h5 class="serologia-retratamiento">Número <br> de dosis</h5>
                                             </el-col>
                                             <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                                                <el-form-item prop="tipoDocumento" class="select-width">
+                                                <el-form-item prop="dosisPenicilinaBenzatinica" class="select-width">
                                                     <el-select
                                                         v-model="ruleFormSeguimientoCs.dosisPenicilinaBenzatinica"
                                                         placeholder="Número de dosis">
@@ -579,15 +580,17 @@
                 </el-tab-pane>
                 <el-tab-pane label="Situación" name="seven" ref="elTab7">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="sixForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormSituacionGestanteEA" :rules="rulesFormSituacionGestanteEA">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
                                     <h4>SITUACIÓN DE LA GESTANTE CON EL EMBARAZO ACTUAL</h4>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Tipo de situación" prop="areaOcurrencia" class="select-width">
-                                        <el-select placeholder="Tipo de situación">
+                                    <el-form-item label="Tipo de situación" prop="situacionGestante"
+                                        class="select-width">
+                                        <el-select v-model="ruleFormSituacionGestanteEA.situacionGestante"
+                                            placeholder="Tipo de situación">
                                             <el-option label="Aborto" value="1" />
                                             <el-option label="IVE" value="2" />
                                             <el-option label="Mortalidad Materna" value="3" />
@@ -597,13 +600,14 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom">
                                     <el-form-item label="Fecha del parto">
-                                        <el-date-picker v-model="ruleFormHbDatosGestante.fechaIngreso" type="date"
+                                        <el-date-picker v-model="ruleFormSituacionGestanteEA.fechaParto" type="date"
                                             placeholder="Fecha del parto" :format="dateFormat" />
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
                                     <el-form-item label="Condición del recién nacido:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group class="ml-4"
+                                            v-model="ruleFormSituacionGestanteEA.condicionRecienNacido">
                                             <el-radio :label="1">Vivo</el-radio>
                                             <el-radio :label="2">Mortinato</el-radio>
                                         </el-radio-group>
@@ -611,7 +615,8 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="column-custom mb mt">
                                     <el-form-item label="Número de productos al nacimiento:">
-                                        <el-radio-group class="ml-4">
+                                        <el-radio-group class="ml-4"
+                                            v-model="ruleFormSituacionGestanteEA.numeroProductosNacimiento">
                                             <el-radio :label="1">Único</el-radio>
                                             <el-radio :label="2">Múltiple</el-radio>
                                         </el-radio-group>
@@ -619,19 +624,21 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Edad gestacional al nacimiento en semanas:"
-                                        prop="nombreAseguradora">
-                                        <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                        prop="edadGestacionalNacimientoSemanas">
+                                        <el-input v-model="ruleFormSituacionGestanteEA.edadGestacionalNacimientoSemanas"
+                                            type="number" />
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Peso en gramos:" prop="nombreAseguradora">
-                                        <el-input v-model="ruleFormDatosGestante.nombreAseguradora" type="number" />
+                                    <el-form-item label="Peso en gramos:" prop="pesoRecienNacidoGramos">
+                                        <el-input v-model="ruleFormSituacionGestanteEA.pesoRecienNacidoGramos"
+                                            type="number" />
                                     </el-form-item>
                                 </el-col>
                                 <br />
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Sexo:" prop="sexo" class="select-width">
-                                        <el-select v-model="ruleFormTercerReporte.sexo" placeholder="Sexo">
+                                        <el-select v-model="ruleFormSituacionGestanteEA.sexo" placeholder="Sexo">
                                             <el-option label="Hombre" value="1" />
                                             <el-option label="Mujer" value="2" />
                                             <el-option label="Intersexual" value="3" />
@@ -641,7 +648,7 @@
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Tipo de regimen de salud" prop="tipoRegimenSalud"
                                         class="select-width">
-                                        <el-select v-model="ruleFormHbDatosGestante.tipoRegimenSalud"
+                                        <el-select v-model="ruleFormSituacionGestanteEA.tipoRegimenSalud"
                                             placeholder="Tipo de regimen de salud">
                                             <el-option label="Excepción" value="1" />
                                             <el-option label="Contributivo" value="2" />
@@ -653,17 +660,17 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Nombre aseguradora (EAPB)" prop="nombreAseguradora">
-                                        <el-input v-model="ruleFormDatosGestante.nombreAseguradora" />
+                                        <el-input v-model="ruleFormSituacionGestanteEA.nombreAseguradora" />
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Nombres y Apellidos" prop="nombresApellidos">
-                                        <el-input v-model="ruleFormDatosGestante.nombresApellidos" />
+                                        <el-input v-model="ruleFormSituacionGestanteEA.nombresApellidos" />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
-                                        <el-select v-model="ruleFormDatosGestante.tipoDocumento"
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" class="mt-2">
+                                    <!--<el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
+                                        <el-select v-model="ruleFormSituacionGestanteEA.tipoDocumento"
                                             placeholder="Tipo de Documento">
                                             <el-option label="Registro civil" value="1" />
                                             <el-option label="Tarjeta de identidad" value="3" />
@@ -675,11 +682,20 @@
                                             <el-option label="Permiso especial de permanencia" value="9" />
                                             <el-option label="Cedula de extranjería" value="10" />
                                         </el-select>
+                                    </el-form-item>-->
+                                    <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
+                                        <el-radio-group v-model="ruleFormSituacionGestanteEA.tipoDocumento"
+                                            placeholder="Tipo de Documento">
+                                            <el-radio :label="1">RC</el-radio>
+                                            <el-radio :label="2">CNV</el-radio>
+                                            <el-radio :label="3">MS</el-radio>
+                                        </el-radio-group>
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                                    <el-form-item label="Número de identificación" prop="documentNumber">
-                                        <el-input v-model="ruleFormDatosGestante.documentNumber" type="number" />
+                                    <el-form-item label="Número de identificación" prop="numeroIdentificacion">
+                                        <el-input v-model="ruleFormSituacionGestanteEA.numeroIdentificacion"
+                                            type="number" />
                                     </el-form-item>
                                 </el-col>
                             </el-row>
@@ -1059,7 +1075,7 @@ import type { CheckboxValueType } from 'element-plus'
 import { RuleFormDatosGestante, RuleFormPrimerReporte, RuleFormSegundoReporte, RuleFormTercerReporte, RuleFormCuartoReporte, RuleFormquintoReporte, RuleFormSeguimiento } from '@/interfaces/modeloVih'
 import { RuleFormReporteSifilis } from '@/interfaces/modeloSifils'
 import { RuleFormHbDatosGestante, DiagnosticoFormHb, TratamientoFormHb } from '@/interfaces/modeloHb'
-import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica, ISeguimientoContactoSexual, ISeguimientoNinoPrimerAnio } from '@/api/ETMIPLUS_API';
+import { IDiagnosticoMaterno, ITratamientoMaternoEstadioClinico, IParametrica, ISeguimientoSerologicoGestante, IRetratamientoMaternoGestacional, IAplicacionPenicilinaBenzatinica, ISeguimientoContactoSexual, ISeguimientoNinoPrimerAnio, ISituacionGestanteEmbarazoActual } from '@/api/ETMIPLUS_API';
 type FormInstance = InstanceType<typeof ElForm>
 import moment from 'moment';
 import * as ETMIPLUS_API from "@/api/ETMIPLUS_API";
@@ -1477,6 +1493,27 @@ export default class HepatitisBView extends Vue {
         cumpleCriteriosCuracion: 0,
     })
 
+    ruleFormSituacionGestanteEA = reactive<ISituacionGestanteEmbarazoActual>({
+        situacionGestante: [] as any,
+        fechaParto: new Date(),
+        idCondicionRecienNacido: 0,
+        condicionRecienNacido: [] as any,
+        idNumeroProductosNacimiento: 0,
+        numeroProductosNacimiento: [] as any,
+        edadGestacionalNacimientoSemanas: 0,
+        pesoRecienNacidoGramos: 0,
+        idSexo: 0,
+        sexo: [] as any,
+        idTipoRegimenSalud: 0,
+        tipoRegimenSalud: [] as any,
+        nombreAseguradora: '',
+        direccionTerritorial: '',
+        nombresApellidos: '',
+        idTipoDocumento: 0,
+        tipoDocumento: [] as any,
+        numeroIdentificacion: ''
+    })
+
     /**Inicio validaciones sifilis */
     rulesFormDiagnosticoMaterno = reactive<FormRules<IDiagnosticoMaterno>>({
         momentoDiagnostico: [
@@ -1734,6 +1771,45 @@ export default class HepatitisBView extends Vue {
         cumpleCriteriosCuracion: [
             { required: true, message: 'Este campo es requerido', trigger: 'change' }
         ],
+    })
+
+    rulesFormSituacionGestanteEA = reactive<FormRules<ISituacionGestanteEmbarazoActual>>({
+        situacionGestante: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        fechaParto: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        condicionRecienNacido: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        numeroProductosNacimiento: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        edadGestacionalNacimientoSemanas: [
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
+        ],
+        pesoRecienNacidoGramos: [
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
+        ],
+        sexo: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        tipoRegimenSalud: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        nombreAseguradora: [
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
+        ],
+        nombresApellidos: [
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
+        ],
+        tipoDocumento: [
+            { required: true, message: 'Este campo es requerido', trigger: 'change' }
+        ],
+        numeroIdentificacion: [
+            { required: true, message: 'Este campo es requerido', trigger: 'blur' }
+        ]
     })
 
     idGestanteCtrl: number | undefined = 0;
