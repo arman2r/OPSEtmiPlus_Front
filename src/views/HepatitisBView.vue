@@ -521,11 +521,11 @@
                                         <el-input />
                                     </el-form-item>
                                 </el-col>
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                                <!--<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Teléfono fijo - indicativo">
                                         <el-input />
                                     </el-form-item>
-                                </el-col>
+                                </el-col>-->
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Correo eléctronico">
                                         <el-input />

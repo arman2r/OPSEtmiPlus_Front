@@ -986,13 +986,12 @@
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="w-100">
-                                        <el-select placeholder="Tipo de Documento"
-                                            v-model="ruleFormSeguimientoNinoExpuesto.tipoDocumento">
-                                            <el-option label="RC" value="1" />
-                                            <el-option label="CNV" value="2" />
-                                            <el-option label="MS" value="3" />
-
-                                        </el-select>
+                                         
+                                        <el-radio-group v-model="ruleFormSeguimientoNinoExpuesto.tipoDocumento">
+                                            <el-radio :label="1">RC</el-radio>
+                                            <el-radio :label="2">CNV</el-radio>
+                                            <el-radio :label="3">MS</el-radio> 
+                                        </el-radio-group>
                                     </el-form-item>
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
@@ -1383,6 +1382,10 @@ export default class HepatitisBView extends Vue {
             console.log('que trae 1', getParamsDiagnosticMoment)
             this.condicionMomentoDiagnosticoList = getParamsDiagnosticMoment.data
 
+        } else if (step === 'third') {
+            const ctrlsNufurtimoxCtrlMedico = await this.ETMIPLUS_API_Client.parametrica2('NUFURTIMOX_CONTROL_MEDICO') as any;
+            console.log('que trae 2', ctrlsNufurtimoxCtrlMedico)
+            this.nufurtimoxCtrlMedico = ctrlsNufurtimoxCtrlMedico.data
         } else if (step === 'six') {
             const ctrlsNufurtimoxCtrlMedico = await this.ETMIPLUS_API_Client.parametrica2('NUFURTIMOX_CONTROL_MEDICO') as any;
             console.log('que trae 2', ctrlsNufurtimoxCtrlMedico)

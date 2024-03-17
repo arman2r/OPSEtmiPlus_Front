@@ -4,7 +4,7 @@
         </h4>
         <section style="width:100%">
             <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-                <el-tab-pane label="Diagnostico materno" name="second" ref="elTab2">
+                <el-tab-pane label="Diagnóstico materno" name="second" ref="elTab2">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="secondForm"
                         label-position="top" :model="ruleFormDiagnosticoMaterno" :rules="rulesFormDiagnosticoMaterno">
                         <section style="width: 100%;">
@@ -703,9 +703,9 @@
                         </section>
                     </el-form>
                 </el-tab-pane>
-                <el-tab-pane label="Diagnostico" name="eigth" ref="elTab8">
+                <el-tab-pane label="Diagnóstico" name="eigth" ref="elTab8">
                     <el-form style="width: 100%;" label-width="180px" :size="formSize" status-icon ref="sevenForm"
-                        label-position="top">
+                        label-position="top" :model="ruleFormDiagnosticoRN" :rules="rulesFormDiagnosticoRN">
                         <section style="width: 100%;">
                             <el-row :gutter="10" style="width: 100%;">
                                 <el-col :span="24">
@@ -892,8 +892,8 @@
                                             <el-option label="Nexo epidemiológico" value="1" />
                                             <el-option label="Criterio serológico" value="2" />
                                             <el-option label="Criterio clinico" value="3" />
-                                            <el-option label="Diagnostico directo" value="4" />
-                                            <el-option label="Diagnostico paraclínico" value="5" />
+                                            <el-option label="Diagnóstico directo" value="4" />
+                                            <el-option label="Diagnóstico paraclínico" value="5" />
                                         </el-select>
                                     </el-form-item>
                                 </el-col>
