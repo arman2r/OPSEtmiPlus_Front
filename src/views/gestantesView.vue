@@ -24,6 +24,7 @@
                     <template #header>
                         <el-input v-model="search" size="small" placeholder="Type to search" />
                     </template>
+
                     <template #default="scope">
                         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
                             style="margin-right:5px">Edit</el-button>
@@ -37,10 +38,11 @@
     </el-row>
 
     <!-- modal de registro gestante -->
-    <el-dialog v-model="dialogFormRegistroGestante" :title="!showEditBtn ? 'Registro gestante' : 'Editar gestante'">
+    <el-dialog v-model="dialogFormRegistroGestante" class="dialog-custom"
+        :title="!showEditBtn ? 'Registro gestante' : 'Editar gestante'">
 
-        <el-form :model="registroGestanteForm" label-position="top" :rules="rulesDatosGestante" ref="formRegistroGestante"
-            id="modalCrearEditar">
+        <el-form :model="registroGestanteForm" label-position="top" :rules="rulesDatosGestante"
+            ref="formRegistroGestante" id="modalCrearEditar">
             <el-row :gutter="20">
                 <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
 
@@ -58,7 +60,8 @@
                 </el-col>
                 <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <el-form-item label="Tipo de Documento" prop="tipoDocumento" class="select-width">
-                        <el-select v-model="registroGestanteForm.tipoDocumento" filterable placeholder="Tipo de Documento">
+                        <el-select v-model="registroGestanteForm.tipoDocumento" filterable
+                            placeholder="Tipo de Documento">
                             <el-option v-for="tipoDocumento in tipoDocumentoList" :key="tipoDocumento.id"
                                 :label="tipoDocumento.name" :value="tipoDocumento.id" />
                         </el-select>
@@ -112,6 +115,7 @@
                             placeholder="Area de ocurrencia">
                             <el-option v-for="areaOcurrencia in areaOcurrenciaList" :key="areaOcurrencia.id"
                                 :label="areaOcurrencia.name" :value="areaOcurrencia.id" />
+
                             <template #loading>
                                 <svg class="circular" viewBox="0 0 50 50">
                                     <circle class="path" cx="25" cy="25" r="20" fill="none" />
@@ -126,6 +130,7 @@
                             placeholder="Departamento de residencia" @change="remoteMethod" :loading="loading">
                             <el-option v-for="dptoResidencia in dptoResidenciaList" :key="dptoResidencia.id"
                                 :label="dptoResidencia.name" :value="dptoResidencia.id" />
+
                             <template #loading>
                                 <el-icon class="is-loading">
                                     <svg class="circular" viewBox="0 0 20 20">
@@ -148,6 +153,7 @@
                             placeholder="Municipio de residencia" :loading="loading">
                             <el-option v-for="citiesResidencia in citiesResidenciaList" :key="citiesResidencia.id"
                                 :label="citiesResidencia.name" :value="citiesResidencia.id" />
+
                             <template #loading>
                                 <el-icon class="is-loading">
                                     <svg class="circular" viewBox="0 0 20 20">
@@ -205,7 +211,8 @@
                 </el-col>
                 <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                     <!--<label>¿A la gestante se le realizo control prenatal durante el embarazo?</label><br />-->
-                    <el-form-item label="¿A la gestante se le realizo control prenatal durante el embarazo?" prop="seRealizaControlPrenatal">
+                    <el-form-item label="¿A la gestante se le realizo control prenatal durante el embarazo?"
+                        prop="seRealizaControlPrenatal">
                         <el-radio-group v-model="registroGestanteForm.seRealizaControlPrenatal">
                             <el-radio :label="1">Si</el-radio>
                             <el-radio :label="0">No</el-radio>
@@ -219,6 +226,7 @@
                 </el-col>
             </el-row>
         </el-form>
+
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="dialogFormRegistroGestante = false">Cancelar</el-button>
@@ -235,8 +243,9 @@
     </el-dialog>
 
 
-    <el-dialog v-model="dialogConfirm.open" title="Aguarde" width="30%">
+    <el-dialog v-model="dialogConfirm.open" title="Aguarde" width="30%" class="dialog-custom">
         <span>El gestante ya cuenta con un control activo, ¿desea agregar otro control?',</span>
+
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="redirectToCtrls(dialogConfirm.idGestante)">No, ver controles</el-button>
@@ -731,7 +740,7 @@ export default class gestantesView extends Vue {
 
         const getDataGestantes = await this.ETMIPLUS_API_Client.gestanteGET2('', 1, 10) as any;
         console.log('data que llega', getDataGestantes)
-        if(getDataGestantes.length !== 0){
+        if (getDataGestantes.length !== 0) {
             this.tableData = getDataGestantes.data.data
         }
 
@@ -929,7 +938,7 @@ h5 {
     width: 100%;
 }
 
-.w-100{
+.w-100 {
     width: 100%
 }
 
@@ -1130,21 +1139,34 @@ h5 {
     font-size: .8rem;
 }
 
-.el-collapse-item{
+.el-collapse-item {
     margin-bottom: 14px
 }
 
-.el-collapse-item__header{
+.el-collapse-item__header {
     font-weight: bold !important;
     background-color: #f1f1f1 !important;
     font-size: 14px !important;
     padding: 0 0 0 13px !important;
 }
 
-.el-collapse-item__content{
+.el-collapse-item__content {
     padding-top: 25px;
     padding-left: 13px;
     padding-right: 13px;
     background-color: #f7f7f7 !important;
+}
+
+.dialog-custom {
+    max-width: 640px;
+    width: 100%;
+}
+
+@media(max-width:991px) {
+    .dialog-custom {
+        margin: 0 auto 0 !important;
+        left: 0;
+        right: 0;
+    }
 }
 </style>
