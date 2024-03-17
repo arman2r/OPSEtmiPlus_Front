@@ -239,18 +239,19 @@
                                     <el-form-item prop="resultadoManejoSifilisGestacional" label="El Tratamiento para el manejo de la sífilis gestacional
                                         fue:">
                                         <el-radio-group class="ml-4"
-                                            v-model="rulesFormEstadioClinico.resultadoManejoSifilisGestacional">
+                                            v-model="ruleFormEstadioClinico.resultadoManejoSifilisGestacional">
                                             <el-radio :label="1">Adecuado</el-radio>
                                             <el-radio :label="2">Inadecuado</el-radio>
                                         </el-radio-group>
                                     </el-form-item>
+
                                 </el-col>
                                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                                     <el-form-item prop="seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica"
                                         label="Se realizó desensibilización para la aplicación de la
                                         penicilina benzatínica:">
                                         <el-radio-group class="ml-4"
-                                            v-model="rulesFormEstadioClinico.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica">
+                                            v-model="ruleFormEstadioClinico.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica">
                                             <el-radio :label="1">SI</el-radio>
                                             <el-radio :label="0">NO</el-radio>
                                         </el-radio-group>
@@ -260,7 +261,7 @@
                                     <el-form-item prop="resultadoPrevenirSifilisCongenita" label="El tratamiento para prevenir la sífilis congénita
                                         fue:">
                                         <el-radio-group class="ml-4"
-                                            v-model="rulesFormEstadioClinico.resultadoPrevenirSifilisCongenita">
+                                            v-model="ruleFormEstadioClinico.resultadoPrevenirSifilisCongenita">
                                             <el-radio :label="1">Adecuado</el-radio>
                                             <el-radio :label="2">Inadecuado</el-radio>
                                         </el-radio-group>
@@ -1088,13 +1089,13 @@ interface ITratamientoMaternoEstadioClinicoFront {
     idTratamientoMaternoEstadioClinico?: number;
     idDiagnosticoMaterno?: number;
     idClasificacionEstadioClinico?: number;
-    clasificacionEstadioClinico?: IParametrica;
+    clasificacionEstadioClinico?: IParametrica | IParametrica[];
     aplicaronPenicilinaBenzatinica?: number;
     idResultadoManejoSifilisGestacional?: number;
-    resultadoManejoSifilisGestacional?: IParametrica;
+    resultadoManejoSifilisGestacional?: IParametrica | IParametrica[];
     seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica?: number;
     idResultadoPrevenirSifilisCongenita?: number;
-    resultadoPrevenirSifilisCongenita?: IParametrica;
+    resultadoPrevenirSifilisCongenita?: IParametrica | IParametrica[];
     seguimientoSerologicoGestante?: ISeguimientoSerologicoGestante[] | undefined;
     retratamientoMaternoGestacional?: IRetratamientoMaternoGestacional[] | undefined;
     tratamientoMaterno?: IAplicacionPenicilinaBenzatinica[] | undefined;
