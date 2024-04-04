@@ -17,12 +17,20 @@
                   <h5 class="align-start">MOMENTO DEL DIAGNÓSTICO DE VIH, CON RELACIÓN AL EMBARAZO ACTUAL:</h5>
                 </el-col>
 
-                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
                   <el-form-item label="Recibió Control Prenatal" prop="seRealizoControlPrenatalDuranteEmbarazo">
                     <el-radio-group v-model="ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo">
                       <el-radio :label="1">Si</el-radio>
                       <el-radio :label="0">No</el-radio>
                     </el-radio-group>
+                  </el-form-item>
+                </el-col>
+
+                <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+                  <el-form-item label="Edad gestacional al primer control prenatal, en semanas"
+                    prop="edadGestacionalPrimerControlPrenatalSemanas">
+                    <el-input v-model="ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas"
+                      type="number" style="width:max-content" />
                   </el-form-item>
                 </el-col>
 
@@ -169,7 +177,7 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                   <h5 class="align-start">MEDICAMENTOS ANTIRRETROVIRALES SUMINISTRADOS EN LA GESTACIÓN ACTUAL</h5>
                 </el-col>
-                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
+                <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                   <el-form-item label="Medicamentos antirretrovirales" prop="medicamentosARVSuministrados"
                     class="select-width">
                     <el-select v-model="ruleFormPrimerReporte.medicamentosARVSuministrados" remote="true"
@@ -178,16 +186,9 @@
                         :value="msga.id" />
                     </el-select>
                   </el-form-item>
-                </el-col>
-
+                </el-col> 
+                
                 <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
-                  <el-form-item label="Edad gestacional al primer control prenatal, en semanas"
-                    prop="edadGestacionalPrimerControlPrenatalSemanas">
-                    <el-input v-model="ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas"
-                      type="number" />
-                  </el-form-item>
-                </el-col>
-                <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="column-custom">
                   <!--<el-form-item label="Fecha probable del parto" prop="fechaProbableParto">
                 <el-input v-model="ruleFormPrimerReporte.fechaProbableParto" />
               </el-form-item>-->
@@ -197,7 +198,7 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-
+<br><br>
               <el-row class="row-bg" justify="end">
                 <div class="btn-save">
                   <el-button type="primary" size="default" @click="submitForm(secondForm, 'third')">guardar y
@@ -277,11 +278,11 @@
               </el-form-item>-->
                   <el-form-item label="Fecha del parto" prop="fechaDelParto">
                     <el-date-picker v-model="ruleFormTercerReporte.fechaDelParto" type="date"
-                      placeholder="Fecha del parto" :size="size" />
+                      placeholder="Fecha del parto" :size="size" :format="dateFormat"/>
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-                  <el-form-item label="Recibió TAR en interparto" prop="tarEnInterparto">
+                  <el-form-item label="Recibió TAR en intraparto" prop="tarEnInterparto">
                     <el-radio-group v-model="ruleFormTercerReporte.tarEnInterparto">
                       <el-radio :label="1">Si</el-radio>
                       <el-radio :label="0">No</el-radio>
@@ -290,9 +291,9 @@
                 </el-col>
 
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mt mb">
-                  <el-form-item label="Esquema Arv en interparto" prop="esquemaArvEnInterparto">
+                  <el-form-item label="Esquema Arv en intraparto" prop="esquemaArvEnInterparto">
                     <el-select v-model="ruleFormTercerReporte.esquemaArvEnInterparto" class="w-100"
-                      placeholder="Esquema Arv en interparto">
+                      placeholder="Esquema Arv en intraparto">
                       <el-option v-for="(earvip, index) in esquemaArvInterpartoList" :key="index" :label="earvip.valor"
                         :value="earvip.id" />
                     </el-select>
@@ -342,7 +343,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
-                  <el-form-item label="Supreción de la lactancia" prop="suprecionDeLactancia">
+                  <el-form-item label="Supresión de la lactancia" prop="suprecionDeLactancia">
                     <el-radio-group v-model="ruleFormTercerReporte.suprecionDeLactancia">
                       <el-radio :label="1">Si</el-radio>
                       <el-radio :label="0">No</el-radio>
@@ -352,8 +353,8 @@
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb mt">
                   <el-form-item label="Medicamento suministrado" prop="medicamentoSuministrado">
                     <el-radio-group v-model="ruleFormTercerReporte.medicamentoSuministrado">
-                      <el-radio label="Cabergolina">Cabergolina</el-radio>
-                      <el-radio label="Cabergolina">Bromocriptina</el-radio>
+                      <el-radio label="1">Cabergolina</el-radio>
+                      <el-radio label="2">Bromocriptina</el-radio>
                     </el-radio-group>
                   </el-form-item>
                 </el-col>
@@ -426,7 +427,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                  <el-form-item label="Profilaxis anti retroviral" prop="recibioNinoProfilaxisAntiretroviral">
+                  <el-form-item label="Profilaxis antiretroviral" prop="recibioNinoProfilaxisAntiretroviral">
                     <el-radio-group v-model="ruleFormCuartoReporte.recibioNinoProfilaxisAntiretroviral">
                       <el-radio :label="1">Si</el-radio>
                       <el-radio :label="0">No</el-radio>
@@ -434,7 +435,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-                  <el-form-item label="Medicamentos anti retrovirales" prop="medicamentosAntirretroviralNinoExpuesto">
+                  <el-form-item label="Medicamentos antiretrovirales" prop="medicamentosAntirretroviralNinoExpuesto">
                     <el-select v-model="ruleFormCuartoReporte.medicamentosAntirretroviralNinoExpuesto" class="w-100"
                       multiple filterable clearable placeholder="Select" popper-class="custom-header">
                       <!--<template #header>
@@ -460,7 +461,7 @@
                   <el-form-item label="Fecha del resultado ADN proviral" prop="fechaResultadoADNProviral">
                     <el-date-picker :disabled="toggleEnableAdnProviralStatus"
                       v-model="ruleFormCuartoReporte.fechaResultadoADNProviral" type="date"
-                      placeholder="Fecha del resultado ADN proviral" :size="size" />
+                      placeholder="Fecha del resultado ADN proviral" :format="dateFormat" :size="size" />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
@@ -488,7 +489,7 @@
                     prop="fechaResultadoCargasVirales">
                     <el-date-picker :disabled="toggleEnableCargaviralStatus"
                       v-model="ruleFormCuartoReporte.fechaResultadoCargasVirales" type="date"
-                      placeholder="Fecha del resultado de las cargas virales realizadas" :size="size" />
+                      placeholder="Fecha del resultado de las cargas virales realizadas" :size="size" :format="dateFormat" />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -532,7 +533,7 @@
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
                   <el-form-item label="Fecha de resultado" prop="fechaResultadoCargasVirales">
                     <el-date-picker v-model="ruleFormquintoReporte.fechaPruebaRealizadaADNProviral" type="date"
-                      placeholder="Fecha de resultado" :size="size" />
+                      placeholder="Fecha de resultado" :size="size" :format="dateFormat" />
                   </el-form-item>
                 </el-col>
 
