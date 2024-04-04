@@ -63,7 +63,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="6">
-                  <el-form-item label="copias/mls" prop="resultados">
+                  <el-form-item label="copias/ml" prop="resultados">
                     <el-input id="copiasMlDiagn" v-model="ruleFormPrimerReporte.resultados"
                       :disabled="showCopiasMlMomentoDiagn" type="number" />
                   </el-form-item>
@@ -579,7 +579,7 @@
                     </el-form-item>
                   </el-col>
                   <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-                    <el-form-item label="Resultado: copias/mls" prop="resultadoParaclinico">
+                    <el-form-item label="Resultado: copias/ml" prop="resultadoParaclinico">
                       <el-input v-model="paraclinicoMenor.resultadoParaclinico" type="number"
                         @input="validateMenorField(index)" />
                     </el-form-item>
@@ -952,7 +952,7 @@ export default class VihView extends Vue {
           paraclinico.examenParaClinico = paraclinico.idParaclinicoRealizado;
           paraclinico.fechaExamenParaClinico = paraclinico.fechaParaclinico;
           paraclinico.resultadoParaclinico = Number(paraclinico.resultadoParaclinico);
-          paraclinico.labelValue = paraclinico.idParaclinicoRealizado === 116 ? 'Resultado: copias/cm3' : 'Resultado: copias/mls'
+          paraclinico.labelValue = paraclinico.idParaclinicoRealizado === 116 ? 'Resultado: copias/ml' : 'Resultado: copias/cm3'
         })
       }
       this.ruleFormPrimerReporte.estabaRecibiendoTARAntesEmbarazo = fichaVihGet.data.reporte1[0].estabaRecibiendoTARAntesEmbarazo
@@ -1033,16 +1033,16 @@ export default class VihView extends Vue {
 
   validarParaClinicos: any = true;
   validarParaClinicosDelMenor: any = false;
-  resultadoTypeExam: any = 'Resultado: copias/mls'
+  resultadoTypeExam: any = 'Resultado: copias/cm3'
 
   validateField = (index: number) => {
     const field = this.paraClinicosFields[index];
     console.log('validador', field.examenParaClinico)
 
     if (field.examenParaClinico as any === 116) {
-      field.labelValue = 'Resultado: copias/cm3'
+      field.labelValue = 'Resultado: copias/ml'
     } else {
-      field.labelValue = 'Resultado: copias/mls'
+      field.labelValue = 'Resultado: copias/cm3'
     }
     console.log('todos los valores', field.examenParaClinico !== null, field.fechaExamenParaClinico !== null, field.resultadoParaclinico !== '')
     field.valid = field.examenParaClinico !== null && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
@@ -1062,9 +1062,9 @@ export default class VihView extends Vue {
     console.log('validador', field.examenParaClinico)
 
     if (field.examenParaClinico as any === 116) {
-      field.labelValue = 'Resultado: copias/cm3'
+      field.labelValue = 'Resultado: copias/ml'
     } else {
-      field.labelValue = 'Resultado: copias/mls'
+      field.labelValue = 'Resultado: copias/cm3'
     }
     console.log('todos los valores', field.examenParaClinico !== null, field.fechaExamenParaClinico !== null, field.resultadoParaclinico !== '')
     field.valid = field.examenParaClinico !== null && field.fechaExamenParaClinico !== null && field.resultadoParaclinico !== '';
