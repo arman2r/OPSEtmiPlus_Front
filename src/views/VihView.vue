@@ -141,8 +141,7 @@
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                  <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH <el-text type="primary">(POSTERIOR AL
-                      PARTO):</el-text></h5>
+                  <h5 class="align-start">GESTANTE CON DIAGNÓSTICO DE VIH DURANTE EL EMBARAZO ACTUAL</h5>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item label="¿Recibió TAR para VIH durante el embarazo reportado?"
@@ -173,8 +172,8 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item label="Medicamentos antirretrovirales" prop="medicamentosARVSuministrados"
                     class="select-width">
-                    <el-select v-model="ruleFormPrimerReporte.medicamentosARVSuministrados"
-                      placeholder="Medicamentos antirretrovirales" multiple filterable allow-create>
+                    <el-select v-model="ruleFormPrimerReporte.medicamentosARVSuministrados" remote="true"
+                      placeholder="Medicamentos antirretrovirales" multiple filterable placement="bottom-start" max-collapse-tags="2" height="80">
                       <el-option v-for="(msga, index) in medicamentosSuministradosList" :key="index" :label="msga.valor"
                         :value="msga.id" />
                     </el-select>
@@ -512,6 +511,7 @@
               </el-row>
               <el-row class="row-bg" justify="end">
                 <div class="btn-save">
+                  <br><br>
                   <el-button type="primary" size="default" @click="submitForm(fiveForm, 'six')">guardar y
                     continuar</el-button>
                 </div>
@@ -598,7 +598,7 @@
                     <el-form-item label="Exámenes paraclinicos" prop="examenParaClinico" class="select-width">
                       <el-select v-model="paraclinicoMenor.examenParaClinico" placeholder="Exámenes paraclínicos"
                         @change="validateMenorField(index)">
-                        <el-option v-for="(pcm, index) in examenParaClinicoList" :key="index" :label="pcm.valor"
+                        <el-option v-for="(pcm, index) in pruebConfirmVihList" :key="index" :label="pcm.valor"
                           :value="pcm.id" />
                       </el-select>
                     </el-form-item>
@@ -2296,6 +2296,11 @@ h5 {
 
 .el-form-item__error {
   text-align: left !important;
+}
+
+.el-select-dropdown, 
+.el-select-dropdown .el-select-dropdown__wrap{
+  max-height: 128px !important; 
 }
 
 .el-collapse-item {
