@@ -1,6 +1,6 @@
 <template class="steps-container">
     <div class="full-width">
-        <h4 class="steps-container">SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO:ETMI-PLUS
+        <h4 class="steps-container">SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO
         </h4>
         <section style="width:100%">
             <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
