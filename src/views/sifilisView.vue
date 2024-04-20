@@ -1822,32 +1822,8 @@
                     />
                   </el-form-item>
                 </el-col>
-                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-                  <el-form-item
-                    label="Correo electrónico"
-                    prop="correoelectronico"
-                  >
-                    <el-input
-                      v-model="ruleFormReporteSifilis.correoelectronico"
-                      placeholder="Correo electrónico"
-                    />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="24">
-                  <h4>
-                    OBSERVACIONES RELEVANTES DEL CASO - NO REGISTRE NUEVAMENTE
-                    DATOS YA REGISTRADOS EN EL FORMATO
-                  </h4>
-                </el-col>
-                <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                  <el-form-item label="Observaciones" prop="observacionesCaso">
-                    <el-input
-                      v-model="ruleFormReporteSifilis.observacionesCaso"
-                      type="textarea"
-                      placeholder="Observaciones"
-                    />
-                  </el-form-item>
-                </el-col>
+                 
+                 
               </el-row>
             </section>
           </el-form>
