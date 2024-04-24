@@ -21,7 +21,7 @@
 
                 <el-col :xs="24" :sm="24" :md="24" :lg="4" :xl="4">
                   <el-form-item label="Recibió Control Prenatal" prop="seRealizoControlPrenatalDuranteEmbarazo">
-                    <el-radio-group v-model="ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo">
+                    <el-radio-group v-model="ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo" @change="enabledRCP">
                       <el-radio :label="1">Si</el-radio>
                       <el-radio :label="0">No</el-radio>
                     </el-radio-group>
@@ -31,7 +31,7 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
                   <el-form-item label="Edad gestacional al primer control prenatal, en semanas"
                     prop="edadGestacionalPrimerControlPrenatalSemanas">
-                    <el-input v-model="ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas" type="number"
+                    <el-input v-model="ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas" :disabled="isEnabledRCP" type="number"
                       style="width:max-content" />
                   </el-form-item>
                 </el-col>
@@ -2197,6 +2197,19 @@ export default class VihView extends Vue {
     });
   }
 
+  isEnabledRCP = true
+  enabledRCP() {
+    if (
+      Number(this.ruleFormPrimerReporte.seRealizoControlPrenatalDuranteEmbarazo) !== 1
+    ) {
+      this.isEnabledRCP = true;
+      this.ruleFormPrimerReporte.edadGestacionalPrimerControlPrenatalSemanas = 0
+    } else {
+      this.isEnabledRCP = false; 
+    }
+  }
+
+  
 }
 </script>
 

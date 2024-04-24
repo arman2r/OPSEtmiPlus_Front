@@ -46,7 +46,7 @@
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                   <el-form-item
-                    label="Si el diagnostico se realiza durante la gestación indique la edad gestacional en
+                    label="Si el diagnóstico se realiza durante la gestación indique la edad gestacional en
                                         semanas:"
                     prop="edadGestacionalSemanas"
                   >
@@ -227,7 +227,7 @@
                               class="align-end"
                             >
                               <h5>
-                                Prueba de tamizaje ELISA con Antigenos totales
+                                Prueba de tamizaje ELISA con Antígenos totales
                               </h5>
                             </el-col>
                             <el-col
@@ -807,7 +807,7 @@
                   <el-form-item
                     label="Número de hijos
                                         diferentes al fruto del embarazo en curso a los que se les debe realizar pruebas de
-                                        diagnostico de Chagas:"
+                                        diagnóstico de Chagas:"
                   >
                     <el-form-item
                       label="Nro de Hijos"
@@ -937,7 +937,7 @@
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                   <el-form-item
-                    label="Metodo anticonceptivo utilizado durante el embarazo"
+                    label="Método anticonceptivo utilizado durante el embarazo"
                     prop="metodoAnticonceptivoUtilizadoDuranteTratamiento"
                   >
                     <el-input
@@ -974,10 +974,13 @@
             <section style="width: 100%">
               <el-row :gutter="10" style="width: 100%">
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                    <span style="width: 100%;text-align:left;display:block;font-size:.8rem; padding:10px 0"><span style="color:#f56c6c">*</span> Prueba de diagnóstico al momento nacer</span>
                   <div class="demo-collapse">
+                    
                     <el-collapse v-model="activeCollapseKids1">
+                      
                       <el-collapse-item
-                        title="Prueba de diagnostico al nacer"
+                        title="Exámen parasitologico"
                         name="1"
                       >
                         <div>
@@ -1011,211 +1014,97 @@
                                 />
                               </el-form-item>
                             </el-col>
-                            <el-radio-group
-                              v-model="
-                                ruleFormDiagnosticoMenor.examenParasitologico
-                              "
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="12"
+                              :lg="12"
+                              :xl="12"
                             >
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="1"
-                                    >Gota gruesa a partir de sangre
-                                    fresca</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico
-                                    "
-                                    type="number"
+                              <el-form-item label="Exámen parasitologico">
+                                <el-select
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.examenParasitologico
+                                  "
+                                  placeholder="Exámen parasitologico"
+                                >
+                                  <el-option
+                                    v-for="(
+                                      epd, index
+                                    ) in examenParasitologicoList"
+                                    :key="index"
+                                    :label="epd.label"
+                                    :value="epd.value"
                                   />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="2"
-                                    >Frotis o extendido a partir de
-                                    sangre</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="3"
-                                    >Microhematocrito</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="4"
-                                    >Método de strout</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="5">Micrométodo</el-radio>
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="24"
-                                :lg="12"
-                                :xl="12"
-                                style="align-items: center"
-                              >
-                                <el-form-item
-                                  class="w-100"
-                                  label="Fecha
+                                </el-select>
+                              </el-form-item>
+                            </el-col>
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="12"
+                              :lg="12"
+                              :xl="12"
+                            >
+                              <el-form-item label="RESULTADO">
+                                <el-input
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.resultadoExamenParasitologico
+                                  "
+                                  type="number"
+                                />
+                              </el-form-item>
+                            </el-col>
+
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="24"
+                              :lg="12"
+                              :xl="12"
+                              style="align-items: center"
+                            >
+                              <el-form-item
+                                class="w-100"
+                                label="Fecha
                                                                 de recolección de muestra"
-                                  prop="fechaRecoleccionMuestra"
-                                >
-                                  <el-date-picker
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.fechaRecoleccionMuestra
-                                    "
-                                    style="margin-bottom: 8px"
-                                    type="date"
-                                    placeholder="Fecha de recolección de muestra"
-                                    :format="dateFormat"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="24"
-                                :lg="12"
-                                :xl="12"
-                                style="align-items: center"
+                                prop="fechaRecoleccionMuestra"
                               >
-                                <el-form-item
-                                  class="w-100"
-                                  label="Fecha de emisión del resultado"
-                                  prop="fechaEmisiónResultado"
-                                >
-                                  <el-date-picker
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.fechaEmisiónResultado
-                                    "
-                                    style="margin-bottom: 8px"
-                                    type="date"
-                                    placeholder="Fecha de recolección de muestra"
-                                    :format="dateFormat"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                            </el-radio-group>
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.fechaRecoleccionMuestra
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
+                            </el-col>
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="24"
+                              :lg="12"
+                              :xl="12"
+                              style="align-items: center"
+                            >
+                              <el-form-item
+                                class="w-100"
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisiónResultado"
+                              >
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.fechaEmisiónResultado
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
+                            </el-col>
                           </el-row>
                         </div>
                       </el-collapse-item>
@@ -1225,11 +1114,11 @@
                         :md="24"
                         :lg="24"
                         :xl="24"
-                        class="column-custom mb mt"
+                        class="column-custom mt"
                       >
                         <el-form-item
                           label="Prueba de
-                                                    diagnostico a los 3 meses de nacido, en caso de que la prueba de
+                                                    diagnóstico a los 3 meses de nacido, en caso de que la prueba de
                                                     diagnóstico al nacer sea NEGATIVA"
                           prop="seHacePruebaDiagnostica3Meses"
                         >
@@ -1237,224 +1126,114 @@
                             v-model="
                               ruleFormDiagnosticoMenor.seHacePruebaDiagnostica3Meses
                             "
+                            @change="enabledEPM2"
                           >
                             <el-radio :label="1">Aplica</el-radio>
                             <el-radio :label="0">No Aplica</el-radio>
                           </el-radio-group>
                         </el-form-item>
                       </el-col>
-                      <el-collapse-item title="Examen parasitologico" name="2">
+                      <el-collapse-item
+                        title="Examen parasitologico"
+                        name="2"
+                        :disabled="isEnabledEPM2"
+                      >
                         <div>
                           <el-row :gutter="20">
                             <el-col :xs="24" :sm="24" :lg="24">
                               <h4 class="align-start">EXAMEN PARASITOLÓGICO</h4>
                             </el-col>
-
-                            <el-radio-group
-                              v-model="
-                                ruleFormDiagnosticoMenor.examenParasitologico3Meses
-                              "
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="12"
+                              :lg="12"
+                              :xl="12"
                             >
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="1"
-                                    >Gota gruesa a partir de sangre
-                                    fresca</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses
-                                    "
-                                    type="number"
+                              <el-form-item label="Exámen parasitologico">
+                                <el-select
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.examenParasitologico3Meses
+                                  "
+                                  placeholder="Exámen parasitologico"
+                                >
+                                  <el-option
+                                    v-for="(
+                                      epd, index
+                                    ) in examenParasitologicoList"
+                                    :key="index"
+                                    :label="epd.label"
+                                    :value="epd.value"
                                   />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="2"
-                                    >Frotis o extendido a partir de
-                                    sangre</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="3"
-                                    >Microhematocrito</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="4"
-                                    >Método de strout</el-radio
-                                  >
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                                class="align-end"
-                              >
-                                <el-form-item>
-                                  <el-radio :label="5">Micrométodo</el-radio>
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="12"
-                                :lg="12"
-                                :xl="12"
-                              >
-                                <el-form-item label="RESULTADO">
-                                  <el-input
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses
-                                    "
-                                    type="number"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="24"
-                                :lg="12"
-                                :xl="12"
-                                style="align-items: center"
-                              >
-                                <el-form-item
-                                  class="w-100"
-                                  label="Fecha
+                                </el-select>
+                              </el-form-item>
+                            </el-col>
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="12"
+                              :lg="12"
+                              :xl="12"
+                            >
+                              <el-form-item label="RESULTADO">
+                                <el-input
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses
+                                  "
+                                  type="number"
+                                />
+                              </el-form-item>
+                            </el-col>
+
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="24"
+                              :lg="12"
+                              :xl="12"
+                              style="align-items: center"
+                            >
+                              <el-form-item
+                                class="w-100"
+                                label="Fecha
                                                                 de recolección de muestra"
-                                  prop="fechaRecoleccionMuestra3Meses"
-                                >
-                                  <el-date-picker
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.fechaRecoleccionMuestra3Meses
-                                    "
-                                    style="margin-bottom: 8px"
-                                    type="date"
-                                    placeholder="Fecha de recolección de muestra"
-                                    :format="dateFormat"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                              <el-col
-                                :xs="24"
-                                :sm="24"
-                                :md="24"
-                                :lg="12"
-                                :xl="12"
-                                style="align-items: center"
+                                prop="fechaRecoleccionMuestra3Meses"
                               >
-                                <el-form-item
-                                  class="w-100"
-                                  label="Fecha de emisión del resultado"
-                                  prop="fechaEmisiónResultado3Meses"
-                                >
-                                  <el-date-picker
-                                    v-model="
-                                      ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses
-                                    "
-                                    style="margin-bottom: 8px"
-                                    type="date"
-                                    placeholder="Fecha de recolección de muestra"
-                                    :format="dateFormat"
-                                  />
-                                </el-form-item>
-                              </el-col>
-                            </el-radio-group>
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.fechaRecoleccionMuestra3Meses
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
+                            </el-col>
+                            <el-col
+                              :xs="24"
+                              :sm="24"
+                              :md="24"
+                              :lg="12"
+                              :xl="12"
+                              style="align-items: center"
+                            >
+                              <el-form-item
+                                class="w-100"
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisiónResultado3Meses"
+                              >
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
+                            </el-col>
                           </el-row>
                         </div>
                       </el-collapse-item>
@@ -1464,18 +1243,17 @@
                         :md="24"
                         :lg="24"
                         :xl="24"
-                        class="column-custom mb mt"
+                        class="column-custom mt"
                       >
                         <el-form-item
-                          label="Prueba de
-                                                    diagnostico molecular por criterio clínico o
-                                                    epidemiológico"
+                          label="Prueba de diagnóstico molecular por criterio clínico o epidemiológico"
                           prop="seHacePrueebaDiagnosticoMolecular"
                         >
                           <el-radio-group
                             v-model="
                               ruleFormDiagnosticoMenor.seHacePrueebaDiagnosticoMolecular
                             "
+                            @change="enabledPDN"
                           >
                             <el-radio :label="1">Si Aplica</el-radio>
                             <el-radio :label="0">No Aplica</el-radio>
@@ -1483,8 +1261,9 @@
                         </el-form-item>
                       </el-col>
                       <el-collapse-item
-                        title="Prueba de diagnostico al nacer"
+                        title="Reacción en cadena polimerasa (PCR)"
                         name="3"
+                        :disabled="isEnabledPDN"
                       >
                         <div>
                           <el-row :gutter="20">
@@ -1497,8 +1276,7 @@
                               style="align-items: end"
                             >
                               <el-form-item
-                                label="Reacción
-                                                                en cadena polimerasa (PCR)"
+                                label="Resultado"
                                 prop="resultadoPCR"
                               >
                                 <el-input
@@ -1520,15 +1298,13 @@
                               style="align-items: end"
                             >
                               <el-form-item
-                                label="Fecha
-                                                                de recolección de muestra"
+                                label="Fecha de recolección de muestra"
                                 prop="fechaRecolecionPCR"
                               >
                                 <el-date-picker
                                   style="margin-bottom: 8px"
                                   type="date"
-                                  placeholder="Reacción
-                                                                en cadena polimerasa (PCR)"
+                                  placeholder="Fecha de recolección de muestra"
                                   v-model="
                                     ruleFormDiagnosticoMenor.fechaRecolecionPCR
                                   "
@@ -1545,8 +1321,7 @@
                               style="align-items: end"
                             >
                               <el-form-item
-                                label="Fecha
-                                                                de emisión del resultado"
+                                label="Fecha de emisión del resultado"
                                 prop="fechaEmisionPCR"
                               >
                                 <el-date-picker
@@ -1569,11 +1344,11 @@
                         :md="24"
                         :lg="24"
                         :xl="24"
-                        class="column-custom mb mt"
+                        class="column-custom mt"
                       >
                         <el-form-item
                           label="Pruebas de
-                                                    diagnostico serológico a los 8 a 10 meses de nacido si las pruebas de
+                                                    diagnóstico serológico a los 8 a 10 meses de nacido si las pruebas de
                                                     diagnóstico directo al momento del nacimiento y a los tre meses de nacer
                                                     son negativas"
                           prop="seHacePruebaDiagnostico10Meses"
@@ -1582,6 +1357,7 @@
                             v-model="
                               ruleFormDiagnosticoMenor.seHacePruebaDiagnostico10Meses
                             "
+                            @change="enabledPDS"
                           >
                             <el-radio :label="1">Si Aplica</el-radio>
                             <el-radio :label="0">No Aplica</el-radio>
@@ -1589,8 +1365,9 @@
                         </el-form-item>
                       </el-col>
                       <el-collapse-item
-                        title="Prueba de diagnostico al nacer"
+                        title="Prueba de diagnóstico serológico a los 8 a 10 meses de nacido"
                         name="4"
+                        :disabled="isEnabledPDS"
                       >
                         <div>
                           <el-row :gutter="20">
@@ -1612,7 +1389,7 @@
                                     ruleFormDiagnosticoMenor.esAntigenosTotales
                                   "
                                   :label="1"
-                                  >Antigenos totales</el-checkbox
+                                  >Antígenos totales</el-checkbox
                                 >
                               </el-form-item>
                             </el-col>
@@ -1634,7 +1411,7 @@
                                     ruleFormDiagnosticoMenor.esAntigenosRecombinantes
                                   "
                                   :label="2"
-                                  >Antigenos recombinantes</el-checkbox
+                                  >Antígenos recombinantes</el-checkbox
                                 >
                               </el-form-item>
                             </el-col>
@@ -1718,7 +1495,7 @@
                         :md="24"
                         :lg="24"
                         :xl="24"
-                        class="column-custom mb mt"
+                        class="column-custom mt"
                       >
                         <el-form-item
                           label="Caso
@@ -1739,7 +1516,8 @@
                   </div>
                 </el-col>
               </el-row>
-              <el-row class="row-bg" justify="end">
+              <br><br><br><br><br>
+              <el-row class="row-bg mb" justify="end">
                 <div class="btn-save">
                   <el-button
                     type="primary"
@@ -1880,12 +1658,12 @@
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item
-                    label="Tipo de regimen de salud"
+                    label="Tipo de régimen de salud."
                     prop="tipoRegimenSalud"
                     class="w-100"
                   >
                     <el-select
-                      placeholder="Tipo de regimen de salud"
+                      placeholder="Tipo de régimen de salud."
                       v-model="ruleFormSeguimientoNinoExpuesto.tipoRegimenSalud"
                     >
                       <el-option label="Excepción" value="1" />
@@ -2058,7 +1836,7 @@
                   <div class="demo-collapse">
                     <el-collapse v-model="activeCollapseKids1">
                       <el-collapse-item
-                        title="Prueba de serología a los 6 meses de terminar el tratamiento"
+                        title="Prueba de serológico a los 6 meses de terminar el tratamiento"
                         name="1"
                       >
                         <div>
@@ -2081,7 +1859,7 @@
                                     ruleFormTratamientoSeguimientoNino.esAntigenosTotales6Meses
                                   "
                                   :label="1"
-                                  >Antigenos totales</el-checkbox
+                                  >Antígenos totales</el-checkbox
                                 >
                               </el-form-item>
                             </el-col>
@@ -2103,7 +1881,7 @@
                                     ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes6Meses
                                   "
                                   :label="2"
-                                  >Antigenos recombinantes</el-checkbox
+                                  >Antígenos recombinantes</el-checkbox
                                 >
                               </el-form-item>
                             </el-col>
@@ -2156,7 +1934,7 @@
                         </div>
                       </el-collapse-item>
                       <el-collapse-item
-                        title="Prueba de serología a los 12 meses de terminar el tratamiento"
+                        title="Prueba de serológico a los 12 meses de terminar el tratamiento"
                         name="2"
                       >
                         <div>
@@ -2179,7 +1957,7 @@
                                     ruleFormTratamientoSeguimientoNino.esAntigenosTotales12Meses
                                   "
                                   :label="1"
-                                  >Antigenos totales</el-checkbox
+                                  >Antígenos totales</el-checkbox
                                 >
                               </el-form-item>
                             </el-col>
@@ -2201,7 +1979,7 @@
                                     ruleFormTratamientoSeguimientoNino.esAntigenosRecombinantes12Meses
                                   "
                                   :label="2"
-                                  >Antigenos recombinantes</el-checkbox
+                                  >Antígenos recombinantes</el-checkbox
                                 >
                               </el-form-item>
                             </el-col>
@@ -2386,7 +2164,7 @@ export default class HepatitisBView extends Vue {
     { value: 1, label: "Gota gruesa a partir de sangre fresca" },
     { value: 2, label: "Frotis o extendido a partir de sangre" },
     { value: 3, label: "Microhematocrito" },
-    { value: 4, label: "Metodo de strout" },
+    { value: 4, label: "Método de strout" },
     { value: 5, label: "Micrométodo" },
   ];
 
@@ -2394,11 +2172,11 @@ export default class HepatitisBView extends Vue {
   antigenos = [
     {
       value: "1",
-      label: "Antigenos totales",
+      label: "Antígenos totales",
     },
     {
       value: "2",
-      label: "Antigenos recombinantes",
+      label: "Antígenos recombinantes",
     },
   ];
 
@@ -2994,7 +2772,7 @@ export default class HepatitisBView extends Vue {
         });
       }
     } else if (tabName === "five") {
-      console.log("que llega en diagnostico niño exp", reporteForm);
+      console.log("que llega en diagnóstico niño exp", reporteForm);
       const requestDiagnosticoMenor =
         (await this.ETMIPLUS_API_Client.diagnosticoNinoExpuesto(
           reporteForm.idGestanteControl,
@@ -3636,23 +3414,84 @@ export default class HepatitisBView extends Vue {
       this.ruleFormAlgoritmoChagas.fechaEmisionResultadoElisaAntigenosTotales =
         undefined;
       this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeInmunocromatografia = 0;
-      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia = undefined;
+      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia =
+        undefined;
       this.ruleFormAlgoritmoChagas.fechaEmisionInmunocromatografia = undefined;
       this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes2 = 0;
-      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2 = undefined;
-      this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2 = undefined;
+      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2 =
+        undefined;
+      this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2 =
+        undefined;
       this.ruleFormAlgoritmoChagas.tipoPruebaUtilizada = undefined;
       this.ruleFormAlgoritmoChagas.resultadoPruebaUtilizada = "0";
-      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante = undefined;
+      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante =
+        undefined;
       this.ruleFormAlgoritmoChagas.fechaEmisionNoConcordante = undefined;
       this.ruleFormAlgoritmoChagas.resultadoPruebaTamizajeElisaAntigenosRecombinantes3 = 0;
-      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3 = undefined;
-      this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3 = undefined;
+      this.ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3 =
+        undefined;
+      this.ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3 =
+        undefined;
     } else {
       this.isEnabledA1 = false;
       this.isOpenA1 = 1;
     }
   }
+
+  isEnabledEPM2 = true;
+
+  enabledEPM2() {
+    if (
+      Number(this.ruleFormDiagnosticoMenor.seHacePruebaDiagnostica3Meses) !== 1
+    ) {
+      this.isEnabledEPM2 = true;
+      this.activeCollapseKids1 = 0;
+      this.ruleFormDiagnosticoMenor.examenParasitologico3Meses = undefined;
+      this.ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses = "0";
+      this.ruleFormDiagnosticoMenor.fechaRecoleccionMuestra3Meses = undefined;
+      this.ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses = undefined
+    } else {
+      this.isEnabledEPM2 = false;
+      this.activeCollapseKids1 = 2;
+    }
+  }
+
+  isEnabledPDN = true;
+
+  enabledPDN() {
+    if (
+      Number(this.ruleFormDiagnosticoMenor.seHacePrueebaDiagnosticoMolecular) !== 1
+    ) {
+      this.isEnabledPDN = true;
+      this.activeCollapseKids1 = 0;
+      this.ruleFormDiagnosticoMenor.resultadoPCR = "0";
+      this.ruleFormDiagnosticoMenor.fechaRecolecionPCR = undefined;
+      this.ruleFormDiagnosticoMenor.fechaEmisionPCR = undefined; 
+    } else {
+      this.isEnabledPDN = false;
+      this.activeCollapseKids1 = 3;
+    }
+  }
+
+  isEnabledPDS = true;
+
+  enabledPDS() {
+    if (
+      Number(this.ruleFormDiagnosticoMenor.seHacePruebaDiagnostico10Meses) !== 1
+    ) {
+      this.isEnabledPDS = true;
+      this.activeCollapseKids1 = 0;
+      this.ruleFormDiagnosticoMenor.esAntigenosTotales = 0;
+      this.ruleFormDiagnosticoMenor.esAntigenosRecombinantes = 0;
+      this.ruleFormDiagnosticoMenor.resultadoPrueba = 0;
+      this.ruleFormDiagnosticoMenor.fechaRecoleccionMuestra10Meses = undefined;
+      this.ruleFormDiagnosticoMenor.fechaEmisionResultado10Meses = undefined;
+    } else {
+      this.isEnabledPDS = false;
+      this.activeCollapseKids1 = 4;
+    }
+  }
+
 }
 </script>
 
