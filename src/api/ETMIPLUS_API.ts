@@ -126,7 +126,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -181,7 +181,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -236,7 +236,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -448,7 +448,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -2623,7 +2623,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    situacionGestanteEmbarazoActual(idGestante: number, body: SituacionGestanteEmbarazoActual | undefined, cancelToken?: CancelToken): Promise<void> {
+    situacionGestanteEmbarazoActual(idGestante: number, body: ISituacionGestanteEmbarazoActual | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/{idGestante}/Sifilis/SituacionGestanteEmbarazoActual";
         if (idGestante === undefined || idGestante === null)
             throw new Error("The parameter 'idGestante' must be defined.");
@@ -3052,12 +3052,12 @@ export class AlgoritmoChagas implements IAlgoritmoChagas {
             this.examenParasitologico = _data["examenParasitologico"] ? Parametrica.fromJS(_data["examenParasitologico"]) : <any>undefined;
             this.resultadoExamenParasitologico = _data["resultadoExamenParasitologico"];
             this.sospechaChagasCronicoOTamizajeControlPrenatal = _data["sospechaChagasCronicoOTamizajeControlPrenatal"];
+            this.fechaRecoleccionMuestraElisaAntigenosTotales = _data["fechaRecoleccionMuestraElisaAntigenosTotales"] ? new Date(_data["fechaRecoleccionMuestraElisaAntigenosTotales"].toString()) : <any>undefined;
+            this.fechaEmisionResultadoElisaAntigenosTotales = _data["fechaEmisionResultadoElisaAntigenosTotales"] ? new Date(_data["fechaEmisionResultadoElisaAntigenosTotales"].toString()) : <any>undefined;
             this.resultadoPruebaTamizajeElisaAntigenosTotales = _data["resultadoPruebaTamizajeElisaAntigenosTotales"];
             this.fechaRecoleccionMuestra = _data["fechaRecoleccionMuestra"] ? new Date(_data["fechaRecoleccionMuestra"].toString()) : <any>undefined;
             this.fechaEmisionResultado = _data["fechaEmisionResultado"] ? new Date(_data["fechaEmisionResultado"].toString()) : <any>undefined;
             this.resultadoPruebaTamizajeElisaAntigenosRecombinantes1 = _data["resultadoPruebaTamizajeElisaAntigenosRecombinantes1"];
-            this.fechaRecoleccionMuestraElisaAntigenosTotales = _data["fechaRecoleccionMuestraElisaAntigenosTotales"];
-            this.fechaEmisionResultadoElisaAntigenosTotales = _data["fechaEmisionResultadoElisaAntigenosTotales"];
             this.fechaRecoleccionMuestraRecombinantes1 = _data["fechaRecoleccionMuestraRecombinantes1"] ? new Date(_data["fechaRecoleccionMuestraRecombinantes1"].toString()) : <any>undefined;
             this.fechaEmisionResultadoRecombinantes1 = _data["fechaEmisionResultadoRecombinantes1"] ? new Date(_data["fechaEmisionResultadoRecombinantes1"].toString()) : <any>undefined;
             this.resultadoPruebaTamizajeInmunocromatografia = _data["resultadoPruebaTamizajeInmunocromatografia"];
@@ -3100,12 +3100,12 @@ export class AlgoritmoChagas implements IAlgoritmoChagas {
         data["examenParasitologico"] = this.examenParasitologico ? this.examenParasitologico.toJSON() : <any>undefined;
         data["resultadoExamenParasitologico"] = this.resultadoExamenParasitologico;
         data["sospechaChagasCronicoOTamizajeControlPrenatal"] = this.sospechaChagasCronicoOTamizajeControlPrenatal;
+        data["fechaRecoleccionMuestraElisaAntigenosTotales"] = this.fechaRecoleccionMuestraElisaAntigenosTotales ? this.fechaRecoleccionMuestraElisaAntigenosTotales.toISOString() : <any>undefined;
+        data["fechaEmisionResultadoElisaAntigenosTotales"] = this.fechaEmisionResultadoElisaAntigenosTotales ? this.fechaEmisionResultadoElisaAntigenosTotales.toISOString() : <any>undefined;
         data["resultadoPruebaTamizajeElisaAntigenosTotales"] = this.resultadoPruebaTamizajeElisaAntigenosTotales;
         data["fechaRecoleccionMuestra"] = this.fechaRecoleccionMuestra ? this.fechaRecoleccionMuestra.toISOString() : <any>undefined;
         data["fechaEmisionResultado"] = this.fechaEmisionResultado ? this.fechaEmisionResultado.toISOString() : <any>undefined;
         data["resultadoPruebaTamizajeElisaAntigenosRecombinantes1"] = this.resultadoPruebaTamizajeElisaAntigenosRecombinantes1;
-        data["fechaRecoleccionMuestraElisaAntigenosTotales"] = this.fechaRecoleccionMuestraElisaAntigenosTotales;
-        data["fechaEmisionResultadoElisaAntigenosTotales"] = this.fechaEmisionResultadoElisaAntigenosTotales;
         data["fechaRecoleccionMuestraRecombinantes1"] = this.fechaRecoleccionMuestraRecombinantes1 ? this.fechaRecoleccionMuestraRecombinantes1.toISOString() : <any>undefined;
         data["fechaEmisionResultadoRecombinantes1"] = this.fechaEmisionResultadoRecombinantes1 ? this.fechaEmisionResultadoRecombinantes1.toISOString() : <any>undefined;
         data["resultadoPruebaTamizajeInmunocromatografia"] = this.resultadoPruebaTamizajeInmunocromatografia;
@@ -4196,6 +4196,7 @@ export class ParaclinicoNino implements IParaclinicoNino {
     paraclinicoRealizado?: Parametrica;
     fechaParaclinico?: Date;
     resultadoParaclinico?: number;
+    esOtros?: number | undefined;
 
     constructor(data?: IParaclinicoNino) {
         if (data) {
@@ -4214,6 +4215,7 @@ export class ParaclinicoNino implements IParaclinicoNino {
             this.paraclinicoRealizado = _data["paraclinicoRealizado"] ? Parametrica.fromJS(_data["paraclinicoRealizado"]) : <any>undefined;
             this.fechaParaclinico = _data["fechaParaclinico"] ? new Date(_data["fechaParaclinico"].toString()) : <any>undefined;
             this.resultadoParaclinico = _data["resultadoParaclinico"];
+            this.esOtros = _data["esOtros"];
         }
     }
 
@@ -4232,6 +4234,7 @@ export class ParaclinicoNino implements IParaclinicoNino {
         data["paraclinicoRealizado"] = this.paraclinicoRealizado ? this.paraclinicoRealizado.toJSON() : <any>undefined;
         data["fechaParaclinico"] = this.fechaParaclinico ? this.fechaParaclinico.toISOString() : <any>undefined;
         data["resultadoParaclinico"] = this.resultadoParaclinico;
+        data["esOtros"] = this.esOtros;
         return data;
     }
 }
@@ -4243,6 +4246,7 @@ export interface IParaclinicoNino {
     paraclinicoRealizado?: Parametrica;
     fechaParaclinico?: Date;
     resultadoParaclinico?: number;
+    esOtros?: number;
 }
 
 export class Parametrica implements IParametrica {
