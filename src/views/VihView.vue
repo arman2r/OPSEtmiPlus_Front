@@ -448,6 +448,7 @@
                   <el-form-item label="Carga Viral" prop="tieneCargaViral">
                     <el-radio-group
                       v-model="ruleFormSegundoReporte.tieneCargaViral"
+                      @change="toggleEnableReporte2"
                     >
                       <el-radio :label="1">Si</el-radio>
                       <el-radio :label="0">No</el-radio>
@@ -476,17 +477,19 @@
                       placeholder="Fecha"
                       :format="dateFormat"
                       :size="size"
+                      :disabled="enableReporte2"
                     />
                   </el-form-item>
                 </el-col>
                 <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
                   <el-form-item
-                    label="Resultados en cm3"
+                    label="Resultado: copias/ml"
                     prop="resultadoCargaViral"
                   >
                     <el-input
                       v-model="ruleFormSegundoReporte.resultadoCargaViral"
                       type="number"
+                      :disabled="enableReporte2"
                     />
                   </el-form-item>
                 </el-col>
@@ -2213,14 +2216,14 @@ export default class VihView extends Vue {
     ],
     fechaResultado: [
       {
-        required: true,
+        required: false,
         message: "Por favor seleccione una fecha",
         trigger: "blur",
       },
     ],
     resultadoCargaViral: [
       {
-        required: true,
+        required: false,
         message: "Solo se aceptan valores númericos",
         trigger: "blur",
       },
@@ -2592,7 +2595,7 @@ export default class VihView extends Vue {
           this.showMessage(message).then(() => {
             ElMessage.info(message);
           });
-        }
+        } 
       } else {
         const message =
           "Se presentó un error. Verifiqué la información e intenté de nuevo.";
@@ -2600,10 +2603,11 @@ export default class VihView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "four") {
       const requestSegundoReporte =
         (await this.ETMIPLUS_API_Client.reporte2POST(
-          reporteForm.idGestanteControl,
+          reporteForm[0].idGestanteControl,
           reporteForm
         )) as any;
       console.log("response", requestSegundoReporte);
@@ -2614,7 +2618,7 @@ export default class VihView extends Vue {
           ElMessage.info(message);
           this.activeName = tabName;
           this.disabledThree = false;
-        });
+        }); 
       } else {
         const message =
           "Se presentó un error. Verifiqué la información e intenté de nuevo.";
@@ -2622,6 +2626,7 @@ export default class VihView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "five") {
       console.log("request", reporteForm);
       const requestTercerReporte = (await this.ETMIPLUS_API_Client.reporte3POST(
@@ -2644,6 +2649,7 @@ export default class VihView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "six") {
       console.log("request", reporteForm);
       const requestCuartoReporte = (await this.ETMIPLUS_API_Client.reporte4POST(
@@ -2666,6 +2672,7 @@ export default class VihView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "seven") {
       console.log("request", reporteForm);
       const requestQuintoReporte = (await this.ETMIPLUS_API_Client.reporte5POST(
@@ -2714,6 +2721,7 @@ export default class VihView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "end") {
       console.log("request", reporteForm);
       const reporteBinomio = (await this.ETMIPLUS_API_Client.reporteBinomioPOST(
@@ -2736,6 +2744,7 @@ export default class VihView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     }
   }
 
@@ -2833,6 +2842,8 @@ export default class VihView extends Vue {
     } else if (tabName === "four") {
       //this.activeName = tabName
 
+      const requestSR = []
+
       const request: IReporte2 = {
         idReporte: 0,
         idGestanteControl: Number(this.idGestanteCtrl),
@@ -2842,7 +2853,8 @@ export default class VihView extends Vue {
           this.ruleFormSegundoReporte.resultadoCargaViral
         ),
       };
-      this.registroReporte(request, tabName);
+      requestSR.push(request)
+      this.registroReporte(requestSR, tabName);
     } else if (tabName === "five") {
       //this.disabledFive = false
       //this.activeName = tabName
@@ -3115,6 +3127,20 @@ export default class VihView extends Vue {
       this.toggleEnableCargaviralStatus = false;
     } else {
       this.toggleEnableCargaviralStatus = true;
+    }
+  }
+
+  enableReporte2 = true;
+
+  toggleEnableReporte2() {
+    if (
+      Number(
+        this.ruleFormSegundoReporte.tieneCargaViral
+      ) === 0
+    ) {
+      this.enableReporte2 = true;
+    } else {
+      this.enableReporte2 = false;
     }
   }
 

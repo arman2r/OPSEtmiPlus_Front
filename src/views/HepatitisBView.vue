@@ -2029,6 +2029,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "four") {
       const requestSegundoReporte =
         (await this.ETMIPLUS_API_Client.tratamientoSeguimientoGestante(
@@ -2051,6 +2052,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "five") {
       console.log("request", reporteForm);
       const requestTercerReporte =
@@ -2110,6 +2112,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "six") {
       reporteForm.idSeguimientoNinoExpuesto =
         this.idSeguimientNinoExp !== 0
@@ -2139,6 +2142,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "seven") {
       console.log("request", reporteForm);
       const requestQuintoReporte = (await this.ETMIPLUS_API_Client.reporte5POST(
@@ -2187,6 +2191,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     } else if (tabName === "end") {
       console.log("request", reporteForm);
       const reporteBinomio = (await this.ETMIPLUS_API_Client.reporteBinomioPOST(
@@ -2209,6 +2214,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName)
     }
   }
 

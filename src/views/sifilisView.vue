@@ -1,8 +1,10 @@
-<template class="steps-container">
+
+<template class="steps-container"> 
   <div class="full-width">
     <h4 class="steps-container">
       SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO
     </h4>
+    
     <section style="width: 100%">
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="Diagnóstico materno" name="second" ref="elTab2">
@@ -1595,7 +1597,14 @@
                   </el-form-item>
                 </el-col>
 
-                <el-col v-if="isValidateSrssn" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                <el-col
+                  v-if="isValidateSrssn"
+                  :xs="24"
+                  :sm="24"
+                  :md="24"
+                  :lg="24"
+                  :xl="24"
+                >
                   <el-col
                     class="mb mt"
                     :xs="24"
@@ -1616,9 +1625,7 @@
                           class="select-width"
                         >
                           <el-radio-group
-                            v-model="
-                              ssco.tipoPruebaNoTreponemica
-                            "
+                            v-model="ssco.tipoPruebaNoTreponemica"
                             @change="validateFieldSegSerologicoNinoNina(index)"
                           >
                             <el-radio
@@ -1671,11 +1678,9 @@
                           class="select-width w-100"
                         >
                           <el-select
-                            v-model="
-                              ssco.dilucionesPruebaNoTreponemica
-                            "
+                            v-model="ssco.dilucionesPruebaNoTreponemica"
                             multiple
-                            placeholder="Select" 
+                            placeholder="Select"
                             @change="validateFieldSegSerologicoNinoNina(index)"
                           >
                             <el-option
@@ -1687,7 +1692,7 @@
                           </el-select>
                         </el-form-item>
                       </el-col>
-                      
+
                       <el-col :md="1" :lg="1" :xl="1" class="center-button">
                         <el-button
                           v-if="
@@ -1822,8 +1827,6 @@
                     />
                   </el-form-item>
                 </el-col>
-                 
-                 
               </el-row>
             </section>
           </el-form>
@@ -2002,7 +2005,7 @@ export default class HepatitisBView extends Vue {
       valid: true,
     },
   ];
-  
+
   validarStoSerologicoNinoNinaList: any = true;
   seguimientoSerologicoNinoNinaList: ISeguimientoNinoPrimerAnioList[] = [
     {
@@ -2074,14 +2077,17 @@ export default class HepatitisBView extends Vue {
 
     console.log(
       "todos los valores",
-      "tipo prueba ", field.tipoPruebaNoTreponemicaDuranteGestacion as any === 144 || field.tipoPruebaNoTreponemicaDuranteGestacion as any === 145,
-      "fecha prueba"+field.fechaResultadoPruebaNoTreponemica !== null,
-      "diluciones prueba"+field.dilucionesPruebaNoTreponemicaEsReactiva,
-      "edad prueba"+field.edadGestacionalRealizacionPruebaNoTreponemica !== null
+      "tipo prueba ",
+      (field.tipoPruebaNoTreponemicaDuranteGestacion as any) === 144 ||
+        (field.tipoPruebaNoTreponemicaDuranteGestacion as any) === 145,
+      "fecha prueba" + field.fechaResultadoPruebaNoTreponemica !== null,
+      "diluciones prueba" + field.dilucionesPruebaNoTreponemicaEsReactiva,
+      "edad prueba" + field.edadGestacionalRealizacionPruebaNoTreponemica !==
+        null
     );
     field.valid =
-      field.tipoPruebaNoTreponemicaDuranteGestacion as any === 144 ||
-      (field.tipoPruebaNoTreponemicaDuranteGestacion as any === 145 &&
+      (field.tipoPruebaNoTreponemicaDuranteGestacion as any) === 144 ||
+      ((field.tipoPruebaNoTreponemicaDuranteGestacion as any) === 145 &&
         field.fechaResultadoPruebaNoTreponemica !== null &&
         field.dilucionesPruebaNoTreponemicaEsReactiva !== null &&
         field.edadGestacionalRealizacionPruebaNoTreponemica !== null);
@@ -2131,7 +2137,7 @@ export default class HepatitisBView extends Vue {
       this.seguimientoSerologicoNinoNinaList.push({
         tipoPruebaNoTreponemica: [] as any,
         fechaResultado: new Date(),
-        dilucionesPruebaNoTreponemica: [] as any, 
+        dilucionesPruebaNoTreponemica: [] as any,
         valid: true,
       });
     } else {
@@ -2149,13 +2155,15 @@ export default class HepatitisBView extends Vue {
 
     console.log(
       "todos los valores",
-      "tipo prueba ", field.tipoPruebaNoTreponemica as any === 144 || field.tipoPruebaNoTreponemica as any === 145,
-      "fecha prueba"+field.fechaResultado !== null,
-      "diluciones prueba"+field.dilucionesPruebaNoTreponemica 
+      "tipo prueba ",
+      (field.tipoPruebaNoTreponemica as any) === 144 ||
+        (field.tipoPruebaNoTreponemica as any) === 145,
+      "fecha prueba" + field.fechaResultado !== null,
+      "diluciones prueba" + field.dilucionesPruebaNoTreponemica
     );
     field.valid =
-      field.tipoPruebaNoTreponemica as any === 144 ||
-      (field.tipoPruebaNoTreponemica as any === 145 &&
+      (field.tipoPruebaNoTreponemica as any) === 144 ||
+      ((field.tipoPruebaNoTreponemica as any) === 145 &&
         field.fechaResultado !== null &&
         field.dilucionesPruebaNoTreponemica !== null);
     console.log("valor", field.valid);
@@ -2297,6 +2305,8 @@ export default class HepatitisBView extends Vue {
           this.disabledThree = false;
         });
       }
+
+      this.getParamsDbFirsTap(tabName);
     }
   }
 
@@ -2897,7 +2907,7 @@ export default class HepatitisBView extends Vue {
         this.reporteDilucionesList = getParamsReporteDiluciones.data;
       }
 
-      if(this.condicionRecienNacidoList.length === 0) {
+      if (this.condicionRecienNacidoList.length === 0) {
         const condicionRecienNacido =
           (await this.ETMIPLUS_API_Client.parametrica2(
             "CONDICION_RECIEN_NACIDO"
@@ -2906,12 +2916,15 @@ export default class HepatitisBView extends Vue {
         this.condicionRecienNacidoList = condicionRecienNacido.data;
       }
 
-      if(this.tratamientoManejoSifilGstnlList.length === 0) {
+      if (this.tratamientoManejoSifilGstnlList.length === 0) {
         const tratamientoManejoSifilGstnl =
           (await this.ETMIPLUS_API_Client.parametrica2(
             "MANEJO_RESULTADO_SIFILIS"
           )) as any;
-        console.log("que trae MANEJO_RESULTADO_SIFILIS_GESTACIONAL", tratamientoManejoSifilGstnl);
+        console.log(
+          "que trae MANEJO_RESULTADO_SIFILIS_GESTACIONAL",
+          tratamientoManejoSifilGstnl
+        );
         this.tratamientoManejoSifilGstnlList = tratamientoManejoSifilGstnl.data;
       }
     } else if (step === "third") {
@@ -3068,16 +3081,17 @@ export default class HepatitisBView extends Vue {
     }
   }
 
-  validatePB(){
-    if (Number(this.ruleFormEstadioClinico.aplicaronPenicilinaBenzatinica) !== 0) {
+  validatePB() {
+    if (
+      Number(this.ruleFormEstadioClinico.aplicaronPenicilinaBenzatinica) !== 0
+    ) {
       this.isPbtna = true;
     } else {
       this.isPbtna = false;
-
     }
   }
 
-  validateCRTO(){
+  validateCRTO() {
     if (Number(this.ruleFormRetMaterno.requirioTratamiento) !== 0) {
       this.validCrto = false;
     } else {
@@ -3102,7 +3116,9 @@ export default class HepatitisBView extends Vue {
   }
 
   validSAPB() {
-    if (Number(this.ruleFormSeguimientoCs.seAplicoPenicilinaBenzatinica) !== 0) {
+    if (
+      Number(this.ruleFormSeguimientoCs.seAplicoPenicilinaBenzatinica) !== 0
+    ) {
       this.isValidSAPB = true;
     } else {
       this.isValidSAPB = false;
@@ -3114,9 +3130,8 @@ export default class HepatitisBView extends Vue {
       this.isValidateSrssn = true;
     } else {
       this.isValidateSrssn = false;
-    } 
+    }
   }
-
 }
 </script>
 

@@ -257,23 +257,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de recolección de muestra</label
+                              <el-form-item
+                                label="Fecha de recolección de muestra"
+                                prop="fechaRecoleccionMuestraElisaAntigenosTotales"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaRecoleccionMuestraElisaAntigenosTotales
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de recolección de muestra"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaRecoleccionMuestraElisaAntigenosTotales
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -283,23 +280,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de emisión del resultado</label
+                              <el-form-item
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisionResultadoElisaAntigenosTotales"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaEmisionResultadoElisaAntigenosTotales
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de emisión"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaEmisionResultadoElisaAntigenosTotales
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de emisión"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -341,23 +335,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de recolección de muestra</label
+                              <el-form-item
+                                label="Fecha de recolección de muestra"
+                                prop="fechaRecoleccionMuestraRecombinantes1"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes1
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de recolección de muestra"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes1
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -367,23 +358,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de emisión del resultado</label
+                              <el-form-item
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisionResultadoRecombinantes1"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes1
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de emisión"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes1
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de emisión"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                           </el-row>
                         </div>
@@ -435,23 +423,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de recolección de muestra</label
+                              <el-form-item
+                                label="Fecha de recolección de muestra"
+                                prop="fechaRecoleccionMuestraInmunocromatografia"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de recolección de muestra"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaRecoleccionMuestraInmunocromatografia
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -461,23 +446,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de emisión del resultado</label
+                              <el-form-item
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisionInmunocromatografia"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaEmisionInmunocromatografia
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de emisión"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaEmisionInmunocromatografia
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de emisión"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -519,23 +501,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de recolección de muestra</label
+                              <el-form-item
+                                label="Fecha de recolección de muestra"
+                                prop="fechaRecoleccionMuestraRecombinantes2"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de recolección de muestra"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes2
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -545,23 +524,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de emisión del resultado</label
+                              <el-form-item
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisionResultadoRecombinantes2"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de emisión"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes2
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de emisión"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                           </el-row>
                         </div>
@@ -615,23 +591,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de recolección de muestra</label
+                              <el-form-item
+                                label="Fecha de recolección de muestra"
+                                prop="fechaRecoleccionMuestraNoConcordante"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de recolección de muestra"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaRecoleccionMuestraNoConcordante
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -641,23 +614,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de emisión del resultado</label
+                              <el-form-item
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisionNoConcordante"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaEmisionNoConcordante
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de emisión"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaEmisionNoConcordante
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de emisión"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -700,23 +670,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de recolección de muestra</label
+                              <el-form-item
+                                label="Fecha de recolección de muestra"
+                                prop="fechaRecoleccionMuestraRecombinantes3"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de recolección de muestra"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaRecoleccionMuestraRecombinantes3
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de recolección de muestra"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                             <el-col
                               :xs="24"
@@ -726,23 +693,20 @@
                               :xl="12"
                               style="align-items: end"
                             >
-                              <label
-                                class="title-field"
-                                style="
-                                  min-width: 180px !important;
-                                  width: inherit !important;
-                                "
-                                >Fecha de emisión del resultado</label
+                              <el-form-item
+                                label="Fecha de emisión del resultado"
+                                prop="fechaEmisionResultadoRecombinantes3"
                               >
-                              <el-date-picker
-                                v-model="
-                                  ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3
-                                "
-                                style="margin-bottom: 8px"
-                                type="date"
-                                placeholder="Fecha de emisión"
-                                :format="dateFormat"
-                              />
+                                <el-date-picker
+                                  v-model="
+                                    ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3
+                                  "
+                                  style="margin-bottom: 8px"
+                                  type="date"
+                                  placeholder="Fecha de emisión"
+                                  :format="dateFormat"
+                                />
+                              </el-form-item>
                             </el-col>
                           </el-row>
                         </div>
@@ -974,15 +938,20 @@
             <section style="width: 100%">
               <el-row :gutter="10" style="width: 100%">
                 <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                    <span style="width: 100%;text-align:left;display:block;font-size:.8rem; padding:10px 0"><span style="color:#f56c6c">*</span> Prueba de diagnóstico al momento nacer</span>
+                  <span
+                    style="
+                      width: 100%;
+                      text-align: left;
+                      display: block;
+                      font-size: 0.8rem;
+                      padding: 10px 0;
+                    "
+                    ><span style="color: #f56c6c">*</span> Prueba de diagnóstico
+                    al momento nacer</span
+                  >
                   <div class="demo-collapse">
-                    
                     <el-collapse v-model="activeCollapseKids1">
-                      
-                      <el-collapse-item
-                        title="Exámen parasitologico"
-                        name="1"
-                      >
+                      <el-collapse-item title="Exámen parasitologico" name="1">
                         <div>
                           <el-row :gutter="20">
                             <el-col :xs="24" :sm="24" :lg="24">
@@ -1516,7 +1485,7 @@
                   </div>
                 </el-col>
               </el-row>
-              <br><br><br><br><br>
+              <br /><br /><br /><br /><br />
               <el-row class="row-bg mb" justify="end">
                 <div class="btn-save">
                   <el-button
@@ -2068,8 +2037,23 @@
         </el-tab-pane>
       </el-tabs>
     </section>
-  </div>
+    <div style="width:100%;display:block">
+  <el-form-item
+    label="Fecha de emisión del resultado"
+    prop="fechaEmisionResultadoRecombinantes3"
+  >
+    <el-date-picker
+      v-model="ruleFormAlgoritmoChagas.fechaEmisionResultadoRecombinantes3"
+      style="margin-bottom: 8px"
+      type="date"
+      placeholder="Fecha de emisión"
+      :format="dateFormat"
+    />
+  </el-form-item>
+</div>
+  </div> 
 </template>
+
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
@@ -2748,6 +2732,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName);
     } else if (tabName === "four") {
       reporteForm.idAlgoritmo = this.idAlgoritmoPublic;
       const requestTratamiento =
@@ -2771,6 +2756,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName);
     } else if (tabName === "five") {
       console.log("que llega en diagnóstico niño exp", reporteForm);
       const requestDiagnosticoMenor =
@@ -2797,6 +2783,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName);
     } else if (tabName === "six") {
       reporteForm.idDiagnosticoNinoExpuesto = this.idDiagnosticoMenor;
       const requestSeguimiento =
@@ -2823,6 +2810,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName);
     } else if (tabName === "end") {
       console.log("id seguimiento", this.idSeguimientoTratmtoNino);
       reporteForm.idSeguimientoNinoExpuesto = this.idSeguimientoTratmtoNino;
@@ -2850,6 +2838,7 @@ export default class HepatitisBView extends Vue {
           ElMessage.info(message);
         });
       }
+      this.getParamsDbFirsTap(tabName);
     }
   }
 
@@ -3449,7 +3438,7 @@ export default class HepatitisBView extends Vue {
       this.ruleFormDiagnosticoMenor.examenParasitologico3Meses = undefined;
       this.ruleFormDiagnosticoMenor.resultadoExamenParasitologico3Meses = "0";
       this.ruleFormDiagnosticoMenor.fechaRecoleccionMuestra3Meses = undefined;
-      this.ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses = undefined
+      this.ruleFormDiagnosticoMenor.fechaEmisiónResultado3Meses = undefined;
     } else {
       this.isEnabledEPM2 = false;
       this.activeCollapseKids1 = 2;
@@ -3460,13 +3449,15 @@ export default class HepatitisBView extends Vue {
 
   enabledPDN() {
     if (
-      Number(this.ruleFormDiagnosticoMenor.seHacePrueebaDiagnosticoMolecular) !== 1
+      Number(
+        this.ruleFormDiagnosticoMenor.seHacePrueebaDiagnosticoMolecular
+      ) !== 1
     ) {
       this.isEnabledPDN = true;
       this.activeCollapseKids1 = 0;
       this.ruleFormDiagnosticoMenor.resultadoPCR = "0";
       this.ruleFormDiagnosticoMenor.fechaRecolecionPCR = undefined;
-      this.ruleFormDiagnosticoMenor.fechaEmisionPCR = undefined; 
+      this.ruleFormDiagnosticoMenor.fechaEmisionPCR = undefined;
     } else {
       this.isEnabledPDN = false;
       this.activeCollapseKids1 = 3;
@@ -3491,7 +3482,6 @@ export default class HepatitisBView extends Vue {
       this.activeCollapseKids1 = 4;
     }
   }
-
 }
 </script>
 
