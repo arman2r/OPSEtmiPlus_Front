@@ -302,11 +302,12 @@
                   <el-button
                     type="primary"
                     size="default"
-                    @click="submitForm(secondForm, 'thirdForm')"
+                    @click="submitForm(secondForm, 'third')"
                     >guardar y continuar</el-button
                   >
                 </div>
               </el-row>
+              <br><br><br><br><br><br><br><br>
             </section>
           </el-form>
         </el-tab-pane>
@@ -2277,6 +2278,7 @@ export default class HepatitisBView extends Vue {
           this.ruleFormDiagnosticoMaterno
             .reporteDilucionesPruebaNoTreponemicaReactiva,
       };
+      console.log('que recupero el primer request', request)
       this.registroReporte(request, tabName);
     } else if (tabName === "four") {
       this.disabledFour = false;
@@ -2520,28 +2522,28 @@ export default class HepatitisBView extends Vue {
     ],
     pruebaTreponemica: [
       {
-        required: true,
+        required: false,
         message: "Este campo es requerido",
         trigger: "change",
       },
     ],
     resultadoPruebaTreponemica: [
       {
-        required: true,
+        required: false,
         message: "Este campo es requerido",
         trigger: "change",
       },
     ],
     fechaResultadoPruebaTreponemica: [
       {
-        required: true,
+        required: false,
         message: "Por favor indique unafecha del resultado",
         trigger: "blur",
       },
     ],
     edadGestacionalALaRealizacionPruebaTreponemicaSemanas: [
       {
-        required: true,
+        required: false,
         message: "Por favor digite edad gestacional",
         trigger: "blur",
       },
@@ -2555,37 +2557,35 @@ export default class HepatitisBView extends Vue {
     ],
     pruebaNoTreponemica: [
       {
-        required: true,
+        required: false,
         message: "Por favor seleccione tipo de prueba",
         trigger: "change",
       },
     ],
     resultadoPruebaNoTreponemica: [
       {
-        required: true,
+        required: false,
         message: "Por favor seleccione el resultado",
         trigger: "change",
       },
     ],
     fechaResultadoPruebaNoTreponemica: [
       {
-        required: true,
+        required: false,
         message: "Por favor fecha del resultado",
         trigger: "change",
       },
     ],
     listReporteDilucionesPruebaNoTreponemicaReactiva: [
       {
-        required: true,
+        required: false,
         message: "Por favor elija la dilucion respectiva",
         trigger: "change",
       },
     ],
   });
 
-  rulesFormEstadioClinico = reactive<
-    FormRules<ITratamientoMaternoEstadioClinico>
-  >({
+  rulesFormEstadioClinico = reactive<FormRules<ITratamientoMaternoEstadioClinico>>({
     clasificacionEstadioClinico: [
       {
         required: true,
@@ -3060,9 +3060,10 @@ export default class HepatitisBView extends Vue {
       if (valid) {
         console.log("enviando!");
         if (tab !== "end") {
+          console.log('es diferente a la tab final', tab)
           this.changeTab(tab);
         } else {
-          //console.log('valor a guardar', this.ruleFormDatosGestante)
+          console.log('valor a guardar al final')
         }
       } else {
         ElMessageBox.alert(`Por favor complete los campos marcados con *.`, {
