@@ -81,12 +81,13 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item
                     label="Se realizó prueba treponémica:"
-                    prop="seRealizoPruebaTreponemica"
+                    prop="seRealizoPruebaTreponemica" 
                   >
                     <el-radio-group
                       v-model="
                         ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica
                       "
+                      @change="enablePT"
                     >
                       <el-radio :label="1">SI</el-radio>
                       <el-radio :label="0">NO</el-radio>
@@ -97,11 +98,12 @@
                   <el-form-item
                     label="Tipo de prueba treponémica"
                     prop="pruebaTreponemica"
-                    class="select-width"
+                    class="select-width" 
                   >
                     <el-select
                       v-model="ruleFormDiagnosticoMaterno.pruebaTreponemica"
                       placeholder="Tipo de prueba treponémica"
+                      :disabled="enableIsPruebaTreponemica"
                     >
                       <el-option
                         v-for="(tpt, index) in tipoPruebaTreponemicaList"
@@ -129,6 +131,7 @@
                       v-model="
                         ruleFormDiagnosticoMaterno.resultadoPruebaTreponemica
                       "
+                      :disabled="enableIsPruebaTreponemica"
                     >
                       <el-radio :label="1">Positivo</el-radio>
                       <el-radio :label="0">Negativo</el-radio>
@@ -155,6 +158,7 @@
                       type="date"
                       placeholder="Fecha del resultado"
                       :format="dateFormat"
+                      :disabled="enableIsPruebaTreponemica"
                     />
                   </el-form-item>
                 </el-col>
@@ -167,6 +171,7 @@
                       v-model="
                         ruleFormDiagnosticoMaterno.edadGestacionalALaRealizacionPruebaTreponemicaSemanas
                       "
+                      :disabled="enableIsPruebaTreponemica"
                       type="number"
                     />
                   </el-form-item>
@@ -174,13 +179,14 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item
                     label="Se realizó prueba no tréponémica"
-                    prop="seRealizoPruebaNoTreponemica"
+                    prop="seRealizoPruebaNoTreponemica" 
                   >
                     <el-radio-group
                       class="ml-4"
                       v-model="
                         ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica
                       "
+                      @change="enablePNT"
                     >
                       <el-radio label="1">SI</el-radio>
                       <el-radio label="0">NO</el-radio>
@@ -195,6 +201,7 @@
                     <el-radio-group
                       class="ml-4"
                       v-model="ruleFormDiagnosticoMaterno.pruebaNoTreponemica"
+                      :disabled="isPruebaNoTreponemica"
                     >
                       <el-radio
                         v-for="(tpnt, index) in tipoPruebaNoTreponemicaList"
@@ -221,6 +228,7 @@
                       v-model="
                         ruleFormDiagnosticoMaterno.resultadoPruebaNoTreponemica
                       "
+                      :disabled="isPruebaNoTreponemica"
                     >
                       <el-radio :label="1">Reactiva</el-radio>
                       <el-radio :label="0">No reactiva</el-radio>
@@ -247,6 +255,7 @@
                       type="date"
                       placeholder="Fecha del resultado"
                       :format="dateFormat"
+                      :disabled="isPruebaNoTreponemica"
                     />
                   </el-form-item>
                 </el-col>
@@ -276,6 +285,7 @@
                       v-model="
                         ruleFormDiagnosticoMaterno.listReporteDilucionesPruebaNoTreponemicaReactiva
                       "
+                      :disabled="isPruebaNoTreponemica"
                     >
                       <el-checkbox
                         v-for="(rds, index) in reporteDilucionesList"
@@ -3068,6 +3078,36 @@ export default class HepatitisBView extends Vue {
     formEl.resetFields();
   };
 
+  enableIsPruebaTreponemica = true;
+
+  enablePT() {
+    console.log(
+      "valor",
+      Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica)
+    );
+    if (Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica) !== 0) {
+      this.enableIsPruebaTreponemica = false; 
+    } else {
+      this.enableIsPruebaTreponemica = true;
+      this.ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica = undefined
+    }
+  }
+
+  isPruebaNoTreponemica = true;
+
+  enablePNT() {
+    console.log(
+      "valor",
+      Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica)
+    );
+    if (Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica) !== 0) {
+      this.isPruebaNoTreponemica = false; 
+    } else {
+      this.isPruebaNoTreponemica = true;
+      this.ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica = undefined
+    }
+  }
+  
   enableEGSField() {
     console.log(
       "posterior al parto",
