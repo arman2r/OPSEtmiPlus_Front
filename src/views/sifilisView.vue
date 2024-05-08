@@ -2391,19 +2391,19 @@ export default class HepatitisBView extends Vue {
       const request: ITratamientoMaternoEstadioClinico = {
         //idTratamientoMaternoEstadioClinico: this.ruleFormDiagnosticoMaterno.idTratamientoMaternoEstadioClinico,
         idClasificacionEstadioClinico: Number(
-          this.ruleFormDiagnosticoMaterno.clasificacionEstadioClinico
+          this.ruleFormEstadioClinico.clasificacionEstadioClinico
         ),
         aplicaronPenicilinaBenzatinica: Number(
-          this.ruleFormDiagnosticoMaterno.aplicaronPenicilinaBenzatinica
+          this.ruleFormEstadioClinico.aplicaronPenicilinaBenzatinica
         ),
         idResultadoManejoSifilisGestacional: Number(
-          this.ruleFormDiagnosticoMaterno.resultadoManejoSifilisGestacional
+          this.ruleFormEstadioClinico.resultadoManejoSifilisGestacional
         ),
         seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica: Number(
-          this.ruleFormDiagnosticoMaterno.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica
+          this.ruleFormEstadioClinico.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica
         ),
         idResultadoPrevenirSifilisCongenita: Number(
-          this.ruleFormDiagnosticoMaterno.resultadoPrevenirSifilisCongenita
+          this.ruleFormEstadioClinico.resultadoPrevenirSifilisCongenita
         )
       }
     } else if (tabName === "five") {
