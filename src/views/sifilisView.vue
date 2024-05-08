@@ -1,10 +1,9 @@
-
-<template class="steps-container"> 
+<template class="steps-container">
   <div class="full-width">
     <h4 class="steps-container">
       SEGUIMIENTO CLÍNICO DE LA GESTANTE CON SÍFILIS Y SU HIJA O HIJO EXPUESTO
     </h4>
-    
+
     <section style="width: 100%">
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="Diagnóstico materno" name="second" ref="elTab2">
@@ -81,7 +80,7 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item
                     label="Se realizó prueba treponémica:"
-                    prop="seRealizoPruebaTreponemica" 
+                    prop="seRealizoPruebaTreponemica"
                   >
                     <el-radio-group
                       v-model="
@@ -98,7 +97,7 @@
                   <el-form-item
                     label="Tipo de prueba treponémica"
                     prop="pruebaTreponemica"
-                    class="select-width" 
+                    class="select-width"
                   >
                     <el-select
                       v-model="ruleFormDiagnosticoMaterno.pruebaTreponemica"
@@ -179,7 +178,7 @@
                 <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
                   <el-form-item
                     label="Se realizó prueba no tréponémica"
-                    prop="seRealizoPruebaNoTreponemica" 
+                    prop="seRealizoPruebaNoTreponemica"
                   >
                     <el-radio-group
                       class="ml-4"
@@ -307,7 +306,7 @@
                   >
                 </div>
               </el-row>
-              <br><br><br><br><br><br><br><br>
+              <br /><br /><br /><br /><br /><br /><br /><br />
             </section>
           </el-form>
         </el-tab-pane>
@@ -525,6 +524,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(thirdForm, 'four')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -534,7 +543,7 @@
             label-width="180px"
             :size="formSize"
             status-icon
-            ref="FourForm"
+            ref="fourForm"
             label-position="top"
           >
             <section style="width: 100%">
@@ -689,6 +698,16 @@
                     </el-col>
                   </el-col>
                 </el-col>
+              </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(fourForm, 'five')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
               </el-row>
             </section>
           </el-form>
@@ -927,6 +946,16 @@
                   </el-row>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(fiveForm, 'six')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -1056,6 +1085,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(sixForm, 'seven')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -1065,7 +1104,7 @@
             label-width="180px"
             :size="formSize"
             status-icon
-            ref="sixForm"
+            ref="sevenForm"
             label-position="top"
             :model="ruleFormSituacionGestanteEA"
             :rules="rulesFormSituacionGestanteEA"
@@ -1279,6 +1318,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(sevenForm, 'eigth')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -1288,7 +1337,7 @@
             label-width="180px"
             :size="formSize"
             status-icon
-            ref="sevenForm"
+            ref="eigthForm"
             label-position="top"
             :model="ruleFormDiagnosticoRN"
             :rules="rulesFormDiagnosticoRN"
@@ -1462,6 +1511,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(eigthForm, 'nine')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -1471,7 +1530,7 @@
             label-width="180px"
             :size="formSize"
             status-icon
-            ref="eightForm"
+            ref="nineForm"
             label-position="top"
           >
             <section style="width: 100%">
@@ -1564,6 +1623,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(nineForm, 'ten')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -1573,7 +1642,7 @@
             label-width="180px"
             :size="formSize"
             status-icon
-            ref="nineForm"
+            ref="tenForm"
             label-position="top"
             :model="ruleFormSeguimientoMenor"
             :rules="rulesFormSeguimientoMenor"
@@ -1749,6 +1818,16 @@
                   </el-form-item>
                 </el-col>
               </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(tenForm, 'eleven')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
+              </el-row>
             </section>
           </el-form>
         </el-tab-pane>
@@ -1758,7 +1837,7 @@
             label-width="180px"
             :size="formSize"
             status-icon
-            ref="tenForm"
+            ref="elevenForm"
             label-position="top"
           >
             <section style="width: 100%">
@@ -1838,6 +1917,16 @@
                     />
                   </el-form-item>
                 </el-col>
+              </el-row>
+              <el-row class="row-bg" justify="end">
+                <div class="btn-save">
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="submitForm(elevenForm, 'end')"
+                    >guardar y continuar</el-button
+                  >
+                </div>
               </el-row>
             </section>
           </el-form>
@@ -1980,6 +2069,7 @@ export default class HepatitisBView extends Vue {
   eightForm = ref<FormInstance>();
   nineForm = ref<FormInstance>();
   tenForm = ref<FormInstance>();
+  elevenForm = ref<FormInstance>();
 
   formSize = "default";
 
@@ -2281,9 +2371,46 @@ export default class HepatitisBView extends Vue {
       console.log('que recupero el primer request', request)
       this.registroReporte(request, tabName);
     } else if (tabName === "four") {
-      this.disabledFour = false;
+      //this.disabledFour = false;
+
+      const getTratamientoMaternoList = this.ttoMaternoList;
+      const MakeTratamientoMaternoList: IAplicacionPenicilinaBenzatinicaList[] = [];
+
+      getTratamientoMaternoList.map((fieldValue: any) => {
+          MakeTratamientoMaternoList.push({
+            idDosisPenicilinaBenzatinica: Number(fieldValue.dosisPenicilinaBenzatinica),
+            fechaAplicacionPenicilinaBenzatinica: new Date(
+              moment(fieldValue.fechaAplicacionPenicilinaBenzatinica).format(
+                "YYYY-MM-DD HH:mm:ss.sss"
+              )
+            ),
+            edadGestionalAplicacionPenicilinaBenzatinicaSemanas: Number(fieldValue.edadGestionalAplicacionPenicilinaBenzatinicaSemanas)
+          });
+      });
+
+      const request: ITratamientoMaternoEstadioClinico = {
+        //idTratamientoMaternoEstadioClinico: this.ruleFormDiagnosticoMaterno.idTratamientoMaternoEstadioClinico,
+        idClasificacionEstadioClinico: Number(
+          this.ruleFormDiagnosticoMaterno.clasificacionEstadioClinico
+        ),
+        aplicaronPenicilinaBenzatinica: Number(
+          this.ruleFormDiagnosticoMaterno.aplicaronPenicilinaBenzatinica
+        ),
+        idResultadoManejoSifilisGestacional: Number(
+          this.ruleFormDiagnosticoMaterno.resultadoManejoSifilisGestacional
+        ),
+        seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica: Number(
+          this.ruleFormDiagnosticoMaterno.seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica
+        ),
+        idResultadoPrevenirSifilisCongenita: Number(
+          this.ruleFormDiagnosticoMaterno.resultadoPrevenirSifilisCongenita
+        )
+      }
     } else if (tabName === "five") {
-      this.disabledFive = false;
+      //this.disabledFive = false;
+      const request: ISeguimientoSerologicoGestanteList = {
+
+      }
     } else if (tabName === "six") {
       this.disabledSix = false;
     } else if (tabName === "seven") {
@@ -3087,7 +3214,7 @@ export default class HepatitisBView extends Vue {
       Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica)
     );
     if (Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaTreponemica) !== 0) {
-      this.enableIsPruebaTreponemica = false; 
+      this.enableIsPruebaTreponemica = false;
     } else {
       this.enableIsPruebaTreponemica = true;
       this.ruleFormDiagnosticoMaterno.fechaResultadoPruebaTreponemica = undefined
@@ -3102,13 +3229,13 @@ export default class HepatitisBView extends Vue {
       Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica)
     );
     if (Number(this.ruleFormDiagnosticoMaterno.seRealizoPruebaNoTreponemica) !== 0) {
-      this.isPruebaNoTreponemica = false; 
+      this.isPruebaNoTreponemica = false;
     } else {
       this.isPruebaNoTreponemica = true;
       this.ruleFormDiagnosticoMaterno.fechaResultadoPruebaNoTreponemica = undefined
     }
   }
-  
+
   enableEGSField() {
     console.log(
       "posterior al parto",

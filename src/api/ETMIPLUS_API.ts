@@ -2733,7 +2733,7 @@ export class EtmiPlusClient {
      * @param body (optional) 
      * @return Success
      */
-    tratamientoMaternoEstadioClinico(idDiagnosticoMaterno: number, body: TratamientoMaternoEstadioClinico | undefined, cancelToken?: CancelToken): Promise<void> {
+    tratamientoMaternoEstadioClinico(idDiagnosticoMaterno: number, body: ITratamientoMaternoEstadioClinico | undefined, cancelToken?: CancelToken): Promise<void> {
         let url_ = this.baseUrl + "/api/GestanteControl/DiagnosticoMaterno/{idDiagnosticoMaterno}/Sifilis/TratamientoMaternoEstadioClinico";
         if (idDiagnosticoMaterno === undefined || idDiagnosticoMaterno === null)
             throw new Error("The parameter 'idDiagnosticoMaterno' must be defined.");
@@ -2775,7 +2775,7 @@ export class EtmiPlusClient {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(null as any);
+            return Promise.resolve<void>(_responseText as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -5730,15 +5730,15 @@ export interface ITratamientoMaternoEstadioClinico {
     idTratamientoMaternoEstadioClinico?: number;
     idDiagnosticoMaterno?: number;
     idClasificacionEstadioClinico?: number;
-    clasificacionEstadioClinico?: Parametrica;
+    clasificacionEstadioClinico?: Parametrica | IParametrica;
     aplicaronPenicilinaBenzatinica?: number;
     idResultadoManejoSifilisGestacional?: number;
-    resultadoManejoSifilisGestacional?: Parametrica;
+    resultadoManejoSifilisGestacional?: Parametrica | IParametrica;
     seRealizoDesensibilizacionAplicacionPenicilinaBenzatinica?: number;
     idResultadoPrevenirSifilisCongenita?: number;
-    resultadoPrevenirSifilisCongenita?: Parametrica;
-    seguimientoSerologicoGestante?: SeguimientoSerologicoGestante[] | undefined;
-    retratamientoMaternoGestacional?: RetratamientoMaternoGestacional[] | undefined;
+    resultadoPrevenirSifilisCongenita?: Parametrica | IParametrica;
+    seguimientoSerologicoGestante?: SeguimientoSerologicoGestante[] | ISeguimientoSerologicoGestante[] | undefined;
+    retratamientoMaternoGestacional?: RetratamientoMaternoGestacional[] | IRetratamientoMaternoGestacional[] | undefined;
 }
 
 export class TratamientoSeguimientoGestanteHB implements ITratamientoSeguimientoGestanteHB {
